@@ -68,7 +68,7 @@ class _ProfileInfoRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 90,
       constraints: const BoxConstraints(maxWidth: 400),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
