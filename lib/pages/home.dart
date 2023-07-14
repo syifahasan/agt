@@ -10,7 +10,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Profile Picture with Search Bar',
+      title: 'HomePage AGT',
+      theme: ThemeData(
+        fontFamily: 'SFProDisplay',
+      ),
       home: HomePage(),
     );
   }
@@ -90,11 +93,14 @@ class HomePage extends StatelessWidget {
                     height: 150,
                     width: 90 / 100 * screenWidth,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      // gradient:
-                      //     LinearGradient(colors: [Colors.grey, Colors.white]),
+                      // color: Colors.white,
+                      gradient: LinearGradient(
+                        colors: [Color.fromARGB(110, 0, 0, 0), Colors.white],
+                        begin: Alignment(0, -20),
+                        end: Alignment(0, 2),
+                      ),
                       borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Colors.black, width: 2),
+                      // border: Border.all(color: Colors.black, width: 2),
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,10 +120,17 @@ class HomePage extends StatelessWidget {
                                 "Hi, Username!",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 16,
                                 ),
                               ),
                               Text("AG Points"),
-                              Text("Rp.250000"),
+                              Text(
+                                "Rp.250.000",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
                               Text("Active"),
                             ],
                           ),
@@ -167,6 +180,9 @@ class ActionButtons extends StatelessWidget {
               border: Border.all(width: 2),
               borderRadius: BorderRadius.circular(10)),
           child: IconButton(onPressed: () {}, icon: Icon(icon), iconSize: 18),
+        ),
+        SizedBox(
+          height: 10,
         ),
         Text(desc),
       ],
