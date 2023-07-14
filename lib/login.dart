@@ -7,28 +7,39 @@ class PageLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isSmallScreen = MediaQuery.of(context).size.width < 600;
 
-    return Scaffold(
+    return Stack(children: <Widget>[
+      Positioned.fill(
+        //
+        child: Image(
+          image: AssetImage('assets/placeholder.png'),
+          fit: BoxFit.fill,
+        ),
+      ),
+      Scaffold(
         body: Center(
-            child: isSmallScreen
-                ? Column(
-                    mainAxisSize: MainAxisSize.min,
+          child: isSmallScreen
+              ? Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    _Logo(),
+                    _FormContent(),
+                  ],
+                )
+              : Container(
+                  padding: const EdgeInsets.all(32.0),
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: Row(
                     children: const [
-                      _Logo(),
-                      _FormContent(),
+                      Expanded(child: _Logo()),
+                      Expanded(
+                        child: Center(child: _FormContent()),
+                      ),
                     ],
-                  )
-                : Container(
-                    padding: const EdgeInsets.all(32.0),
-                    constraints: const BoxConstraints(maxWidth: 800),
-                    child: Row(
-                      children: const [
-                        Expanded(child: _Logo()),
-                        Expanded(
-                          child: Center(child: _FormContent()),
-                        ),
-                      ],
-                    ),
-                  )));
+                  ),
+                ),
+        ),
+      ),
+    ]);
   }
 }
 
