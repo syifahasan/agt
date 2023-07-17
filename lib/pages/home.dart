@@ -10,7 +10,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Profile Picture with Search Bar',
+      title: 'HomePage AGT',
+      theme: ThemeData(
+        fontFamily: 'SFProDisplay',
+      ),
       home: HomePage(),
     );
   }
@@ -24,21 +27,22 @@ class HomePage extends StatelessWidget {
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(70.0),
           child: AppBar(
             elevation: 0,
             flexibleSpace: Container(
               decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(30)),
-                gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [Color.fromARGB(255, 119, 114, 114), Colors.white]),
-              ),
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(30)),
+                  gradient: RadialGradient(
+                    colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
+                    center: Alignment.topCenter,
+                    radius: 8,
+                  )),
             ),
-            backgroundColor: Colors.amber,
+            // backgroundColor: Colors.amber,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(30),
@@ -48,6 +52,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextField(
+                    textInputAction: TextInputAction.done,
                     controller: _searchController,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
@@ -79,68 +84,120 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        body: ListView(
-          children: [
-            Center(
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.symmetric(vertical: 20),
-                    height: 150,
-                    width: 90 / 100 * screenWidth,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      // gradient:
-                      //     LinearGradient(colors: [Colors.grey, Colors.white]),
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Colors.black, width: 2),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/other/bg.png'),
+                fit: BoxFit.cover,
+                scale: 2.0),
+          ),
+          child: ListView(
+            children: [
+              Center(
+                child: Column(
+                  children: [
+                    Stack(
                       children: [
-                        CircleAvatar(
-                          radius: 20.0,
-                          backgroundImage: NetworkImage(
-                              'https://picsum.photos/200/300?grayscale'),
-                        ),
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Hi, Username!",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        Positioned(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 120),
+                            height: 500,
+                            width: screenWidth,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
                               ),
-                              Text("AG Points"),
-                              Text("Rp.250000"),
-                              Text("Active"),
-                            ],
+                            ),
                           ),
                         ),
-                        ActionButtons(
-                          icon: Icons.add,
-                          desc: "Add",
-                        ),
-                        ActionButtons(
-                          icon: Icons.arrow_upward,
-                          desc: "Pay",
-                        ),
-                        ActionButtons(
-                          icon: Icons.map_outlined,
-                          desc: "Discover",
+                        Positioned(
+                          top: 0,
+                          right: 18,
+                          child: Container(
+                            padding: EdgeInsets.all(5),
+                            margin: EdgeInsets.only(top: 20),
+                            height: 150,
+                            width: 90 / 100 * screenWidth,
+                            decoration: BoxDecoration(
+                              // color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  offset: Offset(0, 5),
+                                  blurRadius: 3,
+                                  spreadRadius: 1,
+                                )
+                              ],
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(255, 58, 57, 57),
+                                  Colors.white
+                                ],
+                                begin: Alignment(0, -20),
+                                end: Alignment(0, 2),
+                              ),
+                              borderRadius: BorderRadius.circular(30),
+                              // border: Border.all(color: Colors.black, width: 2),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                CircleAvatar(
+                                  radius: 20.0,
+                                  backgroundImage: NetworkImage(
+                                      'https://picsum.photos/200/300?grayscale'),
+                                ),
+                                Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Hi, Username!",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      Text("AG Points"),
+                                      Text(
+                                        "Rp.250.000",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      Text("Active"),
+                                    ],
+                                  ),
+                                ),
+                                ActionButtons(
+                                  icon: Icons.add,
+                                  desc: "Add",
+                                ),
+                                ActionButtons(
+                                  icon: Icons.arrow_upward,
+                                  desc: "Pay",
+                                ),
+                                ActionButtons(
+                                  icon: Icons.map_outlined,
+                                  desc: "Discover",
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                  )
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ));
   }
 }
@@ -167,6 +224,9 @@ class ActionButtons extends StatelessWidget {
               border: Border.all(width: 2),
               borderRadius: BorderRadius.circular(10)),
           child: IconButton(onPressed: () {}, icon: Icon(icon), iconSize: 18),
+        ),
+        SizedBox(
+          height: 10,
         ),
         Text(desc),
       ],
