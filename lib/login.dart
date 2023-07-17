@@ -15,7 +15,7 @@ class PageLogin extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: Image.asset('./assets/img/bg.png').image,
+                image: Image.asset('assets/other/bg.png').image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -45,7 +45,7 @@ class PageLogin extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Image.asset(
-                                './assets/img/logo.png',
+                                'assets/other/logo.png',
                                 height: 165,
                                 width: 165,
                               )
