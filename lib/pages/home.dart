@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
                   gradient: RadialGradient(
                     colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
                     center: Alignment.topCenter,
-                    radius: 8,
+                    radius: 10,
                   )),
             ),
             // backgroundColor: Colors.amber,
@@ -101,6 +101,8 @@ class HomePage extends StatelessWidget {
                         Positioned(
                           child: Container(
                             margin: EdgeInsets.only(top: 120),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 70, horizontal: 20),
                             height: 500,
                             width: screenWidth,
                             decoration: BoxDecoration(
@@ -109,6 +111,21 @@ class HomePage extends StatelessWidget {
                                 topLeft: Radius.circular(20),
                                 topRight: Radius.circular(20),
                               ),
+                            ),
+                            child: Wrap(
+                              alignment: WrapAlignment.spaceEvenly,
+                              runSpacing: 20,
+                              spacing: screenWidth * 10 / 100,
+                              children: [
+                                Menu(screenWidth: screenWidth),
+                                Menu(screenWidth: screenWidth),
+                                Menu(screenWidth: screenWidth),
+                                Menu(screenWidth: screenWidth),
+                                Menu(screenWidth: screenWidth),
+                                Menu(screenWidth: screenWidth),
+                                Menu(screenWidth: screenWidth),
+                                Menu(screenWidth: screenWidth),
+                              ],
                             ),
                           ),
                         ),
@@ -199,6 +216,35 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+class Menu extends StatelessWidget {
+  const Menu({
+    super.key,
+    required this.screenWidth,
+  });
+
+  final double screenWidth;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: screenWidth * 20 / 100,
+          height: screenWidth * 20 / 100,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text("Tes"),
+      ],
+    );
   }
 }
 
