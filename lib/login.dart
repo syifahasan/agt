@@ -5,6 +5,7 @@ class PageLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appBarSize = AppBar().preferredSize.height;
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
@@ -15,7 +16,7 @@ class PageLogin extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: Image.asset('./assets/img/bg.png').image,
+                image: Image.asset('assets/other/bg.png').image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -36,20 +37,41 @@ class PageLogin extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Center(
-                      child: Container(
-                        padding: EdgeInsets.only(top: 47),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Image.asset(
-                                './assets/img/logo.png',
-                                height: 165,
-                                width: 165,
-                              )
-                            ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 47),
+                      child: Image.asset(
+                        'assets/other/logo.png',
+                        width: 165,
+                        height: 165,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Text("Welcome",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 40,
+                        )),
+                    Text("The Gateway to everything authentic",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 15)),
+                    SizedBox(height: 50),
+                    _FormEmail(),
+                    _FormPass(),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      margin: EdgeInsets.only(top: 28),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Login'),
+                        style: ButtonStyle(
+                          shadowColor: null,
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.grey),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
                           ),
                         ),
                       ),
@@ -60,6 +82,75 @@ class PageLogin extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _FormEmail extends StatelessWidget {
+  const _FormEmail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      margin: const EdgeInsets.symmetric(horizontal: 60),
+      child: TextFormField(
+        cursorColor: Colors.grey,
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          labelText: 'Enter Email',
+          hintText: 'Email',
+          contentPadding: EdgeInsets.fromLTRB(15, 10.0, 20.0, 10.0),
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          hintStyle: TextStyle(
+            color: Colors.black.withOpacity(0.5),
+          ),
+          enabledBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(50),
+            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
+          ),
+          focusedBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(50),
+            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _FormPass extends StatelessWidget {
+  const _FormPass({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      margin: EdgeInsets.only(top: 18, right: 60, left: 60),
+      child: TextFormField(
+        obscureText: true,
+        cursorColor: Colors.grey,
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+          labelText: 'Enter Password',
+          hintText: 'Password',
+          contentPadding: EdgeInsets.fromLTRB(15, 10.0, 20.0, 10.0),
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          hintStyle: TextStyle(
+            color: Colors.black.withOpacity(0.5),
+          ),
+          enabledBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(50),
+            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
+          ),
+          focusedBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(50),
+            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
+          ),
+        ),
       ),
     );
   }
