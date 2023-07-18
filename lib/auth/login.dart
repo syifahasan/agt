@@ -1,3 +1,4 @@
+import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:flutter/material.dart';
 import '../pages/home.dart';
 import 'register.dart';
@@ -65,11 +66,11 @@ class PageLogin extends StatelessWidget {
                       margin: EdgeInsets.only(top: 25),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return HomePage();
+                                return MainPage();
                               },
                             ),
                           );
