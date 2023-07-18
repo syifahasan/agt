@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './pages/home.dart';
+import '../pages/home.dart';
+import 'register.dart';
 
 class PageLogin extends StatelessWidget {
   const PageLogin({super.key});
@@ -99,7 +100,7 @@ class PageLogin extends StatelessWidget {
                             children: [
                               WidgetSpan(
                                   child: Text(
-                                "Already have an account?",
+                                "Don't have an account?",
                                 style: TextStyle(
                                     fontSize: 14, fontWeight: FontWeight.w400),
                               )),
@@ -107,7 +108,16 @@ class PageLogin extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 4),
                                   child: InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return PageRegis();
+                                          },
+                                        ),
+                                      );
+                                    },
                                     child: Text(
                                       " Sign Up",
                                       style: TextStyle(
