@@ -5,6 +5,7 @@ class PageLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appBarSize = AppBar().preferredSize.height;
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
 
     return Scaffold(
@@ -45,7 +46,7 @@ class PageLogin extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Image.asset(
-                                'assets/other/logo.png',
+                                './assets/img/logo.png',
                                 height: 165,
                                 width: 165,
                               )
@@ -60,6 +61,75 @@ class PageLogin extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _FormEmail extends StatelessWidget {
+  const _FormEmail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      margin: const EdgeInsets.symmetric(horizontal: 60),
+      child: TextFormField(
+        cursorColor: Colors.grey,
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          labelText: 'Enter Email',
+          hintText: 'Email',
+          contentPadding: EdgeInsets.fromLTRB(15, 10.0, 20.0, 10.0),
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          hintStyle: TextStyle(
+            color: Colors.black.withOpacity(0.5),
+          ),
+          enabledBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(50),
+            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
+          ),
+          focusedBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(50),
+            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _FormPass extends StatelessWidget {
+  const _FormPass({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      margin: EdgeInsets.only(top: 18, right: 60, left: 60),
+      child: TextFormField(
+        obscureText: true,
+        cursorColor: Colors.grey,
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+          labelText: 'Enter Password',
+          hintText: 'Password',
+          contentPadding: EdgeInsets.fromLTRB(15, 10.0, 20.0, 10.0),
+          floatingLabelBehavior: FloatingLabelBehavior.never,
+          hintStyle: TextStyle(
+            color: Colors.black.withOpacity(0.5),
+          ),
+          enabledBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(50),
+            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
+          ),
+          focusedBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(50),
+            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
+          ),
+        ),
       ),
     );
   }
