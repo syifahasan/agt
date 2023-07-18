@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
                   gradient: RadialGradient(
                     colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
                     center: Alignment.topCenter,
-                    radius: 8,
+                    radius: 10,
                   )),
             ),
             // backgroundColor: Colors.amber,
@@ -92,113 +93,226 @@ class HomePage extends StatelessWidget {
                 scale: 2.0),
           ),
           child: ListView(
+            physics: BouncingScrollPhysics(),
             children: [
-              Center(
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Positioned(
-                          child: Container(
-                            margin: EdgeInsets.only(top: 120),
-                            height: 500,
-                            width: screenWidth,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20),
-                              ),
+              Column(
+                children: [
+                  Stack(
+                    children: [
+                      Positioned(
+                        child: Container(
+                          margin: EdgeInsets.only(top: 120),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 70, horizontal: 20),
+                          // height: 500,
+                          width: screenWidth,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
                             ),
                           ),
-                        ),
-                        Positioned(
-                          top: 0,
-                          right: 18,
-                          child: Container(
-                            padding: EdgeInsets.all(5),
-                            margin: EdgeInsets.only(top: 20),
-                            height: 150,
-                            width: 90 / 100 * screenWidth,
-                            decoration: BoxDecoration(
-                              // color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  offset: Offset(0, 5),
-                                  blurRadius: 3,
-                                  spreadRadius: 1,
-                                )
-                              ],
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromARGB(255, 58, 57, 57),
-                                  Colors.white
-                                ],
-                                begin: Alignment(0, -20),
-                                end: Alignment(0, 2),
-                              ),
-                              borderRadius: BorderRadius.circular(30),
-                              // border: Border.all(color: Colors.black, width: 2),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                CircleAvatar(
-                                  radius: 20.0,
-                                  backgroundImage: NetworkImage(
-                                      'https://picsum.photos/200/300?grayscale'),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.center,
+                                child: Wrap(
+                                  alignment: WrapAlignment.spaceEvenly,
+                                  runSpacing: 20,
+                                  spacing: screenWidth * 5 / 100,
+                                  children: [
+                                    Menu(
+                                        screenWidth: screenWidth,
+                                        image:
+                                            'assets/icons/news-svgrepo-com.svg',
+                                        desc: 'AuthenticNews'),
+                                    Menu(
+                                        screenWidth: screenWidth,
+                                        image: 'assets/icons/agt_white.svg',
+                                        desc: 'AuthenticStore'),
+                                    Menu(
+                                        screenWidth: screenWidth,
+                                        image:
+                                            'assets/icons/news-svgrepo-com.svg',
+                                        desc: 'AuthenticNews'),
+                                    Menu(
+                                        screenWidth: screenWidth,
+                                        image:
+                                            'assets/icons/plugin-svgrepo-com.svg',
+                                        desc: 'PLN'),
+                                    Menu(
+                                        screenWidth: screenWidth,
+                                        image:
+                                            'assets/icons/water-svgrepo-com.svg',
+                                        desc: 'PDAM'),
+                                    Menu(
+                                        screenWidth: screenWidth,
+                                        image:
+                                            'assets/icons/news-svgrepo-com.svg',
+                                        desc: 'AuthenticNews'),
+                                    Menu(
+                                        screenWidth: screenWidth,
+                                        image:
+                                            'assets/icons/news-svgrepo-com.svg',
+                                        desc: 'AuthenticNews'),
+                                    Menu(
+                                        screenWidth: screenWidth,
+                                        image:
+                                            'assets/icons/news-svgrepo-com.svg',
+                                        desc: 'AuthenticNews'),
+                                  ],
                                 ),
-                                Container(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Hi, Username!",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      Text("AG Points"),
-                                      Text(
-                                        "Rp.250.000",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      Text("Active"),
-                                    ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                "News Update",
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                              SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Container(
+                                  width: screenWidth * 90 / 100,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
                                   ),
                                 ),
-                                ActionButtons(
-                                  icon: Icons.add,
-                                  desc: "Add",
-                                ),
-                                ActionButtons(
-                                  icon: Icons.arrow_upward,
-                                  desc: "Pay",
-                                ),
-                                ActionButtons(
-                                  icon: Icons.map_outlined,
-                                  desc: "Discover",
-                                ),
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                      Positioned(
+                        top: 0,
+                        right: 18,
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          margin: EdgeInsets.only(top: 20),
+                          height: 150,
+                          width: 90 / 100 * screenWidth,
+                          decoration: BoxDecoration(
+                            // color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                offset: Offset(0, 5),
+                                blurRadius: 3,
+                                spreadRadius: 1,
+                              )
+                            ],
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromARGB(255, 58, 57, 57),
+                                Colors.white
+                              ],
+                              begin: Alignment(0, -20),
+                              end: Alignment(0, 2),
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                            // border: Border.all(color: Colors.black, width: 2),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CircleAvatar(
+                                radius: 20.0,
+                                backgroundImage: NetworkImage(
+                                    'https://picsum.photos/200/300?grayscale'),
+                              ),
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Hi, Username!",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text("AG Points"),
+                                    Text(
+                                      "Rp.250.000",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Text("Active"),
+                                  ],
+                                ),
+                              ),
+                              ActionButtons(
+                                icon: Icons.add,
+                                desc: "Add",
+                              ),
+                              ActionButtons(
+                                icon: Icons.arrow_upward,
+                                desc: "Pay",
+                              ),
+                              ActionButtons(
+                                icon: Icons.map_outlined,
+                                desc: "Discover",
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               )
             ],
           ),
         ));
+  }
+}
+
+class Menu extends StatelessWidget {
+  const Menu({
+    super.key,
+    required this.screenWidth,
+    required this.image,
+    required this.desc,
+  });
+
+  final double screenWidth;
+  final String image;
+  final String desc;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: screenWidth * 20 / 100,
+          height: screenWidth * 20 / 100,
+          decoration: BoxDecoration(
+            // image: DecorationImage(
+            //   image: AssetImage('assets/icons/newslogo.png'),
+            // ),
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
+          ),
+          child: SvgPicture.asset(
+            image,
+            width: 200,
+            height: 200,
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(desc),
+      ],
+    );
   }
 }
 

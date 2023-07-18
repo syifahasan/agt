@@ -37,41 +37,20 @@ class PageLogin extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 47),
-                      child: Image.asset(
-                        'assets/other/logo.png',
-                        width: 165,
-                        height: 165,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Text("Welcome",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 40,
-                        )),
-                    Text("The Gateway to everything authentic",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 15)),
-                    SizedBox(height: 50),
-                    _FormEmail(),
-                    _FormPass(),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      margin: EdgeInsets.only(top: 28),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text('Login'),
-                        style: ButtonStyle(
-                          shadowColor: null,
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.grey),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
+                    Center(
+                      child: Container(
+                        padding: EdgeInsets.only(top: 47),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Image.asset(
+                                './assets/img/logo.png',
+                                height: 165,
+                                width: 165,
+                              )
+                            ],
                           ),
                         ),
                       ),
