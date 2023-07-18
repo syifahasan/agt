@@ -61,13 +61,14 @@ flutter:
   assets:
     - assets/other/bg.png
     - assets/other/logo.png
-    - assets/icons/news-svgrepo-com.svg
-    - assets/icons/newslogo.png
+    - assets/icons/news-svgrepo-com.png
     - assets/icons/agt_white.svg
-    - assets/icons/plane-svgrepo-com.svg
-    - assets/icons/plugin-svgrepo-com.svg
-    - assets/icons/water-svgrepo-com.svg
+    - assets/icons/plane-svgrepo-com.png
+    - assets/icons/plugin-svgrepo-com.png
+    - assets/icons/water-svgrepo-com.png
     - assets/icons/stack-svgrepo-com.png
+    - assets/icons/smartphone-svgrepo-com.png
+    - assets/icons/train-svgrepo-com.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

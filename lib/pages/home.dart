@@ -20,6 +20,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  int currentPage = 0;
+  final screens = [
+    
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
 class HomePage extends StatelessWidget {
   final TextEditingController _searchController = TextEditingController();
 
@@ -52,27 +71,41 @@ class HomePage extends StatelessWidget {
             title: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    textInputAction: TextInputAction.done,
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.all(10),
-                      prefix: Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                        size: 20,
-                      ),
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(50)),
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: 'Search',
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          offset: Offset(0, 4),
+                          blurRadius: 3,
+                          spreadRadius: 1,
+                        ),
+                      ],
                     ),
-                    onSubmitted: (value) {
-                      // Perform search based on the input value
-                      print('Search query: $value');
-                    },
+                    width: screenWidth * 50 / 100,
+                    height: 30,
+                    child: TextField(
+                      textInputAction: TextInputAction.done,
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(50)),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Search',
+                      ),
+                      onSubmitted: (value) {
+                        // Perform search based on the input value
+                        print('Search query: $value');
+                      },
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(width: 10.0),
@@ -102,8 +135,8 @@ class HomePage extends StatelessWidget {
                       Positioned(
                         child: Container(
                           margin: EdgeInsets.only(top: 120),
-                          padding: EdgeInsets.symmetric(
-                              vertical: 70, horizontal: 20),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 70, horizontal: 0),
                           // height: 500,
                           width: screenWidth,
                           decoration: BoxDecoration(
@@ -121,66 +154,97 @@ class HomePage extends StatelessWidget {
                                 child: Wrap(
                                   alignment: WrapAlignment.spaceEvenly,
                                   runSpacing: 20,
-                                  spacing: screenWidth * 5 / 100,
+                                  spacing: screenWidth * 3 / 100,
                                   children: [
                                     Menu(
                                         screenWidth: screenWidth,
                                         image:
-                                            'assets/icons/news-svgrepo-com.svg',
+                                            'assets/icons/news-svgrepo-com.png',
                                         desc: 'AuthenticNews'),
                                     Menu(
                                         screenWidth: screenWidth,
-                                        image: 'assets/icons/agt_white.svg',
+                                        image:
+                                            'assets/icons/news-svgrepo-com.png',
                                         desc: 'AuthenticStore'),
                                     Menu(
                                         screenWidth: screenWidth,
                                         image:
-                                            'assets/icons/news-svgrepo-com.svg',
-                                        desc: 'AuthenticNews'),
+                                            'assets/icons/smartphone-svgrepo-com.png',
+                                        desc: 'Pulsa'),
                                     Menu(
                                         screenWidth: screenWidth,
                                         image:
-                                            'assets/icons/plugin-svgrepo-com.svg',
+                                            'assets/icons/plugin-svgrepo-com.png',
                                         desc: 'PLN'),
                                     Menu(
                                         screenWidth: screenWidth,
                                         image:
-                                            'assets/icons/water-svgrepo-com.svg',
+                                            'assets/icons/water-svgrepo-com.png',
                                         desc: 'PDAM'),
                                     Menu(
                                         screenWidth: screenWidth,
                                         image:
-                                            'assets/icons/news-svgrepo-com.svg',
-                                        desc: 'AuthenticNews'),
+                                            'assets/icons/plane-svgrepo-com.png',
+                                        desc: 'Tiket Pesawat'),
                                     Menu(
                                         screenWidth: screenWidth,
                                         image:
-                                            'assets/icons/news-svgrepo-com.svg',
-                                        desc: 'AuthenticNews'),
+                                            'assets/icons/train-svgrepo-com.png',
+                                        desc: 'Tiket Kereta Api'),
                                     Menu(
                                         screenWidth: screenWidth,
                                         image:
-                                            'assets/icons/news-svgrepo-com.svg',
-                                        desc: 'AuthenticNews'),
+                                            'assets/icons/stack-svgrepo-com.png',
+                                        desc: 'View All'),
                                   ],
                                 ),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
-                              Text(
-                                "News Update",
-                                style: TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
+                                  "News Update",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                               SingleChildScrollView(
+                                physics: BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
-                                child: Container(
-                                  width: screenWidth * 90 / 100,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: screenWidth * 85 / 100,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: screenWidth * 85 / 100,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: screenWidth * 85 / 100,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               )
                             ],
@@ -203,7 +267,7 @@ class HomePage extends StatelessWidget {
                                 offset: Offset(0, 5),
                                 blurRadius: 3,
                                 spreadRadius: 1,
-                              )
+                              ),
                             ],
                             gradient: LinearGradient(
                               colors: [
@@ -295,22 +359,35 @@ class Menu extends StatelessWidget {
           width: screenWidth * 20 / 100,
           height: screenWidth * 20 / 100,
           decoration: BoxDecoration(
-            // image: DecorationImage(
-            //   image: AssetImage('assets/icons/newslogo.png'),
-            // ),
+            image: DecorationImage(
+              image: AssetImage(image),
+            ),
             color: Colors.black,
             borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                offset: Offset(0, 5),
+                blurRadius: 3,
+                spreadRadius: 1,
+              ),
+            ],
           ),
-          child: SvgPicture.asset(
-            image,
-            width: 200,
-            height: 200,
-          ),
+          // child: SvgPicture.asset(
+          //   image,
+          //   width: 200,
+          //   height: 200,
+          // ),
         ),
         SizedBox(
           height: 10,
         ),
-        Text(desc),
+        Text(
+          desc,
+          style: TextStyle(
+            fontSize: 12,
+          ),
+        ),
       ],
     );
   }
