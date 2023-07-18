@@ -62,7 +62,7 @@ class PageLogin extends StatelessWidget {
                     _FormPass(),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.4,
-                      margin: EdgeInsets.only(top: 28),
+                      margin: EdgeInsets.only(top: 25),
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.pushReplacement(
@@ -74,11 +74,14 @@ class PageLogin extends StatelessWidget {
                             ),
                           );
                         },
-                        child: Text('Login'),
+                        child: Text('Login',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.black,
+                            )),
                         style: ButtonStyle(
-                          shadowColor: null,
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.grey),
+                              MaterialStateProperty.all(Color(0xFFEEEDED)),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
@@ -87,6 +90,37 @@ class PageLogin extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Container(
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.only(
+                            left: 24, right: 24, top: 35, bottom: 16),
+                        child: RichText(
+                          overflow: TextOverflow.fade,
+                          text: TextSpan(
+                            children: [
+                              WidgetSpan(
+                                  child: Text(
+                                "Already have an account?",
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w400),
+                              )),
+                              WidgetSpan(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 4),
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: Text(
+                                      " Sign Up",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ))
                   ],
                 ),
               ),
