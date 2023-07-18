@@ -6,9 +6,11 @@ class ScannerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CircularProgressIndicator(
-              semanticsLabel: 'Circular progress indicator',
-            ),
+      body: Center(
+        child: CircularProgressIndicator(
+                semanticsLabel: 'Circular progress indicator',
+              ),
+      ),
     );
   }
 }

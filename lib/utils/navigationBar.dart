@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../pages/notification.dart';
 import '../pages/profile.dart';
 import '../pages/scanner.dart';
@@ -115,7 +116,7 @@ class _MainPageState extends State<MainPage> {
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        backgroundColor: Colors.green.shade800,
+        backgroundColor: Colors.black,
         selectedItemColor: Colors.white,
         iconSize: 30,
         items: [
@@ -123,7 +124,7 @@ class _MainPageState extends State<MainPage> {
             icon: currentPage == 0
                 ? Icon(
                     Icons.home,
-                    color: Color.fromARGB(255, 222, 252, 153),
+                    color: Color.fromARGB(255, 181, 136, 59),
                   )
                 : Icon(
                     Icons.home_outlined,
@@ -133,21 +134,23 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: currentPage == 1
-                ? Icon(
-                    Icons.message,
-                    color: Color.fromARGB(255, 222, 252, 153),
+                ? SvgPicture.asset(
+                    'assets/icons/navbar/StoreSelected.svg',
                   )
-                : Icon(
-                    Icons.message_outlined,
-                    color: Colors.white,
-                  ),
-            label: "Message",
+                : SvgPicture.asset('assets/icons/navbar/Store.svg'),
+            label: "Store",
           ),
           BottomNavigationBarItem(
             icon: currentPage == 2
+                ? SvgPicture.asset('assets/icons/navbar/Scanner.svg', color: Color.fromARGB(255, 181, 136, 59))
+                : SvgPicture.asset('assets/icons/navbar/Scanner.svg'),
+            label: "Scanner",
+          ),
+          BottomNavigationBarItem(
+            icon: currentPage == 3
                 ? Icon(
                     Icons.notifications,
-                    color: Color.fromARGB(255, 222, 252, 153),
+                    color: Color.fromARGB(255, 181, 136, 59),
                   )
                 : Icon(
                     Icons.notifications_outlined,
@@ -156,10 +159,10 @@ class _MainPageState extends State<MainPage> {
             label: "Notifications",
           ),
           BottomNavigationBarItem(
-            icon: currentPage == 3
+            icon: currentPage == 4
                 ? Icon(
                     Icons.person,
-                    color: Color.fromARGB(255, 222, 252, 153),
+                    color: Color.fromARGB(255, 181, 136, 59),
                   )
                 : Icon(
                     Icons.person_outline,
