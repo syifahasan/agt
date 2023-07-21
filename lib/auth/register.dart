@@ -90,6 +90,7 @@ class _LoginViewsState extends State<PageRegis> {
                         child: InputForm(
                           labelText: "Re-enter Password",
                           hintText: 'Re-enter Password',
+                          obscureText: true,
                         )),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.4,
