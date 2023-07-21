@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(top: 20),
+                    margin: EdgeInsets.only(top: 20, right: 20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       boxShadow: [
@@ -76,6 +76,8 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(width: 10.0),
                 Container(
+                  width: 30,
+                  height: 30,
                   decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),

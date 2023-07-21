@@ -74,9 +74,18 @@ flutter:
     - assets/icons/arrow-top-3-svgrepo-com.svg
     - assets/icons/discovery-svgrepo-com.svg
     - assets/icons/LogoAGT.png
+
+    # NAVBAR ICON
     - assets/icons/navbar/Store.svg
     - assets/icons/navbar/StoreSelected.svg
     - assets/icons/navbar/Scanner.svg
+    - assets/icons/navbar/ScannerSeleted.svg
+    - assets/icons/navbar/Profile.svg
+    - assets/icons/navbar/ProfileSelected.svg
+    - assets/icons/navbar/Notification.svg
+    - assets/icons/navbar/NotificationSelected.svg
+    - assets/icons/navbar/Home.svg
+    - assets/icons/navbar/HomeSelected.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

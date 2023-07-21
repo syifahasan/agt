@@ -51,52 +51,161 @@ class _MainPageState extends State<MainPage> {
         items: [
           BottomNavigationBarItem(
             icon: _currentPage == 0
-                ? Icon(
-                    Icons.home,
-                    color: Color.fromARGB(255, 181, 136, 59),
+                ? Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/HomeSelected.svg',
+                      ),
+                      Text(
+                        "Home",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Color.fromARGB(255, 181, 136, 59),
+                        ),
+                      ),
+                    ],
                   )
-                : Icon(
-                    Icons.home_outlined,
-                    color: Colors.white,
+                : Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/Home.svg',
+                      ),
+                      Text(
+                        'Home',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
                   ),
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: _currentPage == 1
-                ? SvgPicture.asset(
-                    'assets/icons/navbar/StoreSelected.svg',
+                ? Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/StoreSelected.svg',
+                      ),
+                      Text(
+                        "Store",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Color.fromARGB(255, 181, 136, 59),
+                        ),
+                      ),
+                    ],
                   )
-                : SvgPicture.asset('assets/icons/navbar/Store.svg'),
+                : Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/Store.svg',
+                      ),
+                      Text(
+                        'Store',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
             label: "Store",
           ),
           BottomNavigationBarItem(
             icon: _currentPage == 2
-                ? SvgPicture.asset('assets/icons/navbar/Scanner.svg',
-                    color: Color.fromARGB(255, 181, 136, 59))
-                : SvgPicture.asset('assets/icons/navbar/Scanner.svg'),
+                ? Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/ScannerSeleted.svg',
+                      ),
+                      Text(
+                        "Scanner",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Color.fromARGB(255, 181, 136, 59),
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/Scanner.svg',
+                      ),
+                      Text(
+                        'Scanner',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
             label: "Scanner",
           ),
           BottomNavigationBarItem(
             icon: _currentPage == 3
-                ? Icon(
-                    Icons.notifications,
-                    color: Color.fromARGB(255, 181, 136, 59),
+                ? Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/NotificationSelected.svg',
+                      ),
+                      Text(
+                        "Notification",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Color.fromARGB(255, 181, 136, 59),
+                        ),
+                      ),
+                    ],
                   )
-                : Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.white,
+                : Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/Notification.svg',
+                      ),
+                      Text(
+                        'Notification',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                        ),
+                      )
+                    ],
                   ),
             label: "Notifications",
           ),
           BottomNavigationBarItem(
             icon: _currentPage == 4
-                ? Icon(
-                    Icons.person,
-                    color: Color.fromARGB(255, 181, 136, 59),
+                ? Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/ProfileSelected.svg',
+                      ),
+                      Text(
+                        "Profile",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Color.fromARGB(255, 181, 136, 59),
+                        ),
+                      ),
+                    ],
                   )
-                : Icon(
-                    Icons.person_outline,
-                    color: Colors.white,
+                : Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/navbar/Profile.svg',
+                      ),
+                      Text(
+                        'Profile',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
             label: "Account",
           ),
