@@ -104,6 +104,8 @@ class HomePage extends StatelessWidget {
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
+
+                              // MENU NEWS UPDATE
                               SingleChildScrollView(
                                 physics: BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
@@ -139,7 +141,54 @@ class HomePage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                              )
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
+                                  "Hot Sales",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+
+                              // MENU HOT SALES
+                              SingleChildScrollView(
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: screenWidth * 85 / 100,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: screenWidth * 85 / 100,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: screenWidth * 85 / 100,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -178,8 +227,8 @@ class HomePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
-                                width: 65,
-                                height: 65,
+                                width: screenWidth * 15 / 100,
+                                height: screenWidth * 15 / 100,
                                 decoration: BoxDecoration(
                                     gradient: RadialGradient(
                                       colors: [
@@ -245,15 +294,16 @@ class HomePage extends StatelessWidget {
                                 ),
                               ),
                               ActionButtons(
-                                icon: Icons.add,
+                                icon: 'assets/icons/add-svgrepo-com.svg',
                                 desc: "Add",
                               ),
                               ActionButtons(
-                                icon: Icons.arrow_upward,
+                                icon:
+                                    'assets/icons/arrow-top-3-svgrepo-com.svg',
                                 desc: "Pay",
                               ),
                               ActionButtons(
-                                icon: Icons.map_outlined,
+                                icon: 'assets/icons/discovery-svgrepo-com.svg',
                                 desc: "Discover",
                               ),
                             ],
@@ -287,8 +337,8 @@ class Menu extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: screenWidth * 20 / 100,
-          height: screenWidth * 20 / 100,
+          width: screenWidth * 19 / 100,
+          height: screenWidth * 19 / 100,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(image),
@@ -331,21 +381,28 @@ class ActionButtons extends StatelessWidget {
     required this.desc,
   });
 
-  IconData icon;
+  String icon;
   String desc;
 
   @override
   Widget build(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
+    final screenWidth = mediaQueryData.size.width;
+    final screenHeight = mediaQueryData.size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 40,
-          height: 40,
+          width: screenWidth * 12 / 100,
+          height: screenWidth * 12 / 100,
           decoration: BoxDecoration(
-              border: Border.all(width: 2),
+              gradient: RadialGradient(
+                colors: [Colors.white, Color.fromARGB(255, 14, 13, 13)],
+                center: Alignment.bottomCenter,
+                radius: 6,
+              ),
               borderRadius: BorderRadius.circular(10)),
-          child: IconButton(onPressed: () {}, icon: Icon(icon), iconSize: 18),
+          child: SvgPicture.asset(icon),
         ),
         SizedBox(
           height: 10,
