@@ -70,6 +70,10 @@ flutter:
     - assets/icons/stack-svgrepo-com.png
     - assets/icons/smartphone-svgrepo-com.png
     - assets/icons/train-svgrepo-com.png
+    - assets/icons/add-svgrepo-com.svg
+    - assets/icons/arrow-top-3-svgrepo-com.svg
+    - assets/icons/discovery-svgrepo-com.svg
+    - assets/icons/LogoAGT.png
     - assets/icons/navbar/Store.svg
     - assets/icons/navbar/StoreSelected.svg
     - assets/icons/navbar/Scanner.svg
