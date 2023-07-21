@@ -15,7 +15,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final TextEditingController _searchController = TextEditingController();
-  int currentPage = 0;
+  int _currentPage = 0;
   final screens = [
     HomePage(),
     StorePage(),
@@ -102,15 +102,15 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
       body: IndexedStack(
-        index: currentPage,
+        index: _currentPage,
         children: screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
-        currentIndex: currentPage,
+        currentIndex: _currentPage,
         onTap: (index) {
           setState(() {
-            currentPage = index;
+            _currentPage = index;
           });
         },
         type: BottomNavigationBarType.fixed,
@@ -121,7 +121,7 @@ class _MainPageState extends State<MainPage> {
         iconSize: 30,
         items: [
           BottomNavigationBarItem(
-            icon: currentPage == 0
+            icon: _currentPage == 0
                 ? Icon(
                     Icons.home,
                     color: Color.fromARGB(255, 181, 136, 59),
@@ -133,7 +133,7 @@ class _MainPageState extends State<MainPage> {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: currentPage == 1
+            icon: _currentPage == 1
                 ? SvgPicture.asset(
                     'assets/icons/navbar/StoreSelected.svg',
                   )
@@ -141,13 +141,13 @@ class _MainPageState extends State<MainPage> {
             label: "Store",
           ),
           BottomNavigationBarItem(
-            icon: currentPage == 2
+            icon: _currentPage == 2
                 ? SvgPicture.asset('assets/icons/navbar/Scanner.svg', color: Color.fromARGB(255, 181, 136, 59))
                 : SvgPicture.asset('assets/icons/navbar/Scanner.svg'),
             label: "Scanner",
           ),
           BottomNavigationBarItem(
-            icon: currentPage == 3
+            icon: _currentPage == 3
                 ? Icon(
                     Icons.notifications,
                     color: Color.fromARGB(255, 181, 136, 59),
@@ -159,7 +159,7 @@ class _MainPageState extends State<MainPage> {
             label: "Notifications",
           ),
           BottomNavigationBarItem(
-            icon: currentPage == 4
+            icon: _currentPage == 4
                 ? Icon(
                     Icons.person,
                     color: Color.fromARGB(255, 181, 136, 59),
