@@ -1,11 +1,16 @@
-import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:flutter/material.dart';
-import '../pages/home.dart';
-import 'register.dart';
+import 'package:authentic_guards/utils/navigationBar.dart';
+import 'package:authentic_guards/pages/home.dart';
+import 'package:authentic_guards/auth/register.dart';
+import 'package:authentic_guards/auth/input.dart';
 
-class PageLogin extends StatelessWidget {
-  const PageLogin({super.key});
+class PageLogin extends StatefulWidget {
+  const PageLogin({Key? key}) : super(key: key);
+  @override
+  State<PageLogin> createState() => _LoginViewsState();
+}
 
+class _LoginViewsState extends State<PageLogin> {
   @override
   Widget build(BuildContext context) {
     final appBarSize = AppBar().preferredSize.height;
@@ -59,7 +64,6 @@ class PageLogin extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.w400, fontSize: 15)),
                     SizedBox(height: 50),
-                    _FormEmail(),
                     _FormPass(),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.4,
@@ -137,39 +141,6 @@ class PageLogin extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _FormEmail extends StatelessWidget {
-  const _FormEmail({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      margin: const EdgeInsets.symmetric(horizontal: 60),
-      child: TextFormField(
-        cursorColor: Colors.grey,
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-          labelText: 'Enter Email',
-          hintText: 'Email',
-          contentPadding: EdgeInsets.fromLTRB(15, 10.0, 20.0, 10.0),
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          hintStyle: TextStyle(
-            color: Colors.black.withOpacity(0.5),
-          ),
-          enabledBorder: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(50),
-            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
-          ),
-          focusedBorder: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(50),
-            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
-          ),
-        ),
       ),
     );
   }
