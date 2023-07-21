@@ -64,6 +64,10 @@ class _LoginViewsState extends State<PageLogin> {
                         style: TextStyle(
                             fontWeight: FontWeight.w400, fontSize: 15)),
                     SizedBox(height: 50),
+                    Container(
+                        margin: EdgeInsets.symmetric(horizontal: 60),
+                        child: InputForm(
+                            labelText: 'labelText', hintText: 'sdjhfvajs')),
                     _FormPass(),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.4,
