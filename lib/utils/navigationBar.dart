@@ -55,6 +55,7 @@ class _MainPageState extends State<MainPage> {
             children: [
               Expanded(
                 child: Container(
+                  margin: EdgeInsets.only(top: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     boxShadow: [
@@ -92,10 +93,21 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               SizedBox(width: 10.0),
-              CircleAvatar(
-                radius: 20.0,
-                backgroundImage:
-                    NetworkImage('https://picsum.photos/200/300?grayscale'),
+              Container(
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    offset: Offset(0, 2),
+                    blurRadius: 3,
+                    spreadRadius: 1,
+                  ),
+                ], borderRadius: BorderRadius.circular(30)),
+                margin: EdgeInsets.only(top: 10),
+                child: CircleAvatar(
+                  radius: 20.0,
+                  backgroundImage:
+                      NetworkImage('https://picsum.photos/200/300?grayscale'),
+                ),
               ),
             ],
           ),
@@ -142,7 +154,8 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: _currentPage == 2
-                ? SvgPicture.asset('assets/icons/navbar/Scanner.svg', color: Color.fromARGB(255, 181, 136, 59))
+                ? SvgPicture.asset('assets/icons/navbar/Scanner.svg',
+                    color: Color.fromARGB(255, 181, 136, 59))
                 : SvgPicture.asset('assets/icons/navbar/Scanner.svg'),
             label: "Scanner",
           ),
