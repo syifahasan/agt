@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:authentic_guards/pages/home.dart';
 import 'package:authentic_guards/auth/register.dart';
-import 'package:authentic_guards/auth/input.dart';
+import 'package:authentic_guards/auth/FormInput.dart';
 
 class PageLogin extends StatefulWidget {
   const PageLogin({Key? key}) : super(key: key);
@@ -67,34 +67,36 @@ class _LoginViewsState extends State<PageLogin> {
                     Container(
                         margin: EdgeInsets.symmetric(horizontal: 60),
                         child: InputForm(
-                            labelText: 'labelText', hintText: 'sdjhfvajs')),
-                    _FormPass(),
+                          labelText: 'Enter Email',
+                          hintText: 'Email',
+                          keyboardType: TextInputType.emailAddress,
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(top: 18, right: 60, left: 60),
+                        child: InputForm(
+                          labelText: 'Enter Password',
+                          hintText: 'Password',
+                          obscureText: true,
+                        )),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.4,
                       margin: EdgeInsets.only(top: 25),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MainPage();
-                              },
-                            ),
-                          );
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return MainPage();
+                          }));
                         },
                         child: Text('Login',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.black,
-                            )),
+                            style:
+                                TextStyle(fontSize: 15, color: Colors.black)),
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Color(0xFFEEEDED)),
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
+                                borderRadius: BorderRadius.circular(30)),
                           ),
                         ),
                       ),
@@ -108,31 +110,24 @@ class _LoginViewsState extends State<PageLogin> {
                           text: TextSpan(
                             children: [
                               WidgetSpan(
-                                  child: Text(
-                                "Don't have an account?",
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              )),
+                                  child: Text("Don't have an account?",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400))),
                               WidgetSpan(
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 4),
                                   child: InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            return PageRegis();
-                                          },
-                                        ),
-                                      );
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return PageRegis();
+                                      }));
                                     },
-                                    child: Text(
-                                      " Sign Up",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w700),
-                                    ),
+                                    child: Text(" Sign Up",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700)),
                                   ),
                                 ),
                               ),
@@ -145,42 +140,6 @@ class _LoginViewsState extends State<PageLogin> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _FormPass extends StatelessWidget {
-  const _FormPass({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      margin: EdgeInsets.only(top: 18, right: 60, left: 60),
-      child: TextFormField(
-        obscureText: true,
-        cursorColor: Colors.grey,
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          labelText: 'Enter Password',
-          hintText: 'Password',
-          contentPadding: EdgeInsets.fromLTRB(15, 10.0, 20.0, 10.0),
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          hintStyle: TextStyle(
-            color: Colors.black.withOpacity(0.5),
-          ),
-          enabledBorder: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(50),
-            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
-          ),
-          focusedBorder: new OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(50),
-            borderSide: BorderSide(color: Color(0xFF555555).withOpacity(0.5)),
-          ),
-        ),
       ),
     );
   }

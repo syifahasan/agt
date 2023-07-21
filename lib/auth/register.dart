@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:authentic_guards/auth/login.dart';
+import 'package:authentic_guards/auth/FormInput.dart';
+import 'package:authentic_guards/auth/login.dart';
 
 class PageRegis extends StatefulWidget {
   const PageRegis({Key? key}) : super(key: key);
@@ -61,8 +63,56 @@ class _LoginViewsState extends State<PageRegis> {
                     Text("he Gateway to everything authentic",
                         style: TextStyle(
                             fontWeight: FontWeight.w400, fontSize: 15)),
-                    SizedBox(
-                      height: 50,
+                    SizedBox(height: 50),
+                    Container(
+                        margin: EdgeInsets.symmetric(horizontal: 60),
+                        child: InputForm(
+                          labelText: 'Enter Email',
+                          hintText: 'Email',
+                          keyboardType: TextInputType.emailAddress,
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(top: 18, right: 60, left: 60),
+                        child: InputForm(
+                          labelText: "Enter phone number",
+                          keyboardType: TextInputType.number,
+                          hintText: "Enter phone number",
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(top: 18, right: 60, left: 60),
+                        child: InputForm(
+                          labelText: "Password",
+                          hintText: "Password",
+                          obscureText: true,
+                        )),
+                    Container(
+                        margin: EdgeInsets.only(top: 18, right: 60, left: 60),
+                        child: InputForm(
+                          labelText: "Re-enter Password",
+                          hintText: 'Re-enter Password',
+                        )),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      margin: EdgeInsets.only(top: 25),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) {
+                            return PageLogin();
+                          }));
+                        },
+                        child: Text('Sign Up',
+                            style:
+                                TextStyle(fontSize: 15, color: Colors.black)),
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Color(0xFFEEEDED)),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                          ),
+                        ),
+                      ),
                     ),
                     Container(
                         alignment: Alignment.center,
@@ -73,11 +123,10 @@ class _LoginViewsState extends State<PageRegis> {
                           text: TextSpan(
                             children: [
                               WidgetSpan(
-                                  child: Text(
-                                "Already have an account?",
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.w400),
-                              )),
+                                  child: Text("Already have an account?",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400))),
                               WidgetSpan(
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 4),
