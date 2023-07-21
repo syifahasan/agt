@@ -12,6 +12,89 @@ class HomePage extends StatelessWidget {
     final screenHeight = mediaQueryData.size.height;
     return Scaffold(
         resizeToAvoidBottomInset: false,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(70.0),
+          child: AppBar(
+            leading: null,
+            elevation: 0,
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(30)),
+                  gradient: RadialGradient(
+                    colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
+                    center: Alignment.topCenter,
+                    radius: 10,
+                  )),
+            ),
+            // backgroundColor: Colors.amber,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(30),
+              ),
+            ),
+            title: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          offset: Offset(0, 4),
+                          blurRadius: 3,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                    ),
+                    width: screenWidth * 50 / 100,
+                    height: 30,
+                    child: TextField(
+                      textInputAction: TextInputAction.done,
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(50)),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Search',
+                      ),
+                      onSubmitted: (value) {
+                        // Perform search based on the input value
+                        print('Search query: $value');
+                      },
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10.0),
+                Container(
+                  decoration: BoxDecoration(boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      offset: Offset(0, 2),
+                      blurRadius: 3,
+                      spreadRadius: 1,
+                    ),
+                  ], borderRadius: BorderRadius.circular(30)),
+                  margin: EdgeInsets.only(top: 10),
+                  child: CircleAvatar(
+                    radius: 20.0,
+                    backgroundImage:
+                        NetworkImage('https://picsum.photos/200/300?grayscale'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
