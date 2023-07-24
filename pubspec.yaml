@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.7
   random_avatar: ^0.0.8
+  flutter_native_splash: ^2.3.1
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,7 @@ flutter:
   assets:
     - assets/other/bg.png
     - assets/other/logo.png
+    - assets/other/bg2.png
     - assets/icons/news-svgrepo-com.png
     - assets/icons/agt_white.svg
     - assets/icons/plane-svgrepo-com.png
