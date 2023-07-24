@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/balanceCheck.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -334,22 +335,34 @@ class HomePage extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(35)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(6.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.2),
-                                            offset: Offset(0, 5),
-                                            blurRadius: 3,
-                                            spreadRadius: 1,
-                                          ),
-                                        ]),
-                                    child: CircleAvatar(
-                                      radius: 30.0,
-                                      backgroundImage: AssetImage(
-                                          'assets/icons/LogoAGT.png'),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      print("Button Tapped");
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              BalanceCheckPage(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.black.withOpacity(0.2),
+                                              offset: Offset(0, 5),
+                                              blurRadius: 3,
+                                              spreadRadius: 1,
+                                            ),
+                                          ]),
+                                      child: CircleAvatar(
+                                        radius: 30.0,
+                                        backgroundImage: AssetImage(
+                                            'assets/icons/LogoAGT.png'),
+                                      ),
                                     ),
                                   ),
                                 ),
