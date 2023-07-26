@@ -46,6 +46,7 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
               fit: BoxFit.contain),
         ),
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             Container(
               width: screenWidth,
@@ -172,12 +173,9 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 23),
+                        horizontal: 20, vertical: 28),
                     child: Text(
                       "Transaction History",
                       style: TextStyle(
@@ -189,29 +187,57 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                   Row(
                     children: [
                       Container(
-                        child: DropdownButton<String>(
-                          borderRadius: BorderRadius.horizontal(
-                              left: Radius.elliptical(20, 20),
-                              right: Radius.elliptical(20, 20)),
-                          value: selectedMethod,
-                          onChanged: onSortingMethodChanged,
-                          items: sortingMethods
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                                value: value, child: Text(value));
-                          }).toList(),
+                        height: 40,
+                        width: screenWidth * 25 / 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.horizontal(
+                                left: Radius.elliptical(20, 20),
+                                right: Radius.elliptical(20, 20)),
+                            border: Border.all(width: 1)),
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            icon: Icon(Icons.keyboard_arrow_down),
+                            value: selectedMethod,
+                            onChanged: onSortingMethodChanged,
+                            items: sortingMethods
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Center(child: Text(value)));
+                            }).toList(),
+                          ),
                         ),
                       ),
-                      DropdownButton<String>(
-                        value: selectedMethod,
-                        onChanged: onSortingMethodChanged,
-                        items: sortingMethods
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                              value: value, child: Text(value));
-                        }).toList(),
+                      Container(
+                        height: 40,
+                        width: screenWidth * 25 / 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.horizontal(
+                                left: Radius.elliptical(20, 20),
+                                right: Radius.elliptical(20, 20)),
+                            border: Border.all(width: 1)),
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            icon: Icon(Icons.keyboard_arrow_down),
+                            value: selectedMethod,
+                            onChanged: onSortingMethodChanged,
+                            items: sortingMethods
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Center(child: Text(value)));
+                            }).toList(),
+                          ),
+                        ),
                       ),
                     ],
+                  ),
+                  Date(
+                    day: 'Friday',
+                    date: '09 Sep 2022',
                   )
                 ],
               ),
@@ -219,6 +245,40 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class Date extends StatelessWidget {
+  Date({
+    super.key,
+    required this.day,
+    required this.date,
+  });
+  String day;
+  String date;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 28,
+            horizontal: 20,
+          ),
+          child: Row(
+            children: [
+              Text(day,
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+              Text(', ',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+              Text(date,
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+        
+      ]),
     );
   }
 }

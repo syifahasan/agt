@@ -114,9 +114,9 @@ class HomePage extends StatelessWidget {
                     children: [
                       Positioned(
                         child: Container(
-                          margin: EdgeInsets.only(top: 120),
+                          margin: EdgeInsets.only(top: 90),
                           padding:
-                              EdgeInsets.symmetric(vertical: 70, horizontal: 0),
+                              EdgeInsets.symmetric(vertical: 50, horizontal: 0),
                           // height: 500,
                           width: screenWidth,
                           decoration: BoxDecoration(
@@ -134,7 +134,7 @@ class HomePage extends StatelessWidget {
                                 child: Wrap(
                                   alignment: WrapAlignment.spaceEvenly,
                                   runSpacing: 20,
-                                  spacing: screenWidth * 3 / 100,
+                                  spacing: screenWidth * 7 / 100,
                                   children: [
                                     Menu(
                                         screenWidth: screenWidth,
@@ -285,7 +285,7 @@ class HomePage extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.all(5),
                           margin: EdgeInsets.only(top: 20),
-                          height: screenHeight * 17 / 100,
+                          height: screenHeight * 12 / 100,
                           width: 90 / 100 * screenWidth,
                           decoration: BoxDecoration(
                             // color: Colors.white,
@@ -376,7 +376,7 @@ class HomePage extends StatelessWidget {
                                       "Hi, Username!",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 16,
+                                        fontSize: 14,
                                       ),
                                     ),
                                     Text("AG Points"),
@@ -384,7 +384,7 @@ class HomePage extends StatelessWidget {
                                       "Rp.250.000",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 16,
+                                        fontSize: 14,
                                       ),
                                     ),
                                     Text("Active"),
@@ -435,8 +435,8 @@ class Menu extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: screenWidth * 19 / 100,
-          height: screenWidth * 19 / 100,
+          width: screenWidth * 16 / 100,
+          height: screenWidth * 16 / 100,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(image),
@@ -464,7 +464,7 @@ class Menu extends StatelessWidget {
         Text(
           desc,
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 9.5,
           ),
         ),
       ],
