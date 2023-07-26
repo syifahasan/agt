@@ -82,8 +82,8 @@ class list extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16),
                 child: Container(
-                  height: 53,
-                  width: 53,
+                  height: MediaQuery.of(context).size.width * 0.15,
+                  width: MediaQuery.of(context).size.width * 0.15,
                   decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(10)),
