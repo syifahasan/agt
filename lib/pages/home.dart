@@ -2,12 +2,33 @@ import 'package:authentic_guards/pages/balanceCheck.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+import '../utils/payNSend.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    void AddPressed() {
+      print('Add button pressed');
+    }
+
+    void PayNSend() {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return PaySlidingMenu();
+      }));
+    }
+
+    void DiscoverPressed() {
+      print('DiscoverButton pressed');
+    }
+
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
@@ -204,6 +225,7 @@ class HomePage extends StatelessWidget {
                                       width: screenWidth * 85 / 100,
                                       height: 200,
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         color: Colors.grey,
                                       ),
                                     ),
@@ -213,6 +235,7 @@ class HomePage extends StatelessWidget {
                                       width: screenWidth * 85 / 100,
                                       height: 200,
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         color: Colors.grey,
                                       ),
                                     ),
@@ -222,6 +245,7 @@ class HomePage extends StatelessWidget {
                                       width: screenWidth * 85 / 100,
                                       height: 200,
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         color: Colors.grey,
                                       ),
                                     ),
@@ -251,6 +275,7 @@ class HomePage extends StatelessWidget {
                                       width: screenWidth * 85 / 100,
                                       height: 200,
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         color: Colors.grey,
                                       ),
                                     ),
@@ -260,6 +285,7 @@ class HomePage extends StatelessWidget {
                                       width: screenWidth * 85 / 100,
                                       height: 200,
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         color: Colors.grey,
                                       ),
                                     ),
@@ -269,6 +295,7 @@ class HomePage extends StatelessWidget {
                                       width: screenWidth * 85 / 100,
                                       height: 200,
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
                                         color: Colors.grey,
                                       ),
                                     ),
@@ -394,15 +421,18 @@ class HomePage extends StatelessWidget {
                               ActionButtons(
                                 icon: 'assets/icons/add-svgrepo-com.svg',
                                 desc: "Add",
+                                onPressed: AddPressed,
                               ),
                               ActionButtons(
                                 icon:
                                     'assets/icons/arrow-top-3-svgrepo-com.svg',
                                 desc: "Pay",
+                                onPressed: PayNSend,
                               ),
                               ActionButtons(
                                 icon: 'assets/icons/discovery-svgrepo-com.svg',
                                 desc: "Discover",
+                                onPressed: DiscoverPressed,
                               ),
                             ],
                           ),
@@ -477,10 +507,12 @@ class ActionButtons extends StatelessWidget {
     super.key,
     required this.icon,
     required this.desc,
+    required this.onPressed,
   });
 
   String icon;
   String desc;
+  VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -490,20 +522,25 @@ class ActionButtons extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: screenWidth * 12 / 100,
-          height: screenWidth * 12 / 100,
-          decoration: BoxDecoration(
-              gradient: RadialGradient(
-                colors: [Colors.white, Color.fromARGB(255, 14, 13, 13)],
-                center: Alignment.bottomCenter,
-                radius: 6,
-              ),
-              borderRadius: BorderRadius.circular(10)),
-          child: SvgPicture.asset(icon),
+        GestureDetector(
+          onTap: () {
+            onPressed();
+          },
+          child: Container(
+            width: screenWidth * 12 / 100,
+            height: screenWidth * 12 / 100,
+            decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [Colors.white, Color.fromARGB(255, 14, 13, 13)],
+                  center: Alignment.bottomCenter,
+                  radius: 6,
+                ),
+                borderRadius: BorderRadius.circular(10)),
+            child: SvgPicture.asset(icon),
+          ),
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
         Text(desc),
       ],

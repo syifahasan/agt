@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class BalanceCheckPage extends StatefulWidget {
-  const BalanceCheckPage({super.key});
+  BalanceCheckPage({super.key});
 
   @override
   State<BalanceCheckPage> createState() => _BalanceCheckPageState();
@@ -11,6 +12,21 @@ class BalanceCheckPage extends StatefulWidget {
 class _BalanceCheckPageState extends State<BalanceCheckPage> {
   List<String> sortingMethods = ['Date', 'Service'];
   String selectedMethod = 'Date';
+  final PanelController _panelController = PanelController();
+
+  void AddPressed() {
+    print('Add button pressed');
+  }
+
+  void PayNSend() {
+    _panelController.isPanelOpen
+        ? _panelController.hide()
+        : _panelController.open();
+  }
+
+  void DiscoverPressed() {
+    print('DiscoverButton pressed');
+  }
 
   void onSortingMethodChanged(String? newValue) {
     setState(() {
@@ -64,7 +80,7 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                     child: Container(
                       padding: EdgeInsets.all(5),
                       margin: EdgeInsets.only(top: 60),
-                      height: screenHeight * 17 / 100,
+                      height: screenHeight * 14 / 100,
                       width: 90 / 100 * screenWidth,
                       decoration: BoxDecoration(
                         // color: Colors.white,
@@ -114,21 +130,26 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                                 borderRadius: BorderRadius.circular(35)),
                             child: Padding(
                               padding: const EdgeInsets.all(6.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        offset: Offset(0, 5),
-                                        blurRadius: 3,
-                                        spreadRadius: 1,
-                                      ),
-                                    ]),
-                                child: CircleAvatar(
-                                  radius: 30.0,
-                                  backgroundImage:
-                                      AssetImage('assets/icons/LogoAGT.png'),
+                              child: GestureDetector(
+                                onTap: () {
+                                  _panelController.open();
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.2),
+                                          offset: Offset(0, 5),
+                                          blurRadius: 3,
+                                          spreadRadius: 1,
+                                        ),
+                                      ]),
+                                  child: CircleAvatar(
+                                    radius: 30.0,
+                                    backgroundImage:
+                                        AssetImage('assets/icons/LogoAGT.png'),
+                                  ),
                                 ),
                               ),
                             ),
@@ -142,7 +163,7 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                                   "Hi, Username!",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                   ),
                                 ),
                                 Text("AG Points"),
@@ -150,7 +171,7 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                                   "Rp.250.000",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                   ),
                                 ),
                                 Text("Active"),
@@ -160,14 +181,17 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                           ActionButtons(
                             icon: 'assets/icons/add-svgrepo-com.svg',
                             desc: "Add",
+                            onPressed: AddPressed,
                           ),
                           ActionButtons(
                             icon: 'assets/icons/arrow-top-3-svgrepo-com.svg',
                             desc: "Pay",
+                            onPressed: PayNSend,
                           ),
                           ActionButtons(
                             icon: 'assets/icons/discovery-svgrepo-com.svg',
                             desc: "Discover",
+                            onPressed: DiscoverPressed,
                           ),
                         ],
                       ),
@@ -238,7 +262,7 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                   Date(
                     day: 'Friday',
                     date: '09 Sep 2022',
-                  )
+                  ),
                 ],
               ),
             ),
@@ -277,7 +301,6 @@ class Date extends StatelessWidget {
             ],
           ),
         ),
-        
       ]),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../pages/notification.dart';
 import '../pages/profile.dart';
 import '../pages/scanner.dart';
@@ -15,6 +16,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final TextEditingController _searchController = TextEditingController();
+  final PanelController _panelController = PanelController();
+
   int _currentPage = 0;
   final screens = [
     HomePage(),
