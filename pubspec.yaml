@@ -64,6 +64,7 @@ flutter:
     - assets/other/bg.png
     - assets/other/logo.png
     - assets/other/bg2.png
+    - assets/other/setting.png
     - assets/icons/news-svgrepo-com.png
     - assets/icons/agt_white.svg
     - assets/icons/plane-svgrepo-com.png
@@ -76,6 +77,7 @@ flutter:
     - assets/icons/arrow-top-3-svgrepo-com.svg
     - assets/icons/discovery-svgrepo-com.svg
     - assets/icons/LogoAGT.png
+    
 
     # NAVBAR ICON
     - assets/icons/navbar/Store.svg
