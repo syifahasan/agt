@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 class NotifPage extends StatelessWidget {
@@ -45,6 +43,10 @@ class NotifPage extends StatelessWidget {
             padding: EdgeInsets.only(right: 16),
           )
         ],
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(5),
+        children: [Image(image: AssetImage('_')), Text('data')],
       ),
     );
   }
