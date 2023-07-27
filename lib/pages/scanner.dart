@@ -2,40 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ScannerPage extends StatefulWidget {
-  const ScannerPage({super.key});
-
   @override
   State<ScannerPage> createState() => _ScannerPageState();
 }
 
 class _ScannerPageState extends State<ScannerPage> {
-  final PanelController _panelController = PanelController();
+  PanelController _pc = PanelController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("SlidingUpPanelExample"),
+      ),
       body: SlidingUpPanel(
-        controller: _panelController,
-        maxHeight: 400.0, // Set the maximum height of the sliding panel
+        controller: _pc,
         panel: Center(
-          child: Text('Sliding Up Panel Content'),
+          child: Text("This is the sliding Widget"),
         ),
-        collapsed: Container(
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+        body: _body(),
+      ),
+    );
+  }
+
+  Widget _body() {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          ElevatedButton(
+              child: Text("Open"),
+              onPressed: () {
+                _pc.open();
+              }),
+          ElevatedButton(
+            child: Text("Close"),
+            onPressed: () => _pc.close(),
           ),
-          child: Center(
-            child: Text('Tap here to show panel', style: TextStyle(color: Colors.white)),
+          ElevatedButton(
+            child: Text("Show"),
+            onPressed: () => _pc.show(),
           ),
-        ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              _panelController.isPanelOpen ? _panelController.close() : _panelController.open();
-            },
-            child: Text('Toggle Panel'),
+          ElevatedButton(
+            child: Text("Hide"),
+            onPressed: () => _pc.hide(),
           ),
-        ),
+        ],
       ),
     );
   }
