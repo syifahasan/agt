@@ -54,7 +54,7 @@ class NotifPage extends StatelessWidget {
                     list(IconText: "A", Text1: "Text1", Text2: "Text2"),
                     list(IconText: "S", Text1: "Text1", Text2: "Text2"),
                     list(IconText: "E", Text1: "Text1", Text2: "Text2"),
-                    list(IconText: "p", Text1: "Text1", Text2: "Text2"),
+                    list(IconText: "P", Text1: "Text1", Text2: "Text2"),
                     list(IconText: "S", Text1: "Text1", Text2: "Text2"),
                     list(IconText: "J", Text1: "Text1", Text2: "Text2"),
                     list(IconText: "Z", Text1: "Text1", Text2: "Text2"),
@@ -95,12 +95,14 @@ class list extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(10)),
-                  child: Text(
-                    IconText,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 50,
+                  child: Center(
+                    
+                    child: Text(
+                      IconText,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 50,
+                      ),
                     ),
                   ),
                 ),

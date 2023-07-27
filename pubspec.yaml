@@ -66,6 +66,7 @@ flutter:
     - assets/other/logo.png
     - assets/other/bg2.png
     - assets/other/setting.png
+    - assets/other/profile.png
     - assets/icons/news-svgrepo-com.png
     - assets/icons/agt_white.svg
     - assets/icons/plane-svgrepo-com.png

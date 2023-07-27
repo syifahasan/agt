@@ -7,32 +7,43 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(
-              semanticsLabel: 'Circular progress indicator',
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) {
-                  return PageLogin();
-                }));
-              },
-              child: Text('Logout',
-                  style: TextStyle(fontSize: 15, color: Colors.black)),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color(0xFFEEEDED)),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                ),
-              ),
-            ),
-          ],
+      appBar: AppBar(
+        elevation: 20,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
+              gradient: RadialGradient(
+                colors: [Colors.white, Color.fromARGB(255, 233, 144, 144)],
+                center: Alignment.topCenter,
+                radius: 10,
+              )),
         ),
+        toolbarHeight: 80,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
+          ),
+        ),
+        title: Center(
+          child: Text(
+            'My Profile',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ),
+      body: ListView.builder(
+        padding: EdgeInsets.all(15),
+        itemBuilder: (context, index) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.grey.withAlpha(70),
+            ),
+          );
+        },
       ),
     );
   }
