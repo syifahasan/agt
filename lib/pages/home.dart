@@ -12,23 +12,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
+  final PanelController _panelController = PanelController();
+
+  void AddPressed() {
+    print('Add button pressed');
+  }
+
+  void PayNSend() {
+    if (_panelController.isAttached) {
+      _panelController.open();
+    }
+  }
+
+  void DiscoverPressed() {
+    print('DiscoverButton pressed');
+  }
 
   @override
   Widget build(BuildContext context) {
-    void AddPressed() {
-      print('Add button pressed');
-    }
-
-    void PayNSend() {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return PaySlidingMenu();
-      }));
-    }
-
-    void DiscoverPressed() {
-      print('DiscoverButton pressed');
-    }
-
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
@@ -111,8 +112,7 @@ class _HomePageState extends State<HomePage> {
                   margin: EdgeInsets.only(top: 10),
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundImage:
-                        NetworkImage('https://picsum.photos/200/300?grayscale'),
+                    backgroundImage: AssetImage('assets/icons/LogoAGT.png'),
                   ),
                 ),
               ],
@@ -421,17 +421,20 @@ class _HomePageState extends State<HomePage> {
                               ActionButtons(
                                 icon: 'assets/icons/add-svgrepo-com.svg',
                                 desc: "Add",
+                                panelController: _panelController,
                                 onPressed: AddPressed,
                               ),
                               ActionButtons(
                                 icon:
                                     'assets/icons/arrow-top-3-svgrepo-com.svg',
                                 desc: "Pay",
+                                panelController: _panelController,
                                 onPressed: PayNSend,
                               ),
                               ActionButtons(
                                 icon: 'assets/icons/discovery-svgrepo-com.svg',
                                 desc: "Discover",
+                                panelController: _panelController,
                                 onPressed: DiscoverPressed,
                               ),
                             ],
@@ -508,11 +511,13 @@ class ActionButtons extends StatelessWidget {
     required this.icon,
     required this.desc,
     required this.onPressed,
+    required this.panelController,
   });
 
   String icon;
   String desc;
   VoidCallback onPressed;
+  final PanelController panelController;
 
   @override
   Widget build(BuildContext context) {
@@ -542,7 +547,12 @@ class ActionButtons extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-        Text(desc),
+        Text(
+          desc,
+          style: TextStyle(
+            fontSize: 12,
+          ),
+        ),
       ],
     );
   }
