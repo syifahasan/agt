@@ -1,6 +1,8 @@
-import 'package:authentic_guards/utils/payNSend.dart';
+import 'package:authentic_guards/utils/payment/payNSend.dart';
+import 'package:authentic_guards/utils/payment/transactionHistory.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class BalanceCheckPage extends StatefulWidget {
@@ -269,9 +271,21 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                           ),
                         ],
                       ),
-                      Date(
-                        day: 'Friday',
-                        date: '09 Sep 2022',
+                      TransactionHistory(
+                        hari: 'Friday',
+                        tanggal: "09 Sep 2022",
+                        desc1: "AG Points Top Up",
+                        desc2: 'VA BCA',
+                        status: 1,
+                        nominal: "100.000",
+                      ),
+                      TransactionHistory(
+                        hari: 'Friday',
+                        tanggal: "08 Sep 2022",
+                        desc1: "Isi Pulsa Telkomsel",
+                        desc2: '08125139098',
+                        status: 2,
+                        nominal: "250.000",
                       ),
                     ],
                   ),
@@ -284,39 +298,6 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class Date extends StatelessWidget {
-  Date({
-    super.key,
-    required this.day,
-    required this.date,
-  });
-  String day;
-  String date;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 28,
-            horizontal: 20,
-          ),
-          child: Row(
-            children: [
-              Text(day,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-              Text(', ',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-              Text(date,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
-            ],
-          ),
-        ),
-      ]),
     );
   }
 }

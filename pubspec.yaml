@@ -79,7 +79,6 @@ flutter:
     - assets/icons/arrow-top-3-svgrepo-com.svg
     - assets/icons/discovery-svgrepo-com.svg
     - assets/icons/LogoAGT.png
-    
 
     # NAVBAR ICON
     - assets/icons/navbar/Store.svg
@@ -92,6 +91,12 @@ flutter:
     - assets/icons/navbar/NotificationSelected.svg
     - assets/icons/navbar/Home.svg
     - assets/icons/navbar/HomeSelected.svg
+
+    # PAYMENT STATUS ICONS
+    - assets/icons/payment/MinusBalance.svg
+    - assets/icons/payment/PendingBalance.svg
+    - assets/icons/payment/PlusBalance.svg
+    - assets/icons/payment/AGPointLogo.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

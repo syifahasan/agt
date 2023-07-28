@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import '../utils/payNSend.dart';
+import '../utils/payment/payNSend.dart';
 
 class HomePage extends StatefulWidget {
   @override

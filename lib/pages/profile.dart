@@ -34,17 +34,7 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(15),
-        itemBuilder: (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.grey.withAlpha(70),
-            ),
-          );
-        },
-      ),
+      body: Container(),
     );
   }
 }
