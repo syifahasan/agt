@@ -1,4 +1,6 @@
-import 'package:authentic_guards/auth/login.dart';
+import 'dart:math';
+
+import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -34,7 +36,115 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(),
+      body: ListView(
+        children: [
+          Container(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 35),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(left: 25),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image(
+                                  image:
+                                      AssetImage('assets/other/profile1.png'),
+                                  fit: BoxFit.fill),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 80,
+                              margin: EdgeInsets.only(top: 20),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image(
+                                  image:
+                                      AssetImage('assets/other/profile2.png'),
+                                  fit: BoxFit.fill),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 25, right: 25, top: 10),
+            child: Column(
+              children: [
+                IntrinsicHeight(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.34,
+                        child: Text(
+                          'Asep Saefuddin',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      VerticalDivider(
+                        thickness: 2,
+                        width: MediaQuery.of(context).size.width * 0.15,
+                      ),
+                      Container(
+                        child: Column(
+                          // mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Sultan Collector',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              '70/100',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            Text('active junee'),
+                            Text('6 mount ego')
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(
+                  thickness: 2,
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
