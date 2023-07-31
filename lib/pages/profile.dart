@@ -102,7 +102,7 @@ class ProfilePage extends StatelessWidget {
                           'Asep Saefuddin',
                           textAlign: TextAlign.start,
                           style: TextStyle(
-                            fontSize: 35,
+                            fontSize: MediaQuery.of(context).size.height * 0.04,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
