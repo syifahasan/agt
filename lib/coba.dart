@@ -21,8 +21,17 @@ class SlidingUpPanelExample extends StatefulWidget {
 
 class _SlidingUpPanelExampleState extends State<SlidingUpPanelExample> {
   bool _isFirstPanelVisible = true;
+  final PanelController _firstPanelController = PanelController();
+  final PanelController _secondPanelController = PanelController();
 
   void _togglePanels() {
+    if (_isFirstPanelVisible) {
+      _firstPanelController.close();
+      _secondPanelController.open();
+    } else {
+      _firstPanelController.open();
+      _secondPanelController.close();
+    }
     setState(() {
       _isFirstPanelVisible = !_isFirstPanelVisible;
     });
@@ -35,6 +44,7 @@ class _SlidingUpPanelExampleState extends State<SlidingUpPanelExample> {
       body: Stack(
         children: [
           SlidingUpPanel(
+            controller: _firstPanelController,
             backdropEnabled: true,
             panel: Center(
               child: ElevatedButton(
@@ -44,8 +54,8 @@ class _SlidingUpPanelExampleState extends State<SlidingUpPanelExample> {
             ),
           ),
           SlidingUpPanel(
+            controller: _secondPanelController,
             backdropEnabled: true,
-            controller: PanelController(),
             panel: Center(
               child: ElevatedButton(
                 onPressed: _togglePanels,
@@ -58,3 +68,4 @@ class _SlidingUpPanelExampleState extends State<SlidingUpPanelExample> {
     );
   }
 }
+

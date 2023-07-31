@@ -83,6 +83,8 @@ flutter:
     - assets/icons/arrow-top-3-svgrepo-com.svg
     - assets/icons/discovery-svgrepo-com.svg
     - assets/icons/LogoAGT.png
+    - assets/icons/payment/contactpic.svg
+    - assets/icons/payment/PPict.png
 
     # NAVBAR ICON
     - assets/icons/navbar/Store.svg

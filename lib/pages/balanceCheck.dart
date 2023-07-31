@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'topUp.dart';
 
 class BalanceCheckPage extends StatefulWidget {
   BalanceCheckPage({super.key});
@@ -18,6 +19,10 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
   final PanelController _panelController = PanelController();
 
   void AddPressed() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => TopUpPage()),
+    );
     print('Add button pressed');
   }
 
