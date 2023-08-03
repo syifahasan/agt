@@ -96,7 +96,6 @@ class list extends StatelessWidget {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(10)),
                   child: Center(
-                    
                     child: Text(
                       IconText,
                       style: TextStyle(
@@ -113,12 +112,14 @@ class list extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(Text1,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
-                        )),
+                    Text(
+                      Text1,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ),
                     Text(
                       Text2,
                       style: TextStyle(
