@@ -1,3 +1,5 @@
+import 'package:authentic_guards/auth/login.dart';
+import 'package:authentic_guards/pages/privacy.dart';
 import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +8,28 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void logout() {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return PageLogin();
+          },
+        ),
+      );
+    }
+
+    void privacy() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return PagePrivacy();
+          },
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
@@ -13,7 +37,7 @@ class ProfilePage extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
               gradient: RadialGradient(
-                colors: [Colors.white, Color.fromARGB(255, 233, 144, 144)],
+                colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
                 center: Alignment.topCenter,
                 radius: 10,
               )),
@@ -48,7 +72,8 @@ class ProfilePage extends StatelessWidget {
                         child: Column(
                           children: [
                             Container(
-                              margin: EdgeInsets.only(left: 25),
+                              height: MediaQuery.of(context).size.height * 0.10,
+                              margin: EdgeInsets.only(left: 17),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
@@ -64,7 +89,8 @@ class ProfilePage extends StatelessWidget {
                         child: Column(
                           children: [
                             Container(
-                              height: 80,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.075,
                               margin: EdgeInsets.only(top: 20),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
@@ -98,9 +124,10 @@ class ProfilePage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.34,
                         child: Text(
                           'Asep Saefuddin',
-                          textAlign: TextAlign.start,
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.height * 0.04,
+                            fontSize:
+                                MediaQuery.of(context).size.height * 0.036,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -116,18 +143,32 @@ class ProfilePage extends StatelessWidget {
                             Text(
                               'Sultan Collector',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.02,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             Text(
                               '70/100',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.015,
                               ),
                             ),
-                            Text('active junee'),
-                            Text('6 mount ego')
+                            Text(
+                              'active junee',
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.015,
+                              ),
+                            ),
+                            Text(
+                              '6 mount ego',
+                              style: TextStyle(
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.015,
+                              ),
+                            )
                           ],
                         ),
                       ),
@@ -149,7 +190,7 @@ class ProfilePage extends StatelessWidget {
                   child: Text(
                     'General',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: MediaQuery.of(context).size.height * 0.017,
                       color: Colors.grey,
                       fontWeight: FontWeight.w700,
                     ),
@@ -159,39 +200,51 @@ class ProfilePage extends StatelessWidget {
                   title: 'Payment',
                   image: 'assets/other/payment.png',
                   color: Color(0xff225849),
+                  page: privacy,
                 ),
                 _itemList(
                   title: 'Owned',
                   image: 'assets/other/owned.png',
                   color: Color(0xffff9500),
+                  page: privacy,
                 ),
                 _itemList(
-                  title: 'Security',
+                  title: 'Privasi',
                   image: 'assets/other/security.png',
                   color: Color(0xff9999a6),
+                  page: privacy,
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 20, left: 50),
+                  padding: EdgeInsets.only(top: 20, left: 55),
                   child: Text(
                     'My Account',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: MediaQuery.of(context).size.height * 0.016,
                       color: Colors.grey,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
-                _textButton(
-                  title: 'Edit Profile',
-                  color: Color(0xff9999a6),
+                Container(
+                  child: _textButton(
+                    title: 'Edit Profile',
+                    color: Color(0xff9999a6),
+                    nav: logout,
+                  ),
                 ),
-                _textButton(
-                  title: 'Help',
-                  color: Color(0xff007aff),
+                Container(
+                  child: _textButton(
+                    title: 'Help',
+                    color: Color(0xff007aff),
+                    nav: logout,
+                  ),
                 ),
-                _textButton(
-                  title: 'Log Out',
-                  color: Color(0xffff3b30),
+                Container(
+                  child: _textButton(
+                    title: 'Log Out',
+                    color: Color(0xffff3b30),
+                    nav: logout,
+                  ),
                 ),
               ],
             ),
@@ -205,10 +258,12 @@ class ProfilePage extends StatelessWidget {
 class _textButton extends StatelessWidget {
   final String title;
   final Color color;
-  const _textButton({
+  final VoidCallback nav;
+  _textButton({
     super.key,
     required this.title,
     required this.color,
+    required this.nav,
   });
 
   @override
@@ -216,11 +271,17 @@ class _textButton extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 40),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          nav();
+        },
         child: Text(title),
         style: TextButton.styleFrom(
+          alignment: Alignment.topLeft,
           primary: color,
-          textStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+          textStyle: TextStyle(
+            fontSize: MediaQuery.of(context).size.height * 0.025,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );
@@ -231,12 +292,14 @@ class _itemList extends StatelessWidget {
   final String title;
   final String image;
   final Color color;
+  final VoidCallback page;
 
   const _itemList({
     super.key,
     required this.title,
     required this.image,
     required this.color,
+    required this.page,
   });
 
   @override
@@ -244,7 +307,7 @@ class _itemList extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.only(top: 10, left: 42, right: 49),
+          padding: EdgeInsets.only(top: 10, left: 43, right: 49),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -253,7 +316,7 @@ class _itemList extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     backgroundColor: color,
-                    radius: 30,
+                    radius: 25,
                     child: CircleAvatar(
                       backgroundImage: AssetImage(image),
                       backgroundColor: Colors.transparent,
@@ -265,7 +328,7 @@ class _itemList extends StatelessWidget {
                     child: Text(
                       title,
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: MediaQuery.of(context).size.height * 0.02,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -275,7 +338,9 @@ class _itemList extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width * 0.12,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    page();
+                  },
                   child: Icon(Icons.arrow_forward_ios, size: 15),
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
@@ -293,7 +358,7 @@ class _itemList extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 12,
+          height: 6,
         )
       ],
     );
