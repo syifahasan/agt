@@ -43,12 +43,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter_native_splash:
-  background_image: assets/other/splashScreen.png
-  android: true
-  ios: true
-  web: true
-
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -94,7 +88,7 @@ flutter:
     - assets/icons/LogoAGT.png
     - assets/icons/payment/contactpic.svg
     - assets/icons/payment/PPict.png
-    - assets/other/splashScreen.png
+    - assets/other/splashbg.png
 
     # NAVBAR ICON
     - assets/icons/navbar/Store.svg
