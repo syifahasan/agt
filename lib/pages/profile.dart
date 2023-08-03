@@ -1,4 +1,5 @@
 import 'package:authentic_guards/auth/login.dart';
+import 'package:authentic_guards/pages/editProfile.dart';
 import 'package:authentic_guards/pages/privacy.dart';
 import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,17 @@ class ProfilePage extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) {
             return PageLogin();
+          },
+        ),
+      );
+    }
+
+    void _editProfile() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return editProfile();
           },
         ),
       );
@@ -229,7 +241,7 @@ class ProfilePage extends StatelessWidget {
                   child: _textButton(
                     title: 'Edit Profile',
                     color: Color(0xff9999a6),
-                    nav: logout,
+                    nav: _editProfile,
                   ),
                 ),
                 Container(
