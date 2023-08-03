@@ -170,11 +170,11 @@ class _HomePageState extends State<HomePage> {
                                             screenWidth: screenWidth,
                                             image:
                                                 'assets/icons/news-svgrepo-com.png',
-                                            desc: 'AuthenticNews'),
+                                            desc: 'Authentic News'),
                                         Menu(
                                             screenWidth: screenWidth,
                                             image: 'assets/icons/LogoAGT.png',
-                                            desc: 'AuthenticStore'),
+                                            desc: 'Authentic Store'),
                                         Menu(
                                             screenWidth: screenWidth,
                                             image:
@@ -493,42 +493,50 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: screenWidth * 16 / 100,
-          height: screenWidth * 16 / 100,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(image),
-            ),
-            color: Colors.black,
-            borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.2),
-                offset: Offset(0, 5),
-                blurRadius: 3,
-                spreadRadius: 1,
+    return Container(
+      width: screenWidth * 16 / 100,
+      child: Column(
+        children: [
+          Container(
+            width: screenWidth * 16 / 100,
+            height: screenWidth * 16 / 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(image),
               ),
-            ],
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  offset: Offset(0, 5),
+                  blurRadius: 3,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+            // child: SvgPicture.asset(
+            //   image,
+            //   width: 200,
+            //   height: 200,
+            // ),
           ),
-          // child: SvgPicture.asset(
-          //   image,
-          //   width: 200,
-          //   height: 200,
-          // ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          desc,
-          style: TextStyle(
-            fontSize: 9.5,
+          SizedBox(
+            height: 10,
           ),
-        ),
-      ],
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              text: desc,
+              style: TextStyle(
+                fontSize: screenWidth * 0.03,
+                color: Colors.black,
+                fontFamily: 'SFProDisplay',
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
