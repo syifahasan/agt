@@ -77,9 +77,6 @@ flutter:
     - assets/other/owned.png
     - assets/other/payment.png
     - assets/other/security.png
-    - assets/other/password.png
-    - assets/other/pin.png
-    - assets/other/faceid.png
     - assets/icons/news-svgrepo-com.png
     - assets/icons/agt_white.svg
     - assets/icons/plane-svgrepo-com.png
