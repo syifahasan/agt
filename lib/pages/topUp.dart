@@ -1,3 +1,4 @@
+import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:flutter/material.dart';
 
 class TopUpPage extends StatelessWidget {
@@ -85,7 +86,7 @@ class TopUpPage extends StatelessWidget {
                     ),
                     Container(
                       width: screenWidth * 90 / 100,
-                      height: screenHeight * 8.5 / 100,
+                      height: screenHeight * 10 / 100,
                       decoration: BoxDecoration(
                         color: Color(0xffEDEDED),
                         borderRadius: BorderRadius.circular(15),
@@ -100,7 +101,7 @@ class TopUpPage extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.only(left: 14),
                                 width: screenWidth * 16 / 100,
-                                height: screenHeight * 4.5 / 100,
+                                height: screenHeight * 5 / 100,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(11),
                                   border: Border.all(
@@ -143,6 +144,115 @@ class TopUpPage extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30, bottom: 6),
+                      child: Text(
+                        'BANK TRANSFER',
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.035,
+                          color: Color(0xFF444444),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    BankTransfer(
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                      slug: 'BCA',
+                      showImage: true,
+                      img: 'assets/icons/payment/bca.png',
+                      borad: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                      ),
+                      showDivider: true,
+                    ),
+                    BankTransfer(
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                      showImage: true,
+                      slug: 'BNI',
+                      img: 'assets/icons/payment/bni.png',
+                      showDivider: true,
+                    ),
+                    BankTransfer(
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                      showImage: true,
+                      slug: 'Mandiri',
+                      img: 'assets/icons/payment/mandiri.png',
+                      showDivider: true,
+                    ),
+                    BankTransfer(
+                      screenWidth: screenWidth,
+                      screenHeight: screenHeight,
+                      showImage: false,
+                      slug: 'More',
+                      title: 'See More Bank',
+                      showDivider: false,
+                      borad: BorderRadius.only(
+                          bottomLeft: Radius.circular(15),
+                          bottomRight: Radius.circular(15)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30, bottom: 6),
+                      child: Text(
+                        'OTHER',
+                        style: TextStyle(
+                          fontSize: screenWidth * 0.035,
+                          color: Color(0xFF444444),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: screenWidth * 90 / 100,
+                      height: screenHeight * 8.5 / 100,
+                      decoration: BoxDecoration(
+                        color: Color(0xffEDEDED),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 20),
+                                width: screenWidth * 19 / 100,
+                                height: screenHeight * 12 / 100,
+                                // height: 80,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                        'assets/icons/payment/qris.png'),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      child: Text(
+                                        'QRIS Top Up',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: screenWidth * 5 / 100,
+                              ))
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -150,6 +260,109 @@ class TopUpPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class BankTransfer extends StatelessWidget {
+  const BankTransfer({
+    super.key,
+    required this.screenWidth,
+    required this.screenHeight,
+    this.img,
+    required this.showDivider,
+    required this.showImage,
+    this.borad,
+    this.title,
+    this.slug,
+  });
+
+  final double screenWidth;
+  final double screenHeight;
+  final String? img;
+  final BorderRadius? borad;
+  final bool showDivider;
+  final bool showImage;
+  final String? title;
+  final String? slug;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            print(slug);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return TopUpMethod(
+                    slug: slug ?? '',
+                  );
+                },
+              ),
+            );
+          },
+          child: Container(
+            width: screenWidth * 90 / 100,
+            height: screenHeight * 8.5 / 100,
+            decoration: BoxDecoration(
+              color: Color(0xffEDEDED),
+              borderRadius: borad,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    showImage
+                        ? Container(
+                            margin: EdgeInsets.only(left: 20),
+                            width: screenWidth * 23 / 100,
+                            height: screenHeight * 15 / 100,
+                            child: Image.asset(img ?? ''),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: Text(
+                              title ?? '',
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TopUpMethod(
+                            slug: slug ?? '',
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: screenWidth * 5 / 100,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        if (showDivider)
+          Divider(
+            height: 1,
+            thickness: 2,
+            color: Colors.white,
+          )
+      ],
     );
   }
 }

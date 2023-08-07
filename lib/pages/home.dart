@@ -1,6 +1,7 @@
 import 'package:authentic_guards/pages/balanceCheck.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'dart:ui' as ui;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../utils/payment/payNSend.dart';
