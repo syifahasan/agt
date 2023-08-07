@@ -55,9 +55,6 @@ class TopUpPage extends StatelessWidget {
                 height: 900,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  // borderRadius: BorderRadius.vertical(
-                  //   top: Radius.elliptical(200, 120),
-                  // ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
