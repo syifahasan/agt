@@ -31,7 +31,7 @@ class TopUpPage extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.only(),
                 child: Text(
-                  'Top Up',
+                  'TOP UP',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: screenWidth * 0.09,
@@ -45,6 +45,11 @@ class TopUpPage extends StatelessWidget {
             child: ClipPath(
               clipper: MyClipPath(),
               child: Container(
+                padding: EdgeInsets.only(
+                  top: 90,
+                  left: 30,
+                  right: 30,
+                ),
                 width: screenWidth,
                 height: 900,
                 decoration: BoxDecoration(
@@ -53,33 +58,89 @@ class TopUpPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 90.0,
-                        left: 30,
-                        right: 30,
-                        bottom: 40,
-                      ),
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'How would you like to top up AGCoin Balance?',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: screenWidth * 0.065,
-                            fontWeight: FontWeight.w500,
-                          ),
+                    RichText(
+                      text: TextSpan(
+                        text: 'How would you like to top up AGCoin Balance?',
+                        style: TextStyle(
+                          fontFamily: 'SFProDisplay',
+                          color: Colors.black,
+                          fontSize: screenWidth * 0.06,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      padding: const EdgeInsets.only(
+                        top: 50,
+                        bottom: 5,
+                      ),
                       child: Text(
                         'MY SAVED CARDS',
                         style: TextStyle(
-                          fontSize: screenWidth * 0.045,
-                          color: Colors.grey[500],
-                          fontWeight: FontWeight.w500,
+                          fontSize: screenWidth * 0.035,
+                          color: Color(0xFF444444),
+                          fontWeight: FontWeight.w400,
                         ),
+                      ),
+                    ),
+                    Container(
+                      width: screenWidth * 90 / 100,
+                      height: screenHeight * 8.5 / 100,
+                      decoration: BoxDecoration(
+                        color: Color(0xffEDEDED),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(left: 14),
+                                width: screenWidth * 16 / 100,
+                                height: screenHeight * 4.5 / 100,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(11),
+                                  border: Border.all(
+                                    color: Color(0xff7D66FF),
+                                    width: 2,
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Icon(
+                                  Icons.add,
+                                  color: Color(0xff7D66FF),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(
+                                    vertical: 13, horizontal: 10),
+                                width: 90,
+                                // height: 80,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'New Cards',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                        'assets/icons/payment/visamaster.png'),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.arrow_forward_ios_rounded,
+                              ))
+                        ],
                       ),
                     ),
                   ],
