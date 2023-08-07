@@ -248,6 +248,7 @@ class TopUpPage extends StatelessWidget {
                               onPressed: () {},
                               icon: Icon(
                                 Icons.arrow_forward_ios_rounded,
+                                size: screenWidth * 5 / 100,
                               ))
                         ],
                       ),
@@ -348,6 +349,7 @@ class BankTransfer extends StatelessWidget {
                   },
                   icon: Icon(
                     Icons.arrow_forward_ios_rounded,
+                    size: screenWidth * 5 / 100,
                   ),
                 ),
               ],

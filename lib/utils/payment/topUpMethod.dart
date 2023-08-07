@@ -1,5 +1,6 @@
 import 'package:authentic_guards/pages/TopUp.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TopUpMethod extends StatelessWidget {
   const TopUpMethod({super.key, required this.slug});
@@ -10,6 +11,10 @@ class TopUpMethod extends StatelessWidget {
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
+    String textToCopy = '3901 081 0000 0000';
+    void copyToClipboard(String textToCopy) {
+      Clipboard.setData(ClipboardData(text: textToCopy));
+    }
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -46,7 +51,7 @@ class TopUpMethod extends StatelessWidget {
               clipper: MyClipPath(),
               child: Container(
                 padding: EdgeInsets.only(
-                  top: 90,
+                  top: 120,
                   left: 30,
                   right: 30,
                 ),
@@ -66,6 +71,42 @@ class TopUpMethod extends StatelessWidget {
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
                       slug: slug,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 35),
+                      child: Text(
+                        '${slug} Virtual Account Number',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenWidth * 4 / 100,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Text(
+                        textToCopy,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: screenWidth * 6 / 100,
+                          color: Color(0xffFF6161),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.black)),
+                        onPressed: () {
+                          copyToClipboard(textToCopy);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Text copied to clipboard')),
+                          );
+                        },
+                        child: Text('Copy Code'),
+                      ),
                     ),
                   ],
                 ),
@@ -137,11 +178,22 @@ class ChosedBank extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 15),
-            child: TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Change'),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Change'),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    size: screenWidth * 5 / 100,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
