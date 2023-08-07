@@ -6,9 +6,7 @@ class editProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
-    final appBarSize = AppBar().preferredSize.height;
-    return Scaffold(
+    return Scaffold( 
       appBar: AppBar(
         backgroundColor: Colors.black,
         iconTheme: IconThemeData(
@@ -22,8 +20,8 @@ class editProfile extends StatelessWidget {
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
+                padding: EdgeInsets.only(left: 40),
                 decoration: BoxDecoration(color: Colors.black),
-                padding: EdgeInsets.only(top: 10, left: 40),
                 child: Text(
                   'EDIT PROFILE',
                   style: TextStyle(
@@ -40,79 +38,39 @@ class editProfile extends StatelessWidget {
                   height: MediaQuery.of(context).size.height,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    // borderRadius: BorderRadius.vertical(
-                    //   top: Radius.elliptical(200, 120),
-                    // ),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Positioned(
-                        top: 0,
-                        child: SafeArea(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: appBarSize,
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 8,
-                                ),
-                              ],
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 150,
+                          left: 30,
+                          right: 30,
+                          bottom: 40,
+                        ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                          ),
+                          child: RichText(
+                            text: TextSpan(
+                              text:
+                                  'How would you like to top up AGCoin Balance?',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.065,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      Positioned(
-                          top: isKeyboard
-                              ? 0
-                              : MediaQuery.of(context).size.height * 0.2,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(color: Colors.white),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.12,
-                                  ),
-                                  Text("Welcome",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 40)),
-                                  Text("he Gateway to everything authentic",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 15)),
-                                  SizedBox(height: 50),
-                                ],
-                              ),
-                            ),
-                          )),
                     ],
                   ),
                 ),
               ),
-              if (!isKeyboard) ...[
-                Positioned(
-                  top: 0,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.1),
-                    alignment: Alignment.center,
-                    child: Image(
-                      image: AssetImage('assets/other/logo.png'),
-                      height: 165,
-                      width: 165,
-                    ),
-                  ),
-                ),
-              ],
             ],
           ),
         ],
