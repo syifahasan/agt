@@ -110,6 +110,11 @@ flutter:
     - assets/icons/payment/PendingBalance.svg
     - assets/icons/payment/PlusBalance.svg
     - assets/icons/payment/AGPointLogo.svg
+    - assets/icons/payment/visamaster.png
+    - assets/icons/payment/bca.png
+    - assets/icons/payment/bni.png
+    - assets/icons/payment/qris.png
+    - assets/icons/payment/mandiri.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
