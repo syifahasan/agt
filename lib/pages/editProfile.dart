@@ -51,7 +51,7 @@ class editProfile extends StatelessWidget {
                   right: 30,
                 ),
                 width: screenWidth,
-                height: screenHeight,
+                height: screenHeight * 1.2,
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
@@ -61,9 +61,15 @@ class editProfile extends StatelessWidget {
                       top: 80,
                       child: Container(
                         width: screenWidth * 0.84,
-                        height: screenHeight * 0.7,
+                        height: screenHeight * 0.8,
                         decoration: BoxDecoration(
-                          color: Colors.grey,
+                          gradient: RadialGradient(
+                            colors: [
+                              Colors.white,
+                              Color.fromARGB(255, 58, 57, 57)
+                            ],
+                            radius: 4,
+                          ),
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                         ),
                         child: Container(
@@ -101,6 +107,60 @@ class editProfile extends StatelessWidget {
                                   title: 'Address',
                                   value: 'Indramayu - Kertasemaya',
                                   hint: 'Address',
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: _dropdownCity(),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            child: _dropdownCode(),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                child: _formProfile(
+                                  title: 'Country',
+                                  value: 'Indonesia',
+                                  hint: 'Country',
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                margin: EdgeInsets.only(top: 25),
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text('Save',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white)),
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Color(0xffff6161)),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30)),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
@@ -177,14 +237,19 @@ class _formProfile extends StatelessWidget {
           alignment: Alignment.topLeft,
           child: Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.w700),
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 16,
+            ),
           ),
         ),
         TextFormField(
           initialValue: value,
           decoration: InputDecoration(
-            hintText: hint,
-          ),
+              hintText: hint,
+              hintStyle: TextStyle(
+                fontSize: 16,
+              )),
         )
       ],
     );
@@ -210,5 +275,131 @@ class MyClipPath extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
     return false;
+  }
+}
+
+class _dropdownCity extends StatefulWidget {
+  const _dropdownCity({super.key});
+
+  @override
+  State<_dropdownCity> createState() => __dropdownState();
+}
+
+class __dropdownState extends State<_dropdownCity> {
+  String? _selectedCity;
+  final List<String> _city = [
+    'Indramayu',
+    'Bandung',
+    'Cirebon',
+    'Jakarta',
+    'Solo',
+    'Bali',
+    'Bogor',
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.3,
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              'City',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            child: DropdownButton(
+              value: _selectedCity,
+              hint: Text('Select Your City'),
+              underline: Container(
+                height: 1,
+                color: Colors.black,
+              ),
+              icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+              items: _city
+                  .map((city) =>
+                      DropdownMenuItem<String>(value: city, child: Text(city)))
+                  .toList(),
+              onChanged: (String? newValue) {
+                setState(
+                  () {
+                    _selectedCity = newValue;
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _dropdownCode extends StatefulWidget {
+  const _dropdownCode({super.key});
+
+  @override
+  State<_dropdownCode> createState() => __dropdownCodeState();
+}
+
+class __dropdownCodeState extends State<_dropdownCode> {
+  String? _selectedCode;
+  @override
+  Widget build(BuildContext context) {
+    final List<String> _code = [
+      '00000',
+      '00001',
+      '00002',
+      '00003',
+      '00004',
+      '00005',
+      '000006',
+    ];
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.3,
+      child: Column(
+        children: [
+          Container(
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              'Zip Code',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.topLeft,
+            child: DropdownButton(
+              value: _selectedCode,
+              hint: Text('Select'),
+              underline: Container(
+                height: 1,
+                color: Colors.black,
+              ),
+              icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+              items: _code
+                  .map((code) =>
+                      DropdownMenuItem<String>(value: code, child: Text(code)))
+                  .toList(),
+              onChanged: (String? newValue) {
+                setState(
+                  () {
+                    _selectedCode = newValue;
+                  },
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
