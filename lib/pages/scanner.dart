@@ -15,39 +15,68 @@ class _ScannerPageState extends State<ScannerPage> {
       appBar: AppBar(
         title: Text("SlidingUpPanelExample"),
       ),
-      body: SlidingUpPanel(
-        controller: _pc,
-        panel: Center(
-          child: Text("This is the sliding Widget"),
-        ),
-        body: _body(),
-      ),
+      body: SlidingContainer(),
     );
   }
+}
 
-  Widget _body() {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          ElevatedButton(
-              child: Text("Open"),
-              onPressed: () {
-                _pc.open();
-              }),
-          ElevatedButton(
-            child: Text("Close"),
-            onPressed: () => _pc.close(),
+class SlidingContainer extends StatefulWidget {
+  @override
+  _SlidingContainerState createState() => _SlidingContainerState();
+}
+
+class _SlidingContainerState extends State<SlidingContainer> {
+  bool _isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _isExpanded = !_isExpanded;
+            });
+          },
+          child: Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Toggle Container'),
+                AnimatedSwitcher(
+                  duration: Duration(milliseconds: 300),
+                  child: _isExpanded
+                      ? Icon(Icons.arrow_upward)
+                      : Icon(Icons.arrow_downward),
+                ),
+              ],
+            ),
           ),
-          ElevatedButton(
-            child: Text("Show"),
-            onPressed: () => _pc.show(),
+        ),
+        AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          height: _isExpanded ? 200 : 0,
+          child: Container(
+            margin: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Content inside the container'),
+              ],
+            ),
           ),
-          ElevatedButton(
-            child: Text("Hide"),
-            onPressed: () => _pc.hide(),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

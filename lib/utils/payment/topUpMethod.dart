@@ -2,10 +2,15 @@ import 'package:authentic_guards/pages/TopUp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TopUpMethod extends StatelessWidget {
+class TopUpMethod extends StatefulWidget {
   const TopUpMethod({super.key, required this.slug});
   final String slug;
 
+  @override
+  State<TopUpMethod> createState() => _TopUpMethodState();
+}
+
+class _TopUpMethodState extends State<TopUpMethod> {
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -56,7 +61,7 @@ class TopUpMethod extends StatelessWidget {
                   right: 30,
                 ),
                 width: screenWidth,
-                height: 900,
+                // height: screenHeight + 200,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   // borderRadius: BorderRadius.vertical(
@@ -70,12 +75,12 @@ class TopUpMethod extends StatelessWidget {
                     ChosedBank(
                       screenWidth: screenWidth,
                       screenHeight: screenHeight,
-                      slug: slug,
+                      slug: widget.slug,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 35),
                       child: Text(
-                        '${slug} Virtual Account Number',
+                        '${widget.slug} Virtual Account Number',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: screenWidth * 4 / 100,
@@ -94,19 +99,88 @@ class TopUpMethod extends StatelessWidget {
                       ),
                     ),
                     Container(
+                      width: screenWidth * 40 / 100,
+                      height: screenWidth * 13 / 100,
                       margin: EdgeInsets.symmetric(vertical: 20),
                       child: ElevatedButton(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.black)),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          onPrimary: Colors.grey,
+                          side: BorderSide(color: Colors.grey, width: 1),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
                         onPressed: () {
                           copyToClipboard(textToCopy);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Text copied to clipboard')),
                           );
                         },
-                        child: Text('Copy Code'),
+                        child: Text('COPY CODE'),
                       ),
+                    ),
+                    Text(
+                      'Account Name: ASEP SAEFUDDIN',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: screenWidth * 4 / 100,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 25, bottom: 20),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text:
+                              'Your maximum balance is 20.000.000. The maximum value of adding balance is Rp20.000.000. You can still add balance up to Rp15.655.000 this month',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontFamily: 'SFProDisplay',
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 20, bottom: 20, right: 20),
+                      width: screenWidth * 80 / 100,
+                      child: RichText(
+                        textAlign: TextAlign.start,
+                        text: TextSpan(
+                          text: 'Please follow instructions below to Transfer:',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'SFProDisplay',
+                            fontWeight: FontWeight.w600,
+                            fontSize: screenWidth * 6 / 100,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Instructions(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      title: 'ATM ${widget.slug}',
+                      desc: 'How to transfer from ATM',
+                    ),
+                    Instructions(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      title: 'KLIK ${widget.slug}',
+                      desc: 'How to transfer from ATM',
+                    ),
+                    Instructions(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      title: 'm-${widget.slug} (${widget.slug} MOBILE)',
+                      desc: 'How to transfer from ATM',
+                    ),
+                    Instructions(
+                      screenHeight: screenHeight,
+                      screenWidth: screenWidth,
+                      title: 'm-${widget.slug} (STK-SIM Tool Kit)',
+                      desc: 'How to transfer from ATM',
                     ),
                   ],
                 ),
@@ -116,6 +190,103 @@ class TopUpMethod extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class Instructions extends StatefulWidget {
+  const Instructions({
+    super.key,
+    required this.screenHeight,
+    required this.screenWidth,
+    required this.desc,
+    required this.title,
+  });
+  final double screenWidth;
+  final double screenHeight;
+  final String desc;
+  final String title;
+
+  @override
+  State<Instructions> createState() => _InstructionsState();
+}
+
+class _InstructionsState extends State<Instructions> {
+  bool _isExpanded = false;
+  @override
+  Widget build(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
+    final screenWidth = mediaQueryData.size.width;
+    final screenHeight = mediaQueryData.size.height;
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _isExpanded = !_isExpanded;
+            });
+          },
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.title,
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: Icon(Icons.keyboard_arrow_down_rounded),
+                // ),
+                AnimatedSwitcher(
+                  duration: Duration(
+                    milliseconds: 300,
+                  ),
+                  child: _isExpanded
+                      ? Icon(Icons.keyboard_arrow_up_rounded)
+                      : Icon(Icons.keyboard_arrow_down_rounded),
+                )
+              ],
+            ),
+          ),
+        ),
+        AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          height: _isExpanded ? _getContentHeight(context) : 0,
+          child: Container(
+            margin: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.all(10),
+            width: screenWidth,
+            decoration: BoxDecoration(
+                // border: Border.all(color: Colors.grey),
+                // borderRadius: BorderRadius.circular(4),
+                ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(widget.desc),
+              ],
+            ),
+          ),
+        ),
+        Divider(
+          thickness: 2,
+        ),
+      ],
+    );
+  }
+
+  double _getContentHeight(BuildContext context) {
+    // Calculate the content height based on its layout
+    return MediaQuery.of(context).size.height *
+        0.3; // You can adjust this value
   }
 }
 
@@ -147,7 +318,7 @@ class ChosedBank extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth * 90 / 100,
-      height: screenHeight * 8.5 / 100,
+      height: screenWidth * 23 / 100,
       decoration: BoxDecoration(
         color: Color(0xffEDEDED),
         borderRadius: BorderRadius.circular(15),
@@ -177,7 +348,7 @@ class ChosedBank extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 15),
+            padding: const EdgeInsets.only(right: 5),
             child: Row(
               children: [
                 TextButton(
