@@ -2,6 +2,7 @@ import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/pages/editProfile.dart';
 import 'package:authentic_guards/pages/privacy.dart';
 import 'package:authentic_guards/utils/navigationBar.dart';
+import 'package:authentic_guards/utils/payment/mypayment.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -37,6 +38,17 @@ class ProfilePage extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) {
             return PagePrivacy();
+          },
+        ),
+      );
+    }
+
+    void mypayment() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return MyPayment();
           },
         ),
       );
@@ -212,7 +224,7 @@ class ProfilePage extends StatelessWidget {
                   title: 'Payment',
                   image: 'assets/other/payment.png',
                   color: Color(0xff225849),
-                  page: privacy,
+                  page: mypayment,
                 ),
                 _itemList(
                   title: 'Owned',
