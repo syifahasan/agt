@@ -14,7 +14,7 @@ class editProfile extends StatelessWidget {
       backgroundColor: Colors.black,
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
-        slivers: <Widget>[
+        slivers: <Widget>[    
           SliverAppBar(
             backgroundColor: Colors.transparent,
             // Properties for the AppBar

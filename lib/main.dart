@@ -1,14 +1,14 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'auth/login.dart';
+import 'package:authentic_guards/utils/onboardingPage.dart';
+
+
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'SFProDisplay',
       ),
-      home: PageLogin(),
+      home: OnboardingPage1(),
     );
   }
 }
