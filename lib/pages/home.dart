@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                   margin: EdgeInsets.only(top: 10),
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundImage: AssetImage('assets/icons/logoagt.png'),
+                    backgroundImage: AssetImage('assets/icons/agtlogo.png'),
                   ),
                 ),
               ],
@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                                             desc: 'Authentic News'),
                                         Menu(
                                             screenWidth: screenWidth,
-                                            image: 'assets/icons/logoagt.png',
+                                            image: 'assets/icons/agtlogo.png',
                                             desc: 'Authentic Store'),
                                         Menu(
                                             screenWidth: screenWidth,
@@ -409,7 +409,7 @@ class _HomePageState extends State<HomePage> {
                                           child: CircleAvatar(
                                             radius: 30.0,
                                             backgroundImage: AssetImage(
-                                                'assets/icons/logoagt.png'),
+                                                'assets/icons/agtlogo.png'),
                                           ),
                                         ),
                                       ),
