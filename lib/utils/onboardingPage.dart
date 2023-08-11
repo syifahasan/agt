@@ -1,8 +1,29 @@
+
 import 'package:authentic_guards/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class OnboardingPage1 extends StatelessWidget {
+class OnboardingPage1 extends StatefulWidget {
   const OnboardingPage1({Key? key}) : super(key: key);
+
+  @override
+  State<OnboardingPage1> createState() => _OnboardingPage1State();
+}
+
+class _OnboardingPage1State extends State<OnboardingPage1> {
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
+
+    if (_seen) {
+      Navigator.of(this.context).pushReplacement(
+        MaterialPageRoute(builder: (context) => PageLogin()),
+      );
+    }
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) => checkFirstSeen();
 
   @override
   Widget build(BuildContext context) {

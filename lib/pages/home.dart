@@ -44,8 +44,9 @@ class _HomePageState extends State<HomePage> {
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(70.0),
+          preferredSize: Size.fromHeight(85.0),
           child: AppBar(
+            toolbarHeight: 80,
             leading: null,
             elevation: 0,
             flexibleSpace: Container(
@@ -81,18 +82,22 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                     width: screenWidth * 50 / 100,
-                    height: 30,
+                    height: 35,
                     child: TextField(
                       textInputAction: TextInputAction.done,
                       controller: _searchController,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        prefixIcon: Icon(Icons.search),
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(7.0),
+                          child: SvgPicture.asset(
+                              'assets/icons/navbar/Search.svg'),
+                        ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide.none,
                             borderRadius: BorderRadius.circular(50)),
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xffD9D9D9),
                         hintText: 'Search',
                       ),
                       onSubmitted: (value) {
@@ -105,10 +110,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                SizedBox(width: 10.0),
                 Container(
-                  width: 30,
-                  height: 30,
+                  width: 37,
+                  height: 37,
                   decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.2),
@@ -117,10 +121,10 @@ class _HomePageState extends State<HomePage> {
                       spreadRadius: 1,
                     ),
                   ], borderRadius: BorderRadius.circular(30)),
-                  margin: EdgeInsets.only(top: 10),
+                  margin: EdgeInsets.only(top: 20, right: 10),
                   child: CircleAvatar(
                     radius: 20.0,
-                    backgroundImage: AssetImage('assets/icons/agtlogo.png'),
+                    backgroundImage: AssetImage('assets/other/profile1.png'),
                   ),
                 ),
               ],
@@ -174,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                                             desc: 'Authentic News'),
                                         Menu(
                                             screenWidth: screenWidth,
-                                            image: 'assets/icons/LogoAGT.png',
+                                            image: 'assets/icons/agtlogo.png',
                                             desc: 'Authentic Store'),
                                         Menu(
                                             screenWidth: screenWidth,
@@ -409,7 +413,7 @@ class _HomePageState extends State<HomePage> {
                                           child: CircleAvatar(
                                             radius: 30.0,
                                             backgroundImage: AssetImage(
-                                                'assets/icons/LogoAGT.png'),
+                                                'assets/icons/agtlogo.png'),
                                           ),
                                         ),
                                       ),
@@ -533,6 +537,7 @@ class Menu extends StatelessWidget {
                 fontSize: screenWidth * 0.03,
                 color: Colors.black,
                 fontFamily: 'SFProDisplay',
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
