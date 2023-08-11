@@ -1,7 +1,8 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'auth/login.dart';
-// import 'package:camera/camera.dart';
+import 'package:authentic_guards/utils/onboardingPage.dart';
+
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,8 +10,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'SFProDisplay',
       ),
-      home: PageLogin(),
+      home: OnboardingPage1(),
     );
   }
 }
