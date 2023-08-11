@@ -4,7 +4,8 @@ import 'package:authentic_guards/utils/onboardingPage.dart';
 
 
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 

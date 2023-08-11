@@ -159,7 +159,7 @@ class _BalanceCheckPageState extends State<BalanceCheckPage> {
                                       child: CircleAvatar(
                                         radius: 30.0,
                                         backgroundImage: AssetImage(
-                                            'assets/icons/LogoAGT.png'),
+                                            'assets/icons/agtlogo.png'),
                                       ),
                                     ),
                                   ),
