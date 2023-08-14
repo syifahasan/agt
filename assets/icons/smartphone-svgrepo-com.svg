@@ -1,45 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg height="800px" width="800px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 viewBox="0 0 64 64" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#E0995E;}
-	.st1{opacity:0.2;}
-	.st2{fill:#231F20;}
-	.st3{fill:#4F5D73;}
-	.st4{fill:#FFFFFF;}
-	.st5{fill:#E0E0D1;}
-</style>
-<g id="Layer_1">
-	<g>
-		<circle class="st0" cx="32" cy="32" r="32"/>
-	</g>
-	<g class="st1">
-		<g>
-			<path class="st2" d="M44,48c0,2.2-1.8,4-4,4H24c-2.2,0-4-1.8-4-4V16c0-2.2,1.8-4,4-4h16c2.2,0,4,1.8,4,4V48z"/>
-		</g>
-	</g>
-	<g>
-		<g>
-			<path class="st3" d="M24,48.5c-1.4,0-2.5-1.1-2.5-2.5V14c0-1.4,1.1-2.5,2.5-2.5h16c1.4,0,2.5,1.1,2.5,2.5v32
-				c0,1.4-1.1,2.5-2.5,2.5H24z"/>
-		</g>
-		<g>
-			<path class="st4" d="M40,13c0.6,0,1,0.4,1,1v32c0,0.6-0.4,1-1,1H24c-0.6,0-1-0.4-1-1V14c0-0.6,0.4-1,1-1H40 M40,10H24
-				c-2.2,0-4,1.8-4,4v32c0,2.2,1.8,4,4,4h16c2.2,0,4-1.8,4-4V14C44,11.8,42.2,10,40,10L40,10z"/>
-		</g>
-	</g>
-	<g class="st1">
-		<polygon class="st4" points="26.2,11.5 42,49.6 42,11.5 		"/>
-	</g>
-	<g>
-		<polygon class="st4" points="40,50 24,50 20,42 44,42 		"/>
-	</g>
-	<g>
-		<circle class="st5" cx="32" cy="46" r="2"/>
-	</g>
-</g>
-<g id="Layer_2">
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1.90333in" height="1.90333in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1903 1903"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil2 {fill:#B6883C}
+    .fil5 {fill:#E0E0D1}
+    .fil0 {fill:#E3E3E6}
+    .fil3 {fill:white}
+    .fil1 {fill:#231F20;fill-opacity:0.039216}
+    .fil4 {fill:white;fill-opacity:0.141176}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2341354791024">
+   <circle class="fil0" cx="952" cy="952" r="952"/>
+   <path class="fil1" d="M1309 1427c0,66 -54,119 -119,119l-476 0c-66,0 -119,-53 -119,-119l0 -951c0,-66 53,-119 119,-119l476 0c65,0 119,53 119,119l0 951z"/>
+   <path class="fil2" d="M714 1442c-42,0 -75,-32 -75,-74l0 -952c0,-41 33,-74 75,-74l476 0c41,0 74,33 74,74l0 952c0,42 -33,74 -74,74l-476 0z"/>
+   <g>
+    <path class="fil3" d="M1190 387c17,0 29,12 29,29l0 952c0,18 -12,30 -29,30l-476 0c-18,0 -30,-12 -30,-30l0 -952c0,-17 12,-29 30,-29l476 0 0 0zm0 -90l-476 0c-66,0 -119,54 -119,119l0 952c0,65 53,119 119,119l476 0c65,0 119,-54 119,-119l0 -952c0,-65 -54,-119 -119,-119l0 0z"/>
+   </g>
+   <polygon class="fil4" points="779,342 1249,1475 1249,342 "/>
+   <polygon class="fil3" points="1190,1487 714,1487 595,1249 1309,1249 "/>
+   <circle class="fil5" cx="952" cy="1368" r="59"/>
+  </g>
+ </g>
 </svg>

@@ -499,6 +499,9 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        border: null,
+      ),
       width: screenWidth * 16 / 100,
       child: Column(
         children: [
@@ -510,6 +513,7 @@ class Menu extends StatelessWidget {
                 image: AssetImage(image),
               ),
               color: Colors.black,
+              border: null,
               borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
               boxShadow: [
                 BoxShadow(

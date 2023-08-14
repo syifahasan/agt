@@ -141,42 +141,42 @@ class StorePage extends StatelessWidget {
                         children: [
                           Categories(
                             screenWidth: screenWidth,
-                            image: 'assets/icons/agtlogo.png',
+                            image: 'assets/icons/store/tag.png',
                             desc: 'Best Deal',
                           ),
                           Categories(
                             screenWidth: screenWidth,
-                            image: 'assets/icons/agtlogo.png',
+                            image: 'assets/icons/store/blastsale.png',
                             desc: 'Blast Sale',
                           ),
                           Categories(
                             screenWidth: screenWidth,
-                            image: 'assets/icons/agtlogo.png',
+                            image: 'assets/icons/store/fashions.png',
                             desc: 'Fashion',
                           ),
                           Categories(
                             screenWidth: screenWidth,
-                            image: 'assets/icons/agtlogo.png',
+                            image: 'assets/icons/store/cosmetics.png',
                             desc: 'Cosmetics',
                           ),
                           Categories(
                             screenWidth: screenWidth,
-                            image: 'assets/icons/agtlogo.png',
+                            image: 'assets/icons/store/electronics.png',
                             desc: 'Electronics',
                           ),
                           Categories(
                             screenWidth: screenWidth,
-                            image: 'assets/icons/agtlogo.png',
+                            image: 'assets/icons/store/vaporizer.png',
                             desc: 'Vaporizer',
                           ),
                           Categories(
                             screenWidth: screenWidth,
-                            image: 'assets/icons/agtlogo.png',
+                            image: 'assets/icons/store/tools.png',
                             desc: 'Services',
                           ),
                           Categories(
                             screenWidth: screenWidth,
-                            image: 'assets/icons/agtlogo.png',
+                            image: 'assets/icons/stack-svgrepo-com.png',
                             desc: 'View All',
                           ),
                         ],
@@ -227,12 +227,26 @@ class StorePage extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Wrap(
-                        runSpacing: 20,
+                        runSpacing: 18,
                         spacing: screenWidth * 7 / 100,
                         alignment: WrapAlignment.spaceEvenly,
                         children: [
-                          Items(screenWidth: screenWidth),
-                          Items(screenWidth: screenWidth),
+                          Items(
+                            screenWidth: screenWidth,
+                            itempic:
+                                'assets/icons/store/fashionsImages/tshirt.png',
+                            itemname: 'BUTTERFLY T-SHIRT',
+                            tag: 'Fashion',
+                            price: '524.000,00',
+                          ),
+                          Items(
+                            screenWidth: screenWidth,
+                            itempic:
+                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                            itemname: 'BUTTERFLY HOODIE',
+                            tag: 'Fashion',
+                            price: '650.000,00',
+                          ),
                         ],
                       ),
                     ),
@@ -254,24 +268,87 @@ class Items extends StatelessWidget {
   const Items({
     super.key,
     required this.screenWidth,
+    required this.itempic,
+    required this.itemname,
+    required this.price,
+    required this.tag,
   });
 
   final double screenWidth;
+  final String itempic;
+  final String tag;
+  final String price;
+  final String itemname;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: screenWidth * 43 / 100,
-      height: screenWidth * 55 / 100,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.transparent,
-        border: null,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey,
-            blurStyle: BlurStyle.outer,
-            blurRadius: 2,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              Container(
+                width: screenWidth * 43 / 100,
+                height: screenWidth * 55 / 100,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(itempic), fit: BoxFit.fill),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.transparent,
+                  border: null,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey,
+                        // blurStyle: BlurStyle.outer,
+                        blurRadius: 1,
+                        offset: Offset(0, 0)),
+                  ],
+                ),
+              ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  width: screenWidth * 11 / 100,
+                  height: screenWidth * 11 / 100,
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(10))),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.bookmark_border_outlined,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 6, bottom: 6),
+            child: Text(tag),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 4),
+            child: RichText(
+              text: TextSpan(
+                text: itemname,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'SFProDisplay',
+                  fontWeight: FontWeight.bold,
+                  fontSize: screenWidth * 4 / 100,
+                ),
+              ),
+            ),
+          ),
+          Text(
+            'RP. ${price}',
+            style: TextStyle(fontSize: screenWidth * 3.5 / 100),
           ),
         ],
       ),
@@ -294,22 +371,24 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: screenWidth * 16 / 100,
+      width: screenWidth * 18 / 100,
       child: Column(
         children: [
           Container(
-            width: screenWidth * 16 / 100,
-            height: screenWidth * 16 / 100,
+            width: screenWidth * 18 / 100,
+            height: screenWidth * 18 / 100,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(image),
+                fit: BoxFit.fill,
               ),
+              border: Border.all(width: 1, color: Color(0xffe3e3e6)),
               color: Colors.black,
               borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.2),
-                  offset: Offset(0, 5),
+                  offset: Offset(0, 4),
                   blurRadius: 3,
                   spreadRadius: 1,
                 ),

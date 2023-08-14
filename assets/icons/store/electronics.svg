@@ -1,32 +1,41 @@
-<svg width="78" height="78" viewBox="0 0 78 78" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_257_1242)" filter="url(#filter0_d_257_1242)">
-<path d="M39 70C58.33 70 74 54.33 74 35C74 15.67 58.33 0 39 0C19.67 0 4 15.67 4 35C4 54.33 19.67 70 39 70Z" fill="#76C2AF"/>
-<g opacity="0.2">
-<path d="M52.125 56.875C52.125 58.0781 51.1406 59.0625 49.9375 59.0625H28.0625C26.8594 59.0625 25.875 58.0781 25.875 56.875C25.875 55.6719 26.8594 54.6875 28.0625 54.6875H49.9375C51.1406 54.6875 52.125 55.6719 52.125 56.875Z" fill="#231F20"/>
-</g>
-<path d="M52.125 54.6875C52.125 55.8906 51.1406 56.875 49.9375 56.875H28.0625C26.8594 56.875 25.875 55.8906 25.875 54.6875C25.875 53.4844 26.8594 52.5 28.0625 52.5H49.9375C51.1406 52.5 52.125 53.4844 52.125 54.6875Z" fill="white"/>
-<path d="M44.4686 45.9375C44.4686 45.9375 43.3749 52.5 47.7499 52.5C47.7499 52.5 25.8749 52.5 30.2499 52.5C34.6249 52.5 33.5311 45.9375 33.5311 45.9375H44.4686Z" fill="#E0E0D1"/>
-<g opacity="0.2">
-<path d="M60.875 43.75C60.875 46.1562 58.9062 48.125 56.5 48.125H21.5C19.0938 48.125 17.125 46.1562 17.125 43.75V19.6875C17.125 17.2812 19.0938 15.3125 21.5 15.3125H56.5C58.9062 15.3125 60.875 17.2812 60.875 19.6875V43.75Z" fill="#231F20"/>
-</g>
-<path d="M21.5 44.2969C19.9688 44.2969 18.7656 43.0938 18.7656 41.5625V17.5C18.7656 15.9688 19.9688 14.7656 21.5 14.7656H56.5C58.0312 14.7656 59.2344 15.9688 59.2344 17.5V41.5625C59.2344 43.0938 58.0312 44.2969 56.5 44.2969H21.5Z" fill="#4F5D73"/>
-<path d="M56.5 16.4062C57.1562 16.4062 57.5938 16.8438 57.5938 17.5V41.5625C57.5938 42.2188 57.1562 42.6562 56.5 42.6562H21.5C20.8438 42.6562 20.4062 42.2188 20.4062 41.5625V17.5C20.4062 16.8438 20.8438 16.4062 21.5 16.4062H56.5ZM56.5 13.125H21.5C19.0938 13.125 17.125 15.0938 17.125 17.5V41.5625C17.125 43.9688 19.0938 45.9375 21.5 45.9375H56.5C58.9062 45.9375 60.875 43.9688 60.875 41.5625V17.5C60.875 15.0938 58.9062 13.125 56.5 13.125Z" fill="white"/>
-<g opacity="0.2">
-<path d="M58.6875 43.6406V15.2031H32.6562L49.0625 43.6406H58.6875Z" fill="white"/>
-</g>
-</g>
-<defs>
-<filter id="filter0_d_257_1242" x="0" y="0" width="78" height="78" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feOffset dy="4"/>
-<feGaussianBlur stdDeviation="2"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_257_1242"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_257_1242" result="shape"/>
-</filter>
-<clipPath id="clip0_257_1242">
-<rect width="70" height="70" fill="white" transform="translate(4)"/>
-</clipPath>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1.86in" height="1.86in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1860 1860"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil6 {fill:none}
+    .fil4 {fill:#B6883C}
+    .fil0 {fill:#E3E3E6}
+    .fil2 {fill:white}
+    .fil3 {fill:white}
+    .fil1 {fill:#231F20;fill-opacity:0.200000}
+    .fil5 {fill:white;fill-opacity:0.200000}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <path d="M0 1860l1860 0 0 -1860 -1860 0 0 1860z"/>
+   </clipPath>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g>
+  </g>
+  <g style="clip-path:url(#id0)">
+   <g>
+    <path class="fil0" d="M930 1860c514,0 930,-416 930,-930 0,-514 -416,-930 -930,-930 -514,0 -930,416 -930,930 0,514 416,930 930,930z"/>
+    <path class="fil1" d="M1279 1511c0,32 -26,58 -58,58l-582 0c-32,0 -58,-26 -58,-58 0,-32 26,-58 58,-58l582 0c32,0 58,26 58,58z"/>
+    <path class="fil2" d="M1279 1453c0,32 -26,58 -58,58l-582 0c-32,0 -58,-26 -58,-58 0,-32 26,-58 58,-58l582 0c32,0 58,26 58,58z"/>
+    <path class="fil3" d="M1075 1221c0,0 -29,174 88,174 0,0 -582,0 -465,0 116,0 87,-174 87,-174l290 0z"/>
+    <path class="fil1" d="M1511 1163c0,63 -52,116 -116,116l-930 0c-64,0 -116,-53 -116,-116l0 -640c0,-64 52,-116 116,-116l930 0c64,0 116,52 116,116l0 640z"/>
+    <path class="fil4" d="M465 1177c-41,0 -73,-32 -73,-73l0 -639c0,-41 32,-73 73,-73l930 0c41,0 73,32 73,73l0 639c0,41 -32,73 -73,73l-930 0z"/>
+    <path class="fil2" d="M1395 436c17,0 29,12 29,29l0 639c0,18 -12,29 -29,29l-930 0c-17,0 -29,-11 -29,-29l0 -639c0,-17 12,-29 29,-29l930 0zm0 -87l-930 0c-64,0 -116,52 -116,116l0 639c0,64 52,117 116,117l930 0c64,0 116,-53 116,-117l0 -639c0,-64 -52,-116 -116,-116z"/>
+    <polygon class="fil5" points="1453,1160 1453,404 761,404 1197,1160 "/>
+   </g>
+  </g>
+  <polygon class="fil6" points="0,1860 1860,1860 1860,0 0,0 "/>
+ </g>
 </svg>
