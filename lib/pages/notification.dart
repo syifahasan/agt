@@ -5,6 +5,8 @@ class NotifPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final h = MediaQuery.of(context).size.height;
+    final w = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
           elevation: 20,
@@ -18,7 +20,7 @@ class NotifPage extends StatelessWidget {
                   radius: 10,
                 )),
           ),
-          toolbarHeight: 80,
+          toolbarHeight: w * 0.16,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
@@ -81,56 +83,64 @@ class list extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final h = MediaQuery.of(context).size.height;
+    final w = MediaQuery.of(context).size.width;
     return Column(
       children: [
-        InkWell(
-          onTap: () {},
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Container(
-                  height: MediaQuery.of(context).size.width * 0.15,
-                  width: MediaQuery.of(context).size.width * 0.15,
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
+        Container(
+          height: w * 0.2,
+          child: InkWell(
+            onTap: () {},
+            child: Container(
+              width: w,
+              height: h,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    height: w * 0.15,
+                    width: w * 0.15,
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(10)),
                     child: Text(
                       IconText,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 50,
+                        fontSize: w * 0.12,
                       ),
                     ),
                   ),
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width * 0.7,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      Text1,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
-                      ),
+                  Container(
+                    width: w * 0.7,
+                    padding: EdgeInsets.all(w * 0.05),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          Text1,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: w * 0.04,
+                          ),
+                        ),
+                        Text(
+                          Text2,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: w * 0.035,
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      Text2,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
         Divider(
