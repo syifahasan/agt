@@ -1,8 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/utils/onboardingPage.dart';
-
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
