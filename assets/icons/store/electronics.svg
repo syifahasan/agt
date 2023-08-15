@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1.86in" height="1.86in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1860 1860"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil6 {fill:none}
+    .fil4 {fill:#B6883C}
+    .fil0 {fill:#E3E3E6}
+    .fil2 {fill:white}
+    .fil3 {fill:white}
+    .fil1 {fill:#231F20;fill-opacity:0.200000}
+    .fil5 {fill:white;fill-opacity:0.200000}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <path d="M0 1860l1860 0 0 -1860 -1860 0 0 1860z"/>
+   </clipPath>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g>
+  </g>
+  <g style="clip-path:url(#id0)">
+   <g>
+    <path class="fil0" d="M930 1860c514,0 930,-416 930,-930 0,-514 -416,-930 -930,-930 -514,0 -930,416 -930,930 0,514 416,930 930,930z"/>
+    <path class="fil1" d="M1279 1511c0,32 -26,58 -58,58l-582 0c-32,0 -58,-26 -58,-58 0,-32 26,-58 58,-58l582 0c32,0 58,26 58,58z"/>
+    <path class="fil2" d="M1279 1453c0,32 -26,58 -58,58l-582 0c-32,0 -58,-26 -58,-58 0,-32 26,-58 58,-58l582 0c32,0 58,26 58,58z"/>
+    <path class="fil3" d="M1075 1221c0,0 -29,174 88,174 0,0 -582,0 -465,0 116,0 87,-174 87,-174l290 0z"/>
+    <path class="fil1" d="M1511 1163c0,63 -52,116 -116,116l-930 0c-64,0 -116,-53 -116,-116l0 -640c0,-64 52,-116 116,-116l930 0c64,0 116,52 116,116l0 640z"/>
+    <path class="fil4" d="M465 1177c-41,0 -73,-32 -73,-73l0 -639c0,-41 32,-73 73,-73l930 0c41,0 73,32 73,73l0 639c0,41 -32,73 -73,73l-930 0z"/>
+    <path class="fil2" d="M1395 436c17,0 29,12 29,29l0 639c0,18 -12,29 -29,29l-930 0c-17,0 -29,-11 -29,-29l0 -639c0,-17 12,-29 29,-29l930 0zm0 -87l-930 0c-64,0 -116,52 -116,116l0 639c0,64 52,117 116,117l930 0c64,0 116,-53 116,-117l0 -639c0,-64 -52,-116 -116,-116z"/>
+    <polygon class="fil5" points="1453,1160 1453,404 761,404 1197,1160 "/>
+   </g>
+  </g>
+  <polygon class="fil6" points="0,1860 1860,1860 1860,0 0,0 "/>
+ </g>
+</svg>
