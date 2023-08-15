@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class StorePage extends StatelessWidget {
+class StorePage extends StatefulWidget {
   const StorePage({super.key});
+
+  @override
+  State<StorePage> createState() => _StorePageState();
+}
+
+class _StorePageState extends State<StorePage> {
+  bool isSaved = false;
+
+  void toggleSave() {
+    print('saved');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -201,7 +212,7 @@ class StorePage extends StatelessWidget {
                 ),
                 Container(
                   width: screenWidth * 90 / 100,
-                  height: screenHeight * 22 / 100,
+                  height: screenWidth * 45 / 100,
                   decoration: BoxDecoration(
                       color: Colors.grey,
                       borderRadius: BorderRadius.circular(25)),
@@ -233,6 +244,8 @@ class StorePage extends StatelessWidget {
                         children: [
                           Items(
                             screenWidth: screenWidth,
+                            isSaved: isSaved,
+                            onPressed: toggleSave,
                             itempic:
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
@@ -241,6 +254,28 @@ class StorePage extends StatelessWidget {
                           ),
                           Items(
                             screenWidth: screenWidth,
+                            isSaved: isSaved,
+                            onPressed: toggleSave,
+                            itempic:
+                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                            itemname: 'BUTTERFLY HOODIE',
+                            tag: 'Fashion',
+                            price: '650.000,00',
+                          ),
+                          Items(
+                            screenWidth: screenWidth,
+                            isSaved: isSaved,
+                            onPressed: toggleSave,
+                            itempic:
+                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                            itemname: 'BUTTERFLY HOODIE',
+                            tag: 'Fashion',
+                            price: '650.000,00',
+                          ),
+                          Items(
+                            screenWidth: screenWidth,
+                            isSaved: isSaved,
+                            onPressed: toggleSave,
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
@@ -265,13 +300,15 @@ class StorePage extends StatelessWidget {
 }
 
 class Items extends StatelessWidget {
-  const Items({
+  Items({
     super.key,
     required this.screenWidth,
     required this.itempic,
     required this.itemname,
     required this.price,
     required this.tag,
+    required this.isSaved,
+    required this.onPressed,
   });
 
   final double screenWidth;
@@ -279,9 +316,14 @@ class Items extends StatelessWidget {
   final String tag;
   final String price;
   final String itemname;
+  final bool isSaved;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
+    Color containerColor = isSaved ? Colors.amber : Colors.grey;
+    IconData iconData =
+        isSaved ? Icons.bookmark : Icons.bookmark_border_outlined;
     return Container(
       width: screenWidth * 43 / 100,
       child: Column(
@@ -314,13 +356,15 @@ class Items extends StatelessWidget {
                   width: screenWidth * 11 / 100,
                   height: screenWidth * 11 / 100,
                   decoration: BoxDecoration(
-                      color: Colors.grey,
+                      color: containerColor,
                       borderRadius:
                           BorderRadius.only(bottomRight: Radius.circular(10))),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      onPressed;
+                    },
                     icon: Icon(
-                      Icons.bookmark_border_outlined,
+                      iconData,
                       color: Colors.white,
                     ),
                   ),
