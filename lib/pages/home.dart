@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../utils/payment/payNSend.dart';
 import 'topUp.dart';
+import '../utils/customscroll.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -141,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                     scale: 2.0),
               ),
               child: ListView(
-                physics: BouncingScrollPhysics(),
+                physics: CustomBounceScroll(),
                 children: [
                   Column(
                     children: [

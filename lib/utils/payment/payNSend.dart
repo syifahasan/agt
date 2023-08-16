@@ -205,6 +205,14 @@ class FriendsPanel extends StatelessWidget {
             name: 'Ee',
             method: method,
           ),
+          ContactList(
+            name: 'Ee',
+            method: method,
+          ),
+          ContactList(
+            name: 'Ee',
+            method: method,
+          ),
         ],
       ),
     );
