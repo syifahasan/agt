@@ -7,23 +7,23 @@ class editProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
-    final screenWidth = mediaQueryData.size.width;
-    final screenHeight = mediaQueryData.size.height;
+    final w = mediaQueryData.size.width;
+    final h = mediaQueryData.size.height;
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.black,
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
-        slivers: <Widget>[    
+        slivers: <Widget>[
           SliverAppBar(
+            iconTheme: IconThemeData(size: w * 0.05, color: Colors.white),
             backgroundColor: Colors.transparent,
             // Properties for the AppBar
-            expandedHeight:
-                screenHeight * 0.12, // Set the desired height of the AppBar
+            expandedHeight: w * 0.35, // Set the desired height of the AppBar
             pinned: false, // Set this to false to make AppBar non-sticky
             flexibleSpace: Container(
-              margin: EdgeInsets.only(top: 100, left: 30),
-              height: screenHeight * 20 / 100,
+              margin: EdgeInsets.only(top: w * 0.15, left: w * 0.1),
+              height: w * 0.5,
               // A container for the flexible space (background) of the AppBar
               decoration: BoxDecoration(
                 color: Colors.black,
@@ -34,7 +34,7 @@ class editProfile extends StatelessWidget {
                   'EDIT PROFILE',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: screenWidth * 0.09,
+                      fontSize: w * 0.08,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -46,39 +46,40 @@ class editProfile extends StatelessWidget {
               clipper: MyClipPath(),
               child: Container(
                 padding: EdgeInsets.only(
-                  top: 90,
-                  left: 30,
-                  right: 30,
+                  top: w * 0.3,
+                  left: w * 0.08,
+                  right: w * 0.08,
                 ),
-                width: screenWidth,
-                height: screenHeight * 1.2,
+                width: w,
+                height: w * 2.3,
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
                 child: Stack(
                   children: [
                     Positioned(
-                      top: 80,
+                      top: w * 0.2,
                       child: Container(
-                        width: screenWidth * 0.84,
-                        height: screenHeight * 0.8,
+                        width: w * 0.84,
+                        height: w * 1.45,
                         decoration: BoxDecoration(
                           gradient: RadialGradient(
                             colors: [
                               Colors.white,
                               Color.fromARGB(255, 58, 57, 57)
                             ],
-                            radius: 4,
+                            radius: w * 0.015,
                           ),
-                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(w * 0.1)),
                         ),
                         child: Container(
-                          padding:
-                              EdgeInsets.only(top: 70, left: 20, right: 20),
+                          padding: EdgeInsets.only(
+                              top: w * 0.18, left: w * 0.05, right: w * 0.05),
                           child: Column(
                             children: [
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(w * 0.02),
                                 child: _formProfile(
                                   title: 'Name',
                                   value: 'Asep Saefuddin Zuhri',
@@ -86,7 +87,7 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(w * 0.02),
                                 child: _formProfile(
                                   title: 'Phone Number',
                                   value: '+62 000 0000 0000',
@@ -94,7 +95,7 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(w * 0.02),
                                 child: _formProfile(
                                   title: 'Email',
                                   value: 'asep@gamil.com',
@@ -102,7 +103,7 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(w * 0.02),
                                 child: _formProfile(
                                   title: 'Address',
                                   value: 'Indramayu - Kertasemaya',
@@ -110,7 +111,7 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(w * 0.02),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -137,7 +138,7 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(w * 0.02),
                                 child: _formProfile(
                                   title: 'Country',
                                   value: 'Indonesia',
@@ -145,20 +146,22 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                margin: EdgeInsets.only(top: 25),
+                                width: w * 0.4,
+                                height: w * 0.055,
+                                margin: EdgeInsets.only(top: w * 0.05),
                                 child: ElevatedButton(
                                   onPressed: () {},
                                   child: Text('Save',
                                       style: TextStyle(
-                                          fontSize: 15, color: Colors.white)),
+                                          fontSize: w * 0.04,
+                                          color: Colors.white)),
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(
                                         Color(0xffff6161)),
                                     shape: MaterialStateProperty.all(
                                       RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(30)),
+                                              BorderRadius.circular(w * 0.05)),
                                     ),
                                   ),
                                 ),
@@ -171,8 +174,8 @@ class editProfile extends StatelessWidget {
                     Align(
                       alignment: Alignment.topCenter,
                       child: SizedBox(
-                        width: 129,
-                        height: 129,
+                        width: w * 0.35,
+                        height: w * 0.35,
                         child: Stack(
                           fit: StackFit.expand,
                           children: [
@@ -191,11 +194,11 @@ class editProfile extends StatelessWidget {
                               bottom: 0,
                               right: 0,
                               child: CircleAvatar(
-                                radius: 20,
+                                radius: w * 0.05,
                                 backgroundColor:
                                     Theme.of(context).scaffoldBackgroundColor,
                                 child: Container(
-                                  margin: const EdgeInsets.all(8.0),
+                                  margin: EdgeInsets.all(w * 0.015),
                                   decoration: const BoxDecoration(
                                       color: Colors.green,
                                       shape: BoxShape.circle),
@@ -230,6 +233,8 @@ class _formProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -239,7 +244,7 @@ class _formProfile extends StatelessWidget {
             title,
             style: TextStyle(
               fontWeight: FontWeight.w700,
-              fontSize: 16,
+              fontSize: w * 0.04,
             ),
           ),
         ),
@@ -248,7 +253,7 @@ class _formProfile extends StatelessWidget {
           decoration: InputDecoration(
               hintText: hint,
               hintStyle: TextStyle(
-                fontSize: 16,
+                fontSize: w * 0.04,
               )),
         )
       ],
@@ -298,8 +303,10 @@ class __dropdownState extends State<_dropdownCity> {
   ];
   @override
   Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
     return Container(
-      width: MediaQuery.of(context).size.width * 0.3,
+      width: w * 0.35,
       child: Column(
         children: [
           Container(
@@ -308,20 +315,28 @@ class __dropdownState extends State<_dropdownCity> {
               'City',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                fontSize: 16,
+                fontSize: w * 0.04,
               ),
             ),
           ),
           Container(
             alignment: Alignment.topLeft,
+            width: w * 15,
             child: DropdownButton(
               value: _selectedCity,
-              hint: Text('Select Your City'),
+              hint: Text(
+                'Select Your City',
+                style: TextStyle(fontSize: w * 0.045),
+              ),
               underline: Container(
-                height: 1,
+                height: w * 0.001,
                 color: Colors.black,
               ),
-              icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+              icon: Icon(
+                Icons.keyboard_arrow_down,
+                color: Colors.black,
+                size: w * 0.05,
+              ),
               items: _city
                   .map((city) =>
                       DropdownMenuItem<String>(value: city, child: Text(city)))
@@ -352,6 +367,8 @@ class __dropdownCodeState extends State<_dropdownCode> {
   String? _selectedCode;
   @override
   Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
     final List<String> _code = [
       '00000',
       '00001',
@@ -362,7 +379,7 @@ class __dropdownCodeState extends State<_dropdownCode> {
       '000006',
     ];
     return Container(
-      width: MediaQuery.of(context).size.width * 0.3,
+      width: w * 0.3,
       child: Column(
         children: [
           Container(
@@ -371,7 +388,7 @@ class __dropdownCodeState extends State<_dropdownCode> {
               'Zip Code',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
-                fontSize: 16,
+                fontSize: w * 0.04,
               ),
             ),
           ),
@@ -379,12 +396,19 @@ class __dropdownCodeState extends State<_dropdownCode> {
             alignment: Alignment.topLeft,
             child: DropdownButton(
               value: _selectedCode,
-              hint: Text('Select'),
+              hint: Text(
+                'Select',
+                style: TextStyle(fontSize: w * 0.045),
+              ),
               underline: Container(
-                height: 1,
+                height: w * 0.001,
                 color: Colors.black,
               ),
-              icon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+              icon: Icon(
+                Icons.keyboard_arrow_down,
+                color: Colors.black,
+                size: w * 0.05,
+              ),
               items: _code
                   .map((code) =>
                       DropdownMenuItem<String>(value: code, child: Text(code)))

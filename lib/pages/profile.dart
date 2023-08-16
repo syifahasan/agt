@@ -9,6 +9,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final h = MediaQuery.of(context).size.height;
+    final w = MediaQuery.of(context).size.width;
     void logout() {
       Navigator.pushReplacement(
         context,
@@ -55,6 +57,7 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         elevation: 5,
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -66,7 +69,7 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
         ),
-        toolbarHeight: 80,
+        toolbarHeight: w * 0.16,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
@@ -78,6 +81,7 @@ class ProfilePage extends StatelessWidget {
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w700,
+              fontSize: w * 0.04,
             ),
           ),
         ),
@@ -88,16 +92,16 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: 35),
+                  padding: EdgeInsets.only(top: h * 0.045),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
                         child: Column(
                           children: [
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.10,
-                              margin: EdgeInsets.only(left: 17),
+                              height: w * 0.2,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
@@ -113,9 +117,7 @@ class ProfilePage extends StatelessWidget {
                         child: Column(
                           children: [
                             Container(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.075,
-                              margin: EdgeInsets.only(top: 20),
+                              height: w * 0.15,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
@@ -137,28 +139,28 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(left: 25, right: 25, top: 10),
+            padding: EdgeInsets.only(top: w * 0.04, left: w * 0.055),
+            margin: EdgeInsets.only(right: w * 0.14),
             child: Column(
               children: [
                 IntrinsicHeight(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.34,
+                        width: w * 0.35,
                         child: Text(
                           'Asep Saefuddin',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.036,
+                            fontSize: w * 0.06,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
                       VerticalDivider(
-                        thickness: 2,
-                        width: MediaQuery.of(context).size.width * 0.15,
+                        thickness: w * 0.0065,
+                        width: w * 0.15,
                       ),
                       Container(
                         child: Column(
@@ -167,30 +169,26 @@ class ProfilePage extends StatelessWidget {
                             Text(
                               'Sultan Collector',
                               style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.02,
+                                fontSize: w * 0.03,
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             Text(
                               '70/100',
                               style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.015,
+                                fontSize: w * 0.025,
                               ),
                             ),
                             Text(
                               'active junee',
                               style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.015,
+                                fontSize: w * 0.025,
                               ),
                             ),
                             Text(
                               '6 mount ego',
                               style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.015,
+                                fontSize: w * 0.025,
                               ),
                             )
                           ],
@@ -200,21 +198,22 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 Divider(
-                  thickness: 2,
+                  thickness: w * 0.0065,
                 ),
               ],
             ),
           ),
           Container(
+            padding: EdgeInsets.only(left: w * 0.1),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 20, left: 50),
+                  padding: EdgeInsets.only(top: w * 0.03),
                   child: Text(
                     'General',
                     style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height * 0.017,
+                      fontSize: w * 0.03,
                       color: Colors.grey,
                       fontWeight: FontWeight.w700,
                     ),
@@ -239,11 +238,11 @@ class ProfilePage extends StatelessWidget {
                   page: privacy,
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 20, left: 55),
+                  padding: EdgeInsets.only(top: w * 0.05),
                   child: Text(
                     'My Account',
                     style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.height * 0.016,
+                      fontSize: w * 0.03,
                       color: Colors.grey,
                       fontWeight: FontWeight.w700,
                     ),
@@ -292,18 +291,22 @@ class _textButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final h = MediaQuery.of(context).size.height;
+    final w = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.only(left: 40),
+      padding: EdgeInsets.only(top: w * 0.025),
       child: TextButton(
         onPressed: () {
           nav();
         },
-        child: Text(title),
+        child: Text(
+          title,
+        ),
         style: TextButton.styleFrom(
           alignment: Alignment.topLeft,
           primary: color,
           textStyle: TextStyle(
-            fontSize: MediaQuery.of(context).size.height * 0.025,
+            fontSize: w * 0.04,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -328,10 +331,13 @@ class _itemList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final h = MediaQuery.of(context).size.height;
+    final w = MediaQuery.of(context).size.width;
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.only(top: 10, left: 43, right: 49),
+          padding: EdgeInsets.only(top: w * 0.05, right: w * 0.1),
+          width: w,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -340,19 +346,19 @@ class _itemList extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     backgroundColor: color,
-                    radius: 25,
+                    radius: w * 0.055,
                     child: CircleAvatar(
                       backgroundImage: AssetImage(image),
                       backgroundColor: Colors.transparent,
-                      radius: 15,
+                      radius: w * 0.03,
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 25),
+                    padding: EdgeInsets.only(left: w * 0.05),
                     child: Text(
                       title,
                       style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.height * 0.02,
+                        fontSize: w * 0.04,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -360,19 +366,23 @@ class _itemList extends StatelessWidget {
                 ],
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.12,
+                width: w * 0.15,
+                height: w * 0.06,
                 child: ElevatedButton(
                   onPressed: () {
                     page();
                   },
-                  child: Icon(Icons.arrow_forward_ios, size: 15),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: w * 0.02,
+                  ),
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(
                       Color(0xff9999a6),
                     ),
                     shape: MaterialStatePropertyAll(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(w * 0.9),
                       ),
                     ),
                   ),
@@ -381,9 +391,6 @@ class _itemList extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          height: 6,
-        )
       ],
     );
   }

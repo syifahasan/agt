@@ -11,21 +11,23 @@ class Mypayment extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         elevation: 5,
+        backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(color: Colors.black, size: w * 0.05),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
+            borderRadius:
+                BorderRadius.vertical(bottom: Radius.circular(w * 0.1)),
             gradient: RadialGradient(
               colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
               center: Alignment.topCenter,
-              radius: 10,
+              radius: w * 0.055,
             ),
           ),
         ),
         toolbarHeight: w * 0.16,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
+            bottom: Radius.circular(w * 0.1),
           ),
         ),
         title: Text(
@@ -66,7 +68,7 @@ class Mypayment extends StatelessWidget {
                       _card(
                         title: 'gopay',
                         logo: 'assets/other/logogojek.png',
-                        background: 'assets/other/bggopay.png',
+                        background: 'assets/other/bgGopay.png',
                         cardExpiration: "08/2022",
                         cardNumber: "3546 7532 XXXX 9742",
                       ),
