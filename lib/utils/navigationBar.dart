@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../pages/notification.dart';
 import '../pages/profile.dart';
-import '../pages/scanner.dart';
+import '../pages/scanner/scanner.dart';
 import '../pages/store.dart';
 import '../pages/home.dart';
 

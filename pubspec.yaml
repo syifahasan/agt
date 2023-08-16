@@ -43,6 +43,8 @@ dependencies:
   get: ^4.6.5
   flutter_credit_card: ^3.0.7
   shared_preferences: ^2.2.0
+  mobile_scanner: ^3.4.1
+  qr_flutter: ^4.1.0
   # mobile_scanner: ^3.4.1
 
 dev_dependencies:
