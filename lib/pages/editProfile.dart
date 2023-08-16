@@ -16,13 +16,13 @@ class editProfile extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
-            iconTheme: IconThemeData(size: w * 0.05, color: Colors.white),
+            iconTheme: IconThemeData(size: w * 0.065, color: Colors.white),
             backgroundColor: Colors.transparent,
             // Properties for the AppBar
-            expandedHeight: w * 0.35, // Set the desired height of the AppBar
+            expandedHeight: w * 0.25, // Set the desired height of the AppBar
             pinned: false, // Set this to false to make AppBar non-sticky
             flexibleSpace: Container(
-              margin: EdgeInsets.only(top: w * 0.15, left: w * 0.1),
+              margin: EdgeInsets.only(top: w * 0.2, left: w * 0.12),
               height: w * 0.5,
               // A container for the flexible space (background) of the AppBar
               decoration: BoxDecoration(
@@ -46,7 +46,7 @@ class editProfile extends StatelessWidget {
               clipper: MyClipPath(),
               child: Container(
                 padding: EdgeInsets.only(
-                  top: w * 0.3,
+                  top: w * 0.25,
                   left: w * 0.08,
                   right: w * 0.08,
                 ),

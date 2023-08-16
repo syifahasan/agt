@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:authentic_guards/utils/appBar.dart';
 
 class PagePrivacy extends StatelessWidget {
   const PagePrivacy({super.key});
@@ -8,37 +9,13 @@ class PagePrivacy extends StatelessWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 5,
-        iconTheme: IconThemeData(color: Colors.black),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
-              gradient: RadialGradient(
-                colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
-                center: Alignment.topCenter,
-                radius: 10,
-              )),
-        ),
-        toolbarHeight: 80,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
-          ),
-        ),
-        title: Text(
-          'Privacy',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+      appBar: CustomAppBar(
+        title: 'My Privacy',
       ),
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 10, left: w * 0.1, right: 49),
+            padding: EdgeInsets.only(top: 10, left: w * 0.1, right: w * 0.01),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -112,11 +89,11 @@ class _itemList extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     backgroundColor: color,
-                    radius: w * 0.055,
+                    radius: w * 0.07,
                     child: CircleAvatar(
                       backgroundImage: AssetImage(image),
                       backgroundColor: Colors.transparent,
-                      radius: w * 0.03,
+                      radius: w * 0.035,
                     ),
                   ),
                   Container(
@@ -124,7 +101,7 @@ class _itemList extends StatelessWidget {
                     child: Text(
                       title,
                       style: TextStyle(
-                        fontSize: w * 0.04,
+                        fontSize: w * 0.045,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -133,7 +110,7 @@ class _itemList extends StatelessWidget {
               ),
               Container(
                 width: w * 0.15,
-                height: w * 0.06,
+                height: w * 0.07,
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Icon(

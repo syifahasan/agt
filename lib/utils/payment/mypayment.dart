@@ -1,4 +1,6 @@
+import 'package:authentic_guards/utils/payment/add_credit_card.dart';
 import 'package:flutter/material.dart';
+import 'package:authentic_guards/utils/appBar.dart';
 
 class Mypayment extends StatelessWidget {
   const Mypayment({super.key});
@@ -8,37 +10,7 @@ class Mypayment extends StatelessWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 5,
-        backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.black, size: w * 0.05),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.vertical(bottom: Radius.circular(w * 0.1)),
-            gradient: RadialGradient(
-              colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
-              center: Alignment.topCenter,
-              radius: w * 0.055,
-            ),
-          ),
-        ),
-        toolbarHeight: w * 0.16,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(w * 0.1),
-          ),
-        ),
-        title: Text(
-          'My Payment',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w700,
-            fontSize: w * 0.04,
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: 'My Payment'),
       body: ListView(
         children: [
           Container(
@@ -202,11 +174,14 @@ class _buildAddCardButton extends StatelessWidget {
     final w = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.all(w * 0.085),
-      color: Colors.white,
       alignment: Alignment.center,
       child: InkWell(
         onTap: () {
-          print('Add New Card');
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) {
+              return CreditCardPage();
+            },
+          ));
         },
         child: Card(
           elevation: 10,

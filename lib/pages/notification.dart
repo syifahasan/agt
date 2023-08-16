@@ -1,52 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:authentic_guards/utils/appBar.dart';
 
 class NotifPage extends StatelessWidget {
   const NotifPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final h = MediaQuery.of(context).size.height;
-    final w = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          elevation: 20,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(30)),
-                gradient: RadialGradient(
-                  colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
-                  center: Alignment.topCenter,
-                  radius: 10,
-                )),
-          ),
-          toolbarHeight: w * 0.16,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(30),
-            ),
-          ),
-          title: Padding(
-            padding: const EdgeInsets.only(bottom: 20, left: 39),
-            child: Center(
-              child: Text(
-                'Notification',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Image.asset('assets/other/setting.png'),
-              iconSize: 40,
-              padding: EdgeInsets.only(right: 16),
-            )
-          ],
-        ),
+        appBar: CustomAppBar(title: 'Notification'),
         body: Container(
             padding: EdgeInsets.only(top: 20),
             child: ListView(
