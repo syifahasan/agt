@@ -3,6 +3,7 @@ import 'package:flutter_credit_card/credit_card_form.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/credit_card_brand.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:authentic_guards/utils/appBar.dart';
 
 class CreditCardPage extends StatefulWidget {
   @override
@@ -23,9 +24,8 @@ class CreditCardPageState extends State<CreditCardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.teal[50],
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('Flutter Credit Card View Demo'),
+      appBar: CustomAppBar(
+        title: 'Add New Card',
       ),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -195,7 +195,6 @@ class CreditCardPageState extends State<CreditCardPage> {
   }
 }
 
-
 class _card extends StatelessWidget {
   const _card({super.key});
 
@@ -234,7 +233,6 @@ class _card extends StatelessWidget {
             style: TextStyle(fontSize: 21, color: Colors.black45),
           ),
         ),
-        
       ],
     );
   }
