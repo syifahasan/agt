@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../utils/customscroll.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
@@ -116,8 +117,7 @@ class _StorePageState extends State<StorePage> {
         ),
       ),
       body: ListView(
-        physics: BouncingScrollPhysics(
-            decelerationRate: ScrollDecelerationRate.fast),
+        physics: CustomBounceScroll(),
         children: [
           Container(
             child: Column(

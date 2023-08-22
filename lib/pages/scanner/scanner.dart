@@ -23,6 +23,11 @@ class _ScannerPageState extends State<ScannerPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
@@ -133,7 +138,7 @@ class _ScannerPageState extends State<ScannerPage> {
             ),
           ),
           Positioned(
-            bottom: 50,
+            bottom: 30,
             right: 20,
             left: 20,
             child: Container(
