@@ -1,6 +1,6 @@
-import 'package:authentic_guards/utils/payment/add_credit_card.dart';
+import 'package:authentic_guards/pages/profile/add_credit_card.dart';
 import 'package:flutter/material.dart';
-import 'package:authentic_guards/utils/appBar.dart';
+import 'package:authentic_guards/pages/profile/appBar.dart';
 
 class Mypayment extends StatelessWidget {
   const Mypayment({super.key});
@@ -38,7 +38,7 @@ class Mypayment extends StatelessWidget {
                         cardNumber: "9874 4785 XXXX 6548",
                       ),
                       _card(
-                        title: 'gopay',
+                        title: 'Gopay',
                         logo: 'assets/other/logogojek.png',
                         background: 'assets/other/bgGopay.png',
                         cardExpiration: "08/2022",
@@ -108,7 +108,7 @@ class _card extends StatelessWidget {
           child: Container(
             height: w * 0.52,
             width: w * 0.8,
-            padding: EdgeInsets.all(w * 0.055),
+            padding: EdgeInsets.all(w * 0.05),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,9 +119,9 @@ class _card extends StatelessWidget {
                     Text(
                       title,
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: w * 0.035,
-                      ),
+                          color: Colors.white,
+                          fontSize: w * 0.04,
+                          fontWeight: FontWeight.w700),
                     ),
                     Container(
                       width: w * 0.30,
@@ -190,7 +190,7 @@ class _buildAddCardButton extends StatelessWidget {
           child: Container(
             height: w * 0.52,
             width: w * 0.8,
-            padding: EdgeInsets.all(w * 0.055),
+            padding: EdgeInsets.all(w * 0.05),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,7 +200,7 @@ class _buildAddCardButton extends StatelessWidget {
                     'AddNewCard',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: w * 0.035,
+                        fontSize: w * 0.04,
                         fontWeight: FontWeight.w700),
                   ),
                 ),
@@ -261,7 +261,7 @@ class list extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: w * 0.2,
+          height: w * 0.18,
           child: InkWell(
             onTap: () {},
             child: Container(
@@ -272,8 +272,8 @@ class list extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    height: w * 0.15,
-                    width: w * 0.15,
+                    height: w * 0.13,
+                    width: w * 0.13,
                     decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(10)),
