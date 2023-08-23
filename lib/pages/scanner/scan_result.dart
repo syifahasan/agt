@@ -9,22 +9,33 @@ class ScanResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Result Screen'),
-        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
-          closeScreen();
-          Navigator.pop(context);
-        },),
-      ),
-      body: Column(children: [
-        QrImageView(
-          data: code,
-          size: 150,
-          version: QrVersions.auto,
+    return WillPopScope(
+      onWillPop: () async {
+        closeScreen();
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Result Screen'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              closeScreen();
+              Navigator.pop(context);
+            },
+          ),
         ),
-        Text('$code'),
-      ],),
+        body: Column(
+          children: [
+            QrImageView(
+              data: code,
+              size: 150,
+              version: QrVersions.auto,
+            ),
+            Text('$code'),
+          ],
+        ),
+      ),
     );
   }
 }
