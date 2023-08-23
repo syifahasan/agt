@@ -45,10 +45,7 @@ class _MainPageState extends State<MainPage> {
     final screenWidth = mediaQueryData.size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: IndexedStack(
-        index: _currentPage,
-        children: screens,
-      ),
+      body: screens[_currentPage],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         currentIndex: _currentPage,

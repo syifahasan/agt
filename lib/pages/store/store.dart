@@ -27,6 +27,12 @@ class _StorePageState extends State<StorePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    print('this is store');
+  }
+
+  @override
   Widget build(BuildContext context) {
     final TextEditingController _searchController = TextEditingController();
     final mediaQueryData = MediaQuery.of(context);

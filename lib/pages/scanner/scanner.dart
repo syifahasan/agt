@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScannerPage extends StatefulWidget {
-  const ScannerPage({
+  ScannerPage({
     super.key,
     required this.isScannerActive,
   });
-  final bool isScannerActive;
+  bool isScannerActive;
 
   @override
   State<ScannerPage> createState() => _ScannerPageState();
@@ -42,7 +42,7 @@ class _ScannerPageState extends State<ScannerPage> {
   @override
   void initState() {
     super.initState();
-    if (widget.isScannerActive) {
+    if (widget.isScannerActive = true) {
       startScanner();
       print('initState called');
     }

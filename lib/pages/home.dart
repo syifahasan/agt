@@ -37,6 +37,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    print('this is homepage');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('home disposed');
+  }
+
+  @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
