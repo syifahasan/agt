@@ -261,7 +261,7 @@ class list extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: w * 0.18,
+          height: w * 0.2,
           child: InkWell(
             onTap: () {},
             child: Container(
@@ -272,17 +272,17 @@ class list extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    height: w * 0.13,
-                    width: w * 0.13,
+                    height: w * 0.14,
+                    width: w * 0.14,
                     decoration: BoxDecoration(
                         color: Colors.black,
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(w * 0.02)),
                     child: Text(
                       IconText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: w * 0.12,
+                        fontSize: w * 0.11,
                       ),
                     ),
                   ),

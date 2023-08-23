@@ -27,7 +27,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-      toolbarHeight: w * 0.16,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(w * 0.1),
@@ -68,5 +67,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      Size.fromHeight(kToolbarHeight * 1.2); // Ukuran default AppBar
+      const Size.fromHeight(kToolbarHeight * 1.2); // Ukuran default AppBar
 }
