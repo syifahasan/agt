@@ -4,8 +4,9 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../pages/notification.dart';
 import '../pages/profile.dart';
 import '../pages/scanner/scanner.dart';
-import '../pages/store.dart';
+import '../pages/store/store.dart';
 import '../pages/home.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -17,18 +18,29 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final TextEditingController _searchController = TextEditingController();
   final PanelController _panelController = PanelController();
+  final MobileScannerController _scannerController = MobileScannerController();
 
+  bool _scannerActive = false;
   int _currentPage = 0;
-  final screens = [
+  
+  @override
+  void dispose() {
+    // Call dispose for the scanner controller here
+    _scannerController.dispose();
+    super.dispose();
+  }
+  
+
+  @override
+  Widget build(BuildContext context) {
+    final screens = [
     HomePage(),
     StorePage(),
-    ScannerPage(),
+    ScannerPage(isScannerActive: _scannerActive),
     NotifPage(),
     ProfilePage(),
   ];
 
-  @override
-  Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     return Scaffold(
@@ -41,6 +53,13 @@ class _MainPageState extends State<MainPage> {
         elevation: 0,
         currentIndex: _currentPage,
         onTap: (index) {
+          if (_currentPage == 2 && index != 2) {
+              // If transitioning away from ScannerPage, stop the scanner
+              _scannerActive = false;
+            } else if (_currentPage != 2 && index == 2) {
+              // If transitioning to ScannerPage, start the scanner
+              _scannerActive = true;
+            }
           setState(() {
             _currentPage = index;
           });
