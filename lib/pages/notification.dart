@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:authentic_guards/utils/appBar.dart';
+import 'package:authentic_guards/pages/profile/appBar.dart';
 
 class NotifPage extends StatelessWidget {
   const NotifPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: CustomAppBar(title: 'Notification'),
         body: Container(
-            padding: EdgeInsets.only(top: 20),
+            padding: EdgeInsets.only(top: w * 0.05),
             child: ListView(
               children: [
                 Container(
@@ -49,7 +50,7 @@ class list extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: w * 0.2,
+          height: w * 0.18,
           child: InkWell(
             onTap: () {},
             child: Container(
@@ -60,8 +61,8 @@ class list extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    height: w * 0.15,
-                    width: w * 0.15,
+                    height: w * 0.13,
+                    width: w * 0.13,
                     decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(10)),

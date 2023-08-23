@@ -1,11 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:authentic_guards/utils/appBar.dart';
+import 'package:authentic_guards/pages/profile/appBar.dart';
+import 'package:authentic_guards/pages/profile/change_pass.dart';
+import 'package:authentic_guards/pages/profile/change_pin.dart';
 
 class PagePrivacy extends StatelessWidget {
   const PagePrivacy({super.key});
 
   @override
   Widget build(BuildContext context) {
+    void _pass() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return changePass();
+          },
+        ),
+      );
+    }
+
+    void _pin() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return changePin();
+          },
+        ),
+      );
+    }
+
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -15,7 +39,8 @@ class PagePrivacy extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 10, left: w * 0.1, right: w * 0.01),
+            padding:
+                EdgeInsets.only(top: 10, left: w * 0.085, right: w * 0.005),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -35,6 +60,7 @@ class PagePrivacy extends StatelessWidget {
                     title: 'Change Password',
                     image: 'assets/other/password.png',
                     color: Color(0xffc75c5c),
+                    pages: _pass,
                   ),
                 ),
                 Container(
@@ -42,6 +68,7 @@ class PagePrivacy extends StatelessWidget {
                     title: 'Change PIN',
                     image: 'assets/other/pin.png',
                     color: Color(0xffe0e0d1),
+                    pages: _pin,
                   ),
                 ),
                 Container(
@@ -49,6 +76,7 @@ class PagePrivacy extends StatelessWidget {
                     title: 'Face Id',
                     image: 'assets/other/faceid.png',
                     color: Color(0xff4f5d73),
+                    pages: _pass,
                   ),
                 )
               ],
@@ -64,12 +92,14 @@ class _itemList extends StatelessWidget {
   final String title;
   final String image;
   final Color color;
+  final VoidCallback pages;
 
   const _itemList({
     super.key,
     required this.title,
     required this.image,
     required this.color,
+    required this.pages,
   });
 
   @override
@@ -112,10 +142,12 @@ class _itemList extends StatelessWidget {
                 width: w * 0.15,
                 height: w * 0.07,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    pages();
+                  },
                   child: Icon(
                     Icons.arrow_forward_ios,
-                    size: w * 0.02,
+                    size: w * 0.03,
                   ),
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(

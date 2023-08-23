@@ -10,10 +10,8 @@ class editProfile extends StatelessWidget {
     final w = mediaQueryData.size.width;
     final h = mediaQueryData.size.height;
     return Scaffold(
-      extendBodyBehindAppBar: true,
       backgroundColor: Colors.black,
       body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
             iconTheme: IconThemeData(size: w * 0.065, color: Colors.white),
@@ -23,19 +21,18 @@ class editProfile extends StatelessWidget {
             pinned: false, // Set this to false to make AppBar non-sticky
             flexibleSpace: Container(
               margin: EdgeInsets.only(top: w * 0.2, left: w * 0.12),
-              height: w * 0.5,
+
               // A container for the flexible space (background) of the AppBar
               decoration: BoxDecoration(
                 color: Colors.black,
               ),
               child: Container(
-                padding: EdgeInsets.only(),
                 child: Text(
                   'EDIT PROFILE',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: w * 0.08,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w700),
                 ),
               ),
             ),
@@ -51,7 +48,7 @@ class editProfile extends StatelessWidget {
                   right: w * 0.08,
                 ),
                 width: w,
-                height: w * 2.3,
+                height: h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
@@ -61,7 +58,7 @@ class editProfile extends StatelessWidget {
                       top: w * 0.2,
                       child: Container(
                         width: w * 0.84,
-                        height: w * 1.45,
+                        height: w * 1.65,
                         decoration: BoxDecoration(
                           gradient: RadialGradient(
                             colors: [
@@ -147,7 +144,7 @@ class editProfile extends StatelessWidget {
                               ),
                               Container(
                                 width: w * 0.4,
-                                height: w * 0.055,
+                                height: w * 0.1,
                                 margin: EdgeInsets.only(top: w * 0.05),
                                 child: ElevatedButton(
                                   onPressed: () {},
