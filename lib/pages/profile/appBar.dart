@@ -1,9 +1,11 @@
+import 'package:authentic_guards/pages/setting.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final bool iconbar;
 
-  CustomAppBar({this.title = "Default Title"});
+  CustomAppBar({this.title = "Default Title", this.iconbar = false});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,28 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           fontSize: w * 0.045,
         ),
       ),
+      actions: [
+        if (iconbar)
+          Container(
+            margin: EdgeInsets.only(right: w * 0.025),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return settingPage();
+                    },
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.settings,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+      ],
     );
   }
 

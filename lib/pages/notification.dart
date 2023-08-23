@@ -8,7 +8,7 @@ class NotifPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: CustomAppBar(title: 'Notification'),
+        appBar: CustomAppBar(title: 'Notification', iconbar: true),
         body: Container(
             padding: EdgeInsets.only(top: w * 0.05),
             child: ListView(
@@ -65,7 +65,7 @@ class list extends StatelessWidget {
                     width: w * 0.13,
                     decoration: BoxDecoration(
                         color: Colors.black,
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(w * 0.02)),
                     child: Text(
                       IconText,
                       textAlign: TextAlign.center,
