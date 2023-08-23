@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../utils/customscroll.dart';
+import '../../utils/customscroll.dart';
+import 'fashionPage.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
@@ -14,6 +15,15 @@ class _StorePageState extends State<StorePage> {
 
   void toggleSave() {
     print('saved');
+  }
+
+  void _cosmetics() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FashionPage(),
+      ),
+    );
   }
 
   @override
@@ -169,6 +179,7 @@ class _StorePageState extends State<StorePage> {
                             screenWidth: screenWidth,
                             image: 'assets/icons/store/cosmetics.png',
                             desc: 'Cosmetics',
+                            method: _cosmetics,
                           ),
                           Categories(
                             screenWidth: screenWidth,
@@ -245,7 +256,6 @@ class _StorePageState extends State<StorePage> {
                           Items(
                             screenWidth: screenWidth,
                             isSaved: isSaved,
-                            onPressed: toggleSave,
                             itempic:
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
@@ -255,7 +265,6 @@ class _StorePageState extends State<StorePage> {
                           Items(
                             screenWidth: screenWidth,
                             isSaved: isSaved,
-                            onPressed: toggleSave,
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
@@ -265,7 +274,6 @@ class _StorePageState extends State<StorePage> {
                           Items(
                             screenWidth: screenWidth,
                             isSaved: isSaved,
-                            onPressed: toggleSave,
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
@@ -275,7 +283,6 @@ class _StorePageState extends State<StorePage> {
                           Items(
                             screenWidth: screenWidth,
                             isSaved: isSaved,
-                            onPressed: toggleSave,
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
@@ -299,7 +306,7 @@ class _StorePageState extends State<StorePage> {
   }
 }
 
-class Items extends StatelessWidget {
+class Items extends StatefulWidget {
   Items({
     super.key,
     required this.screenWidth,
@@ -308,7 +315,6 @@ class Items extends StatelessWidget {
     required this.price,
     required this.tag,
     required this.isSaved,
-    required this.onPressed,
   });
 
   final double screenWidth;
@@ -317,7 +323,19 @@ class Items extends StatelessWidget {
   final String price;
   final String itemname;
   final bool isSaved;
-  final VoidCallback onPressed;
+
+  @override
+  State<Items> createState() => _ItemsState();
+}
+
+class _ItemsState extends State<Items> {
+  late bool isSaved;
+
+  @override
+  void initState() {
+    super.initState();
+    isSaved = widget.isSaved;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -325,18 +343,18 @@ class Items extends StatelessWidget {
     IconData iconData =
         isSaved ? Icons.bookmark : Icons.bookmark_border_outlined;
     return Container(
-      width: screenWidth * 43 / 100,
+      width: widget.screenWidth * 43 / 100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
               Container(
-                width: screenWidth * 43 / 100,
-                height: screenWidth * 55 / 100,
+                width: widget.screenWidth * 43 / 100,
+                height: widget.screenWidth * 55 / 100,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(itempic), fit: BoxFit.fill),
+                      image: AssetImage(widget.itempic), fit: BoxFit.fill),
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.transparent,
                   border: null,
@@ -353,15 +371,18 @@ class Items extends StatelessWidget {
                 right: 0,
                 bottom: 0,
                 child: Container(
-                  width: screenWidth * 11 / 100,
-                  height: screenWidth * 11 / 100,
+                  width: widget.screenWidth * 11 / 100,
+                  height: widget.screenWidth * 11 / 100,
                   decoration: BoxDecoration(
                       color: containerColor,
                       borderRadius:
                           BorderRadius.only(bottomRight: Radius.circular(10))),
                   child: IconButton(
                     onPressed: () {
-                      onPressed;
+                      setState(() {
+                        isSaved = !isSaved;
+                      });
+                      // widget.onPressed();
                     },
                     icon: Icon(
                       iconData,
@@ -374,25 +395,25 @@ class Items extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 6, bottom: 6),
-            child: Text(tag),
+            child: Text(widget.tag),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 4),
             child: RichText(
               text: TextSpan(
-                text: itemname,
+                text: widget.itemname,
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'SFProDisplay',
                   fontWeight: FontWeight.bold,
-                  fontSize: screenWidth * 4 / 100,
+                  fontSize: widget.screenWidth * 4 / 100,
                 ),
               ),
             ),
           ),
           Text(
-            'RP. ${price}',
-            style: TextStyle(fontSize: screenWidth * 3.5 / 100),
+            'RP. ${widget.price}',
+            style: TextStyle(fontSize: widget.screenWidth * 3.5 / 100),
           ),
         ],
       ),
@@ -401,65 +422,70 @@ class Items extends StatelessWidget {
 }
 
 class Categories extends StatelessWidget {
-  const Categories({
+  Categories({
     super.key,
     required this.screenWidth,
     required this.image,
     required this.desc,
+    this.method,
   });
 
   final double screenWidth;
   final String image;
   final String desc;
+  VoidCallback? method;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: screenWidth * 18 / 100,
-      child: Column(
-        children: [
-          Container(
-            width: screenWidth * 18 / 100,
-            height: screenWidth * 18 / 100,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(image),
-                fit: BoxFit.fill,
-              ),
-              border: Border.all(width: 1, color: Color(0xffe3e3e6)),
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  offset: Offset(0, 4),
-                  blurRadius: 3,
-                  spreadRadius: 1,
+    return GestureDetector(
+      onTap: method,
+      child: Container(
+        width: screenWidth * 18 / 100,
+        child: Column(
+          children: [
+            Container(
+              width: screenWidth * 18 / 100,
+              height: screenWidth * 18 / 100,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(image),
+                  fit: BoxFit.fill,
                 ),
-              ],
-            ),
-            // child: SvgPicture.asset(
-            //   image,
-            //   width: 200,
-            //   height: 200,
-            // ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              text: desc,
-              style: TextStyle(
-                fontSize: screenWidth * 0.03,
+                border: Border.all(width: 1, color: Color(0xffe3e3e6)),
                 color: Colors.black,
-                fontFamily: 'SFProDisplay',
-                fontWeight: FontWeight.w600,
+                borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    offset: Offset(0, 4),
+                    blurRadius: 3,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              // child: SvgPicture.asset(
+              //   image,
+              //   width: 200,
+              //   height: 200,
+              // ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                text: desc,
+                style: TextStyle(
+                  fontSize: screenWidth * 0.03,
+                  color: Colors.black,
+                  fontFamily: 'SFProDisplay',
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

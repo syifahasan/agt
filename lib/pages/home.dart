@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           preferredSize: Size.fromHeight(85.0),
           child: AppBar(
             toolbarHeight: 80,
-            leading: null,
+            automaticallyImplyLeading: false,
             elevation: 0,
             flexibleSpace: Container(
               decoration: BoxDecoration(
