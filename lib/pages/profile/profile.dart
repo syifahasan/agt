@@ -1,4 +1,5 @@
 import 'package:authentic_guards/auth/login.dart';
+import 'package:authentic_guards/pages/profile/mybadge.dart';
 import 'package:authentic_guards/pages/profile/mypayment.dart';
 import 'package:authentic_guards/pages/profile/privacy.dart';
 import 'package:authentic_guards/pages/profile/editProfile.dart';
@@ -86,23 +87,35 @@ class ProfilePage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                        child: Column(
-                          children: [
-                            Container(
-                              height: w * 0.2,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return MyBadgePage();
+                              },
+                            ),
+                          );
+                        },
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Container(
+                                height: w * 0.2,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image(
+                                    image:
+                                        AssetImage('assets/other/profile2.png'),
+                                    fit: BoxFit.fill),
                               ),
-                              child: Image(
-                                  image:
-                                      AssetImage('assets/other/profile2.png'),
-                                  fit: BoxFit.fill),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(),
-                            ),
-                          ],
+                              Container(
+                                decoration: BoxDecoration(),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
