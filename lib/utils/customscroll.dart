@@ -6,8 +6,8 @@ class CustomBounceScroll extends BouncingScrollPhysics {
 
   @override
   SpringDescription get spring => SpringDescription(
-        mass: 100,
-        stiffness: 300,
+        mass: 200,
+        stiffness: 400,
         damping: 0.4,
       );
 }

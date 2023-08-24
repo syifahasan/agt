@@ -80,6 +80,8 @@ flutter:
     - assets/icons/payment/
     - assets/icons/store/
     - assets/icons/store/fashionsImages/
+    - assets/icons/store/cosmetic_brands/
+    - assets/icons/store/fashion_brands/
     - assets/lottie/
     - assets/other/
 

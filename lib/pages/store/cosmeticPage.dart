@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class FashionPage extends StatelessWidget {
-  const FashionPage({super.key});
+class CosmeticPage extends StatelessWidget {
+  const CosmeticPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -157,48 +157,50 @@ class FashionPage extends StatelessWidget {
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas',
-                          ),
-                          Brands(
-                            screenWidth: screenWidth,
-                            image: 'assets/icons/store/fashion_brands/nike.png',
-                            desc: 'Nike',
-                          ),
-                          Brands(
-                            screenWidth: screenWidth,
-                            image: 'assets/icons/store/fashion_brands/hnm.png',
-                            desc: 'H & M',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
+                          ),
+                          Brands(
+                            screenWidth: screenWidth,
+                            image:
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
+                          ),
+                          Brands(
+                            screenWidth: screenWidth,
+                            image:
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                         ],
                       ),
@@ -235,7 +237,7 @@ class FashionPage extends StatelessWidget {
                     Items(
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
-                      itemname: 'Toner Adidas',
+                      itemname: 'Toner Loreal',
                       price: '140.000,00',
                       tag: 'Cosmetics',
                       isSaved: isSaved,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../utils/customscroll.dart';
+import 'cosmeticPage.dart';
 import 'fashionPage.dart';
+import 'itemDetails.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
@@ -12,6 +14,7 @@ class StorePage extends StatefulWidget {
 
 class _StorePageState extends State<StorePage> {
   bool isSaved = false;
+  late String itempic;
 
   void toggleSave() {
     print('saved');
@@ -21,7 +24,26 @@ class _StorePageState extends State<StorePage> {
     Navigator.push(
       context,
       MaterialPageRoute(
+        builder: (context) => CosmeticPage(),
+      ),
+    );
+  }
+
+  void _fashions() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
         builder: (context) => FashionPage(),
+      ),
+    );
+  }
+
+  void itemDetails(String image) {
+    itempic = image;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ItemDetailPage(itempic: itempic),
       ),
     );
   }
@@ -180,6 +202,7 @@ class _StorePageState extends State<StorePage> {
                             screenWidth: screenWidth,
                             image: 'assets/icons/store/fashions.png',
                             desc: 'Fashion',
+                            method: _fashions,
                           ),
                           Categories(
                             screenWidth: screenWidth,
@@ -267,34 +290,43 @@ class _StorePageState extends State<StorePage> {
                             itemname: 'BUTTERFLY T-SHIRT',
                             tag: 'Fashion',
                             price: '524.000,00',
+                            onPressed: (p0, p1, p2) {
+                              itemDetails(p0);
+                            },
                           ),
                           Items(
-                            screenWidth: screenWidth,
-                            isSaved: isSaved,
-                            itempic:
-                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
-                            itemname: 'BUTTERFLY HOODIE',
-                            tag: 'Fashion',
-                            price: '650.000,00',
-                          ),
+                              screenWidth: screenWidth,
+                              isSaved: isSaved,
+                              itempic:
+                                  'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                              itemname: 'BUTTERFLY HOODIE',
+                              tag: 'Fashion',
+                              price: '650.000,00',
+                              onPressed: (p0, p1, p2) {
+                                itemDetails(p0);
+                              }),
                           Items(
-                            screenWidth: screenWidth,
-                            isSaved: isSaved,
-                            itempic:
-                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
-                            itemname: 'BUTTERFLY HOODIE',
-                            tag: 'Fashion',
-                            price: '650.000,00',
-                          ),
+                              screenWidth: screenWidth,
+                              isSaved: isSaved,
+                              itempic:
+                                  'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                              itemname: 'BUTTERFLY HOODIE',
+                              tag: 'Fashion',
+                              price: '650.000,00',
+                              onPressed: (p0, p1, p2) {
+                                itemDetails(p0);
+                              }),
                           Items(
-                            screenWidth: screenWidth,
-                            isSaved: isSaved,
-                            itempic:
-                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
-                            itemname: 'BUTTERFLY HOODIE',
-                            tag: 'Fashion',
-                            price: '650.000,00',
-                          ),
+                              screenWidth: screenWidth,
+                              isSaved: isSaved,
+                              itempic:
+                                  'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                              itemname: 'BUTTERFLY HOODIE',
+                              tag: 'Fashion',
+                              price: '650.000,00',
+                              onPressed: (p0, p1, p2) {
+                                itemDetails(p0);
+                              }),
                         ],
                       ),
                     ),
@@ -321,6 +353,7 @@ class Items extends StatefulWidget {
     required this.price,
     required this.tag,
     required this.isSaved,
+    required this.onPressed,
   });
 
   final double screenWidth;
@@ -329,6 +362,7 @@ class Items extends StatefulWidget {
   final String price;
   final String itemname;
   final bool isSaved;
+  final Function(String, String, String) onPressed;
 
   @override
   State<Items> createState() => _ItemsState();
@@ -345,7 +379,7 @@ class _ItemsState extends State<Items> {
 
   @override
   Widget build(BuildContext context) {
-    Color containerColor = isSaved ? Colors.amber : Colors.grey;
+    Color containerColor = isSaved ? Color(0xffFFCE00) : Colors.grey;
     IconData iconData =
         isSaved ? Icons.bookmark : Icons.bookmark_border_outlined;
     return Container(
@@ -355,22 +389,28 @@ class _ItemsState extends State<Items> {
         children: [
           Stack(
             children: [
-              Container(
-                width: widget.screenWidth * 43 / 100,
-                height: widget.screenWidth * 55 / 100,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(widget.itempic), fit: BoxFit.fill),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.transparent,
-                  border: null,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey,
-                        // blurStyle: BlurStyle.outer,
-                        blurRadius: 1,
-                        offset: Offset(0, 0)),
-                  ],
+              GestureDetector(
+                onTap: () {
+                  widget.onPressed(
+                      widget.itempic, widget.itemname, widget.price);
+                },
+                child: Container(
+                  width: widget.screenWidth * 43 / 100,
+                  height: widget.screenWidth * 55 / 100,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(widget.itempic), fit: BoxFit.fill),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.transparent,
+                    border: null,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey,
+                          // blurStyle: BlurStyle.outer,
+                          blurRadius: 1,
+                          offset: Offset(0, 0)),
+                    ],
+                  ),
                 ),
               ),
               Positioned(
