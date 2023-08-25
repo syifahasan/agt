@@ -17,6 +17,8 @@ class StorePage extends StatefulWidget {
 class _StorePageState extends State<StorePage> {
   bool isSaved = false;
   late String itempic;
+  late String price;
+  late String itemname;
 
   void toggleSave() {
     print('saved');
@@ -40,12 +42,18 @@ class _StorePageState extends State<StorePage> {
     );
   }
 
-  void itemDetails(String image) {
+  void itemDetails(String image, String harga, String name) {
     itempic = image;
+    price = harga;
+    itemname = name;
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ItemDetailPage(itempic: itempic),
+        builder: (context) => ItemDetailPage(
+          itempic: itempic,
+          price: price,
+          itemname: itemname,
+        ),
       ),
     );
   }
@@ -303,7 +311,7 @@ class _StorePageState extends State<StorePage> {
                             tag: 'Fashion',
                             price: '524.000,00',
                             onPressed: (p0, p1, p2) {
-                              itemDetails(p0);
+                              itemDetails(p0, p1, p2);
                             },
                           ),
                           Items(
@@ -315,7 +323,7 @@ class _StorePageState extends State<StorePage> {
                               tag: 'Fashion',
                               price: '650.000,00',
                               onPressed: (p0, p1, p2) {
-                                itemDetails(p0);
+                                itemDetails(p0, p1, p2);
                               }),
                           Items(
                               screenWidth: screenWidth,
@@ -326,7 +334,7 @@ class _StorePageState extends State<StorePage> {
                               tag: 'Fashion',
                               price: '650.000,00',
                               onPressed: (p0, p1, p2) {
-                                itemDetails(p0);
+                                itemDetails(p0, p1, p2);
                               }),
                           Items(
                               screenWidth: screenWidth,
@@ -337,7 +345,7 @@ class _StorePageState extends State<StorePage> {
                               tag: 'Fashion',
                               price: '650.000,00',
                               onPressed: (p0, p1, p2) {
-                                itemDetails(p0);
+                                itemDetails(p0, p1, p2);
                               }),
                         ],
                       ),
@@ -404,7 +412,7 @@ class _ItemsState extends State<Items> {
               GestureDetector(
                 onTap: () {
                   widget.onPressed(
-                      widget.itempic, widget.itemname, widget.price);
+                      widget.itempic, widget.price, widget.itemname);
                 },
                 child: Container(
                   width: widget.screenWidth * 43 / 100,

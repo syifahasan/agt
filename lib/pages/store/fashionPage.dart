@@ -135,7 +135,7 @@ class FashionPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10.0),
                       child: Text(
-                        'Cosmetic Brands',
+                        'Fashion Brands',
                         style: TextStyle(
                           fontSize: screenWidth * 4 / 100,
                           fontWeight: FontWeight.bold,
