@@ -1,5 +1,7 @@
+import 'package:authentic_guards/pages/store/blastSalePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import '../../utils/customscroll.dart';
 import 'cosmeticPage.dart';
 import 'fashionPage.dart';
@@ -55,6 +57,15 @@ class _StorePageState extends State<StorePage> {
           itemname: itemname,
           colors: colors,
         ),
+      ),
+    );
+  }
+
+  void _blastSales(){
+    Navigator.push(
+      context, 
+      MaterialPageRoute(
+        builder: (context) => BlastSalesPage(), 
       ),
     );
   }
@@ -208,6 +219,7 @@ class _StorePageState extends State<StorePage> {
                             screenWidth: screenWidth,
                             image: 'assets/icons/store/blastsale.png',
                             desc: 'Blast Sale',
+                            method: _blastSales,
                           ),
                           Categories(
                             screenWidth: screenWidth,
