@@ -1,8 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'itemDetails.dart';
+import 'store.dart';
 
-class FashionPage extends StatelessWidget {
+class FashionPage extends StatefulWidget {
   const FashionPage({super.key});
+
+  @override
+  State<FashionPage> createState() => _FashionPageState();
+}
+
+class _FashionPageState extends State<FashionPage> {
+  bool isSaved = false;
+  late String itempic;
+  late String price;
+  late String itemname;
+  late List<Color> colors;
+
+  void itemDetails(String image, String harga, String name, List<Color> warna) {
+    itempic = image;
+    price = harga;
+    itemname = name;
+    colors = warna;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ItemDetailPage(
+          itempic: itempic,
+          price: price,
+          itemname: itemname,
+          colors: colors,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -233,36 +264,53 @@ class FashionPage extends StatelessWidget {
                   alignment: WrapAlignment.spaceEvenly,
                   children: [
                     Items(
+                      colors: [Colors.black, Colors.white],
                       screenWidth: screenWidth,
-                      itempic: 'assets/icons/store/fashionsImages/tshirt.png',
-                      itemname: 'Toner Adidas',
+                      itempic:
+                          'assets/icons/store/fashionsImages/kaosadidas.jpeg',
+                      itemname: 'T-Shirt Adidas',
                       price: '140.000,00',
                       tag: 'Cosmetics',
                       isSaved: isSaved,
+                      onPressed: (p0, p1, p2, p3) {
+                        itemDetails(p0, p1, p2, p3);
+                      },
                     ),
                     Items(
+                      colors: [Colors.black, Colors.white],
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
                       price: '140.000,00',
                       tag: 'Cosmetics',
                       isSaved: isSaved,
+                      onPressed: (p0, p1, p2, p3) {
+                        itemDetails(p0, p1, p2, p3);
+                      },
                     ),
                     Items(
+                      colors: [Colors.black, Colors.white],
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
                       price: '140.000,00',
                       tag: 'Cosmetics',
                       isSaved: isSaved,
+                      onPressed: (p0, p1, p2, p3) {
+                        itemDetails(p0, p1, p2, p3);
+                      },
                     ),
                     Items(
+                      colors: [Colors.black, Colors.white],
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
                       price: '140.000,00',
                       tag: 'Cosmetics',
                       isSaved: isSaved,
+                      onPressed: (p0, p1, p2, p3) {
+                        itemDetails(p0, p1, p2, p3);
+                      },
                     ),
                   ],
                 ),
@@ -340,121 +388,6 @@ class Brands extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class Items extends StatefulWidget {
-  Items({
-    super.key,
-    required this.screenWidth,
-    required this.itempic,
-    required this.itemname,
-    required this.price,
-    required this.tag,
-    required this.isSaved,
-  });
-
-  final double screenWidth;
-  final String itempic;
-  final String tag;
-  final String price;
-  final String itemname;
-  final bool isSaved;
-
-  @override
-  State<Items> createState() => _ItemsState();
-}
-
-class _ItemsState extends State<Items> {
-  late bool isSaved;
-
-  @override
-  void initState() {
-    super.initState();
-    isSaved = widget.isSaved;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Color containerColor = isSaved ? Color(0xffFFCE00) : Colors.grey;
-    IconData iconData =
-        isSaved ? Icons.bookmark : Icons.bookmark_border_outlined;
-    return Container(
-      width: widget.screenWidth * 43 / 100,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Container(
-                width: widget.screenWidth * 43 / 100,
-                height: widget.screenWidth * 55 / 100,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(widget.itempic), fit: BoxFit.fill),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.transparent,
-                  border: null,
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey,
-                        // blurStyle: BlurStyle.outer,
-                        blurRadius: 1,
-                        offset: Offset(0, 0)),
-                  ],
-                ),
-              ),
-              Positioned(
-                right: 0,
-                bottom: 0,
-                child: Container(
-                  width: widget.screenWidth * 11 / 100,
-                  height: widget.screenWidth * 11 / 100,
-                  decoration: BoxDecoration(
-                      color: containerColor,
-                      borderRadius:
-                          BorderRadius.only(bottomRight: Radius.circular(10))),
-                  child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        isSaved = !isSaved;
-                      });
-                      // widget.onPressed();
-                    },
-                    icon: Icon(
-                      iconData,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 6, bottom: 6),
-            child: Text(widget.tag),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 4),
-            child: RichText(
-              text: TextSpan(
-                text: widget.itemname,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'SFProDisplay',
-                  fontWeight: FontWeight.bold,
-                  fontSize: widget.screenWidth * 4 / 100,
-                ),
-              ),
-            ),
-          ),
-          Text(
-            'RP. ${widget.price}',
-            style: TextStyle(fontSize: widget.screenWidth * 3.5 / 100),
-          ),
-        ],
       ),
     );
   }
