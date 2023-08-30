@@ -156,7 +156,7 @@ class SaleTime extends StatelessWidget {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(w * 0.05),
               topRight: Radius.circular(w * 0.05))),
-      margin: EdgeInsets.only(left: 10),
+      margin: EdgeInsets.only(left: 5),
       width: w * 0.25,
       height: screenHeight * 6 / 100,
       child: TextButton(
@@ -174,9 +174,7 @@ class SaleTime extends StatelessWidget {
             },
           ),
         ),
-        onPressed: () {
-          
-        },
+        onPressed: () {},
         child: Column(
           children: [
             Align(
@@ -239,7 +237,7 @@ class _SaleItemsState extends State<SaleItems> {
       child: Row(
         children: [
           Container(
-            width: widget.w * 30 / 100,
+            width: widget.w * 28 / 100,
             height: widget.w * 30 / 100,
             decoration: BoxDecoration(
               color: Colors.white,
