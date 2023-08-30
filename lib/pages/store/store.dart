@@ -1,5 +1,7 @@
+import 'package:authentic_guards/pages/store/blastSalePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import '../../utils/customscroll.dart';
 import 'cosmeticPage.dart';
 import 'fashionPage.dart';
@@ -15,6 +17,9 @@ class StorePage extends StatefulWidget {
 class _StorePageState extends State<StorePage> {
   bool isSaved = false;
   late String itempic;
+  late String price;
+  late String itemname;
+  late List<Color> colors;
 
   void toggleSave() {
     print('saved');
@@ -38,12 +43,29 @@ class _StorePageState extends State<StorePage> {
     );
   }
 
-  void itemDetails(String image) {
+  void itemDetails(String image, String harga, String name, List<Color> warna) {
     itempic = image;
+    price = harga;
+    itemname = name;
+    colors = warna;
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ItemDetailPage(itempic: itempic),
+        builder: (context) => ItemDetailPage(
+          itempic: itempic,
+          price: price,
+          itemname: itemname,
+          colors: colors,
+        ),
+      ),
+    );
+  }
+
+  void _blastSales(){
+    Navigator.push(
+      context, 
+      MaterialPageRoute(
+        builder: (context) => BlastSalesPage(), 
       ),
     );
   }
@@ -197,6 +219,7 @@ class _StorePageState extends State<StorePage> {
                             screenWidth: screenWidth,
                             image: 'assets/icons/store/blastsale.png',
                             desc: 'Blast Sale',
+                            method: _blastSales,
                           ),
                           Categories(
                             screenWidth: screenWidth,
@@ -283,6 +306,7 @@ class _StorePageState extends State<StorePage> {
                         alignment: WrapAlignment.spaceEvenly,
                         children: [
                           Items(
+                            colors: [Color(0xffFF6161), Colors.white],
                             screenWidth: screenWidth,
                             isSaved: isSaved,
                             itempic:
@@ -290,11 +314,12 @@ class _StorePageState extends State<StorePage> {
                             itemname: 'BUTTERFLY T-SHIRT',
                             tag: 'Fashion',
                             price: '524.000,00',
-                            onPressed: (p0, p1, p2) {
-                              itemDetails(p0);
+                            onPressed: (p0, p1, p2, p3) {
+                              itemDetails(p0, p1, p2, p3);
                             },
                           ),
                           Items(
+                            colors: [Color(0xffFF6161), Colors.white],
                               screenWidth: screenWidth,
                               isSaved: isSaved,
                               itempic:
@@ -302,10 +327,11 @@ class _StorePageState extends State<StorePage> {
                               itemname: 'BUTTERFLY HOODIE',
                               tag: 'Fashion',
                               price: '650.000,00',
-                              onPressed: (p0, p1, p2) {
-                                itemDetails(p0);
-                              }),
+                              onPressed: (p0, p1, p2, p3) {
+                              itemDetails(p0, p1, p2, p3);
+                            },),
                           Items(
+                            colors: [Color(0xffFF6161), Colors.white],
                               screenWidth: screenWidth,
                               isSaved: isSaved,
                               itempic:
@@ -313,10 +339,11 @@ class _StorePageState extends State<StorePage> {
                               itemname: 'BUTTERFLY HOODIE',
                               tag: 'Fashion',
                               price: '650.000,00',
-                              onPressed: (p0, p1, p2) {
-                                itemDetails(p0);
-                              }),
+                              onPressed: (p0, p1, p2, p3) {
+                              itemDetails(p0, p1, p2, p3);
+                            },),
                           Items(
+                            colors: [Color(0xffFF6161), Colors.white],
                               screenWidth: screenWidth,
                               isSaved: isSaved,
                               itempic:
@@ -324,9 +351,9 @@ class _StorePageState extends State<StorePage> {
                               itemname: 'BUTTERFLY HOODIE',
                               tag: 'Fashion',
                               price: '650.000,00',
-                              onPressed: (p0, p1, p2) {
-                                itemDetails(p0);
-                              }),
+                              onPressed: (p0, p1, p2, p3) {
+                              itemDetails(p0, p1, p2, p3);
+                            },),
                         ],
                       ),
                     ),
@@ -354,6 +381,7 @@ class Items extends StatefulWidget {
     required this.tag,
     required this.isSaved,
     required this.onPressed,
+    required this.colors,
   });
 
   final double screenWidth;
@@ -362,7 +390,8 @@ class Items extends StatefulWidget {
   final String price;
   final String itemname;
   final bool isSaved;
-  final Function(String, String, String) onPressed;
+  final List<Color> colors;
+  final Function(String, String, String, List<Color>) onPressed;
 
   @override
   State<Items> createState() => _ItemsState();
@@ -392,7 +421,7 @@ class _ItemsState extends State<Items> {
               GestureDetector(
                 onTap: () {
                   widget.onPressed(
-                      widget.itempic, widget.itemname, widget.price);
+                      widget.itempic, widget.price, widget.itemname, widget.colors);
                 },
                 child: Container(
                   width: widget.screenWidth * 43 / 100,
@@ -495,7 +524,7 @@ class Categories extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(image),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 ),
                 border: Border.all(width: 1, color: Color(0xffe3e3e6)),
                 color: Colors.black,
