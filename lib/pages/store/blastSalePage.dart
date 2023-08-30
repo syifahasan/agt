@@ -174,9 +174,7 @@ class SaleTime extends StatelessWidget {
             },
           ),
         ),
-        onPressed: () {
-          
-        },
+        onPressed: () {},
         child: Column(
           children: [
             Align(
