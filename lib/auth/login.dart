@@ -84,6 +84,7 @@ class _LoginViewsState extends State<PageLogin> {
                     )),
                     Container(
                       width: w * 0.35,
+                      height: w * 0.16,
                       padding: EdgeInsets.only(top: w * 0.05),
                       child: ElevatedButton(
                         onPressed: () {
