@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../../utils/customscroll.dart';
+import 'myCart.dart';
 import 'cosmeticPage.dart';
 import 'fashionPage.dart';
 import 'itemDetails.dart';
@@ -61,11 +62,11 @@ class _StorePageState extends State<StorePage> {
     );
   }
 
-  void _blastSales(){
+  void _blastSales() {
     Navigator.push(
-      context, 
+      context,
       MaterialPageRoute(
-        builder: (context) => BlastSalesPage(), 
+        builder: (context) => BlastSalesPage(),
       ),
     );
   }
@@ -168,8 +169,18 @@ class _StorePageState extends State<StorePage> {
                     borderRadius: BorderRadius.circular(30)),
                 margin: EdgeInsets.only(top: 13, right: 10),
                 padding: EdgeInsets.all(5),
-                child: Container(
-                  child: SvgPicture.asset('assets/icons/navbar/Cart.svg'),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyCart(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    child: SvgPicture.asset('assets/icons/navbar/Cart.svg'),
+                  ),
                 ),
               ),
             ],
@@ -320,40 +331,43 @@ class _StorePageState extends State<StorePage> {
                           ),
                           Items(
                             colors: [Color(0xffFF6161), Colors.white],
-                              screenWidth: screenWidth,
-                              isSaved: isSaved,
-                              itempic:
-                                  'assets/icons/store/fashionsImages/butterflyhoodie.png',
-                              itemname: 'BUTTERFLY HOODIE',
-                              tag: 'Fashion',
-                              price: '650.000,00',
-                              onPressed: (p0, p1, p2, p3) {
+                            screenWidth: screenWidth,
+                            isSaved: isSaved,
+                            itempic:
+                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                            itemname: 'BUTTERFLY HOODIE',
+                            tag: 'Fashion',
+                            price: '650.000,00',
+                            onPressed: (p0, p1, p2, p3) {
                               itemDetails(p0, p1, p2, p3);
-                            },),
+                            },
+                          ),
                           Items(
                             colors: [Color(0xffFF6161), Colors.white],
-                              screenWidth: screenWidth,
-                              isSaved: isSaved,
-                              itempic:
-                                  'assets/icons/store/fashionsImages/butterflyhoodie.png',
-                              itemname: 'BUTTERFLY HOODIE',
-                              tag: 'Fashion',
-                              price: '650.000,00',
-                              onPressed: (p0, p1, p2, p3) {
+                            screenWidth: screenWidth,
+                            isSaved: isSaved,
+                            itempic:
+                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                            itemname: 'BUTTERFLY HOODIE',
+                            tag: 'Fashion',
+                            price: '650.000,00',
+                            onPressed: (p0, p1, p2, p3) {
                               itemDetails(p0, p1, p2, p3);
-                            },),
+                            },
+                          ),
                           Items(
                             colors: [Color(0xffFF6161), Colors.white],
-                              screenWidth: screenWidth,
-                              isSaved: isSaved,
-                              itempic:
-                                  'assets/icons/store/fashionsImages/butterflyhoodie.png',
-                              itemname: 'BUTTERFLY HOODIE',
-                              tag: 'Fashion',
-                              price: '650.000,00',
-                              onPressed: (p0, p1, p2, p3) {
+                            screenWidth: screenWidth,
+                            isSaved: isSaved,
+                            itempic:
+                                'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                            itemname: 'BUTTERFLY HOODIE',
+                            tag: 'Fashion',
+                            price: '650.000,00',
+                            onPressed: (p0, p1, p2, p3) {
                               itemDetails(p0, p1, p2, p3);
-                            },),
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -420,8 +434,8 @@ class _ItemsState extends State<Items> {
             children: [
               GestureDetector(
                 onTap: () {
-                  widget.onPressed(
-                      widget.itempic, widget.price, widget.itemname, widget.colors);
+                  widget.onPressed(widget.itempic, widget.price,
+                      widget.itemname, widget.colors);
                 },
                 child: Container(
                   width: widget.screenWidth * 43 / 100,

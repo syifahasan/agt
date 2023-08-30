@@ -35,20 +35,24 @@ class MyCart extends StatelessWidget {
                     ),
                     child: Container(
                       padding: EdgeInsets.only(),
-                      child: Text(
-                        'MY CART',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: screenWidth * 0.09,
-                            fontWeight: FontWeight.bold),
+                      child: Row(
+                        children: [
+                          Text(
+                            'MY CART',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: screenWidth * 0.09,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                        top: screenWidth * 0.15, right: screenWidth * 0.05),
+                        top: screenWidth * 0.10, right: screenWidth * 0.05),
                     child: IconFavorit(),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -76,62 +80,6 @@ class MyCart extends StatelessWidget {
                         Cart(),
                       ],
                     ),
-                    Container(
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(
-                                left: screenWidth * 0.05,
-                                right: screenWidth * 0.05,
-                                bottom: screenWidth * 0.05),
-                            child: Divider(
-                              thickness: 1,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                left: screenWidth * 0.08,
-                                right: screenWidth * 0.05),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  child: Text('Total'),
-                                ),
-                                Container(
-                                  child: Text(
-                                    'Rp 524.223,68',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w700),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                              top: screenWidth * 0.05,
-                            ),
-                            width: screenWidth * 0.92,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text('Continue Payment'),
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                  Colors.red,
-                                ),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          screenWidth * 0.5)),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -139,6 +87,55 @@ class MyCart extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: Container(
+        height: screenWidth * 45 / 100,
+        width: screenWidth,
+        decoration: BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Divider(
+              indent: 20,
+              endIndent: 20,
+              thickness: 1.5,
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                  left: screenWidth * 0.08, right: screenWidth * 0.05),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Text('Total'),
+                  ),
+                  Container(
+                    child: Text(
+                      'Rp 524.223,68',
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            FloatingActionButton.extended(
+              backgroundColor: Color(0xffFF6161),
+              onPressed: () {},
+              label: Container(
+                width: screenWidth * 70 / 100,
+                child: Center(
+                  child: Text(
+                    'Continue Payment',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
@@ -254,7 +251,7 @@ class _IconCounterState extends State<IconCounter> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      width: screenWidth * 0.25,
+      width: screenWidth * 0.30,
       height: screenWidth * 0.08,
       decoration: BoxDecoration(
         // color: Colors.grey,
