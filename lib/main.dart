@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/store/favoritePage.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/utils/onboardingPage.dart';
 import 'package:authentic_guards/pages/store/myCart.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'SFProDisplay',
       ),
-      home: OnboardingPage1(),
+      home: FavoritePage(),
     );
   }
 }
