@@ -19,6 +19,7 @@ class ItemDetailPage extends StatefulWidget {
 
 class _ItemDetailPageState extends State<ItemDetailPage> {
   final bool isSelected = false;
+  String selectedSize = '';
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -166,27 +167,68 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                         Sizes(
                             screenWidth: screenWidth,
                             size: 'S',
-                            isSelected: isSelected),
+                            isSelected: selectedSize == 'S',
+                            onSizeSelected: () {
+                              setState(() {
+                                if (selectedSize == 'S') {
+                                  selectedSize = '';
+                                } else {
+                                  selectedSize = 'S';
+                                }
+                              });
+                            }),
                         Sizes(
-                          screenWidth: screenWidth,
-                          size: 'M',
-                          isSelected: isSelected,
-                        ),
+                            screenWidth: screenWidth,
+                            size: 'M',
+                            isSelected: selectedSize == 'M',
+                            onSizeSelected: () {
+                              setState(() {
+                                if (selectedSize == 'M') {
+                                  selectedSize = '';
+                                } else {
+                                  selectedSize = 'M';
+                                }
+                              });
+                            }),
                         Sizes(
-                          screenWidth: screenWidth,
-                          size: 'L',
-                          isSelected: isSelected,
-                        ),
+                            screenWidth: screenWidth,
+                            size: 'L',
+                            isSelected: selectedSize == 'L',
+                            onSizeSelected: () {
+                              setState(() {
+                                if (selectedSize == 'L') {
+                                  selectedSize = '';
+                                } else {
+                                  selectedSize = 'L';
+                                }
+                              });
+                            }),
                         Sizes(
-                          screenWidth: screenWidth,
-                          size: 'XL',
-                          isSelected: isSelected,
-                        ),
+                            screenWidth: screenWidth,
+                            size: 'XL',
+                            isSelected: selectedSize == 'XL',
+                            onSizeSelected: () {
+                              setState(() {
+                                if (selectedSize == 'XL') {
+                                  selectedSize = '';
+                                } else {
+                                  selectedSize = 'XL';
+                                }
+                              });
+                            }),
                         Sizes(
-                          screenWidth: screenWidth,
-                          size: '2XL',
-                          isSelected: isSelected,
-                        ),
+                            screenWidth: screenWidth,
+                            size: '2XL',
+                            isSelected: selectedSize == '2XL',
+                            onSizeSelected: () {
+                              setState(() {
+                                if (selectedSize == '2XL') {
+                                  selectedSize = '';
+                                } else {
+                                  selectedSize = '2XL';
+                                }
+                              });
+                            }),
                       ],
                     ),
                   ),
@@ -253,35 +295,27 @@ class Sizes extends StatefulWidget {
     super.key,
     required this.screenWidth,
     required this.size,
+    required this.onSizeSelected,
     required this.isSelected,
   });
 
   final double screenWidth;
   final String size;
   final bool isSelected;
+  final VoidCallback onSizeSelected;
 
   @override
   State<Sizes> createState() => _SizesState();
 }
 
 class _SizesState extends State<Sizes> {
-  late bool isSelected;
-
-  @override
-  void initState() {
-    super.initState();
-    isSelected = widget.isSelected;
-  }
-
   @override
   Widget build(BuildContext context) {
-    Color containerColor = isSelected ? Colors.black : Colors.white;
-    Color textColor = isSelected ? Colors.white : Colors.black;
+    Color containerColor = widget.isSelected ? Colors.black : Colors.white;
+    Color textColor = widget.isSelected ? Colors.white : Colors.black;
     return GestureDetector(
       onTap: () {
-        setState(() {
-          isSelected = !isSelected;
-        });
+        widget.onSizeSelected();
       },
       child: Container(
         margin: EdgeInsets.only(right: 5),
