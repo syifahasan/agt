@@ -65,10 +65,30 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  SaleTime(w, screenHeight),
-                  SaleTime(w, screenHeight),
-                  SaleTime(w, screenHeight),
-                  SaleTime(w, screenHeight),
+                  SaleTime(
+                    w: w,
+                    screenHeight: screenHeight,
+                    time: '19.20',
+                    text: 'Sedang berlangsung',
+                  ),
+                  SaleTime(
+                    w: w,
+                    screenHeight: screenHeight,
+                    time: '20.00',
+                    text: 'Akan datang',
+                  ),
+                  SaleTime(
+                    w: w,
+                    screenHeight: screenHeight,
+                    time: '21.20',
+                    text: 'Akan datang',
+                  ),
+                  SaleTime(
+                    w: w,
+                    screenHeight: screenHeight,
+                    time: '22.00',
+                    text: 'Akan datang',
+                  ),
                 ],
               ),
             ),
@@ -77,10 +97,34 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
               children: [
-                SaleItems(w: w),
-                SaleItems(w: w),
-                SaleItems(w: w),
-                SaleItems(w: w),
+                SaleItems(
+                  w: w,
+                  itemname: 'BUTTERFLY HOODIE',
+                  discount: 'Rp 799.999.99',
+                  price: 'Rp 499.999.999',
+                  desc: '28 Sold',
+                ),
+                SaleItems(
+                  w: w,
+                  itemname: 'PANCOAT HOODIE',
+                  discount: 'Rp 699.999.999',
+                  price: 'Rp 399.399.999',
+                  desc: 'Limited Stok',
+                ),
+                SaleItems(
+                  w: w,
+                  itemname: 'BUTTERFLY HOODIE',
+                  discount: 'Rp 899.999.999',
+                  price: 'Rp 699.999.999',
+                  desc: '30 Sold',
+                ),
+                SaleItems(
+                  w: w,
+                  itemname: 'DRAGON HOODIE',
+                  discount: 'Rp 399.999.999',
+                  price: 'Rp 200.000.000',
+                  desc: '1 Sold',
+                ),
               ],
             ),
           )
@@ -88,54 +132,74 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
       ),
     );
   }
+}
 
-  Container SaleTime(double w, double screenHeight) {
+class SaleTime extends StatelessWidget {
+  const SaleTime({
+    super.key,
+    required this.w,
+    required this.screenHeight,
+    required this.time,
+    required this.text,
+  });
+
+  final double w;
+  final double screenHeight;
+  final String time;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(w * 0.05),
-                topRight: Radius.circular(w * 0.05))),
-        margin: EdgeInsets.only(left: 10),
-        width: w * 0.25,
-        height: screenHeight * 6 / 100,
-        child: TextButton(
-            style: ButtonStyle(
-              foregroundColor:
-                  MaterialStateProperty.all<Color>(Colors.grey.shade400),
-              overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) {
-                  if (states.contains(MaterialState.hovered))
-                    return Colors.red..withOpacity(0.04);
-                  if (states.contains(MaterialState.focused) ||
-                      states.contains(MaterialState.pressed))
-                    return Colors.red.withOpacity(0.12);
-                  return null; // Defer to the widget's default.
-                },
+      decoration: BoxDecoration(
+          color: Colors.grey,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(w * 0.05),
+              topRight: Radius.circular(w * 0.05))),
+      margin: EdgeInsets.only(left: 10),
+      width: w * 0.25,
+      height: screenHeight * 6 / 100,
+      child: TextButton(
+        style: ButtonStyle(
+          foregroundColor:
+              MaterialStateProperty.all<Color>(Colors.grey.shade400),
+          overlayColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.hovered))
+                return Colors.red..withOpacity(0.04);
+              if (states.contains(MaterialState.focused) ||
+                  states.contains(MaterialState.pressed))
+                return Colors.red.withOpacity(0.12);
+              return null; // Defer to the widget's default.
+            },
+          ),
+        ),
+        onPressed: () {
+          
+        },
+        child: Column(
+          children: [
+            Align(
+              alignment: AlignmentDirectional.bottomCenter,
+            ),
+            Text(
+              time,
+              style: TextStyle(
+                fontSize: w * 0.050,
+                color: Colors.white,
               ),
             ),
-            onPressed: () {},
-            child: Column(
-              children: [
-                Align(
-                  alignment: AlignmentDirectional.bottomCenter,
-                ),
-                Text(
-                  '19:21',
-                  style: TextStyle(
-                    fontSize: w * 0.050,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  'Sedang berlangsung',
-                  style: TextStyle(
-                    fontSize: w * 0.022,
-                    color: Colors.white,
-                  ),
-                )
-              ],
-            )));
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: w * 0.022,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -143,9 +207,17 @@ class SaleItems extends StatefulWidget {
   const SaleItems({
     super.key,
     required this.w,
+    required this.itemname,
+    required this.discount,
+    required this.price,
+    required this.desc,
   });
 
   final double w;
+  final String itemname;
+  final String discount;
+  final String price;
+  final String desc;
 
   @override
   State<SaleItems> createState() => _SaleItemsState();
@@ -195,7 +267,7 @@ class _SaleItemsState extends State<SaleItems> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'BUTTERFLY HOODIE',
+                  widget.itemname,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
@@ -205,13 +277,15 @@ class _SaleItemsState extends State<SaleItems> {
                   style: TextStyle(fontSize: 12),
                 ),
                 Text(
-                  'Rp 789.999.999',
+                  widget.discount,
                   style: TextStyle(
                     decoration: TextDecoration.lineThrough,
                     fontSize: 10,
                   ),
                 ),
-                Text('Rp 399,399,399'),
+                Text(
+                  widget.price,
+                ),
                 Container(
                   width: 200,
                   height: 10,
@@ -229,7 +303,7 @@ class _SaleItemsState extends State<SaleItems> {
                   height: 5,
                 ),
                 Text(
-                  'Sold Out',
+                  widget.desc,
                   style: TextStyle(
                     fontSize: 16,
                   ),
