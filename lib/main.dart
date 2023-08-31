@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'SFProDisplay',
       ),
-      home: FavoritePage(),
+      home: OnboardingPage1(),
     );
   }
 }
