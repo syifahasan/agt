@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'myCart.dart';
+
 
 class ItemDetailPage extends StatefulWidget {
   const ItemDetailPage({
@@ -18,8 +20,32 @@ class ItemDetailPage extends StatefulWidget {
 }
 
 class _ItemDetailPageState extends State<ItemDetailPage> {
+  List<CartItem> cartItems = [];
   final bool isSelected = false;
   String selectedSize = '';
+
+  void addToCart() {
+    final newItem = CartItem(
+      itempic: widget.itempic,
+      price: widget.price,
+      itemname: widget.itemname,
+      colors: widget.colors,
+      selectedSize: selectedSize,
+    );
+    setState(
+      () {
+        cartItems.add(newItem);
+        print(newItem.itemname);
+      },
+    );
+  }
+
+  void printCartItems() {
+    for (var cartItem in cartItems) {
+      print(cartItem.itemname);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -264,7 +290,44 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
               ),
               FloatingActionButton.extended(
                 backgroundColor: Color(0xffFF6161),
-                onPressed: () => {},
+                onPressed: () {
+                  if (selectedSize == '') {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        content: Text(
+                          'Pilih Ukuran Terlebih Dahulu',
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        actions: [
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        MyCart(cartItems: cartItems),
+                                  ),
+                                );
+                              },
+                              child: Text('OK'))
+                        ],
+                        content: Text('Produk ditambahkan ke keranjang'),
+                      ),
+                    );
+                    addToCart();
+                  }
+                },
                 label: Container(
                   width: screenWidth * 40 / 100,
                   child: Row(

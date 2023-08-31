@@ -1,8 +1,23 @@
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:flutter/material.dart';
 
-class MyCart extends StatelessWidget {
-  const MyCart({super.key});
+class MyCart extends StatefulWidget {
+  const MyCart({super.key, required this.cartItems});
+  final List<CartItem> cartItems;
+
+  @override
+  State<MyCart> createState() => _MyCartState();
+}
+
+class _MyCartState extends State<MyCart> {
+  double calculateTotalPrice() {
+    double totalPrice = 0;
+    for (var cartItem in widget.cartItems) {
+      double itemPrice = double.parse(cartItem.price.replaceAll(',', ''));
+      totalPrice += itemPrice;
+    }
+    return totalPrice;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,8 +91,7 @@ class MyCart extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Cart(),
-                        Cart(),
+                        Cart(cartItems: widget.cartItems),
                       ],
                     ),
                   ],
@@ -112,7 +126,9 @@ class MyCart extends StatelessWidget {
                   ),
                   Container(
                     child: Text(
-                      'Rp 524.223,68',
+                      widget.cartItems.isEmpty
+                          ? 'Rp. 0'
+                          : 'Rp. ${calculateTotalPrice().toStringAsFixed(3)}',
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                   ),
@@ -141,7 +157,8 @@ class MyCart extends StatelessWidget {
 }
 
 class Cart extends StatefulWidget {
-  const Cart({super.key});
+  const Cart({super.key, required this.cartItems});
+  final List<CartItem> cartItems;
 
   @override
   State<Cart> createState() => _CartState();
@@ -161,63 +178,55 @@ class _CartState extends State<Cart> {
     final screenWidth = MediaQuery.of(context).size.width;
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Transform.scale(
-              scale: screenWidth * 0.0025,
-              child: Checkbox(
-                activeColor: Colors.black,
-                value: isChecked,
-                onChanged: (value) => toggleCheckbox(),
+        for (var cartItem in widget.cartItems)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Transform.scale(
+                scale: screenWidth * 0.0025,
+                child: Checkbox(
+                  activeColor: Colors.black,
+                  value: isChecked,
+                  onChanged: (value) => toggleCheckbox(),
+                ),
               ),
-            ),
-            Card(
-              elevation: screenWidth * 0.02,
-              child: Container(
-                  width: screenWidth * 0.2,
-                  height: screenWidth * 0.2,
-                  child: Image.asset(
-                      'assets/icons/store/fashionsImages/tshirt.png')),
-            ),
-            Container(
-              width: screenWidth * 0.3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    child: Text(
-                      'BUTTERFLY T-SHIRT',
-                      style: TextStyle(
-                          fontSize: screenWidth * 0.03,
-                          fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                  Container(
-                    child: Text(
-                      'Garment Dyed T-shirt',
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.023,
+              Card(
+                elevation: screenWidth * 0.02,
+                child: Container(
+                    width: screenWidth * 0.2,
+                    height: screenWidth * 0.2,
+                    child: Image.asset(cartItem.itempic)),
+              ),
+              Container(
+                width: screenWidth * 0.3,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Text(
+                        cartItem.itemname,
+                        style: TextStyle(
+                            fontSize: screenWidth * 0.03,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(
-                      top: screenWidth * 0.02,
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: screenWidth * 0.02,
+                      ),
+                      child: Text(
+                        cartItem.selectedSize,
+                        style: TextStyle(
+                            fontSize: screenWidth * 0.025,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
-                    child: Text(
-                      'Size: M',
-                      style: TextStyle(
-                          fontSize: screenWidth * 0.025,
-                          fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            IconCounter(),
-          ],
-        ),
+              IconCounter(),
+            ],
+          ),
       ],
     );
   }
@@ -340,4 +349,20 @@ class MyClipPath extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) {
     return false;
   }
+}
+
+class CartItem {
+  final String itempic;
+  final String price;
+  final String itemname;
+  final List<Color> colors;
+  final String selectedSize;
+
+  CartItem({
+    required this.itempic,
+    required this.price,
+    required this.itemname,
+    required this.colors,
+    required this.selectedSize,
+  });
 }
