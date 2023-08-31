@@ -10,6 +10,15 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
+  double calculateTotalPrice() {
+    double totalPrice = 0;
+    for (var cartItem in widget.cartItems) {
+      double itemPrice = double.parse(cartItem.price.replaceAll(',', ''));
+      totalPrice += itemPrice;
+    }
+    return totalPrice;
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -117,7 +126,9 @@ class _MyCartState extends State<MyCart> {
                   ),
                   Container(
                     child: Text(
-                      'Rp 524.223,68',
+                      widget.cartItems.isEmpty
+                          ? 'Rp. 0'
+                          : 'Rp. ${calculateTotalPrice().toStringAsFixed(3)}',
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                   ),
