@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/utils/onboardingPage.dart';
-import 'package:authentic_guards/pages/store/myCart.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
