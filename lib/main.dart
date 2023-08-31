@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/utils/onboardingPage.dart';
-import 'package:authentic_guards/pages/store/myCart.dart';
+import 'package:authentic_guards/pages/store/paymentPage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +16,6 @@ class MyApp extends StatelessWidget {
         fontFamily: 'SFProDisplay',
       ),
       home: OnboardingPage1(),
-    );
+    ); 
   }
 }
