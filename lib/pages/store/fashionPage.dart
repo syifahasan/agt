@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'itemDetails.dart';
 import 'store.dart';
+import '../store/myCart.dart';
 
 class FashionPage extends StatefulWidget {
   const FashionPage({super.key});
@@ -13,11 +14,11 @@ class FashionPage extends StatefulWidget {
 class _FashionPageState extends State<FashionPage> {
   bool isSaved = false;
   late String itempic;
-  late String price;
+  late double price;
   late String itemname;
   late List<Color> colors;
 
-  void itemDetails(String image, String harga, String name, List<Color> warna) {
+  void itemDetails(String image, double harga, String name, List<Color> warna) {
     itempic = image;
     price = harga;
     itemname = name;
@@ -129,8 +130,18 @@ class _FashionPageState extends State<FashionPage> {
                     borderRadius: BorderRadius.circular(30)),
                 margin: EdgeInsets.only(top: 13, right: 10),
                 padding: EdgeInsets.all(5),
-                child: Container(
-                  child: SvgPicture.asset('assets/icons/navbar/Cart.svg'),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyCart(cartItems: []),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    child: SvgPicture.asset('assets/icons/navbar/Cart.svg'),
+                  ),
                 ),
               ),
             ],
@@ -269,7 +280,7 @@ class _FashionPageState extends State<FashionPage> {
                       itempic:
                           'assets/icons/store/fashionsImages/kaosadidas.jpeg',
                       itemname: 'T-Shirt Adidas',
-                      price: '140.000,00',
+                      price: 140000.00,
                       tag: 'Cosmetics',
                       isSaved: isSaved,
                       onPressed: (p0, p1, p2, p3) {
@@ -281,7 +292,7 @@ class _FashionPageState extends State<FashionPage> {
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
-                      price: '140.000,00',
+                      price: 140000.00,
                       tag: 'Cosmetics',
                       isSaved: isSaved,
                       onPressed: (p0, p1, p2, p3) {
@@ -293,7 +304,7 @@ class _FashionPageState extends State<FashionPage> {
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
-                      price: '140.000,00',
+                      price: 140000.00,
                       tag: 'Cosmetics',
                       isSaved: isSaved,
                       onPressed: (p0, p1, p2, p3) {
@@ -305,7 +316,7 @@ class _FashionPageState extends State<FashionPage> {
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
-                      price: '140.000,00',
+                      price: 140000.00,
                       tag: 'Cosmetics',
                       isSaved: isSaved,
                       onPressed: (p0, p1, p2, p3) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'myCart.dart';
+import 'package:provider/provider.dart';
 import 'package:authentic_guards/utils/provider/cartProvider.dart';
-
 
 class ItemDetailPage extends StatefulWidget {
   const ItemDetailPage({
@@ -12,7 +12,7 @@ class ItemDetailPage extends StatefulWidget {
     required this.colors,
   });
   final String itempic;
-  final String price;
+  final double price;
   final String itemname;
   final List<Color> colors;
 
@@ -312,13 +312,25 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                             borderRadius: BorderRadius.circular(15)),
                         actions: [
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                               child: Text('OK'))
                         ],
                         content: Text('Produk ditambahkan ke keranjang'),
                       ),
                     );
-                    addToCart();
+                    final cartProvider =
+                        Provider.of<CartProvider>(context, listen: false);
+                    cartProvider.addToCart(
+                      CartItem(
+                          itempic: widget.itempic,
+                          price: widget.price,
+                          itemname: widget.itemname,
+                          colors: widget.colors,
+                          selectedSize: selectedSize),
+                          
+                    );
                   }
                 },
                 label: Container(

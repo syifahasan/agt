@@ -1,6 +1,9 @@
+import 'package:authentic_guards/pages/store/favoritePage.dart';
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:flutter/material.dart';
 import 'paymentPage.dart';
+import 'package:authentic_guards/utils/provider/cartProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class MyCart extends StatefulWidget {
@@ -12,15 +15,6 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
-  double calculateTotalPrice() {
-    double totalPrice = 0;
-    for (var cartItem in widget.cartItems) {
-      double itemPrice = double.parse(cartItem.price.replaceAll(',', ''));
-      totalPrice += itemPrice;
-    }
-    return totalPrice;
-  }
-
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -66,9 +60,22 @@ class _MyCartState extends State<MyCart> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                        top: screenWidth * 0.10, right: screenWidth * 0.05),
-                    child: IconFavorit(),
+                    padding: EdgeInsets.only(top: 85, right: 30),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FavoritePage(),
+                          ),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.bookmark,
+                        color: Colors.white,
+                        size: screenWidth * 0.12,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -93,7 +100,19 @@ class _MyCartState extends State<MyCart> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Cart(cartItems: widget.cartItems),
+                        Consumer<CartProvider>(
+                          builder: (context, cartProvider, child) {
+                            final cartItems = cartProvider.items;
+                            if (cartItems.isEmpty) {
+                              return Center(
+                                child: Text(
+                                  'Keranjangmu kosong nih',
+                                ),
+                              );
+                            }
+                            return Cart(cartItems: cartItems);
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -127,11 +146,16 @@ class _MyCartState extends State<MyCart> {
                     child: Text('Total'),
                   ),
                   Container(
-                    child: Text(
-                      widget.cartItems.isEmpty
-                          ? 'Rp. 0'
-                          : 'Rp. ${calculateTotalPrice().toStringAsFixed(3)}',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                    child: Consumer<CartProvider>(
+                      builder: (context, cartProvider, child) {
+                        final cartItems = cartProvider.items;
+                        return Text(
+                          cartItems.isEmpty
+                              ? 'Rp. 0'
+                              : 'Rp. ${cartProvider.totalPrice.toStringAsFixed(2)}',
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -305,39 +329,6 @@ class _IconCounterState extends State<IconCounter> {
   }
 }
 
-class IconFavorit extends StatefulWidget {
-  const IconFavorit({super.key});
-
-  @override
-  State<IconFavorit> createState() => _IconFavoritState();
-}
-
-class _IconFavoritState extends State<IconFavorit> {
-  bool isFavorite = false;
-
-  void toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      padding: EdgeInsets.only(top: 40),
-      child: IconButton(
-        icon: Icon(
-          size: screenWidth * 0.1,
-          isFavorite ? Icons.bookmark : Icons.bookmark_border,
-          color: Colors.white,
-        ),
-        onPressed: toggleFavorite,
-      ),
-    );
-  }
-}
-
 class MyClipPath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -358,22 +349,4 @@ class MyClipPath extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) {
     return false;
   }
-}
-
-class CartItem {
-  final String id;
-  final String itempic;
-  final String price;
-  final String itemname;
-  final List<Color> colors;
-  final String selectedSize;
-
-  CartItem({
-    String? id,
-    required this.itempic,
-    required this.price,
-    required this.itemname,
-    required this.colors,
-    required this.selectedSize,
-  }) : id = id ?? Uuid().v4();
 }
