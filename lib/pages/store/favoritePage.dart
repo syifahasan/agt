@@ -11,12 +11,12 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isSaved = false;
     late String itempic;
-    late String price;
+    late double price;
     late String itemname;
     late List<Color> colors;
 
     void itemDetails(
-        String image, String harga, String name, List<Color> warna) {
+        String image, double harga, String name, List<Color> warna) {
       itempic = image;
       price = harga;
       itemname = name;
@@ -103,7 +103,7 @@ class FavoritePage extends StatelessWidget {
                                       itempic:
                                           'assets/icons/store/fashionsImages/tshirt.png',
                                       itemname: 'Toner Loreal',
-                                      price: '140.000,00',
+                                      price: 140000.00,
                                       tag: 'Cosmetics',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
@@ -116,7 +116,7 @@ class FavoritePage extends StatelessWidget {
                                       itempic:
                                           'assets/icons/store/fashionsImages/tshirt.png',
                                       itemname: 'Toner Loreal',
-                                      price: '140.000,00',
+                                      price: 140000.00,
                                       tag: 'Cosmetics',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
@@ -143,7 +143,7 @@ class FavoritePage extends StatelessWidget {
                                       itempic:
                                           'assets/icons/store/fashionsImages/tshirt.png',
                                       itemname: 'Toner Loreal',
-                                      price: '140.000,00',
+                                      price: 140000.00,
                                       tag: 'Cosmetics',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
@@ -156,7 +156,7 @@ class FavoritePage extends StatelessWidget {
                                       itempic:
                                           'assets/icons/store/fashionsImages/tshirt.png',
                                       itemname: 'Toner Loreal',
-                                      price: '140.000,00',
+                                      price: 140000.00,
                                       tag: 'Cosmetics',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
@@ -198,11 +198,11 @@ class Items extends StatefulWidget {
   final double screenWidth;
   final String itempic;
   final String tag;
-  final String price;
+  final double price;
   final String itemname;
   final bool isSaved;
   final List<Color> colors;
-  final Function(String, String, String, List<Color>) onPressed;
+  final Function(String, double, String, List<Color>) onPressed;
 
   @override
   State<Items> createState() => _ItemsState();

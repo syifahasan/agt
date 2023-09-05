@@ -19,7 +19,7 @@ class StorePage extends StatefulWidget {
 class _StorePageState extends State<StorePage> {
   bool isSaved = false;
   late String itempic;
-  late String price;
+  late double price;
   late String itemname;
   late List<Color> colors;
 
@@ -45,7 +45,7 @@ class _StorePageState extends State<StorePage> {
     );
   }
 
-  void itemDetails(String image, String harga, String name, List<Color> warna) {
+  void itemDetails(String image, double harga, String name, List<Color> warna) {
     itempic = image;
     price = harga;
     itemname = name;
@@ -325,7 +325,7 @@ class _StorePageState extends State<StorePage> {
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
                             tag: 'Fashion',
-                            price: '524.000,00',
+                            price: 524000.00,
                             onPressed: (p0, p1, p2, p3) {
                               itemDetails(p0, p1, p2, p3);
                             },
@@ -338,7 +338,7 @@ class _StorePageState extends State<StorePage> {
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
                             tag: 'Fashion',
-                            price: '650.000,00',
+                            price: 650000.00,
                             onPressed: (p0, p1, p2, p3) {
                               itemDetails(p0, p1, p2, p3);
                             },
@@ -351,7 +351,7 @@ class _StorePageState extends State<StorePage> {
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
                             tag: 'Fashion',
-                            price: '650.000,00',
+                            price: 650000.00,
                             onPressed: (p0, p1, p2, p3) {
                               itemDetails(p0, p1, p2, p3);
                             },
@@ -364,7 +364,7 @@ class _StorePageState extends State<StorePage> {
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
                             tag: 'Fashion',
-                            price: '650.000,00',
+                            price: 650000.00,
                             onPressed: (p0, p1, p2, p3) {
                               itemDetails(p0, p1, p2, p3);
                             },
@@ -402,11 +402,11 @@ class Items extends StatefulWidget {
   final double screenWidth;
   final String itempic;
   final String tag;
-  final String price;
+  final double price;
   final String itemname;
   final bool isSaved;
   final List<Color> colors;
-  final Function(String, String, String, List<Color>) onPressed;
+  final Function(String, double, String, List<Color>) onPressed;
 
   @override
   State<Items> createState() => _ItemsState();
