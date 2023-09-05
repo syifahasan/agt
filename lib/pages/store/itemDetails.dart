@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'myCart.dart';
+import 'package:authentic_guards/utils/provider/cartProvider.dart';
 
 
 class ItemDetailPage extends StatefulWidget {
@@ -20,31 +21,31 @@ class ItemDetailPage extends StatefulWidget {
 }
 
 class _ItemDetailPageState extends State<ItemDetailPage> {
-  List<CartItem> cartItems = [];
+  // List<CartItem> cartItems = [];
   final bool isSelected = false;
   String selectedSize = '';
 
-  void addToCart() {
-    final newItem = CartItem(
-      itempic: widget.itempic,
-      price: widget.price,
-      itemname: widget.itemname,
-      colors: widget.colors,
-      selectedSize: selectedSize,
-    );
-    setState(
-      () {
-        cartItems.add(newItem);
-        print(newItem.itemname);
-      },
-    );
-  }
+  // void addToCart() {
+  //   final newItem = CartItem(
+  //     itempic: widget.itempic,
+  //     price: widget.price,
+  //     itemname: widget.itemname,
+  //     colors: widget.colors,
+  //     selectedSize: selectedSize,
+  //   );
+  //   setState(
+  //     () {
+  //       cartItems.add(newItem);
+  //       print(newItem.itemname);
+  //     },
+  //   );
+  // }
 
-  void printCartItems() {
-    for (var cartItem in cartItems) {
-      print(cartItem.itemname);
-    }
-  }
+  // void printCartItems() {
+  //   for (var cartItem in cartItems) {
+  //     print(cartItem.itemname);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -311,15 +312,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                             borderRadius: BorderRadius.circular(15)),
                         actions: [
                           ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        MyCart(cartItems: cartItems),
-                                  ),
-                                );
-                              },
+                              onPressed: () {},
                               child: Text('OK'))
                         ],
                         content: Text('Produk ditambahkan ke keranjang'),

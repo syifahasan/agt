@@ -1,5 +1,7 @@
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:flutter/material.dart';
+import 'paymentPage.dart';
+import 'package:uuid/uuid.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key, required this.cartItems});
@@ -137,7 +139,14 @@ class _MyCartState extends State<MyCart> {
             ),
             FloatingActionButton.extended(
               backgroundColor: Color(0xffFF6161),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentPage(),
+                  ),
+                );
+              },
               label: Container(
                 width: screenWidth * 70 / 100,
                 child: Center(
@@ -352,6 +361,7 @@ class MyClipPath extends CustomClipper<Path> {
 }
 
 class CartItem {
+  final String id;
   final String itempic;
   final String price;
   final String itemname;
@@ -359,10 +369,11 @@ class CartItem {
   final String selectedSize;
 
   CartItem({
+    String? id,
     required this.itempic,
     required this.price,
     required this.itemname,
     required this.colors,
     required this.selectedSize,
-  });
+  }) : id = id ?? Uuid().v4();
 }

@@ -1,11 +1,16 @@
-import 'package:authentic_guards/pages/store/favoritePage.dart';
+import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/utils/onboardingPage.dart';
-import 'package:authentic_guards/pages/store/myCart.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
