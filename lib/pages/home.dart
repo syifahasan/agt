@@ -1,11 +1,12 @@
-import 'package:authentic_guards/pages/balanceCheck.dart';
+import 'package:authentic_guards/pages/payment/balanceCheck.dart';
+import 'package:authentic_guards/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../utils/payment/payNSend.dart';
-import 'topUp.dart';
+import './payment/topUp.dart';
 import '../utils/customscroll.dart';
 
 class HomePage extends StatefulWidget {
@@ -135,9 +136,19 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ], borderRadius: BorderRadius.circular(30)),
                   margin: EdgeInsets.only(top: 20, right: 10),
-                  child: CircleAvatar(
-                    radius: 20.0,
-                    backgroundImage: AssetImage('assets/other/profile1.png'),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfilePage(),
+                        ),
+                      );
+                    },
+                    child: CircleAvatar(
+                      radius: 20.0,
+                      backgroundImage: AssetImage('assets/other/profile1.png'),
+                    ),
                   ),
                 ),
               ],

@@ -42,7 +42,7 @@ class _ScannerPageState extends State<ScannerPage> {
   @override
   void initState() {
     super.initState();
-    if (widget.isScannerActive = true) {
+    if (widget.isScannerActive == true) {
       startScanner();
       print('initState called');
     }

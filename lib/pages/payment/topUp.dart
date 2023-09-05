@@ -205,52 +205,67 @@ class TopUpPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      width: screenWidth * 90 / 100,
-                      height: screenHeight * 8.5 / 100,
-                      decoration: BoxDecoration(
-                        color: Color(0xffEDEDED),
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(left: 20),
-                                width: screenWidth * 19 / 100,
-                                height: screenHeight * 12 / 100,
-                                // height: 80,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Image.asset(
-                                        'assets/icons/payment/qris.png'),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Text(
-                                        'QRIS Top Up',
-                                        style: TextStyle(
-                                          fontSize: 12,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return TopUpMethod(
+                                slug: 'Qris',
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: screenWidth * 90 / 100,
+                        height: screenHeight * 8.5 / 100,
+                        decoration: BoxDecoration(
+                          color: Color(0xffEDEDED),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(left: 20),
+                                  width: screenWidth * 19 / 100,
+                                  height: screenHeight * 12 / 100,
+                                  // height: 80,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Image.asset(
+                                          'assets/icons/payment/qris.png'),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Text(
+                                          'QRIS Top Up',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                size: screenWidth * 5 / 100,
-                              ))
-                        ],
+                              ],
+                            ),
+                            IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  size: screenWidth * 5 / 100,
+                                ))
+                          ],
+                        ),
                       ),
                     ),
                   ],

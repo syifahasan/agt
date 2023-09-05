@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'itemDetails.dart';
 import 'store.dart';
+import 'itemDetails.dart';
 
-class FashionPage extends StatefulWidget {
-  const FashionPage({super.key});
+class CosmeticPage extends StatefulWidget {
+  const CosmeticPage({super.key});
 
   @override
-  State<FashionPage> createState() => _FashionPageState();
+  State<CosmeticPage> createState() => _CosmeticPageState();
 }
 
-class _FashionPageState extends State<FashionPage> {
+class _CosmeticPageState extends State<CosmeticPage> {
   bool isSaved = false;
   late String itempic;
   late String price;
@@ -41,7 +41,6 @@ class _FashionPageState extends State<FashionPage> {
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
-    bool isSaved = false;
     return Scaffold(
       extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: false,
@@ -166,7 +165,7 @@ class _FashionPageState extends State<FashionPage> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 10.0),
                       child: Text(
-                        'Fashion Brands',
+                        'Cosmetic Brands',
                         style: TextStyle(
                           fontSize: screenWidth * 4 / 100,
                           fontWeight: FontWeight.bold,
@@ -188,48 +187,50 @@ class _FashionPageState extends State<FashionPage> {
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas',
-                          ),
-                          Brands(
-                            screenWidth: screenWidth,
-                            image: 'assets/icons/store/fashion_brands/nike.png',
-                            desc: 'Nike',
-                          ),
-                          Brands(
-                            screenWidth: screenWidth,
-                            image: 'assets/icons/store/fashion_brands/hnm.png',
-                            desc: 'H & M',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                           Brands(
                             screenWidth: screenWidth,
                             image:
-                                'assets/icons/store/fashion_brands/adidas.png',
-                            desc: 'Adidas Paris',
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
+                          ),
+                          Brands(
+                            screenWidth: screenWidth,
+                            image:
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
+                          ),
+                          Brands(
+                            screenWidth: screenWidth,
+                            image:
+                                'assets/icons/store/cosmetic_brands/loreal.png',
+                            desc: 'Loreal Paris',
                           ),
                         ],
                       ),
@@ -266,9 +267,8 @@ class _FashionPageState extends State<FashionPage> {
                     Items(
                       colors: [Colors.black, Colors.white],
                       screenWidth: screenWidth,
-                      itempic:
-                          'assets/icons/store/fashionsImages/kaosadidas.jpeg',
-                      itemname: 'T-Shirt Adidas',
+                      itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+                      itemname: 'Toner Loreal',
                       price: '140.000,00',
                       tag: 'Cosmetics',
                       isSaved: isSaved,

@@ -1,7 +1,7 @@
 import 'package:authentic_guards/utils/payment/payNSend.dart';
 import 'package:authentic_guards/utils/payment/transactionHistory.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
+import '../home.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'topUp.dart';
