@@ -47,55 +47,15 @@ class _LoginViewsState extends State<PageLogin> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                       ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(top: w * 0.05),
-                      child: Text("Welcome",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: w * 0.11,
-                          )),
-                    ),
-                    Text("The Gateway to everything authentic",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: w * 0.045,
-                        )),
-                    Container(
-                      padding: EdgeInsets.only(top: w * 0.05),
-                      child: InputForm(
-                        labelText: 'Enter Email',
-                        hintText: 'Email',
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                    ),
-                    Container(
-                        child: InputForm(
-                      labelText: 'Enter Password',
-                      hintText: 'Password',
-                      obscureText: true,
-                    )),
-                    Container(
-                      width: w * 0.35,
-                      height: w * 0.16,
-                      padding: EdgeInsets.only(top: w * 0.05),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) {
-                            return MainPage();
-                          }));
-                        },
-                        child: Text('Login',
-                            style: TextStyle(
-                                fontSize: w * 0.04, color: Colors.black)),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Color(0xFFEEEDED)),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(w * 0.05)),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: w * 0.1),
+                            child: Image.asset(
+                              'assets/other/logo.png',
+                              width: w * 0.45,
+                              height: w * 0.45,
+                            ),
                           ),
                           Container(
                             padding: EdgeInsets.only(top: w * 0.05),
