@@ -4,8 +4,18 @@ import 'package:uuid/uuid.dart';
 
 class CartProvider extends ChangeNotifier {
   List<CartItem> _items = [];
+
   List<CartItem> get items => _items;
-  double get totalPrice => _items.fold(0.0, (total, item) => total + item.price);
+
+  double calculateTotalPrice() {
+    double total = 0.0;
+    for (var item in _items) {
+      if (item.isChecked) {
+        total += double.parse(item.price.toString());
+      }
+    }
+    return total;
+  }
 
   void addToCart(CartItem newItem){
     _items.add(newItem);
@@ -24,6 +34,7 @@ class CartItem {
   final String itemname;
   final List<Color> colors;
   final String selectedSize;
+  bool isChecked;
 
   CartItem({
     String? id,
@@ -32,5 +43,6 @@ class CartItem {
     required this.itemname,
     required this.colors,
     required this.selectedSize,
+    this.isChecked = false,
   }) : id = id ?? Uuid().v4();
 }

@@ -149,12 +149,27 @@ class _MyCartState extends State<MyCart> {
                     child: Consumer<CartProvider>(
                       builder: (context, cartProvider, child) {
                         final cartItems = cartProvider.items;
+                        for (var item in cartItems) {
+                          if (cartItems.isEmpty) {
+                            return Text('Rp. 0');
+                          } else {
+                            return Text(
+                              'Rp ${cartProvider.calculateTotalPrice().toStringAsFixed(2)}',
+                              style: TextStyle(fontWeight: FontWeight.w700),
+                            );
+                          }
+                        }
                         return Text(
-                          cartItems.isEmpty
-                              ? 'Rp. 0'
-                              : 'Rp. ${cartProvider.totalPrice.toStringAsFixed(2)}',
+                          '${cartProvider.calculateTotalPrice().toStringAsFixed(2)}',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         );
+
+                        // return Text(
+                        //   cartItems.isEmpty
+                        //       ? 'Rp. 0'
+                        //       : 'Rp. ${cartProvider.totalPrice.toStringAsFixed(2)}',
+                        //   style: TextStyle(fontWeight: FontWeight.w700),
+                        // );
                       },
                     ),
                   ),
@@ -198,14 +213,6 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  bool isChecked = false;
-
-  void toggleCheckbox() {
-    setState(() {
-      isChecked = !isChecked;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -219,8 +226,13 @@ class _CartState extends State<Cart> {
                 scale: screenWidth * 0.0025,
                 child: Checkbox(
                   activeColor: Colors.black,
-                  value: isChecked,
-                  onChanged: (value) => toggleCheckbox(),
+                  value: cartItem.isChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      cartItem.isChecked =
+                          value ?? false; // Update the isChecked property
+                    });
+                  },
                 ),
               ),
               Card(
@@ -248,10 +260,21 @@ class _CartState extends State<Cart> {
                         top: screenWidth * 0.02,
                       ),
                       child: Text(
-                        cartItem.selectedSize,
+                        'Size: ${cartItem.selectedSize}',
                         style: TextStyle(
                             fontSize: screenWidth * 0.025,
                             fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: screenWidth * 0.02,
+                      ),
+                      child: Text(
+                        'Rp. ${cartItem.price.toString()}',
+                        style: TextStyle(
+                            fontSize: screenWidth * 0.030,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],

@@ -21,31 +21,8 @@ class ItemDetailPage extends StatefulWidget {
 }
 
 class _ItemDetailPageState extends State<ItemDetailPage> {
-  // List<CartItem> cartItems = [];
   final bool isSelected = false;
   String selectedSize = '';
-
-  // void addToCart() {
-  //   final newItem = CartItem(
-  //     itempic: widget.itempic,
-  //     price: widget.price,
-  //     itemname: widget.itemname,
-  //     colors: widget.colors,
-  //     selectedSize: selectedSize,
-  //   );
-  //   setState(
-  //     () {
-  //       cartItems.add(newItem);
-  //       print(newItem.itemname);
-  //     },
-  //   );
-  // }
-
-  // void printCartItems() {
-  //   for (var cartItem in cartItems) {
-  //     print(cartItem.itemname);
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -329,7 +306,6 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                           itemname: widget.itemname,
                           colors: widget.colors,
                           selectedSize: selectedSize),
-                          
                     );
                   }
                 },
