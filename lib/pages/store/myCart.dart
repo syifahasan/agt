@@ -149,18 +149,9 @@ class _MyCartState extends State<MyCart> {
                     child: Consumer<CartProvider>(
                       builder: (context, cartProvider, child) {
                         final cartItems = cartProvider.items;
-                        for (var item in cartItems) {
-                          if (cartItems.isEmpty) {
-                            return Text('Rp. 0');
-                          } else {
-                            return Text(
-                              'Rp ${cartProvider.calculateTotalPrice().toStringAsFixed(2)}',
-                              style: TextStyle(fontWeight: FontWeight.w700),
-                            );
-                          }
-                        }
+                        final totalPrice = cartProvider.totalPrice;
                         return Text(
-                          '${cartProvider.calculateTotalPrice().toStringAsFixed(2)}',
+                          'Rp. ${totalPrice.toString()}',
                           style: TextStyle(fontWeight: FontWeight.w700),
                         );
 
@@ -227,11 +218,10 @@ class _CartState extends State<Cart> {
                 child: Checkbox(
                   activeColor: Colors.black,
                   value: cartItem.isChecked,
-                  onChanged: (value) {
-                    setState(() {
-                      cartItem.isChecked =
-                          value ?? false; // Update the isChecked property
-                    });
+                  onChanged: (newValue) {
+                    cartItem.setChecked(newValue ?? false);
+                    Provider.of<CartProvider>(context, listen: false)
+                        .updateTotalPrice();
                   },
                 ),
               ),
@@ -271,7 +261,7 @@ class _CartState extends State<Cart> {
                         top: screenWidth * 0.02,
                       ),
                       child: Text(
-                        'Rp. ${cartItem.price.toString()}',
+                        'Rp. ${cartItem.price.toStringAsFixed(2)}',
                         style: TextStyle(
                             fontSize: screenWidth * 0.030,
                             fontWeight: FontWeight.w600),
