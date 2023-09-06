@@ -318,7 +318,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                         content: Text('Produk ditambahkan ke keranjang'),
                       ),
                     );
-                    addToCart();
+                    // addToCart();
                   }
                 },
                 label: Container(

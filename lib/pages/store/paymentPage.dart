@@ -94,14 +94,6 @@ class PaymentPage extends StatelessWidget {
                             Container(
                               padding: EdgeInsets.all(screenWidth * 0.02),
                               child: _formProfile(
-                                title: 'Phone Number',
-                                value: '',
-                                hint: 'Phone Number',
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(screenWidth * 0.02),
-                              child: _formProfile(
                                 title: 'Email',
                                 value: '',
                                 hint: 'Email',
@@ -255,6 +247,7 @@ class _formProfile extends StatelessWidget {
   }
 }
 
+//dropdown fiks
 class CustomDropdown extends StatefulWidget {
   @override
   _CustomDropdownState createState() => _CustomDropdownState();
