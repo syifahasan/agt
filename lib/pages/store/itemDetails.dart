@@ -301,11 +301,15 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                         Provider.of<CartProvider>(context, listen: false);
                     cartProvider.addToCart(
                       CartItem(
-                          itempic: widget.itempic,
-                          price: widget.price,
-                          itemname: widget.itemname,
-                          colors: widget.colors,
-                          selectedSize: selectedSize),
+                        itempic: widget.itempic,
+                        price: widget.price,
+                        itemname: widget.itemname,
+                        colors: widget.colors,
+                        selectedSize: selectedSize,
+                        onCheckedChanged: () {
+                          cartProvider.updateTotalPrice();
+                        },
+                      ),
                     );
                   }
                 },
