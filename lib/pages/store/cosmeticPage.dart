@@ -13,11 +13,11 @@ class CosmeticPage extends StatefulWidget {
 class _CosmeticPageState extends State<CosmeticPage> {
   bool isSaved = false;
   late String itempic;
-  late String price;
+  late double price;
   late String itemname;
   late List<Color> colors;
 
-  void itemDetails(String image, String harga, String name, List<Color> warna) {
+  void itemDetails(String image, double harga, String name, List<Color> warna) {
     itempic = image;
     price = harga;
     itemname = name;
@@ -269,7 +269,7 @@ class _CosmeticPageState extends State<CosmeticPage> {
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
-                      price: '140.000,00',
+                      price: 140000.00,
                       tag: 'Cosmetics',
                       isSaved: isSaved,
                       onPressed: (p0, p1, p2, p3) {
@@ -281,7 +281,7 @@ class _CosmeticPageState extends State<CosmeticPage> {
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
-                      price: '140.000,00',
+                      price: 140000.00,
                       tag: 'Cosmetics',
                       isSaved: isSaved,
                       onPressed: (p0, p1, p2, p3) {
@@ -293,7 +293,7 @@ class _CosmeticPageState extends State<CosmeticPage> {
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
-                      price: '140.000,00',
+                      price: 140000.00,
                       tag: 'Cosmetics',
                       isSaved: isSaved,
                       onPressed: (p0, p1, p2, p3) {
@@ -305,7 +305,7 @@ class _CosmeticPageState extends State<CosmeticPage> {
                       screenWidth: screenWidth,
                       itempic: 'assets/icons/store/fashionsImages/tshirt.png',
                       itemname: 'Toner Loreal',
-                      price: '140.000,00',
+                      price: 140000.00,
                       tag: 'Cosmetics',
                       isSaved: isSaved,
                       onPressed: (p0, p1, p2, p3) {
