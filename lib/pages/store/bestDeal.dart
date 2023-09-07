@@ -11,12 +11,12 @@ class BestDealPage extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isSaved = false;
     late String itempic;
-    late String price;
+    late double price;
     late String itemname;
     late List<Color> colors;
 
     void itemDetails(
-        String image, String harga, String name, List<Color> warna) {
+        String image, double harga, String name, List<Color> warna) {
       itempic = image;
       price = harga;
       itemname = name;
@@ -98,25 +98,24 @@ class BestDealPage extends StatelessWidget {
                         alignment: WrapAlignment.spaceEvenly,
                         children: [
                           Items(
-                            colors: [Colors.black, Colors.white],
-                            screenWidth: screenWidth,
-                            itempic:
-                                'assets/icons/store/fashionsImages/tshirt.png',
-                            itemname: 'BUTTERFLY T-SHIRT',
-                            price: '524.399.68',
-                            tag: 'Fashion',
-                            isSaved: isSaved,
-                            onPressed: (p0, p1, p2, p3) {
-                              itemDetails(p0, p1, p2, p3);
-                            },
-                          ),
+                              colors: [Colors.black, Colors.white],
+                              screenWidth: screenWidth,
+                              itempic:
+                                  'assets/icons/store/fashionsImages/tshirt.png',
+                              itemname: 'BUTTERFLY T-SHIRT',
+                              price: 524999.00,
+                              tag: 'Fashion',
+                              isSaved: isSaved,
+                              onPressed: (p0, p1, p2, p3) {
+                                itemDetails(p0, p1, p2, p3);
+                              }),
                           Items(
                             colors: [Colors.black, Colors.white],
                             screenWidth: screenWidth,
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
-                            price: '870.000.00',
+                            price: 870000.00,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -146,7 +145,7 @@ class BestDealPage extends StatelessWidget {
                             itempic:
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
-                            price: '599.999.99',
+                            price: 599999.99,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -159,7 +158,7 @@ class BestDealPage extends StatelessWidget {
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
-                            price: '899.999.99',
+                            price: 899999.99,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -189,7 +188,7 @@ class BestDealPage extends StatelessWidget {
                             itempic:
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
-                            price: '599.999.99',
+                            price: 599999.99,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -202,7 +201,7 @@ class BestDealPage extends StatelessWidget {
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
-                            price: '899.999.99',
+                            price: 899999.99,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -242,11 +241,11 @@ class Items extends StatefulWidget {
   final double screenWidth;
   final String itempic;
   final String tag;
-  final String price;
+  final double price;
   final String itemname;
   final bool isSaved;
   final List<Color> colors;
-  final Function(String, String, String, List<Color>) onPressed;
+  final Function(String, double, String, List<Color>) onPressed;
 
   @override
   State<Items> createState() => _ItemsState();
@@ -301,8 +300,8 @@ class _ItemsState extends State<Items> {
                 right: 0,
                 bottom: 0,
                 child: Container(
-                  width: widget.screenWidth * 11 / 100,
-                  height: widget.screenWidth * 11 / 100,
+                  width: widget.screenWidth * 10 / 100,
+                  height: widget.screenWidth * 10 / 100,
                   decoration: BoxDecoration(
                       color: containerColor,
                       borderRadius:
@@ -317,6 +316,24 @@ class _ItemsState extends State<Items> {
                     icon: Icon(
                       iconData,
                       color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                left: 0,
+                top: 0,
+                child: Container(
+                  width: widget.screenWidth * 8 / 100,
+                  height: widget.screenWidth * 8 / 100,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius:
+                          BorderRadius.only(topLeft: Radius.circular(10))),
+                  child: Center(
+                    child: Text(
+                      '20%',
+                      style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
                 ),
@@ -354,7 +371,7 @@ class _ItemsState extends State<Items> {
                 ),
                 WidgetSpan(
                   child:
-                      SizedBox(width: 20), // Tambahkan jarak horizontal di sini
+                      SizedBox(width: 13), // Tambahkan jarak horizontal di sini
                 ),
                 TextSpan(
                     text: 'RP. 399.999.99',

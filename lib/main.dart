@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/store/favoritePage.dart';
 import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/utils/onboardingPage.dart';
