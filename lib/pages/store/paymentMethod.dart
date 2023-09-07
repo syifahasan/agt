@@ -1,8 +1,8 @@
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:flutter/material.dart';
 
-class PaymentPage extends StatelessWidget {
-  const PaymentPage({super.key});
+class PaymentMethod extends StatelessWidget {
+  const PaymentMethod({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -261,14 +261,26 @@ class _PinInputFieldState extends State<PinInputField> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        
-        TextFormField(
-          controller: pinController,
-          keyboardType: TextInputType.number,
-          maxLength: 6, // Jumlah karakter PIN (4 digit)
-          obscureText: true, // Sembunyikan input seperti kata sandi
-          decoration: InputDecoration(
-            hintText: 'Masukkan PIN Anda',
+        Container(
+          width: 300,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.grey[350],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: TextFormField(
+            textAlign: TextAlign.center,
+            controller: pinController,
+            keyboardType: TextInputType.number,
+            maxLength: 6, // Jumlah karakter PIN (4 digit)
+            obscureText: true, // Sembunyikan input seperti kata sandi
+            decoration: InputDecoration(
+              hintText: '',
+              // border: InputBorder.none,
+            ),
+            style: TextStyle(
+              fontSize: 20.0, // Atur ukuran teks
+            ),
           ),
         ),
         SizedBox(height: 20.0),
