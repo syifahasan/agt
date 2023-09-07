@@ -41,14 +41,14 @@ class PaymentPage extends StatelessWidget {
                             'SHIPPING',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: screenWidth * 0.08,
+                                fontSize: screenWidth * 0.075,
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
                             'AND PAYMENT',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: screenWidth * 0.08,
+                                fontSize: screenWidth * 0.075,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],
