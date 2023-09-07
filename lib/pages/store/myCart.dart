@@ -1,5 +1,10 @@
+import 'package:authentic_guards/pages/store/favoritePage.dart';
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:flutter/material.dart';
+import 'paymentPage.dart';
+import 'package:authentic_guards/utils/provider/cartProvider.dart';
+import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key, required this.cartItems});
@@ -10,15 +15,6 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
-  double calculateTotalPrice() {
-    double totalPrice = 0;
-    for (var cartItem in widget.cartItems) {
-      double itemPrice = double.parse(cartItem.price.replaceAll(',', ''));
-      totalPrice += itemPrice;
-    }
-    return totalPrice;
-  }
-
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -64,9 +60,22 @@ class _MyCartState extends State<MyCart> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(
-                        top: screenWidth * 0.10, right: screenWidth * 0.05),
-                    child: IconFavorit(),
+                    padding: EdgeInsets.only(top: 85, right: 30),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FavoritePage(),
+                          ),
+                        );
+                      },
+                      icon: Icon(
+                        Icons.bookmark,
+                        color: Colors.white,
+                        size: screenWidth * 0.12,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -91,7 +100,19 @@ class _MyCartState extends State<MyCart> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Cart(cartItems: widget.cartItems),
+                        Consumer<CartProvider>(
+                          builder: (context, cartProvider, child) {
+                            final cartItems = cartProvider.items;
+                            if (cartItems.isEmpty) {
+                              return Center(
+                                child: Text(
+                                  'Keranjangmu kosong nih',
+                                ),
+                              );
+                            }
+                            return Cart(cartItems: cartItems);
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -125,11 +146,31 @@ class _MyCartState extends State<MyCart> {
                     child: Text('Total'),
                   ),
                   Container(
-                    child: Text(
-                      widget.cartItems.isEmpty
-                          ? 'Rp. 0'
-                          : 'Rp. ${calculateTotalPrice().toStringAsFixed(3)}',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                    child: Consumer<CartProvider>(
+                      builder: (context, cartProvider, child) {
+                        final cartItems = cartProvider.items;
+                        for (var item in cartItems) {
+                          if (cartItems.isEmpty) {
+                            return Text('Rp. 0');
+                          } else {
+                            return Text(
+                              'Rp ${cartProvider.calculateTotalPrice().toStringAsFixed(2)}',
+                              style: TextStyle(fontWeight: FontWeight.w700),
+                            );
+                          }
+                        }
+                        return Text(
+                          '${cartProvider.calculateTotalPrice().toStringAsFixed(2)}',
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        );
+
+                        // return Text(
+                        //   cartItems.isEmpty
+                        //       ? 'Rp. 0'
+                        //       : 'Rp. ${cartProvider.totalPrice.toStringAsFixed(2)}',
+                        //   style: TextStyle(fontWeight: FontWeight.w700),
+                        // );
+                      },
                     ),
                   ),
                 ],
@@ -137,7 +178,14 @@ class _MyCartState extends State<MyCart> {
             ),
             FloatingActionButton.extended(
               backgroundColor: Color(0xffFF6161),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentPage(),
+                  ),
+                );
+              },
               label: Container(
                 width: screenWidth * 70 / 100,
                 child: Center(
@@ -165,14 +213,6 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  bool isChecked = false;
-
-  void toggleCheckbox() {
-    setState(() {
-      isChecked = !isChecked;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -186,8 +226,13 @@ class _CartState extends State<Cart> {
                 scale: screenWidth * 0.0025,
                 child: Checkbox(
                   activeColor: Colors.black,
-                  value: isChecked,
-                  onChanged: (value) => toggleCheckbox(),
+                  value: cartItem.isChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      cartItem.isChecked =
+                          value ?? false; // Update the isChecked property
+                    });
+                  },
                 ),
               ),
               Card(
@@ -215,10 +260,21 @@ class _CartState extends State<Cart> {
                         top: screenWidth * 0.02,
                       ),
                       child: Text(
-                        cartItem.selectedSize,
+                        'Size: ${cartItem.selectedSize}',
                         style: TextStyle(
                             fontSize: screenWidth * 0.025,
                             fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(
+                        top: screenWidth * 0.02,
+                      ),
+                      child: Text(
+                        'Rp. ${cartItem.price.toString()}',
+                        style: TextStyle(
+                            fontSize: screenWidth * 0.030,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
                   ],
@@ -296,39 +352,6 @@ class _IconCounterState extends State<IconCounter> {
   }
 }
 
-class IconFavorit extends StatefulWidget {
-  const IconFavorit({super.key});
-
-  @override
-  State<IconFavorit> createState() => _IconFavoritState();
-}
-
-class _IconFavoritState extends State<IconFavorit> {
-  bool isFavorite = false;
-
-  void toggleFavorite() {
-    setState(() {
-      isFavorite = !isFavorite;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      padding: EdgeInsets.only(top: 40),
-      child: IconButton(
-        icon: Icon(
-          size: screenWidth * 0.1,
-          isFavorite ? Icons.bookmark : Icons.bookmark_border,
-          color: Colors.white,
-        ),
-        onPressed: toggleFavorite,
-      ),
-    );
-  }
-}
-
 class MyClipPath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -349,20 +372,4 @@ class MyClipPath extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) {
     return false;
   }
-}
-
-class CartItem {
-  final String itempic;
-  final String price;
-  final String itemname;
-  final List<Color> colors;
-  final String selectedSize;
-
-  CartItem({
-    required this.itempic,
-    required this.price,
-    required this.itemname,
-    required this.colors,
-    required this.selectedSize,
-  });
 }
