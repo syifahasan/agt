@@ -286,7 +286,7 @@ class IconCounter extends StatefulWidget {
 }
 
 class _IconCounterState extends State<IconCounter> {
-  int counter = 0;
+  int counter = 1;
 
   void incrementCounter() {
     setState(() {
@@ -296,7 +296,7 @@ class _IconCounterState extends State<IconCounter> {
 
   void decrementCounter() {
     setState(() {
-      if (counter > 0) {
+      if (counter > 1) {
         counter--;
       }
     });
@@ -318,25 +318,27 @@ class _IconCounterState extends State<IconCounter> {
           width: 0.5,
         ),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.remove, size: screenWidth * 0.025),
-            onPressed: decrementCounter,
-          ),
-          Text(
-            '$counter',
-            style: TextStyle(
-              fontSize: screenWidth * 0.025,
-              fontWeight: FontWeight.bold,
+      child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.remove, size: screenWidth * 0.025),
+              onPressed: decrementCounter,
             ),
-          ),
-          IconButton(
-            icon: Icon(Icons.add, size: screenWidth * 0.025),
-            onPressed: incrementCounter,
-          ),
-        ],
+            Text(
+              '$counter',
+              style: TextStyle(
+                fontSize: screenWidth * 0.03,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.add, size: screenWidth * 0.025),
+              onPressed: incrementCounter,
+            ),
+          ],
+        ),
       ),
     );
   }
