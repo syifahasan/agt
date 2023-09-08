@@ -1,5 +1,6 @@
 import 'package:authentic_guards/pages/store/favoritePage.dart';
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
+import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 import 'package:flutter/material.dart';
 import 'paymentPage.dart';
 import 'package:authentic_guards/utils/provider/cartProvider.dart';
@@ -151,7 +152,7 @@ class _MyCartState extends State<MyCart> {
                         final cartItems = cartProvider.items;
                         final totalPrice = cartProvider.totalPrice;
                         return Text(
-                          'Rp. ${totalPrice.toString()}',
+                          CurrencyFormat.convertToIdr(totalPrice, 2),
                           style: TextStyle(fontWeight: FontWeight.w700),
                         );
 
@@ -207,101 +208,125 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        for (var cartItem in widget.cartItems)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Transform.scale(
-                scale: screenWidth * 0.0025,
-                child: Checkbox(
-                  activeColor: Colors.black,
-                  value: cartItem.isChecked,
-                  onChanged: (newValue) {
-                    cartItem.setChecked(newValue ?? false);
-                    Provider.of<CartProvider>(context, listen: false)
-                        .updateTotalPrice();
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Column(
+        children: [
+          for (var cartItem in widget.cartItems)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Transform.scale(
+                  scale: screenWidth * 0.0025,
+                  child: Container(
+                    margin: EdgeInsets.only(right: 5),
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: Color(0xffD9d9d9),
+                    ),
+                    child: Checkbox(
+                      side: BorderSide.none,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
+                      activeColor: Colors.black,
+                      value: cartItem.isChecked,
+                      onChanged: (newValue) {
+                        cartItem.setChecked(newValue ?? false);
+                        Provider.of<CartProvider>(context, listen: false)
+                            .updateTotalPrice();
+                      },
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: screenWidth * 0.02,
+                  child: Container(
+                      width: screenWidth * 0.2,
+                      height: screenWidth * 0.2,
+                      child: Image.asset(cartItem.itempic)),
+                ),
+                Container(
+                  width: screenWidth * 0.3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        child: Text(
+                          cartItem.itemname,
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.03,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                          top: screenWidth * 0.02,
+                        ),
+                        child: Text(
+                          'Size: ${cartItem.selectedSize}',
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.025,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                          top: screenWidth * 0.02,
+                        ),
+                        child: Text(
+                          CurrencyFormat.convertToIdr(cartItem.price, 2),
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.030,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                IconCounter(
+                  quantity: cartItem.quantity,
+                  onIncrement: () {
+                    setState(() {
+                      cartItem.quantity++;
+                      Provider.of<CartProvider>(context, listen: false)
+                          .updateTotalPrice();
+                    });
+                  },
+                  onDecrement: () {
+                    setState(() {
+                      if (cartItem.quantity > 1) {
+                        cartItem.quantity--;
+                        Provider.of<CartProvider>(context, listen: false)
+                            .updateTotalPrice();
+                      }
+                    });
                   },
                 ),
-              ),
-              Card(
-                elevation: screenWidth * 0.02,
-                child: Container(
-                    width: screenWidth * 0.2,
-                    height: screenWidth * 0.2,
-                    child: Image.asset(cartItem.itempic)),
-              ),
-              Container(
-                width: screenWidth * 0.3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: Text(
-                        cartItem.itemname,
-                        style: TextStyle(
-                            fontSize: screenWidth * 0.03,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: screenWidth * 0.02,
-                      ),
-                      child: Text(
-                        'Size: ${cartItem.selectedSize}',
-                        style: TextStyle(
-                            fontSize: screenWidth * 0.025,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.only(
-                        top: screenWidth * 0.02,
-                      ),
-                      child: Text(
-                        'Rp. ${cartItem.price.toStringAsFixed(2)}',
-                        style: TextStyle(
-                            fontSize: screenWidth * 0.030,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              IconCounter(),
-            ],
-          ),
-      ],
+              ],
+            ),
+        ],
+      ),
     );
   }
 }
 
 class IconCounter extends StatefulWidget {
-  const IconCounter({super.key});
+  const IconCounter(
+      {super.key,
+      required this.quantity,
+      required this.onIncrement,
+      required this.onDecrement});
+  final int quantity;
+  final Function() onIncrement;
+  final Function() onDecrement;
 
   @override
   State<IconCounter> createState() => _IconCounterState();
 }
 
 class _IconCounterState extends State<IconCounter> {
-  int counter = 1;
-
-  void incrementCounter() {
-    setState(() {
-      counter++;
-    });
-  }
-
-  void decrementCounter() {
-    setState(() {
-      if (counter > 1) {
-        counter--;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -324,10 +349,10 @@ class _IconCounterState extends State<IconCounter> {
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.remove, size: screenWidth * 0.025),
-              onPressed: decrementCounter,
+              onPressed: widget.onDecrement,
             ),
             Text(
-              '$counter',
+              widget.quantity.toString(),
               style: TextStyle(
                 fontSize: screenWidth * 0.03,
                 fontWeight: FontWeight.bold,
@@ -335,7 +360,7 @@ class _IconCounterState extends State<IconCounter> {
             ),
             IconButton(
               icon: Icon(Icons.add, size: screenWidth * 0.025),
-              onPressed: incrementCounter,
+              onPressed: widget.onIncrement,
             ),
           ],
         ),

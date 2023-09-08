@@ -27,7 +27,7 @@ class CartProvider extends ChangeNotifier {
     double total = 0.0;
     for (var item in _items) {
       if (item.isChecked) {
-        total += double.parse(item.price.toString());
+        total += item.getTotalPrice();
       }
     }
     return total;
@@ -53,11 +53,16 @@ class CartItem {
   final List<Color> colors;
   final String selectedSize;
   bool isChecked;
+  int quantity;
   final Function() onCheckedChanged;
 
   void setChecked(bool checked) {
     isChecked = checked;
     onCheckedChanged(); // Notify listeners about the change
+  }
+
+  double getTotalPrice() {
+    return price * quantity;
   }
 
   CartItem({
@@ -69,5 +74,6 @@ class CartItem {
     required this.selectedSize,
     required this.onCheckedChanged,
     this.isChecked = false,
+    this.quantity = 1,
   }) : id = id ?? Uuid().v4();
 }
