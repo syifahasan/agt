@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/store/bestDeal.dart';
 import 'package:authentic_guards/pages/store/blastSalePage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -69,6 +70,15 @@ class _StorePageState extends State<StorePage> {
       context,
       MaterialPageRoute(
         builder: (context) => BlastSalesPage(),
+      ),
+    );
+  }
+
+  void _bestDeal() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BestDealPage(),
       ),
     );
   }
@@ -227,6 +237,7 @@ class _StorePageState extends State<StorePage> {
                             screenWidth: screenWidth,
                             image: 'assets/icons/store/tag.png',
                             desc: 'Best Deal',
+                            method: _bestDeal,
                           ),
                           Categories(
                             screenWidth: screenWidth,
