@@ -2,6 +2,7 @@ import 'package:authentic_guards/pages/profile/appBar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'myCart.dart';
 
 class BlastSalesPage extends StatefulWidget {
   const BlastSalesPage({super.key});
@@ -51,7 +52,14 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
           Container(
             margin: EdgeInsets.only(right: w * 0.025),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyCart(cartItems: []),
+                    ),
+                  );
+                },
                 icon: SvgPicture.asset('assets/icons/navbar/Cart.svg')),
           ),
         ],

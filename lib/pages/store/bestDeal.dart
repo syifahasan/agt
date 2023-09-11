@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'itemDetails.dart';
+import 'myCart.dart';
+import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 
 class BestDealPage extends StatelessWidget {
   const BestDealPage({super.key});
@@ -75,7 +77,14 @@ class BestDealPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(right: w * 0.025),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyCart(cartItems: []),
+                    ),
+                  );
+                },
                 icon: SvgPicture.asset('assets/icons/navbar/Cart.svg')),
           )
         ],
@@ -104,6 +113,7 @@ class BestDealPage extends StatelessWidget {
                                   'assets/icons/store/fashionsImages/tshirt.png',
                               itemname: 'BUTTERFLY T-SHIRT',
                               price: 524999.00,
+                              discountPercentage: 10.0,
                               tag: 'Fashion',
                               isSaved: isSaved,
                               onPressed: (p0, p1, p2, p3) {
@@ -116,6 +126,7 @@ class BestDealPage extends StatelessWidget {
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
                             price: 870000.00,
+                            discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -146,6 +157,7 @@ class BestDealPage extends StatelessWidget {
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
                             price: 599999.99,
+                            discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -159,6 +171,7 @@ class BestDealPage extends StatelessWidget {
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
                             price: 899999.99,
+                            discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -189,6 +202,7 @@ class BestDealPage extends StatelessWidget {
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
                             price: 599999.99,
+                            discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -202,6 +216,7 @@ class BestDealPage extends StatelessWidget {
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
                             price: 899999.99,
+                            discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
                             onPressed: (p0, p1, p2, p3) {
@@ -236,12 +251,17 @@ class Items extends StatefulWidget {
     required this.isSaved,
     required this.onPressed,
     required this.colors,
+    required this.discountPercentage,
   });
+
+  double get discountedPrice => price - (price * (discountPercentage / 100));
 
   final double screenWidth;
   final String itempic;
   final String tag;
   final double price;
+
+  final double discountPercentage;
   final String itemname;
   final bool isSaved;
   final List<Color> colors;
@@ -332,7 +352,7 @@ class _ItemsState extends State<Items> {
                           BorderRadius.only(topLeft: Radius.circular(10))),
                   child: Center(
                     child: Text(
-                      '20%',
+                      '10%',
                       style: TextStyle(color: Colors.white, fontSize: 12),
                     ),
                   ),
@@ -363,7 +383,7 @@ class _ItemsState extends State<Items> {
               style: DefaultTextStyle.of(context).style,
               children: <InlineSpan>[
                 TextSpan(
-                  text: 'RP. ${widget.price}',
+                  text: '\$${widget.price.toStringAsFixed(2)}',
                   style: TextStyle(
                     decoration: TextDecoration.lineThrough,
                     fontSize: 10,
@@ -374,7 +394,7 @@ class _ItemsState extends State<Items> {
                       SizedBox(width: 13), // Tambahkan jarak horizontal di sini
                 ),
                 TextSpan(
-                    text: 'RP. 399.999.99',
+                    text: '\$${widget.discountedPrice.toStringAsFixed(2)}',
                     style: TextStyle(
                       color: Colors.red,
                       fontSize: 10,
