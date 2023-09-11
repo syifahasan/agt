@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/store/bestDeal.dart';
 import 'package:authentic_guards/pages/store/blastSalePage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,6 +9,7 @@ import 'myCart.dart';
 import 'cosmeticPage.dart';
 import 'fashionPage.dart';
 import 'itemDetails.dart';
+import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
@@ -68,6 +70,15 @@ class _StorePageState extends State<StorePage> {
       context,
       MaterialPageRoute(
         builder: (context) => BlastSalesPage(),
+      ),
+    );
+  }
+
+  void _bestDeal() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BestDealPage(),
       ),
     );
   }
@@ -226,6 +237,7 @@ class _StorePageState extends State<StorePage> {
                             screenWidth: screenWidth,
                             image: 'assets/icons/store/tag.png',
                             desc: 'Best Deal',
+                            method: _bestDeal,
                           ),
                           Categories(
                             screenWidth: screenWidth,
@@ -502,7 +514,7 @@ class _ItemsState extends State<Items> {
             ),
           ),
           Text(
-            'RP. ${widget.price}',
+            CurrencyFormat.convertToIdr(widget.price, 2),
             style: TextStyle(fontSize: widget.screenWidth * 3.5 / 100),
           ),
         ],

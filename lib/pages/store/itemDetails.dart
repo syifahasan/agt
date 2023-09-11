@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'myCart.dart';
+import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 import 'package:provider/provider.dart';
 import 'package:authentic_guards/utils/provider/cartProvider.dart';
 
@@ -93,7 +94,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 6.0),
                     child: Text(
-                      'Rp. ${widget.price}',
+                      CurrencyFormat.convertToIdr(widget.price, 2),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: screenWidth * 5 / 100,
@@ -297,7 +298,20 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                         content: Text('Produk ditambahkan ke keranjang'),
                       ),
                     );
-                    // addToCart();
+                    final cartProvider =
+                        Provider.of<CartProvider>(context, listen: false);
+                    cartProvider.addToCart(
+                      CartItem(
+                        itempic: widget.itempic,
+                        price: widget.price,
+                        itemname: widget.itemname,
+                        colors: widget.colors,
+                        selectedSize: selectedSize,
+                        onCheckedChanged: () {
+                          cartProvider.updateTotalPrice();
+                        },
+                      ),
+                    );
                   }
                 },
                 label: Container(

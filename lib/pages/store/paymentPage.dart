@@ -1,5 +1,6 @@
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:flutter/material.dart';
+import 'package:authentic_guards/pages/store/paymentMethod.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
@@ -41,14 +42,14 @@ class PaymentPage extends StatelessWidget {
                             'SHIPPING',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: screenWidth * 0.08,
+                                fontSize: screenWidth * 0.075,
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
                             'AND PAYMENT',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: screenWidth * 0.08,
+                                fontSize: screenWidth * 0.075,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -187,7 +188,14 @@ class PaymentPage extends StatelessWidget {
             ),
             FloatingActionButton.extended(
               backgroundColor: Color(0xffFF6161),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PaymentMethod(),
+                  ),
+                );
+              },
               label: Container(
                 width: screenWidth * 70 / 100,
                 child: Center(

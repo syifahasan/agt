@@ -78,7 +78,7 @@ class FavoritePage extends StatelessWidget {
                 clipper: MyClipPath(),
                 child: Container(
                   padding: EdgeInsets.only(
-                      top: w * 0.25, left: w * 0.08, right: w * 0.08),
+                      top: w * 0.25, left: w * 0.08, right: w * 0.013),
                   width: w,
                   height: h,
                   decoration: BoxDecoration(color: Colors.white),
@@ -102,9 +102,9 @@ class FavoritePage extends StatelessWidget {
                                       screenWidth: screenWidth,
                                       itempic:
                                           'assets/icons/store/fashionsImages/tshirt.png',
-                                      itemname: 'Toner Loreal',
+                                      itemname: 'BUTTERFLY T-SHIRT',
                                       price: 140000.00,
-                                      tag: 'Cosmetics',
+                                      tag: 'Fashion',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
                                         itemDetails(p0, p1, p2, p3);
@@ -114,10 +114,10 @@ class FavoritePage extends StatelessWidget {
                                       colors: [Colors.black, Colors.white],
                                       screenWidth: screenWidth,
                                       itempic:
-                                          'assets/icons/store/fashionsImages/tshirt.png',
-                                      itemname: 'Toner Loreal',
-                                      price: 140000.00,
-                                      tag: 'Cosmetics',
+                                          'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                                      itemname: 'BUTTERFLY HOODIE',
+                                      price: 1400000.00,
+                                      tag: 'Fashion',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
                                         itemDetails(p0, p1, p2, p3);
@@ -142,9 +142,9 @@ class FavoritePage extends StatelessWidget {
                                       screenWidth: screenWidth,
                                       itempic:
                                           'assets/icons/store/fashionsImages/tshirt.png',
-                                      itemname: 'Toner Loreal',
+                                      itemname: 'BUTTERFLY T-SHIRT',
                                       price: 140000.00,
-                                      tag: 'Cosmetics',
+                                      tag: 'Fashion',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
                                         itemDetails(p0, p1, p2, p3);
@@ -154,10 +154,10 @@ class FavoritePage extends StatelessWidget {
                                       colors: [Colors.black, Colors.white],
                                       screenWidth: screenWidth,
                                       itempic:
-                                          'assets/icons/store/fashionsImages/tshirt.png',
-                                      itemname: 'Toner Loreal',
-                                      price: 140000.00,
-                                      tag: 'Cosmetics',
+                                          'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                                      itemname: 'BUTTERFLY HOODIE',
+                                      price: 14000.00,
+                                      tag: 'Fashion',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
                                         itemDetails(p0, p1, p2, p3);
@@ -254,7 +254,7 @@ class _ItemsState extends State<Items> {
                 ),
               ),
               Positioned(
-                right: 10,
+                right: 0,
                 bottom: 0,
                 child: Container(
                   width: widget.screenWidth * 11 / 100,
