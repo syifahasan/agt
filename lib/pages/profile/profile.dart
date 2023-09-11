@@ -367,6 +367,7 @@ class _itemList extends StatelessWidget {
                   child: Icon(
                     Icons.arrow_forward_ios,
                     size: w * 0.03,
+                    color: Colors.white,
                   ),
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(

@@ -322,11 +322,17 @@ class _DateFormState extends State<DateForm> {
           ),
           Container(
             child: TextFormField(
+              enabled: false,
               controller:
                   _controller, // Menghubungkan TextEditingController ke TextField
+
               decoration: InputDecoration(
-                  labelText: _ageResult,
-                  labelStyle: TextStyle(color: Colors.black)),
+                labelText: _ageResult,
+                labelStyle: TextStyle(color: Colors.black),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
+              ),
             ),
           ),
         ],
@@ -399,77 +405,5 @@ class MyClipPath extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) {
     return false;
-  }
-}
-
-class _dropdownCode extends StatefulWidget {
-  const _dropdownCode({super.key});
-
-  @override
-  State<_dropdownCode> createState() => __dropdownCodeState();
-}
-
-class __dropdownCodeState extends State<_dropdownCode> {
-  String? _selectedCode;
-  @override
-  Widget build(BuildContext context) {
-    final w = MediaQuery.of(context).size.width;
-    final h = MediaQuery.of(context).size.height;
-    final List<String> _code = [
-      '00000',
-      '00001',
-      '00002',
-      '00003',
-      '00004',
-      '00005',
-      '000006',
-    ];
-    return Container(
-      padding: EdgeInsets.all(w * 0.02),
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              'Zip Code',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: w * 0.04,
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.topLeft,
-            child: DropdownButton(
-              value: _selectedCode,
-              hint: Text(
-                'Select',
-                style: TextStyle(fontSize: w * 0.045),
-              ),
-              underline: Container(
-                height: w * 0.001,
-                color: Colors.black,
-              ),
-              icon: Icon(
-                Icons.keyboard_arrow_down,
-                color: Colors.black,
-                size: w * 0.05,
-              ),
-              items: _code
-                  .map((code) =>
-                      DropdownMenuItem<String>(value: code, child: Text(code)))
-                  .toList(),
-              onChanged: (String? newValue) {
-                setState(
-                  () {
-                    _selectedCode = newValue;
-                  },
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
