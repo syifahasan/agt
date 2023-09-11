@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:async';
 import 'package:get/get.dart';
+import 'myCart.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class BlastSalesPage extends StatefulWidget {
@@ -30,7 +31,7 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        elevation: 5,
+        elevation: w * 0.005,
         backgroundColor: Colors.transparent,
         iconTheme: IconThemeData(color: Colors.black, size: w * 0.065),
         flexibleSpace: Container(
@@ -40,10 +41,11 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
             gradient: RadialGradient(
               colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
               center: Alignment.topCenter,
-              radius: w * 0.055,
+              radius: w * 0.02,
             ),
           ),
         ),
+        toolbarHeight: w * 0.2,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(w * 0.1),
@@ -86,14 +88,10 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
                     ...List.generate(contents.length, (index) {
                       // Membuat daftar tombol
                       return Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(w * 0.05),
-                                topRight: Radius.circular(w * 0.05))),
-                        margin: EdgeInsets.only(left: 5),
+                        padding:
+                            EdgeInsets.only(right: w * 0.02, top: w * 0.025),
                         width: w * 0.28,
-                        height: w * 0.15,
+                        height: w * 0.18,
                         child: TextButton(
                           child: FlashSaleTimerWidget(
                             endTime: DateTime.now().add(Duration(
@@ -106,6 +104,30 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
                                   index; // Mengubah indeks saat ini ketika tombol ditekan
                             });
                           },
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.zero,
+                                    bottomRight: Radius.zero,
+                                    topLeft: Radius.circular(w * 0.05),
+                                    topRight: Radius.circular(
+                                      w * 0.05,
+                                    )), // Mengatur radius
+                              ),
+                            ),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                if (_currentIndex == index)
+                                  return Colors
+                                      .red; // Warna latar belakang saat aktif
+                                return Colors
+                                    .grey; // Warna latar belakang default
+                              },
+                            ),
+                          ),
                         ),
                       );
                     }),
@@ -129,12 +151,14 @@ class SaleItems extends StatefulWidget {
     required this.discount,
     required this.price,
     required this.desc,
+    required this.progressValue,
   });
 
   final String itemname;
   final String discount;
   final String price;
   final String desc;
+  final double progressValue;
 
   @override
   State<SaleItems> createState() => _SaleItemsState();
@@ -145,7 +169,7 @@ class _SaleItemsState extends State<SaleItems> {
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.only(top: w * 0.02, left: w * 0.03, right: w * 0.03),
+      padding: EdgeInsets.only(top: w * 0.02, left: w * 0.02, right: w * 0.02),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -183,7 +207,7 @@ class _SaleItemsState extends State<SaleItems> {
                   ),
                 ),
                 Text(
-                  'Garment dyed Hooide',
+                  'Garment dyed Hoodie',
                   style: TextStyle(fontSize: w * 0.04),
                 ),
                 Text(
@@ -209,29 +233,21 @@ class _SaleItemsState extends State<SaleItems> {
                       alignment: Alignment.center,
                       children: [
                         LinearProgressIndicator(
-                          value: 1,
+                          value: widget.progressValue,
                           backgroundColor: Colors.transparent,
                           borderRadius: BorderRadius.circular(w * 0.05),
                           minHeight: w * 0.035,
                           valueColor:
                               AlwaysStoppedAnimation<Color>(Colors.grey),
                         ),
-                        Text('70%',
+                        Text(
+                            '${(widget.progressValue * 100).toStringAsFixed(1)}%',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: w * 0.03,
                                 fontWeight: FontWeight.bold)),
                       ],
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: w * 0.009,
-                ),
-                Text(
-                  widget.desc,
-                  style: TextStyle(
-                    fontSize: w * 0.035,
                   ),
                 ),
               ],
@@ -241,7 +257,11 @@ class _SaleItemsState extends State<SaleItems> {
             width: w * 0.15,
             height: w * 0.09,
             child: TextButton(
-              onPressed: () {},
+              onPressed: widget.progressValue == 0.0
+                  ? null // tombol tidak dapat ditekan
+                  : () {
+                      // kode yang dijalankan ketika tombol ditekan
+                    },
               child: Text(
                 'BUY',
                 style: TextStyle(
@@ -251,7 +271,7 @@ class _SaleItemsState extends State<SaleItems> {
               ),
             ),
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: widget.progressValue == 0 ? Colors.grey : Colors.red,
               borderRadius: BorderRadius.circular(w * 0.02),
               boxShadow: [
                 BoxShadow(
@@ -331,24 +351,28 @@ class tampilan1 extends StatelessWidget {
             discount: 'Rp 799.999.99',
             price: 'Rp 499.999.999',
             desc: '28 Sold',
+            progressValue: 0.5,
           ),
           SaleItems(
             itemname: 'PANCOAT HOODIE',
             discount: 'Rp 699.999.999',
             price: 'Rp 399.399.999',
             desc: 'Limited Stok',
+            progressValue: 0,
           ),
           SaleItems(
             itemname: 'BUTTERFLY HOODIE',
             discount: 'Rp 899.999.999',
             price: 'Rp 699.999.999',
             desc: '30 Sold',
+            progressValue: 0.7,
           ),
           SaleItems(
             itemname: 'DRAGON HOODIE',
             discount: 'Rp 399.999.999',
             price: 'Rp 200.000.000',
             desc: '1 Sold',
+            progressValue: 1,
           ),
         ],
       ),
@@ -371,18 +395,21 @@ class tampilan2 extends StatelessWidget {
             discount: 'Rp 799.999.99',
             price: 'Rp 499.999.999',
             desc: '28 Sold',
+            progressValue: 0.1,
           ),
           SaleItems(
             itemname: 'PANCOAT HOODIE',
             discount: 'Rp 699.999.999',
             price: 'Rp 399.399.999',
             desc: 'Limited Stok',
+            progressValue: 0,
           ),
           SaleItems(
             itemname: 'BUTTERFLY HOODIE',
             discount: 'Rp 899.999.999',
             price: 'Rp 699.999.999',
             desc: '30 Sold',
+            progressValue: 0.4,
           ),
         ],
       ),
@@ -405,12 +432,14 @@ class tampilan3 extends StatelessWidget {
             discount: 'Rp 799.999.99',
             price: 'Rp 499.999.999',
             desc: '28 Sold',
+            progressValue: 0,
           ),
           SaleItems(
             itemname: 'PANCOAT HOODIE',
             discount: 'Rp 699.999.999',
             price: 'Rp 399.399.999',
             desc: 'Limited Stok',
+            progressValue: 0.6,
           ),
         ],
       ),
@@ -433,42 +462,49 @@ class tampilan4 extends StatelessWidget {
             discount: 'Rp 799.999.99',
             price: 'Rp 499.999.999',
             desc: '28 Sold',
+            progressValue: 0.8,
           ),
           SaleItems(
             itemname: 'PANCOAT HOODIE',
             discount: 'Rp 699.999.999',
             price: 'Rp 399.399.999',
             desc: 'Limited Stok',
+            progressValue: 0,
           ),
           SaleItems(
             itemname: 'BUTTERFLY HOODIE',
             discount: 'Rp 799.999.99',
             price: 'Rp 499.999.999',
             desc: '28 Sold',
+            progressValue: 0.1,
           ),
           SaleItems(
             itemname: 'PANCOAT HOODIE',
             discount: 'Rp 699.999.999',
             price: 'Rp 399.399.999',
             desc: 'Limited Stok',
+            progressValue: 0.9,
           ),
           SaleItems(
             itemname: 'PANCOAT HOODIE',
             discount: 'Rp 699.999.999',
             price: 'Rp 399.399.999',
             desc: 'Limited Stok',
+            progressValue: 1,
           ),
           SaleItems(
             itemname: 'PANCOAT HOODIE',
             discount: 'Rp 699.999.999',
             price: 'Rp 399.399.999',
             desc: 'Limited Stok',
+            progressValue: 0,
           ),
           SaleItems(
             itemname: 'PANCOAT HOODIE',
             discount: 'Rp 699.999.999',
             price: 'Rp 399.399.999',
             desc: 'Limited Stok',
+            progressValue: 0,
           ),
         ],
       ),
