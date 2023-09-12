@@ -56,8 +56,9 @@ class _DropdownAddressState extends State<DropdownAddress> {
               ),
               itemAsString: (Province u) => u.userAsString(),
               onChanged: (value) => idProv = value?.id,
-              dropdownBuilder: (context, selectedItem) =>
-                  Text(selectedItem?.name ?? "Pilih Provinsi"),
+              dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?.name ?? "Pilih Provinsi",
+                  style: TextStyle(fontSize: w * 0.04)),
               asyncItems: (text) async {
                 var res = await http.get(
                   Uri.parse(
@@ -99,8 +100,9 @@ class _DropdownAddressState extends State<DropdownAddress> {
               ),
               itemAsString: (City u) => u.userAsString(),
               onChanged: (value) => idKab = value?.id,
-              dropdownBuilder: (context, selectedItem) =>
-                  Text(selectedItem?.name ?? "Pilih Kabupaten/Kota"),
+              dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?.name ?? "Pilih Kabupaten/Kota",
+                  style: TextStyle(fontSize: w * 0.04)),
               asyncItems: (text) async {
                 var res = await http.get(
                   Uri.parse(
@@ -141,8 +143,9 @@ class _DropdownAddressState extends State<DropdownAddress> {
               ),
               itemAsString: (Subdistrict u) => u.userAsString(),
               onChanged: (value) => idKec = value?.id,
-              dropdownBuilder: (context, selectedItem) =>
-                  Text(selectedItem?.name ?? "Pilih Kecamatan"),
+              dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?.name ?? "Pilih Kecamatan",
+                  style: TextStyle(fontSize: w * 0.04)),
               asyncItems: (text) async {
                 var res = await http.get(
                   Uri.parse(
@@ -182,8 +185,9 @@ class _DropdownAddressState extends State<DropdownAddress> {
               ),
               itemAsString: (Village u) => u.userAsString(),
               onChanged: (value) => print(value?.toJson()),
-              dropdownBuilder: (context, selectedItem) =>
-                  Text(selectedItem?.name ?? "Pilih Desa"),
+              dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?.name ?? "Pilih Desa",
+                  style: TextStyle(fontSize: w * 0.04)),
               asyncItems: (text) async {
                 var res = await http.get(
                   Uri.parse(

@@ -128,45 +128,48 @@ class FavoritePage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Row(
-                            children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Wrap(
-                                  runSpacing: 18,
-                                  spacing: 5 / 100 * screenWidth,
-                                  alignment: WrapAlignment.spaceEvenly,
-                                  children: [
-                                    Items(
-                                      colors: [Colors.black, Colors.white],
-                                      screenWidth: screenWidth,
-                                      itempic:
-                                          'assets/icons/store/fashionsImages/tshirt.png',
-                                      itemname: 'BUTTERFLY T-SHIRT',
-                                      price: 140000.00,
-                                      tag: 'Fashion',
-                                      isSaved: isSaved,
-                                      onPressed: (p0, p1, p2, p3) {
-                                        itemDetails(p0, p1, p2, p3);
-                                      },
-                                    ),
-                                    Items(
-                                      colors: [Colors.black, Colors.white],
-                                      screenWidth: screenWidth,
-                                      itempic:
-                                          'assets/icons/store/fashionsImages/butterflyhoodie.png',
-                                      itemname: 'BUTTERFLY HOODIE',
-                                      price: 14000.00,
-                                      tag: 'Fashion',
-                                      isSaved: isSaved,
-                                      onPressed: (p0, p1, p2, p3) {
-                                        itemDetails(p0, p1, p2, p3);
-                                      },
-                                    ),
-                                  ],
+                          Padding(
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Row(
+                              children: [
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Wrap(
+                                    runSpacing: 18,
+                                    spacing: 5 / 100 * screenWidth,
+                                    alignment: WrapAlignment.spaceEvenly,
+                                    children: [
+                                      Items(
+                                        colors: [Colors.black, Colors.white],
+                                        screenWidth: screenWidth,
+                                        itempic:
+                                            'assets/icons/store/fashionsImages/tshirt.png',
+                                        itemname: 'BUTTERFLY T-SHIRT',
+                                        price: 140000.00,
+                                        tag: 'Fashion',
+                                        isSaved: isSaved,
+                                        onPressed: (p0, p1, p2, p3) {
+                                          itemDetails(p0, p1, p2, p3);
+                                        },
+                                      ),
+                                      Items(
+                                        colors: [Colors.black, Colors.white],
+                                        screenWidth: screenWidth,
+                                        itempic:
+                                            'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                                        itemname: 'BUTTERFLY HOODIE',
+                                        price: 14000.00,
+                                        tag: 'Fashion',
+                                        isSaved: isSaved,
+                                        onPressed: (p0, p1, p2, p3) {
+                                          itemDetails(p0, p1, p2, p3);
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -223,7 +226,7 @@ class _ItemsState extends State<Items> {
     IconData iconData =
         isSaved ? Icons.bookmark : Icons.bookmark_border_outlined;
     return Container(
-      width: widget.screenWidth * 39 / 100,
+      width: widget.screenWidth * 40 / 100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -257,8 +260,8 @@ class _ItemsState extends State<Items> {
                 right: 0,
                 bottom: 0,
                 child: Container(
-                  width: widget.screenWidth * 11 / 100,
-                  height: widget.screenWidth * 11 / 100,
+                  width: widget.screenWidth * 10 / 100,
+                  height: widget.screenWidth * 10 / 100,
                   decoration: BoxDecoration(
                       color: containerColor,
                       borderRadius:
