@@ -386,18 +386,18 @@ class _ItemsState extends State<Items> {
                   text: '\$${widget.price.toStringAsFixed(2)}',
                   style: TextStyle(
                     decoration: TextDecoration.lineThrough,
-                    fontSize: 10,
+                    fontSize: 11,
                   ),
                 ),
                 WidgetSpan(
                   child:
-                      SizedBox(width: 13), // Tambahkan jarak horizontal di sini
+                      SizedBox(width: 18), // Tambahkan jarak horizontal di sini
                 ),
                 TextSpan(
                     text: '\$${widget.discountedPrice.toStringAsFixed(2)}',
                     style: TextStyle(
                       color: Colors.red,
-                      fontSize: 10,
+                      fontSize: 11,
                     ))
               ],
             ),
