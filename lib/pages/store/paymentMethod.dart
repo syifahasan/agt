@@ -96,20 +96,21 @@ class PaymentMethod extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(height: 15),
                     Text(
                       'Pembayaran pesanan melalui AGT pay',
                       style: TextStyle(
                         fontSize: 15,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                     Text(
                       'Nomor pesanan: 0000000001',
                       style: TextStyle(
                         fontSize: 15,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                     Container(
                       width: 300,
                       height: 140,
@@ -165,6 +166,7 @@ class PaymentMethod extends StatelessWidget {
                         fontSize: 14,
                       ),
                     ),
+                    SizedBox(height: 10),
                     PinInputField(),
                   ],
                 ),
@@ -263,41 +265,47 @@ class _PinInputFieldState extends State<PinInputField> {
       children: [
         Container(
           width: 300,
-          height: 50,
+          height: 70,
           decoration: BoxDecoration(
             color: Colors.grey[350],
             borderRadius: BorderRadius.circular(10),
           ),
-          child: TextFormField(
-            textAlign: TextAlign.center,
-            controller: pinController,
-            keyboardType: TextInputType.number,
-            maxLength: 6, // Jumlah karakter PIN (4 digit)
-            obscureText: true, // Sembunyikan input seperti kata sandi
-            decoration: InputDecoration(
-              hintText: '',
-              // border: InputBorder.none,
-            ),
-            style: TextStyle(
-              fontSize: 20.0, // Atur ukuran teks
+          child: Padding(
+            padding: const EdgeInsets.only(top: 50.0),
+            child: TextFormField(
+              textAlign: TextAlign.center,
+              controller: pinController,
+
+              keyboardType: TextInputType.number,
+              maxLength: 6, // Jumlah karakter PIN (4 digit)
+
+              obscureText: true, // Sembunyikan input seperti kata sandi
+              decoration: InputDecoration(
+                hintText: '',
+                counterText: '',
+                border: InputBorder.none,
+              ),
+              style: TextStyle(
+                fontSize: 90.0, // Atur ukuran teks
+              ),
             ),
           ),
         ),
         SizedBox(height: 20.0),
-        ElevatedButton(
-          onPressed: () {
-            // Lakukan sesuatu dengan nilai PIN yang dimasukkan, contohnya validasi
-            String pin = pinController.text;
-            if (pin.length == 6) {
-              // Validasi PIN
-              print('PIN yang dimasukkan: $pin');
-            } else {
-              print('PIN harus memiliki 6 digit');
-            }
-          },
-          child: Text('Submit'),
-        ),
+        // ElevatedButton(
+        //   onPressed: () {
+        //     // Lakukan sesuatu dengan nilai PIN yang dimasukkan, contohnya validasi
+        //     String pin = pinController.text;
+        //     if (pin.length == 6) {  
+        //       // Validasi PIN
+        //       print('PIN yang dimasukkan: $pin');
+        //     } else {
+        //       print('PIN harus memiliki 6 digit');
+        //     }
+        //   },
+        //   child: Text('Submit'),
+        // ),
       ],
     );
-  }
+  }    
 }
