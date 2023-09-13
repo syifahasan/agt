@@ -1,6 +1,5 @@
-import 'package:authentic_guards/utils/onboardingPage.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:authentic_guards/auth/login.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -9,11 +8,38 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    super.initState();
+    _navigateToNextScreen();
+  }
+
+  _navigateToNextScreen() async {
+    await Future.delayed(Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacementNamed(
+          '/home'); // Asumsikan '/home' adalah route untuk halaman utama Anda
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(), // Show a loading spinner
+      body: Stack(
+        children: <Widget>[
+          // Background Image
+          Positioned.fill(
+            child: Image.asset(
+              'assets/other/bg.png', // ganti dengan nama gambar background Anda
+              fit: BoxFit.cover,
+            ),
+          ),
+          // Centered Image
+          Center(
+            child: Image.asset('assets/other/logosc.png',
+                width: w * 0.45,
+                height: w * 0.45), // atur ukuran sesuai keinginan
+          ),
+        ],
       ),
     );
   }

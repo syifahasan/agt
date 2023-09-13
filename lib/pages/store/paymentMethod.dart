@@ -17,6 +17,8 @@ class PaymentMethod extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
+            iconTheme:
+                IconThemeData(color: Colors.white, size: screenWidth * 0.065),
             backgroundColor: Colors.transparent,
             // Properties for the AppBar
             expandedHeight:
@@ -96,20 +98,21 @@ class PaymentMethod extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(height: 15),
                     Text(
-                      'Pembayaran pesanan melalui AGT pay',
+                      'Order payment via AGT pay',
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 18,
                       ),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Nomor pesanan: 0000000001',
+                      'Order number: 0000000001',
                       style: TextStyle(
                         fontSize: 15,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                     Container(
                       width: 300,
                       height: 140,
@@ -124,7 +127,7 @@ class PaymentMethod extends StatelessWidget {
                           children: [
                             SizedBox(height: 10),
                             Text(
-                              'Tanggal pemesanan : 23 September 2023',
+                              'Order date : 23 September 2023',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.grey,
@@ -132,7 +135,7 @@ class PaymentMethod extends StatelessWidget {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              'Waktu : 15.00 WIB',
+                              'Time : 15.00 WIB',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.grey,
@@ -140,7 +143,7 @@ class PaymentMethod extends StatelessWidget {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              'Pesanan : Butterfly T-shirt, Size M',
+                              'Order : Butterfly T-shirt, Size M',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.grey,
@@ -148,7 +151,7 @@ class PaymentMethod extends StatelessWidget {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              'Jumlah : 1pcs',
+                              'Amount : 1pcs',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.grey,
@@ -160,11 +163,12 @@ class PaymentMethod extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Masukan PIN anda untuk melanjutkan pembayaran',
+                      'Enter your PIN to continue payment',
                       style: TextStyle(
                         fontSize: 14,
                       ),
                     ),
+                    SizedBox(height: 10),
                     PinInputField(),
                   ],
                 ),
@@ -263,40 +267,46 @@ class _PinInputFieldState extends State<PinInputField> {
       children: [
         Container(
           width: 300,
-          height: 50,
+          height: 70,
           decoration: BoxDecoration(
             color: Colors.grey[350],
             borderRadius: BorderRadius.circular(10),
           ),
-          child: TextFormField(
-            textAlign: TextAlign.center,
-            controller: pinController,
-            keyboardType: TextInputType.number,
-            maxLength: 6, // Jumlah karakter PIN (4 digit)
-            obscureText: true, // Sembunyikan input seperti kata sandi
-            decoration: InputDecoration(
-              hintText: '',
-              // border: InputBorder.none,
-            ),
-            style: TextStyle(
-              fontSize: 20.0, // Atur ukuran teks
+          child: Padding(
+            padding: const EdgeInsets.only(top: 50.0),
+            child: TextFormField(
+              textAlign: TextAlign.center,
+              controller: pinController,
+
+              keyboardType: TextInputType.number,
+              maxLength: 6, // Jumlah karakter PIN (4 digit)
+
+              obscureText: true, // Sembunyikan input seperti kata sandi
+              decoration: InputDecoration(
+                hintText: '',
+                counterText: '',
+                border: InputBorder.none,
+              ),
+              style: TextStyle(
+                fontSize: 90.0, // Atur ukuran teks
+              ),
             ),
           ),
         ),
         SizedBox(height: 20.0),
-        ElevatedButton(
-          onPressed: () {
-            // Lakukan sesuatu dengan nilai PIN yang dimasukkan, contohnya validasi
-            String pin = pinController.text;
-            if (pin.length == 6) {
-              // Validasi PIN
-              print('PIN yang dimasukkan: $pin');
-            } else {
-              print('PIN harus memiliki 6 digit');
-            }
-          },
-          child: Text('Submit'),
-        ),
+        // ElevatedButton(
+        //   onPressed: () {
+        //     // Lakukan sesuatu dengan nilai PIN yang dimasukkan, contohnya validasi
+        //     String pin = pinController.text;
+        //     if (pin.length == 6) {
+        //       // Validasi PIN
+        //       print('PIN yang dimasukkan: $pin');
+        //     } else {
+        //       print('PIN harus memiliki 6 digit');
+        //     }
+        //   },
+        //   child: Text('Submit'),
+        // ),
       ],
     );
   }

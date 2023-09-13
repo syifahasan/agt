@@ -277,7 +277,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15)),
                         content: Text(
-                          'Pilih Ukuran Terlebih Dahulu',
+                          'choose the size first',
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -295,7 +295,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                               },
                               child: Text('OK'))
                         ],
-                        content: Text('Produk ditambahkan ke keranjang'),
+                        content: Text('product added to cart'),
                       ),
                     );
                     final cartProvider =

@@ -29,6 +29,8 @@ class _MyCartState extends State<MyCart> {
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
+            iconTheme:
+                IconThemeData(color: Colors.white, size: screenWidth * 0.065),
             backgroundColor: Colors.transparent,
             // Properties for the AppBar
             expandedHeight:
@@ -107,7 +109,7 @@ class _MyCartState extends State<MyCart> {
                             if (cartItems.isEmpty) {
                               return Center(
                                 child: Text(
-                                  'Keranjangmu kosong nih',
+                                  'this cart empty',
                                 ),
                               );
                             }

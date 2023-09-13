@@ -223,12 +223,12 @@ class _HomePageState extends State<HomePage> {
                                             screenWidth: screenWidth,
                                             image:
                                                 'assets/icons/plane-svgrepo-com.png',
-                                            desc: 'Tiket Pesawat'),
+                                            desc: 'Flight ticket'),
                                         Menu(
                                             screenWidth: screenWidth,
                                             image:
                                                 'assets/icons/train-svgrepo-com.png',
-                                            desc: 'Tiket Kereta Api'),
+                                            desc: 'Train ticket'),
                                         Menu(
                                             screenWidth: screenWidth,
                                             image:
