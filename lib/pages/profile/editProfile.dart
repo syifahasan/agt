@@ -241,7 +241,7 @@ class _DateFormState extends State<DateForm> {
                 selectedDate.day > DateTime.now().day)) {
           age--;
         }
-        _ageResult = '$age tahun';
+        _ageResult = '$age Year';
       });
     }
   }
@@ -257,7 +257,7 @@ class _DateFormState extends State<DateForm> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: Text('Nilai dari TextField: $inputValue'),
+            content: Text('Value of TextField: $inputValue'),
           );
         },
       );
@@ -270,7 +270,7 @@ class _DateFormState extends State<DateForm> {
           Container(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Tanggal Lahir',
+              'Date of birth',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: w * 0.04,
@@ -312,7 +312,7 @@ class _DateFormState extends State<DateForm> {
           Container(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Umur',
+              'Age',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: w * 0.04,

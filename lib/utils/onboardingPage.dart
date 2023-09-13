@@ -1,6 +1,5 @@
-
-import 'package:authentic_guards/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:authentic_guards/auth/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingPage1 extends StatefulWidget {
@@ -11,20 +10,6 @@ class OnboardingPage1 extends StatefulWidget {
 }
 
 class _OnboardingPage1State extends State<OnboardingPage1> {
-  Future checkFirstSeen() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
-
-    if (_seen) {
-      Navigator.of(this.context).pushReplacement(
-        MaterialPageRoute(builder: (context) => PageLogin()),
-      );
-    }
-  }
-
-  @override
-  void afterFirstLayout(BuildContext context) => checkFirstSeen();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -190,7 +175,10 @@ class _OnboardingPageState extends State<OnboardingPagePresenter> {
                           foregroundColor: Colors.white,
                           textStyle: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
-                      onPressed: () {
+                      onPressed: () async {
+                        final SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.setBool('is_first_time', false);
                         if (_currentPage == widget.pages.length - 1) {
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) {

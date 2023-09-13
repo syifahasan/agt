@@ -1,20 +1,24 @@
-import 'package:authentic_guards/pages/store/favoritePage.dart';
-import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:authentic_guards/utils/onboardingPage.dart';
 import 'package:provider/provider.dart';
+import 'package:authentic_guards/auth/login.dart';
+import 'package:authentic_guards/utils/onboardingPage.dart';
+import 'package:authentic_guards/utils/provider/cartProvider.dart';
+import 'package:authentic_guards/utils/splashscreeen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => CartProvider(),
-      child: MyApp(),
-    ),
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final bool isFirstTime = prefs.getBool('is_first_time') ?? true;
+  runApp(MyApp(isFirstTime)
   );
 }
 
 class MyApp extends StatelessWidget {
+  final bool isFirstTime;
+
+  MyApp(this.isFirstTime);
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +26,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'SFProDisplay',
       ),
-      home: OnboardingPage1(),
+      home: SplashScreen(),
+      routes: {
+        '/home': (context) => isFirstTime ? OnboardingPage1() : PageLogin(),  // Gantikan dengan halaman utama Anda
+      },
     );
   }
 }

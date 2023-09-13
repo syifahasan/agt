@@ -43,7 +43,7 @@ dependencies:
   ui_helper: ^1.1.0
   get: ^4.6.5
   flutter_credit_card: ^3.0.7
-  shared_preferences: ^2.2.0
+  shared_preferences: ^2.2.1
   mobile_scanner: ^3.4.1
   qr_flutter: ^4.1.0
   firebase_core: ^2.15.1
@@ -58,11 +58,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter_native_splash:
-  background_image: assets/other/splashScreen.png
-  android: true
-  ios: true
-  web: true
+# flutter_native_splash:
+#   background_image: assets/other/splashScreen.png
+#   android: true
+#   ios: true
+#   web: true
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
