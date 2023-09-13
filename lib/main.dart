@@ -25,4 +25,4 @@ class MyApp extends StatelessWidget {
       home: OnboardingPage1(),
     );
   }
-}
+}  

@@ -17,6 +17,8 @@ class PaymentMethod extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
+            iconTheme:
+                IconThemeData(color: Colors.white, size: screenWidth * 0.065),
             backgroundColor: Colors.transparent,
             // Properties for the AppBar
             expandedHeight:
@@ -98,14 +100,14 @@ class PaymentMethod extends StatelessWidget {
                     ),
                     SizedBox(height: 15),
                     Text(
-                      'Pembayaran pesanan melalui AGT pay',
+                      'Order payment via AGT pay',
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 18,
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 10),
                     Text(
-                      'Nomor pesanan: 0000000001',
+                      'Order number: 0000000001',
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -125,7 +127,7 @@ class PaymentMethod extends StatelessWidget {
                           children: [
                             SizedBox(height: 10),
                             Text(
-                              'Tanggal pemesanan : 23 September 2023',
+                              'Order date : 23 September 2023',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.grey,
@@ -133,7 +135,7 @@ class PaymentMethod extends StatelessWidget {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              'Waktu : 15.00 WIB',
+                              'Time : 15.00 WIB',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.grey,
@@ -141,7 +143,7 @@ class PaymentMethod extends StatelessWidget {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              'Pesanan : Butterfly T-shirt, Size M',
+                              'Order : Butterfly T-shirt, Size M',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.grey,
@@ -149,7 +151,7 @@ class PaymentMethod extends StatelessWidget {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              'Jumlah : 1pcs',
+                              'Amount : 1pcs',
                               style: TextStyle(
                                 fontSize: 15.0,
                                 color: Colors.grey,
@@ -161,7 +163,7 @@ class PaymentMethod extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Masukan PIN anda untuk melanjutkan pembayaran',
+                      'Enter your PIN to continue payment',
                       style: TextStyle(
                         fontSize: 14,
                       ),
@@ -296,7 +298,7 @@ class _PinInputFieldState extends State<PinInputField> {
         //   onPressed: () {
         //     // Lakukan sesuatu dengan nilai PIN yang dimasukkan, contohnya validasi
         //     String pin = pinController.text;
-        //     if (pin.length == 6) {  
+        //     if (pin.length == 6) {
         //       // Validasi PIN
         //       print('PIN yang dimasukkan: $pin');
         //     } else {
@@ -307,5 +309,5 @@ class _PinInputFieldState extends State<PinInputField> {
         // ),
       ],
     );
-  }    
+  }
 }
