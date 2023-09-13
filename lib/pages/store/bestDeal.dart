@@ -57,10 +57,11 @@ class BestDealPage extends StatelessWidget {
             gradient: RadialGradient(
               colors: [Colors.white, Color.fromARGB(255, 58, 57, 57)],
               center: Alignment.topCenter,
-              radius: w * 0.055,
+              radius: w * 0.02,
             ),
           ),
         ),
+        toolbarHeight: w * 0.2,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(w * 0.1),
@@ -156,7 +157,7 @@ class BestDealPage extends StatelessWidget {
                             itempic:
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
-                            price: 599999.99,
+                            price: 599999.00,
                             discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
@@ -170,7 +171,7 @@ class BestDealPage extends StatelessWidget {
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
-                            price: 899999.99,
+                            price: 899999.00,
                             discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
@@ -201,7 +202,7 @@ class BestDealPage extends StatelessWidget {
                             itempic:
                                 'assets/icons/store/fashionsImages/tshirt.png',
                             itemname: 'BUTTERFLY T-SHIRT',
-                            price: 599999.99,
+                            price: 599999.00,
                             discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
@@ -215,7 +216,7 @@ class BestDealPage extends StatelessWidget {
                             itempic:
                                 'assets/icons/store/fashionsImages/butterflyhoodie.png',
                             itemname: 'BUTTERFLY HOODIE',
-                            price: 899999.99,
+                            price: 899999.00,
                             discountPercentage: 10.0,
                             tag: 'Fashion',
                             isSaved: isSaved,
@@ -260,7 +261,6 @@ class Items extends StatefulWidget {
   final String itempic;
   final String tag;
   final double price;
-
   final double discountPercentage;
   final String itemname;
   final bool isSaved;
@@ -320,8 +320,8 @@ class _ItemsState extends State<Items> {
                 right: 0,
                 bottom: 0,
                 child: Container(
-                  width: widget.screenWidth * 10 / 100,
-                  height: widget.screenWidth * 10 / 100,
+                  width: widget.screenWidth * 11 / 100,
+                  height: widget.screenWidth * 11 / 100,
                   decoration: BoxDecoration(
                       color: containerColor,
                       borderRadius:
@@ -349,11 +349,11 @@ class _ItemsState extends State<Items> {
                   decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius:
-                          BorderRadius.only(topLeft: Radius.circular(10))),
+                          BorderRadius.only(topLeft: Radius.circular(7))),
                   child: Center(
                     child: Text(
                       '10%',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      style: TextStyle(color: Colors.white, fontSize: 11),
                     ),
                   ),
                 ),
@@ -361,7 +361,7 @@ class _ItemsState extends State<Items> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 6, bottom: 6),
+            padding: const EdgeInsets.only(top: 6, bottom: 5),
             child: Text(widget.tag),
           ),
           Padding(
