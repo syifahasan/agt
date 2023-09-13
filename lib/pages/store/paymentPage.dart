@@ -18,6 +18,7 @@ class PaymentPage extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
+            iconTheme:IconThemeData(color: Colors.white, size: screenWidth * 0.065),
             backgroundColor: Colors.transparent,
             // Properties for the AppBar
             expandedHeight:
