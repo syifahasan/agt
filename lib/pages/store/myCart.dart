@@ -1,5 +1,4 @@
 import 'package:authentic_guards/pages/store/favoritePage.dart';
-import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 import 'package:flutter/material.dart';
 import 'paymentPage.dart';
@@ -104,6 +103,7 @@ class _MyCartState extends State<MyCart> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Consumer<CartProvider>(
+                          
                           builder: (context, cartProvider, child) {
                             final cartItems = cartProvider.items;
                             if (cartItems.isEmpty) {

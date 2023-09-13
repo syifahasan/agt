@@ -10,15 +10,18 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final bool isFirstTime = prefs.getBool('is_first_time') ?? true;
-  runApp(MyApp(isFirstTime)
-  );
+
+  runApp(ChangeNotifierProvider(
+    create: (context) => CartProvider(),
+    child: MyApp(isFirstTime),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   final bool isFirstTime;
 
   MyApp(this.isFirstTime);
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,8 +31,10 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(),
       routes: {
-        '/home': (context) => isFirstTime ? OnboardingPage1() : PageLogin(),  // Gantikan dengan halaman utama Anda
+        '/home': (context) => isFirstTime
+            ? OnboardingPage1()
+            : PageLogin(), // Gantikan dengan halaman utama Anda
       },
     );
   }
-}  
+}
