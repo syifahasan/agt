@@ -82,6 +82,7 @@ class editProfile extends StatelessWidget {
                                   title: 'Name',
                                   value: 'Asep Saefuddin Zuhri',
                                   hint: 'Full Name',
+                                  typeKeyboard: TextInputType.name,
                                 ),
                               ),
                               Container(
@@ -89,6 +90,7 @@ class editProfile extends StatelessWidget {
                               ),
                               Container(
                                 child: _formProfile(
+                                  typeKeyboard: TextInputType.phone,
                                   title: 'Phone Number',
                                   value: '+62 000 0000 0000',
                                   hint: 'Phone Number',
@@ -97,8 +99,9 @@ class editProfile extends StatelessWidget {
                               Container(
                                 child: _formProfile(
                                   title: 'Email',
-                                  value: 'asep@gamil.com',
+                                  value: 'asep@gmail.com',
                                   hint: 'Email',
+                                  typeKeyboard: TextInputType.emailAddress,
                                 ),
                               ),
                               Container(
@@ -109,6 +112,7 @@ class editProfile extends StatelessWidget {
                                   title: 'Detail Address',
                                   value: 'Indramayu - Kertasemaya',
                                   hint: 'Address',
+                                  typeKeyboard: TextInputType.streetAddress,
                                 ),
                               ),
                               Container(
@@ -116,6 +120,7 @@ class editProfile extends StatelessWidget {
                                   title: 'Postal Code',
                                   value: '45274',
                                   hint: 'Input your postal code',
+                                  typeKeyboard: TextInputType.number,
                                 ),
                               ),
                               Container(
@@ -345,10 +350,12 @@ class _formProfile extends StatelessWidget {
   final String title;
   final String value;
   final String hint;
+  final TextInputType typeKeyboard;
   const _formProfile({
     required this.title,
     required this.value,
     required this.hint,
+    required this.typeKeyboard,
     super.key,
   });
 
@@ -372,6 +379,7 @@ class _formProfile extends StatelessWidget {
             ),
           ),
           TextFormField(
+            keyboardType: typeKeyboard,
             style: TextStyle(fontSize: w * 0.04),
             initialValue: value,
             decoration: InputDecoration(
