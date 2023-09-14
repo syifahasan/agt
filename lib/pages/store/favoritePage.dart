@@ -301,7 +301,7 @@ class _ItemsState extends State<Items> {
             ),
           ),
           Text(
-            'RP. ${widget.price}',
+            '\$${widget.price.toStringAsFixed(2)}',
             style: TextStyle(fontSize: widget.screenWidth * 3.5 / 100),
           ),
         ],
