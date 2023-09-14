@@ -126,7 +126,7 @@ class ProfilePage extends StatelessWidget {
           ),
           Container(
             padding:
-                EdgeInsets.only(top: w * 0.04, left: w * 0.13, right: w * 0.1),
+                EdgeInsets.only(top: w * 0.04, left: w * 0.135, right: w * 0.1),
             child: Column(
               children: [
                 IntrinsicHeight(
@@ -134,7 +134,7 @@ class ProfilePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: w * 0.3,
+                        width: w * 0.25,
                         child: Text(
                           'Asep Saefuddin',
                           textAlign: TextAlign.left,
