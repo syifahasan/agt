@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/store/favoritePage.dart';
 import 'package:flutter/material.dart';
 import 'myCart.dart';
 import 'package:authentic_guards/utils/payment/currencyFormat.dart';
@@ -259,7 +260,14 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
               FloatingActionButton.extended(
                 isExtended: true,
                 backgroundColor: Colors.grey,
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FavoritePage(),
+                    ),
+                  ),
+                },
                 label: Container(
                   width: screenWidth * 20 / 100,
                   child: Icon(Icons.bookmark_add_outlined,

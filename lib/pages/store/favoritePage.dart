@@ -103,7 +103,7 @@ class FavoritePage extends StatelessWidget {
                                       itempic:
                                           'assets/icons/store/fashionsImages/tshirt.png',
                                       itemname: 'BUTTERFLY T-SHIRT',
-                                      price: 524999.00,
+                                      price: 524223.68,
                                       tag: 'Fashion',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
@@ -116,7 +116,7 @@ class FavoritePage extends StatelessWidget {
                                       itempic:
                                           'assets/icons/store/fashionsImages/butterflyhoodie.png',
                                       itemname: 'BUTTERFLY HOODIE',
-                                      price: 870000.00,
+                                      price: 823865.68,
                                       tag: 'Fashion',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
@@ -145,7 +145,7 @@ class FavoritePage extends StatelessWidget {
                                         itempic:
                                             'assets/icons/store/fashionsImages/tshirt.png',
                                         itemname: 'BUTTERFLY T-SHIRT',
-                                        price: 524999.00,
+                                        price: 524223.68,
                                         tag: 'Fashion',
                                         isSaved: isSaved,
                                         onPressed: (p0, p1, p2, p3) {
@@ -158,7 +158,7 @@ class FavoritePage extends StatelessWidget {
                                         itempic:
                                             'assets/icons/store/fashionsImages/butterflyhoodie.png',
                                         itemname: 'BUTTERFLY HOODIE',
-                                        price: 870000.00,
+                                        price: 823865.68,
                                         tag: 'Fashion',
                                         isSaved: isSaved,
                                         onPressed: (p0, p1, p2, p3) {

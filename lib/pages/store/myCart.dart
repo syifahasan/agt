@@ -103,7 +103,6 @@ class _MyCartState extends State<MyCart> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Consumer<CartProvider>(
-                          
                           builder: (context, cartProvider, child) {
                             final cartItems = cartProvider.items;
                             if (cartItems.isEmpty) {
