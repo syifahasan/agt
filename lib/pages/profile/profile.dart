@@ -1,12 +1,13 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/pages/profile/mybadge.dart';
 import 'package:authentic_guards/pages/profile/mypayment.dart';
 import 'package:authentic_guards/pages/profile/privacy.dart';
 import 'package:authentic_guards/pages/profile/editProfile.dart';
-import 'package:flutter/material.dart';
 import 'package:authentic_guards/pages/profile/appBar.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'dart:io';
+import 'package:authentic_guards/pages/profile/owned.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -21,6 +22,17 @@ class ProfilePage extends StatelessWidget {
         MaterialPageRoute(
           builder: (context) {
             return PageLogin();
+          },
+        ),
+      );
+    }
+
+    void owned() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return MyOwned();
           },
         ),
       );
@@ -240,7 +252,7 @@ class ProfilePage extends StatelessWidget {
                   title: 'Owned',
                   image: 'assets/other/owned.png',
                   color: Color(0xffff9500),
-                  page: privacy,
+                  page: owned,
                 ),
                 _itemList(
                   title: 'Privasi',
