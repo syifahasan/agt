@@ -1,5 +1,6 @@
 import 'package:authentic_guards/pages/payment/balanceCheck.dart';
 import 'package:authentic_guards/pages/profile/profile.dart';
+import 'package:authentic_guards/pages/store/store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:ui' as ui;
@@ -8,6 +9,8 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../utils/payment/payNSend.dart';
 import './payment/topUp.dart';
 import '../utils/customscroll.dart';
+import './store/itemDetails.dart';
+import './store/store.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,6 +27,15 @@ class _HomePageState extends State<HomePage> {
       MaterialPageRoute(builder: (context) => TopUpPage()),
     );
     print('Add button pressed');
+  }
+
+  void _stores() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StorePage(),
+      ),
+    );
   }
 
   void PayNSend() {
@@ -51,6 +63,31 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isSaved = false;
+    late String itempic;
+    late double price;
+    late String itemname;
+    late List<Color> colors;
+
+    void itemDetails(
+        String image, double harga, String name, List<Color> warna) {
+      itempic = image;
+      price = harga;
+      itemname = name;
+      colors = warna;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ItemDetailPage(
+            itempic: itempic,
+            price: price,
+            itemname: itemname,
+            colors: colors,
+          ),
+        ),
+      );
+    }
+
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
@@ -196,44 +233,53 @@ class _HomePageState extends State<HomePage> {
                                       spacing: screenWidth * 7 / 100,
                                       children: [
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image:
-                                                'assets/icons/news-svgrepo-com.png',
-                                            desc: 'Authentic News'),
+                                          screenWidth: screenWidth,
+                                          image:
+                                              'assets/icons/news-svgrepo-com.png',
+                                          desc: 'Authentic News',
+                                        ),
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image: 'assets/icons/agtlogo.png',
-                                            desc: 'Authentic Store'),
+                                          screenWidth: screenWidth,
+                                          image: 'assets/icons/agtlogo.png',
+                                          desc: 'Authentic Store',
+                                          method: _stores,
+                                        ),
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image:
-                                                'assets/icons/smartphone-svgrepo-com.png',
-                                            desc: 'Pulsa'),
+                                          screenWidth: screenWidth,
+                                          image:
+                                              'assets/icons/smartphone-svgrepo-com.png',
+                                          desc: 'Pulsa',
+                                        ),
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image:
-                                                'assets/icons/plugin-svgrepo-com.png',
-                                            desc: 'PLN'),
+                                          screenWidth: screenWidth,
+                                          image:
+                                              'assets/icons/plugin-svgrepo-com.png',
+                                          desc: 'PLN',
+                                        ),
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image:
-                                                'assets/icons/water-svgrepo-com.png',
-                                            desc: 'PDAM'),
+                                          screenWidth: screenWidth,
+                                          image:
+                                              'assets/icons/water-svgrepo-com.png',
+                                          desc: 'PDAM',
+                                        ),
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image:
-                                                'assets/icons/plane-svgrepo-com.png',
-                                            desc: 'Flight ticket'),
+                                          screenWidth: screenWidth,
+                                          image:
+                                              'assets/icons/plane-svgrepo-com.png',
+                                          desc: 'Flight ticket',
+                                        ),
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image:
-                                                'assets/icons/train-svgrepo-com.png',
-                                            desc: 'Train ticket'),
+                                          screenWidth: screenWidth,
+                                          image:
+                                              'assets/icons/train-svgrepo-com.png',
+                                          desc: 'Train ticket',
+                                        ),
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image:
-                                                'assets/icons/stack-svgrepo-com.png',
-                                            desc: 'View All'),
+                                          screenWidth: screenWidth,
+                                          image:
+                                              'assets/icons/stack-svgrepo-com.png',
+                                          desc: 'View All',
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -312,38 +358,85 @@ class _HomePageState extends State<HomePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          width: screenWidth * 85 / 100,
-                                          height: 200,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: Colors.grey,
-                                          ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 13),
                                         ),
-                                        Container(
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          width: screenWidth * 85 / 100,
-                                          height: 200,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: Colors.grey,
-                                          ),
+                                        Items(
+                                          colors: [Colors.black, Colors.white],
+                                          screenWidth: screenWidth,
+                                          itempic:
+                                              'assets/icons/store/fashionsImages/tshirt.png',
+                                          itemname: 'BUTTERFLY T-SHIRT',
+                                          price: 524223.68,
+                                          tag: 'Fashion',
+                                          isSaved: isSaved,
+                                          onPressed: (p0, p1, p2, p3) {
+                                            itemDetails(p0, p1, p2, p3);
+                                          },
                                         ),
-                                        Container(
-                                          margin: EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          width: screenWidth * 85 / 100,
-                                          height: 200,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: Colors.grey,
-                                          ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 25),
+                                        ),
+                                        Items(
+                                          colors: [Colors.black, Colors.white],
+                                          screenWidth: screenWidth,
+                                          itempic:
+                                              'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                                          itemname: 'BUTTERFLY HOODIE',
+                                          price: 899999.00,
+                                          tag: 'Fashion',
+                                          isSaved: isSaved,
+                                          onPressed: (p0, p1, p2, p3) {
+                                            itemDetails(p0, p1, p2, p3);
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 25),
+                                        ),
+                                        Items(
+                                          colors: [Colors.black, Colors.white],
+                                          screenWidth: screenWidth,
+                                          itempic:
+                                              'assets/icons/store/fashionsImages/tshirt.png',
+                                          itemname: 'BUTTERFLY T-SHIRT',
+                                          price: 524223.68,
+                                          tag: 'Fashion',
+                                          isSaved: isSaved,
+                                          onPressed: (p0, p1, p2, p3) {
+                                            itemDetails(p0, p1, p2, p3);
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 25),
+                                        ),
+                                        Items(
+                                          colors: [Colors.black, Colors.white],
+                                          screenWidth: screenWidth,
+                                          itempic:
+                                              'assets/icons/store/fashionsImages/butterflyhoodie.png',
+                                          itemname: 'BUTTERFLY HOODIE',
+                                          price: 899999.00,
+                                          tag: 'Fashion',
+                                          isSaved: isSaved,
+                                          onPressed: (p0, p1, p2, p3) {
+                                            itemDetails(p0, p1, p2, p3);
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 25),
+                                        ),
+                                        Items(
+                                          colors: [Colors.black, Colors.white],
+                                          screenWidth: screenWidth,
+                                          itempic:
+                                              'assets/icons/store/fashionsImages/tshirt.png',
+                                          itemname: 'BUTTERFLY T-SHIRT',
+                                          price: 524223.68,
+                                          tag: 'Fashion',
+                                          isSaved: isSaved,
+                                          onPressed: (p0, p1, p2, p3) {
+                                            itemDetails(p0, p1, p2, p3);
+                                          },
                                         ),
                                       ],
                                     ),
@@ -508,17 +601,144 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+class Items extends StatefulWidget {
+  Items({
+    super.key,
+    required this.screenWidth,
+    required this.itempic,
+    required this.itemname,
+    required this.price,
+    required this.tag,
+    required this.isSaved,
+    required this.onPressed,
+    required this.colors,
+  });
+
+  final double screenWidth;
+  final String itempic;
+  final String tag;
+  final double price;
+  final String itemname;
+  final bool isSaved;
+  final List<Color> colors;
+  final Function(String, double, String, List<Color>) onPressed;
+
+  @override
+  State<Items> createState() => _ItemsState();
+}
+
+class _ItemsState extends State<Items> {
+  late bool isSaved;
+
+  @override
+  void initState() {
+    super.initState();
+    isSaved = widget.isSaved;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Color containerColor = isSaved ? Color(0xffFFCE00) : Colors.grey;
+    IconData iconData =
+        isSaved ? Icons.bookmark : Icons.bookmark_border_outlined;
+    return Container(
+      width: widget.screenWidth * 40 / 100,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  widget.onPressed(widget.itempic, widget.price,
+                      widget.itemname, widget.colors);
+                },
+                child: Container(
+                  width: widget.screenWidth * 43 / 100,
+                  height: widget.screenWidth * 55 / 100,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(widget.itempic), fit: BoxFit.fill),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.transparent,
+                    border: null,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey,
+                          // blurStyle: BlurStyle.outer,
+                          blurRadius: 1,
+                          offset: Offset(0, 0)),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  width: widget.screenWidth * 10 / 100,
+                  height: widget.screenWidth * 10 / 100,
+                  decoration: BoxDecoration(
+                      color: containerColor,
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(10))),
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isSaved = !isSaved;
+                      });
+                      // widget.onPressed();
+                    },
+                    icon: Icon(
+                      iconData,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 6, bottom: 6),
+            child: Text(widget.tag),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 4),
+            child: RichText(
+              text: TextSpan(
+                text: widget.itemname,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'SFProDisplay',
+                  fontWeight: FontWeight.bold,
+                  fontSize: widget.screenWidth * 4 / 100,
+                ),
+              ),
+            ),
+          ),
+          Text(
+            '\$${widget.price.toStringAsFixed(2)}',
+            style: TextStyle(fontSize: widget.screenWidth * 3.5 / 100),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class Menu extends StatelessWidget {
-  const Menu({
+  Menu({
     super.key,
     required this.screenWidth,
     required this.image,
     required this.desc,
+    this.method,
   });
 
   final double screenWidth;
   final String image;
   final String desc;
+  VoidCallback? method;
 
   @override
   Widget build(BuildContext context) {
@@ -529,30 +749,33 @@ class Menu extends StatelessWidget {
       width: screenWidth * 16 / 100,
       child: Column(
         children: [
-          Container(
-            width: screenWidth * 16 / 100,
-            height: screenWidth * 16 / 100,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(image),
-              ),
-              color: Colors.black,
-              border: null,
-              borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  offset: Offset(0, 5),
-                  blurRadius: 3,
-                  spreadRadius: 1,
+          GestureDetector(
+            onTap: method,
+            child: Container(
+              width: screenWidth * 16 / 100,
+              height: screenWidth * 16 / 100,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(image),
                 ),
-              ],
+                color: Colors.black,
+                border: null,
+                borderRadius: BorderRadius.circular(screenWidth * 50 / 100),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    offset: Offset(0, 5),
+                    blurRadius: 3,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              // child: SvgPicture.asset(
+              //   image,
+              //   width: 200,
+              //   height: 200,
+              // ),
             ),
-            // child: SvgPicture.asset(
-            //   image,
-            //   width: 200,
-            //   height: 200,
-            // ),
           ),
           SizedBox(
             height: 10,
