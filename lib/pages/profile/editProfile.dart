@@ -86,8 +86,11 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                child: DateForm(),
+                                child: JenisKelamin(),
                               ),
+                              // Container(
+                              //   child: DateForm(),
+                              // ),
                               Container(
                                 child: _formProfile(
                                   typeKeyboard: TextInputType.phone,
@@ -339,6 +342,125 @@ class _DateFormState extends State<DateForm> {
                 ),
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// class ButtonsWithColorChangeBorder extends StatefulWidget {
+//   @override
+//   _ButtonsWithColorChangeBorderState createState() =>
+//       _ButtonsWithColorChangeBorderState();
+// }
+
+// class _ButtonsWithColorChangeBorderState
+//     extends State<ButtonsWithColorChangeBorder> {
+//   Color button1BorderColor = Colors.blue;
+//   Color button2BorderColor = Colors.green;
+
+//   void changeButton1BorderColor() {
+//     setState(() {
+//       button1BorderColor =
+//           button1BorderColor == Colors.blue ? Colors.red : Colors.blue;
+//     });
+//   }
+
+//   void changeButton2BorderColor() {
+//     setState(() {
+//       button2BorderColor =
+//           button2BorderColor == Colors.green ? Colors.orange : Colors.green;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             OutlinedButton(
+//               onPressed: () {
+//                 changeButton1BorderColor();
+//               },
+
+//               style: ButtonStyle(,),
+              
+//               // Warna border
+//               child: Text('Tombol 1'),
+//             ),
+//             SizedBox(width: 20),
+//             OutlinedButton(
+//               onPressed: () {
+//                 changeButton2BorderColor();
+//               },
+//               style: ButtonStyle(side: BorderSide(color: button1BorderColor),),// Warna border
+//               child: Text('Tombol 2'),
+//             ),
+//           ],
+//         ),
+//       );
+    
+//   }
+// }
+
+
+class JenisKelamin extends StatefulWidget {
+  @override
+  _ButtonColorChangerState createState() => _ButtonColorChangerState();
+}
+
+class _ButtonColorChangerState extends State<JenisKelamin> {
+  Color buttonColor1 = const Color.fromARGB(255, 146, 144, 144);
+  Color buttonColor2 = const Color.fromARGB(255, 146, 144, 144);
+  bool button1Clicked = false;
+  bool button2Clicked = false;
+
+  void changeButtonColor1() {
+    setState(() {
+      buttonColor1 = button1Clicked
+          ? const Color.fromARGB(255, 133, 133, 133)
+          : Colors.blue;
+      button1Clicked = !button1Clicked;
+    });
+  }
+
+  void changeButtonColor2() {
+    setState(() {
+      buttonColor2 = button2Clicked
+          ? const Color.fromARGB(255, 133, 133, 133)
+          : Colors.pink;
+      button2Clicked = !button2Clicked;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          // Text('Choose Gender'),
+          // SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              changeButtonColor1();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(buttonColor1),
+            ),
+            child: Text('Male'),
+          ),
+          SizedBox(width: 20),
+          ElevatedButton(
+            onPressed: () {
+              changeButtonColor2();
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(buttonColor2),
+            ),
+            child: Text('Female'),
           ),
         ],
       ),
