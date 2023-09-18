@@ -337,8 +337,8 @@ class _DateFormState extends State<DateForm> {
               decoration: InputDecoration(
                 labelText: _ageResult,
                 labelStyle: TextStyle(color: Colors.black),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black),
+                disabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black54),
                 ),
               ),
             ),

@@ -30,7 +30,7 @@ class _DropdownAddressState extends State<DropdownAddress> {
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.only(left: w * 0.02, right: w * 0.02),
+      padding: EdgeInsets.only(left: w * 0.02, right: w * 0.02, top: w * 0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -86,7 +86,7 @@ class _DropdownAddressState extends State<DropdownAddress> {
             ),
           ),
           SizedBox(
-            height: w * 0.02,
+            height: w * 0.03,
           ),
           Container(
             child: DropdownSearch<City>(
@@ -129,7 +129,7 @@ class _DropdownAddressState extends State<DropdownAddress> {
             ),
           ),
           SizedBox(
-            height: w * 0.02,
+            height: w * 0.03,
           ),
           Container(
             child: DropdownSearch<Subdistrict>(
@@ -171,7 +171,7 @@ class _DropdownAddressState extends State<DropdownAddress> {
             ),
           ),
           SizedBox(
-            height: w * 0.02,
+            height: w * 0.03,
           ),
           Container(
             child: DropdownSearch<Village>(
@@ -212,6 +212,9 @@ class _DropdownAddressState extends State<DropdownAddress> {
               },
             ),
           ),
+          SizedBox(
+            height: w * 0.03,
+          )
         ],
       ),
     );

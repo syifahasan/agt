@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/pages/profile/appBar.dart';
 import 'package:flutter/foundation.dart';
@@ -8,6 +10,8 @@ import 'myCart.dart';
 import 'package:get/get.dart';
 import 'myCart.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:authentic_guards/utils/payment/currencyFormat.dart';
+import 'package:authentic_guards/pages/store/itemDetails.dart';
 
 class BlastSalesPage extends StatefulWidget {
   @override
@@ -21,6 +25,13 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
     tampilan2(),
     tampilan3(),
     tampilan4(),
+  ];
+
+  List<Widget> duration = [
+    FlashSaleTimerWidget(endTime: DateTime.now().add(Duration(hours: 2))),
+    FlashSaleTimerWidget(endTime: DateTime.now().add(Duration(minutes: 15))),
+    FlashSaleTimerWidget(endTime: DateTime.now().add(Duration(hours: 1))),
+    FlashSaleTimerWidget(endTime: DateTime.now().add(Duration(minutes: 30))),
   ];
 
   // Indeks tampilan saat ini
@@ -94,11 +105,7 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
                         width: w * 0.28,
                         height: w * 0.18,
                         child: TextButton(
-                          child: FlashSaleTimerWidget(
-                            endTime: DateTime.now().add(Duration(
-                                hours:
-                                    2)), // misalkan flash sale berakhir dalam 2 jam dari sekarang
-                          ),
+                          child: duration[index],
                           onPressed: () {
                             setState(() {
                               _currentIndex =
@@ -136,7 +143,6 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
                 ),
               ),
               contents[_currentIndex],
-              // Text(contents[_currentIndex]),
             ],
           ),
         ],
@@ -148,18 +154,24 @@ class _BlastSalesPageState extends State<BlastSalesPage> {
 class SaleItems extends StatefulWidget {
   const SaleItems({
     super.key,
+    required this.itempic,
     required this.itemname,
     required this.discount,
     required this.price,
     required this.desc,
     required this.progressValue,
+    required this.onPressed,
+    required this.colors,
   });
 
   final String itemname;
+  final String itempic;
   final String discount;
-  final String price;
+  final double price;
   final String desc;
   final double progressValue;
+  final List<Color> colors;
+  final Function(String, double, String, List<Color>) onPressed;
 
   @override
   State<SaleItems> createState() => _SaleItemsState();
@@ -180,9 +192,11 @@ class _SaleItemsState extends State<SaleItems> {
             decoration: BoxDecoration(
               color: Colors.white,
               image: DecorationImage(
-                  fit: BoxFit.contain,
-                  image: AssetImage(
-                      'assets/icons/store/fashionsImages/butterflyhoodie.png')),
+                fit: BoxFit.contain,
+                image: AssetImage(
+                  widget.itempic,
+                ),
+              ),
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
@@ -219,7 +233,7 @@ class _SaleItemsState extends State<SaleItems> {
                   ),
                 ),
                 Text(
-                  widget.price,
+                  CurrencyFormat.convertToIdr(widget.price, 2),
                   style: TextStyle(fontSize: w * 0.04, color: Colors.red),
                 ),
                 Container(
@@ -262,6 +276,8 @@ class _SaleItemsState extends State<SaleItems> {
                   ? null // tombol tidak dapat ditekan
                   : () {
                       // kode yang dijalankan ketika tombol ditekan
+                      widget.onPressed(widget.itempic, widget.price,
+                          widget.itemname, widget.colors);
                     },
               child: Text(
                 'BUY',
@@ -344,36 +360,81 @@ class tampilan1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSaved = false;
+    late String itempic;
+    late double price;
+    late String itemname;
+    late List<Color> colors;
+
+    void itemDetails(
+        String image, double harga, String name, List<Color> warna) {
+      itempic = image;
+      price = harga;
+      itemname = name;
+      colors = warna;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ItemDetailPage(
+            itempic: itempic,
+            price: price,
+            itemname: itemname,
+            colors: colors,
+          ),
+        ),
+      );
+    }
+
     return Container(
       child: Column(
         children: [
           SaleItems(
-            itemname: 'BUTTERFLY HOODIE',
-            discount: 'Rp 799.999.99',
-            price: 'Rp 499.999.999',
-            desc: '28 Sold',
-            progressValue: 0.5,
-          ),
-          SaleItems(
-            itemname: 'PANCOAT HOODIE',
-            discount: 'Rp 699.999.999',
-            price: 'Rp 399.399.999',
+            colors: [Color(0xffFF6161), Colors.white],
             desc: 'Limited Stok',
-            progressValue: 0,
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.6,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
           SaleItems(
-            itemname: 'BUTTERFLY HOODIE',
-            discount: 'Rp 899.999.999',
-            price: 'Rp 699.999.999',
-            desc: '30 Sold',
-            progressValue: 0.7,
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.4,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
           SaleItems(
-            itemname: 'DRAGON HOODIE',
-            discount: 'Rp 399.999.999',
-            price: 'Rp 200.000.000',
-            desc: '1 Sold',
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
             progressValue: 1,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
+          ),
+          SaleItems(
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
         ],
       ),
@@ -388,29 +449,69 @@ class tampilan2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSaved = false;
+    late String itempic;
+    late double price;
+    late String itemname;
+    late List<Color> colors;
+
+    void itemDetails(
+        String image, double harga, String name, List<Color> warna) {
+      itempic = image;
+      price = harga;
+      itemname = name;
+      colors = warna;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ItemDetailPage(
+            itempic: itempic,
+            price: price,
+            itemname: itemname,
+            colors: colors,
+          ),
+        ),
+      );
+    }
+
     return Container(
       child: Column(
         children: [
           SaleItems(
-            itemname: 'BUTTERFLY HOODIE',
-            discount: 'Rp 799.999.99',
-            price: 'Rp 499.999.999',
-            desc: '28 Sold',
-            progressValue: 0.1,
-          ),
-          SaleItems(
-            itemname: 'PANCOAT HOODIE',
-            discount: 'Rp 699.999.999',
-            price: 'Rp 399.399.999',
+            colors: [Color(0xffFF6161), Colors.white],
             desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
             progressValue: 0,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
           SaleItems(
-            itemname: 'BUTTERFLY HOODIE',
-            discount: 'Rp 899.999.999',
-            price: 'Rp 699.999.999',
-            desc: '30 Sold',
-            progressValue: 0.4,
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.1,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
+          ),
+          SaleItems(
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.2,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
         ],
       ),
@@ -425,22 +526,57 @@ class tampilan3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSaved = false;
+    late String itempic;
+    late double price;
+    late String itemname;
+    late List<Color> colors;
+
+    void itemDetails(
+        String image, double harga, String name, List<Color> warna) {
+      itempic = image;
+      price = harga;
+      itemname = name;
+      colors = warna;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ItemDetailPage(
+            itempic: itempic,
+            price: price,
+            itemname: itemname,
+            colors: colors,
+          ),
+        ),
+      );
+    }
+
     return Container(
       child: Column(
         children: [
           SaleItems(
-            itemname: 'BUTTERFLY HOODIE',
-            discount: 'Rp 799.999.99',
-            price: 'Rp 499.999.999',
-            desc: '28 Sold',
-            progressValue: 0,
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.9,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
           SaleItems(
-            itemname: 'PANCOAT HOODIE',
-            discount: 'Rp 699.999.999',
-            price: 'Rp 399.399.999',
+            colors: [Color(0xffFF6161), Colors.white],
             desc: 'Limited Stok',
-            progressValue: 0.6,
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.5,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
         ],
       ),
@@ -455,57 +591,129 @@ class tampilan4 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isSaved = false;
+    late String itempic;
+    late double price;
+    late String itemname;
+    late List<Color> colors;
+
+    void itemDetails(
+        String image, double harga, String name, List<Color> warna) {
+      itempic = image;
+      price = harga;
+      itemname = name;
+      colors = warna;
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ItemDetailPage(
+            itempic: itempic,
+            price: price,
+            itemname: itemname,
+            colors: colors,
+          ),
+        ),
+      );
+    }
+
     return Container(
       child: Column(
         children: [
           SaleItems(
-            itemname: 'BUTTERFLY HOODIE',
-            discount: 'Rp 799.999.99',
-            price: 'Rp 499.999.999',
-            desc: '28 Sold',
-            progressValue: 0.8,
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.3,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
           SaleItems(
-            itemname: 'PANCOAT HOODIE',
-            discount: 'Rp 699.999.999',
-            price: 'Rp 399.399.999',
+            colors: [Color(0xffFF6161), Colors.white],
             desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.2,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
+          ),
+          SaleItems(
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
             progressValue: 0,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
           SaleItems(
-            itemname: 'BUTTERFLY HOODIE',
-            discount: 'Rp 799.999.99',
-            price: 'Rp 499.999.999',
-            desc: '28 Sold',
-            progressValue: 0.1,
-          ),
-          SaleItems(
-            itemname: 'PANCOAT HOODIE',
-            discount: 'Rp 699.999.999',
-            price: 'Rp 399.399.999',
+            colors: [Color(0xffFF6161), Colors.white],
             desc: 'Limited Stok',
-            progressValue: 0.9,
-          ),
-          SaleItems(
-            itemname: 'PANCOAT HOODIE',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
             discount: 'Rp 699.999.999',
-            price: 'Rp 399.399.999',
-            desc: 'Limited Stok',
-            progressValue: 1,
-          ),
-          SaleItems(
-            itemname: 'PANCOAT HOODIE',
-            discount: 'Rp 699.999.999',
-            price: 'Rp 399.399.999',
-            desc: 'Limited Stok',
             progressValue: 0,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
           SaleItems(
-            itemname: 'PANCOAT HOODIE',
-            discount: 'Rp 699.999.999',
-            price: 'Rp 399.399.999',
+            colors: [Color(0xffFF6161), Colors.white],
             desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.35,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
+          ),
+          SaleItems(
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
             progressValue: 0,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
+          ),
+          SaleItems(
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.55,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
+          ),
+          SaleItems(
+            colors: [Color(0xffFF6161), Colors.white],
+            desc: 'Limited Stok',
+            itempic: 'assets/icons/store/fashionsImages/tshirt.png',
+            itemname: 'BUTTERFLY T-SHIRT',
+            discount: 'Rp 699.999.999',
+            progressValue: 0.3,
+            price: 524000.00,
+            onPressed: (p0, p1, p2, p3) {
+              itemDetails(p0, p1, p2, p3);
+            },
           ),
         ],
       ),

@@ -5,6 +5,8 @@ import 'package:authentic_guards/pages/profile/privacy.dart';
 import 'package:authentic_guards/pages/profile/editProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/pages/profile/appBar.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:io';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -44,6 +46,22 @@ class ProfilePage extends StatelessWidget {
           },
         ),
       );
+    }
+
+    void launchWhatsApp(
+        {required String phone, required String message}) async {
+      String url() {
+        if (phone[0] != '+') {
+          phone = "+$phone";
+        }
+        return "whatsapp://send?phone=$phone&text=${Uri.parse(message)}";
+      }
+
+      if (!await canLaunch(url())) {
+        await launch(url());
+      } else {
+        throw 'Could not launch $url';
+      }
     }
 
     void privacy() {
@@ -126,7 +144,7 @@ class ProfilePage extends StatelessWidget {
           ),
           Container(
             padding:
-                EdgeInsets.only(top: w * 0.04, left: w * 0.13, right: w * 0.1),
+                EdgeInsets.only(top: w * 0.04, left: w * 0.135, right: w * 0.1),
             child: Column(
               children: [
                 IntrinsicHeight(
@@ -134,7 +152,7 @@ class ProfilePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        width: w * 0.3,
+                        width: w * 0.25,
                         child: Text(
                           'Asep Saefuddin',
                           textAlign: TextAlign.left,
@@ -172,7 +190,7 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '6 mount ego',
+                              '6 mounth ego',
                               style: TextStyle(
                                 fontSize: w * 0.045,
                               ),
@@ -252,7 +270,9 @@ class ProfilePage extends StatelessWidget {
                   child: _textButton(
                     title: 'Help',
                     color: Color(0xff007aff),
-                    nav: logout,
+                    nav: () => launchWhatsApp(
+                        phone: '6281388988467',
+                        message: 'Halo, Apakah anda bisa membantu saya?'),
                   ),
                 ),
                 Container(
