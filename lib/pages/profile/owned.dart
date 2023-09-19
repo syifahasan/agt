@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/pages/profile/appBar.dart';
-import 'package:authentic_guards/pages/store/itemDetails.dart';
+import 'package:authentic_guards/pages/profile/itemdetailowned.dart';
 import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 
 class MyOwned extends StatefulWidget {
@@ -29,7 +29,7 @@ class _MyOwnedState extends State<MyOwned> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ItemDetailPage(
+        builder: (context) => ItemDetailPageOwned(
           itempic: itempic,
           price: price,
           itemname: itemname,

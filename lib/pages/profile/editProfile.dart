@@ -60,7 +60,7 @@ class editProfile extends StatelessWidget {
                       top: w * 0.2,
                       child: Container(
                         width: w * 0.84,
-                        height: w * 2.8,
+                        height: w * 2.9,
                         decoration: BoxDecoration(
                           gradient: RadialGradient(
                             colors: [
