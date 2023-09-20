@@ -97,8 +97,8 @@ class _LoginViewsState extends State<PageLogin> {
                               style: TextStyle(
                                   fontSize: w * 0.04, color: Colors.black)),
                           style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Color(0xFFEEEDED)),
+                            backgroundColor: MaterialStateProperty.all(
+                                Color.fromARGB(255, 131, 109, 109)),
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                   borderRadius:

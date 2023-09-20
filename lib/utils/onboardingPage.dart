@@ -15,29 +15,30 @@ class _OnboardingPage1State extends State<OnboardingPage1> {
     return Scaffold(
       body: OnboardingPagePresenter(pages: [
         OnboardingPageModel(
-          title: 'Fast, Fluid and Secure',
+          title: 'Protect Your Brand',
           description:
               'The first anti counterfeiting technology system in south east asia',
-          image: 'assets/other/scanner.png',
-          bgColor: Color(0xffc8ae7d),
+          image: 'assets/other/scan.png',
+          bgColor: Color(0xff141514),
         ),
         OnboardingPageModel(
-          title: 'Connect with your friends.',
-          description: 'Connect with your friends anytime anywhere.',
-          image: 'assets/other/market_place.png',
-          bgColor: const Color(0xff65451f),
-        ),
-        OnboardingPageModel(
-          title: 'Bookmark your favourites',
+          title: 'Buy With Pride.',
           description:
-              'The solution of consumers satisfaction for purchasing with pride and security',
-          image: 'assets/other/logosc.png',
-          bgColor: const Color(0xff3c2a21),
+              'Feel safe buying any product using AuthenticGuards is very quick and easy.',
+          image: 'assets/other/ecommerce.png',
+          bgColor: Color(0xff141514),
         ),
         OnboardingPageModel(
-          title: 'Protect Your Brand',
-          description: 'Lest join with us and protect your brand',
-          image: 'assets/other/protection.png',
+          title: 'Credits and bills', //pulsa data
+          description:
+              'Authentic Guards provides credit top up and billing services that are simple and fast',
+          image: 'assets/other/tagihan.png',
+          bgColor: Color(0xff141514),
+        ),
+        OnboardingPageModel(
+          title: 'Claim rewards your product', //claim your product
+          description: 'Lest join with us and claim your product',
+          image: 'assets/other/klaim.png',
           bgColor: Color(0xff141514),
         ),
       ]),

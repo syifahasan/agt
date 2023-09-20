@@ -86,11 +86,11 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                child: JenisKelamin(),
+                                child: JenisKelamin(), 
                               ),
-                              // Container(
-                              //   child: DateForm(),
-                              // ),
+                              Container(
+                                child: DateForm(),
+                              ),
                               Container(
                                 child: _formProfile(
                                   typeKeyboard: TextInputType.phone,

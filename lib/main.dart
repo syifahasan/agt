@@ -6,7 +6,7 @@ import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:authentic_guards/utils/splashscreeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<void> main() async {
+Future<void> main() async {  
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final bool isFirstTime = prefs.getBool('is_first_time') ?? true;
@@ -20,10 +20,10 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   final bool isFirstTime;
 
-  MyApp(this.isFirstTime);
+  MyApp(this.isFirstTime);   
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
