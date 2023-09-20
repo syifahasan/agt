@@ -243,7 +243,8 @@ class _HomePageState extends State<HomePage> {
                                           image: 'assets/icons/agtlogo.png',
                                           desc: 'Authentic Store',
                                           method: _stores,
-                                        ),
+                                        
+                                            ),
                                         Menu(
                                           screenWidth: screenWidth,
                                           image:
@@ -257,11 +258,10 @@ class _HomePageState extends State<HomePage> {
                                           desc: 'PLN',
                                         ),
                                         Menu(
-                                          screenWidth: screenWidth,
-                                          image:
-                                              'assets/icons/water-svgrepo-com.png',
-                                          desc: 'PDAM',
-                                        ),
+                                            screenWidth: screenWidth,
+                                            image:
+                                                'assets/icons/water-svgrepo-com.png',
+                                            desc: 'PDAM'),
                                         Menu(
                                           screenWidth: screenWidth,
                                           image:
