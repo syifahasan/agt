@@ -1,12 +1,15 @@
+import 'package:authentic_guards/pages/notification.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
 class CartProvider extends ChangeNotifier {
   List<CartItem> _items = [];
+  List<SavedItems> _saved = [];
   double _totalPrice = 0.0;
 
   List<CartItem> get items => _items;
+  List<SavedItems> get saved => _saved;
   double get totalPrice => _totalPrice;
 
   // double get totalPrice {
@@ -31,6 +34,11 @@ class CartProvider extends ChangeNotifier {
       }
     }
     return total;
+  }
+
+  void addToFavorite(SavedItems newSaved) {
+    _saved.add(newSaved);
+    notifyListeners();
   }
 
   void addToCart(CartItem newItem) {
@@ -73,6 +81,38 @@ class CartItem {
     required this.colors,
     required this.selectedSize,
     required this.onCheckedChanged,
+    this.isChecked = false,
+    this.quantity = 1,
+  }) : id = id ?? Uuid().v4();
+}
+
+class SavedItems {
+  final String id;
+  final String itempic;
+  final double price;
+  final String itemname;
+  final List<Color> colors;
+  
+  bool isChecked;
+  int quantity;
+
+
+  // void setChecked(bool checked) {
+  //   isChecked = checked;
+  //   onCheckedChanged(); // Notify listeners about the change
+  // }
+
+  double getTotalPrice() {
+    return price * quantity;
+  }
+
+  SavedItems({
+    String? id,
+    required this.itempic,
+    required this.price,
+    required this.itemname,
+    required this.colors,
+
     this.isChecked = false,
     this.quantity = 1,
   }) : id = id ?? Uuid().v4();
