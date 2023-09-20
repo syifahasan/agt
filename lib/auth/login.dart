@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:authentic_guards/auth/register.dart';
 import 'package:authentic_guards/auth/FormInput.dart';
+import 'package:authentic_guards/auth/siginWith.dart';
 
 class PageLogin extends StatefulWidget {
   const PageLogin({Key? key}) : super(key: key);
@@ -108,8 +110,10 @@ class _LoginViewsState extends State<PageLogin> {
                         ),
                       ),
                       Container(
+                        child: siginWith(),
+                      ),
+                      Container(
                           alignment: Alignment.center,
-                          padding: EdgeInsets.only(top: w * 0.1),
                           child: RichText(
                             overflow: TextOverflow.fade,
                             text: TextSpan(
@@ -147,3 +151,4 @@ class _LoginViewsState extends State<PageLogin> {
     );
   }
 }
+

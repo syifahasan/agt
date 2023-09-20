@@ -116,7 +116,7 @@ class FavoritePage extends StatelessWidget {
                                       itempic:
                                           'assets/icons/store/fashionsImages/butterflyhoodie.png',
                                       itemname: 'BUTTERFLY HOODIE',
-                                      price: 823865.68,
+                                      price: 899999.00,
                                       tag: 'Fashion',
                                       isSaved: isSaved,
                                       onPressed: (p0, p1, p2, p3) {
@@ -158,7 +158,7 @@ class FavoritePage extends StatelessWidget {
                                         itempic:
                                             'assets/icons/store/fashionsImages/butterflyhoodie.png',
                                         itemname: 'BUTTERFLY HOODIE',
-                                        price: 823865.68,
+                                        price: 899999.00,
                                         tag: 'Fashion',
                                         isSaved: isSaved,
                                         onPressed: (p0, p1, p2, p3) {
