@@ -84,6 +84,7 @@ class FavoritePage extends StatelessWidget {
                   top: 90,
                 ),
                 width: screenWidth,
+                height: 900,
                 decoration: BoxDecoration(color: Colors.white),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -218,27 +219,32 @@ class _ItemsState extends State<Items> {
                     )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 6, bottom: 6),
-                  child: Text('Fashions'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: RichText(
-                    text: TextSpan(
-                      text: savedItem.itemname,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'SFProDisplay',
-                        fontWeight: FontWeight.bold,
-                        fontSize: widget.screenWidth * 3.5 / 100,
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 6, bottom: 6),
+                      child: Text('Fashions'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: RichText(
+                        text: TextSpan(
+                          text: savedItem.itemname,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'SFProDisplay',
+                            fontWeight: FontWeight.bold,
+                            fontSize: widget.screenWidth * 3.5 / 100,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Text(
-                  CurrencyFormat.convertToIdr(savedItem.price, 2),
-                  style: TextStyle(fontSize: widget.screenWidth * 3.5 / 100),
+                    Text(
+                      CurrencyFormat.convertToIdr(savedItem.price, 2),
+                      style:
+                          TextStyle(fontSize: widget.screenWidth * 3.5 / 100),
+                    ),
+                  ],
                 ),
               ],
             ),
