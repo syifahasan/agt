@@ -17,6 +17,7 @@ class TopUpPage extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
+            iconTheme: IconThemeData(color: Colors.white),
             backgroundColor: Colors.transparent,
             // Properties for the AppBar
             expandedHeight:

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:authentic_guards/auth/register.dart';
 import 'package:authentic_guards/auth/FormInput.dart';
@@ -151,4 +150,3 @@ class _LoginViewsState extends State<PageLogin> {
     );
   }
 }
-
