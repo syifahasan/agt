@@ -10,6 +10,8 @@ import 'cosmeticPage.dart';
 import 'fashionPage.dart';
 import 'itemDetails.dart';
 import 'package:authentic_guards/utils/payment/currencyFormat.dart';
+import 'package:authentic_guards/utils/provider/cartProvider.dart';
+import 'package:provider/provider.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
@@ -481,6 +483,17 @@ class _ItemsState extends State<Items> {
                           BorderRadius.only(bottomRight: Radius.circular(10))),
                   child: IconButton(
                     onPressed: () {
+                      final cartProvider =
+                          Provider.of<CartProvider>(context, listen: false);
+                      cartProvider.addToFavorite(
+                        SavedItems(
+                          itempic: widget.itempic,
+                          price: widget.price,
+                          itemname: widget.itemname,
+                          colors: widget.colors,
+                        ),
+                      );
+                      print(cartProvider.saved);
                       setState(() {
                         isSaved = !isSaved;
                       });

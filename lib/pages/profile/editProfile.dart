@@ -86,7 +86,7 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                child: JenisKelamin(),
+                                child: JenisKelamin(), 
                               ),
                               Container(
                                 child: DateForm(),
