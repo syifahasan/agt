@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class siginWith extends StatefulWidget {
   const siginWith({super.key});
@@ -13,8 +14,9 @@ class siginWith extends StatefulWidget {
 class _siginWithState extends State<siginWith> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-
   User? _user;
+  String _status = 'Not logged in';
+
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
@@ -61,7 +63,8 @@ class _siginWithState extends State<siginWith> {
             width: w * 0.15,
             height: w * 0.15,
             child: IconButton(
-                onPressed: () {}, icon: Image.asset('assets/other/logofb.png')),
+                onPressed: _loginWithFacebook,
+                icon: Image.asset('assets/other/logofb.png')),
           ),
         ],
       ),
@@ -99,5 +102,33 @@ class _siginWithState extends State<siginWith> {
   Future<void> signOut() async {
     await googleSignIn.signOut();
     await _auth.signOut();
+  }
+
+  Future<void> _loginWithFacebook() async {
+    try {
+      final LoginResult result = await FacebookAuth.instance.login();
+
+      if (result.status == LoginStatus.success) {
+        // Firebase integration starts here
+        final AccessToken? accessToken = result.accessToken;
+        AuthCredential credential =
+            FacebookAuthProvider.credential(accessToken!.token);
+        await FirebaseAuth.instance.signInWithCredential(credential);
+        // Firebase integration ends here
+
+        setState(() {
+          _status = 'Logged in with Facebook';
+        });
+      } else {
+        setState(() {
+          _status = 'Failed to login with Facebook';
+        });
+      }
+    } catch (error) {
+      print(error);
+      setState(() {
+        _status = 'Failed to login with Facebook';
+      });
+    }
   }
 }
