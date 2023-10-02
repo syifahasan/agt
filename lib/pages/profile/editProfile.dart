@@ -77,6 +77,12 @@ class editProfile extends StatelessWidget {
                               top: w * 0.18, left: w * 0.05, right: w * 0.05),
                           child: Column(
                             children: [
+                              IconButton(
+                                icon: Icon(Icons.edit),
+                                onPressed: () {
+                                  // Add the code to handle the edit profile action here
+                                },
+                              ),
                               Container(
                                 child: _formProfile(
                                   title: 'Name',
@@ -86,7 +92,7 @@ class editProfile extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                child: JenisKelamin(), 
+                                child: JenisKelamin(),
                               ),
                               Container(
                                 child: DateForm(),
