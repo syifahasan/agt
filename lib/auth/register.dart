@@ -1,7 +1,15 @@
+import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/auth/FormInput.dart';
 import 'package:authentic_guards/auth/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final _nameController = TextEditingController();
+final _emailController = TextEditingController();
+final _passwordController = TextEditingController();
+final _reenterPasswordController = TextEditingController();
+final _phoneController = TextEditingController();
 
 class PageRegis extends StatefulWidget {
   const PageRegis({Key? key}) : super(key: key);
@@ -17,6 +25,7 @@ class _LoginViewsState extends State<PageRegis> {
     final appBarSize = AppBar().preferredSize.height;
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
+
     return Scaffold(
         body: Stack(
       children: [
@@ -74,16 +83,26 @@ class _LoginViewsState extends State<PageRegis> {
                     SizedBox(height: w * 0.065),
                     Container(
                       child: InputForm(
+                        labelText: 'Full Name',
+                        hintText: 'Enter Full Name',
+                        keyboardType: TextInputType.name,
+                        controller: _nameController,
+                      ),
+                    ),
+                    Container(
+                      child: InputForm(
                         labelText: 'Enter Email',
                         hintText: 'Email',
                         keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
                       ),
                     ),
                     Container(
                       child: InputForm(
                         labelText: "Enter phone number",
-                        keyboardType: TextInputType.number,
                         hintText: "Enter phone number",
+                        keyboardType: TextInputType.number,
+                        controller: _phoneController,
                       ),
                     ),
                     Container(
@@ -91,6 +110,7 @@ class _LoginViewsState extends State<PageRegis> {
                         labelText: "Password",
                         hintText: "Password",
                         obscureText: true,
+                        controller: _passwordController,
                       ),
                     ),
                     Container(
@@ -98,18 +118,20 @@ class _LoginViewsState extends State<PageRegis> {
                         labelText: "Re-enter Password",
                         hintText: 'Re-enter Password',
                         obscureText: true,
+                        controller: _reenterPasswordController,
                       ),
                     ),
                     Container(
                       width: w * 0.35,
                       padding: EdgeInsets.only(top: w * 0.05),
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) {
-                            return PageLogin();
-                          }));
-                        },
+                        // onPressed: () {
+                        //   Navigator.pushReplacement(context,
+                        //       MaterialPageRoute(builder: (context) {
+                        //     return PageLogin();
+                        //   }));
+                        // },
+                        onPressed: _register,
                         child: Text('Sign Up',
                             style: TextStyle(
                                 fontSize: w * 0.04, color: Colors.black)),
@@ -180,6 +202,36 @@ class _LoginViewsState extends State<PageRegis> {
         ],
       ],
     ));
+  }
+
+  void _register() async {
+    if (_passwordController.text != _reenterPasswordController.text) {
+      print("Kata sandi dan konfirmasi kata sandi tidak cocok.");
+      return;
+    }
+
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      // Mengatur nama dan nomor telepon di profil pengguna
+      userCredential.user!.updateDisplayName(_nameController.text);
+
+      print("User registered: ${userCredential.user!.email}");
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => MainPage()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 }
 

@@ -5,12 +5,14 @@ class InputForm extends StatelessWidget {
   final String hintText;
   final bool? obscureText;
   final TextInputType? keyboardType;
+  final TextEditingController? controller;
   InputForm({
     Key? key,
     required this.labelText,
     required this.hintText,
     this.keyboardType,
     this.obscureText,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class InputForm extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            controller: controller,
             cursorColor: Colors.grey,
             keyboardType: keyboardType,
             obscureText: obscureText ?? false,

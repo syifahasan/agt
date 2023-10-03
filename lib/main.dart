@@ -34,9 +34,7 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(),
       routes: {
-        '/home': (context) => isFirstTime
-            ? OnboardingPage1()
-            : PageLogin(), // Gantikan dengan halaman utama Anda
+        '/home': (context) => isFirstTime ? OnboardingPage1() : PageLogin(),
       },
     );
   }

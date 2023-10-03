@@ -94,12 +94,17 @@ class _LoginViewsState extends State<PageLogin> {
                               return MainPage();
                             }));
                           },
-                          child: Text('Login',
-                              style: TextStyle(
-                                  fontSize: w * 0.04, color: Colors.black)),
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: w * 0.04,
+                              color: Colors.black,
+                            ),
+                          ),
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
-                                Color.fromARGB(255, 131, 109, 109)),
+                              Color(0xFFEEEDED),
+                            ),
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                   borderRadius:
