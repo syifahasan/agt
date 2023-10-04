@@ -16,6 +16,7 @@ Future<void> main() async {
 
   runApp(ChangeNotifierProvider(
     create: (context) => CartProvider(),
+    
     child: MyApp(isFirstTime),
   ));
 }
@@ -34,7 +35,9 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(),
       routes: {
-        '/home': (context) => isFirstTime ? OnboardingPage1() : PageLogin(),
+        '/home': (context) => isFirstTime
+            ? OnboardingPage1()
+            : PageLogin(), // Gantikan dengan halaman utama Anda
       },
     );
   }
