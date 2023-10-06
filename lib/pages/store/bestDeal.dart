@@ -6,6 +6,7 @@ import 'itemDetails.dart';
 import 'myCart.dart';
 import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 
+
 class BestDealPage extends StatelessWidget {
   const BestDealPage({super.key});
 
