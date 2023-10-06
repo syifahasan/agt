@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:authentic_guards/pages/profile/apiWilayah/dropdownSearch.dart';
-import 'package:authentic_guards/pages/profile/editProfile2.dart';
+import 'package:authentic_guards/pages/profile/editProfile.dart';
 
-class editProfile extends StatelessWidget {
-  const editProfile({super.key});
+class editProfile2 extends StatelessWidget {
+  const editProfile2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,6 @@ class editProfile extends StatelessWidget {
                           padding: EdgeInsets.only(
                               top: w * 0.18, left: w * 0.05, right: w * 0.05),
                           child: Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
                                 child: _formProfile(
@@ -87,8 +86,8 @@ class editProfile extends StatelessWidget {
                                   typeKeyboard: TextInputType.name,
                                 ),
                               ),
-                              Container(          
-                                child: JenisKelamin(),    
+                              Container(
+                                child: JenisKelamin(),
                               ),
                               Container(
                                 child: DateForm(),
@@ -128,45 +127,37 @@ class editProfile extends StatelessWidget {
                                   typeKeyboard: TextInputType.number,
                                 ),
                               ),
-                              // Container(
-                              //   width: w * 0.4,
-                              //   height: w * 0.1,
-                              //   margin: EdgeInsets.only(top: w * 0.05),
-                              //   child: ElevatedButton(
-                              //     onPressed: () {},
-                              //     child: Text('Save',
-                              //         style: TextStyle(
-                              //             fontSize: w * 0.04,
-                              //             color: Colors.white)),
-                              //     style: ButtonStyle(
-                              //       backgroundColor: MaterialStateProperty.all(
-                              //           Color(0xffff6161)),
-                              //       shape: MaterialStateProperty.all(
-                              //         RoundedRectangleBorder(
-                              //             borderRadius:
-                              //                 BorderRadius.circular(w * 0.05)),
-                              //       ),
-                              //     ),
-                              //   ),
-                              // ),
+                              Container(
+                                width: w * 0.4,
+                                height: w * 0.1,
+                                margin: EdgeInsets.only(top: w * 0.05),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(  
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => editProfile(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text('Save',
+                                      style: TextStyle(
+                                          fontSize: w * 0.04,
+                                          color: Colors.white)),
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        Color(0xffff6161)),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(w * 0.05)),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                      ),
-                    ),
-                    Positioned(
-                      top: w * 0.23,
-                      right: w * 0.04,
-                      child: IconButton(
-                        icon: Icon(Icons.edit_outlined),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => editProfile2(),
-                            ),
-                          ); // Add the co de to handle the edit profile action here
-                        },
                       ),
                     ),
                     Align(
