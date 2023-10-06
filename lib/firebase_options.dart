@@ -23,9 +23,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -54,30 +60,10 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAv7JlTXySXBHj4LolwfRdcS8yhp760X28',
+    apiKey: 'AIzaSyBFjyWYVbBre6tAi7j4DiEqGmE5UOPj_XE',
     appId: '1:1073945365730:android:387b4f13378698691362bb',
     messagingSenderId: '1073945365730',
     projectId: 'authenticguards-8dee8',
     storageBucket: 'authenticguards-8dee8.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAPuzO5wFA7dtDBGoJk4ib9FjWDx5E73X8',
-    appId: '1:1073945365730:ios:ba4332cb1b6f3ba71362bb',
-    messagingSenderId: '1073945365730',
-    projectId: 'authenticguards-8dee8',
-    storageBucket: 'authenticguards-8dee8.appspot.com',
-    androidClientId: '1073945365730-3f4md010fcou8u3rcg9n0ooq8qkh0uh4.apps.googleusercontent.com',
-    iosBundleId: 'com.example.authenticGuards',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAPuzO5wFA7dtDBGoJk4ib9FjWDx5E73X8',
-    appId: '1:1073945365730:ios:d4dce7b9db55228d1362bb',
-    messagingSenderId: '1073945365730',
-    projectId: 'authenticguards-8dee8',
-    storageBucket: 'authenticguards-8dee8.appspot.com',
-    androidClientId: '1073945365730-3f4md010fcou8u3rcg9n0ooq8qkh0uh4.apps.googleusercontent.com',
-    iosBundleId: 'com.example.authenticGuards.RunnerTests',
   );
 }
