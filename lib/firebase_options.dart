@@ -57,6 +57,7 @@ class DefaultFirebaseOptions {
     authDomain: 'authenticguards-8dee8.firebaseapp.com',
     storageBucket: 'authenticguards-8dee8.appspot.com',
     measurementId: 'G-50BSLMCYS4',
+    
   );
 
   static const FirebaseOptions android = FirebaseOptions(
