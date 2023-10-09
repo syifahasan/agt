@@ -3,6 +3,11 @@ import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:authentic_guards/auth/register.dart';
 import 'package:authentic_guards/auth/FormInput.dart';
 import 'package:authentic_guards/auth/siginWith.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
+final TextEditingController _emailController = TextEditingController();
+final TextEditingController _passwordController = TextEditingController();
 
 class PageLogin extends StatefulWidget {
   const PageLogin({Key? key}) : super(key: key);
@@ -17,6 +22,26 @@ class _LoginViewsState extends State<PageLogin> {
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
+
+    Future<void> _login() async {
+      final email = _emailController.text;
+      final password = _passwordController.text;
+
+      User? user = await signInWithEmailAndPassword(email, password);
+
+      if (user != null) {
+        // Login berhasil, lakukan tindakan yang sesuai, misalnya, arahkan ke halaman beranda.
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => MainPage()));
+      } else {
+        // Login gagal, tampilkan pesan kesalahan kepada pengguna.
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Login gagal. Periksa email dan password Anda.'),
+          ),
+        );
+      }
+    }
 
     return Scaffold(
       body: Container(
@@ -76,6 +101,7 @@ class _LoginViewsState extends State<PageLogin> {
                           labelText: 'Enter Email',
                           hintText: 'Email',
                           keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
                         ),
                       ),
                       Container(
@@ -83,17 +109,13 @@ class _LoginViewsState extends State<PageLogin> {
                         labelText: 'Enter Password',
                         hintText: 'Password',
                         obscureText: true,
+                        controller: _passwordController,
                       )),
                       Container(
                         width: w * 0.35,
                         padding: EdgeInsets.only(top: w * 0.05),
                         child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(context,
-                                MaterialPageRoute(builder: (context) {
-                              return MainPage();
-                            }));
-                          },
+                          onPressed: _login,
                           child: Text(
                             'Login',
                             style: TextStyle(
@@ -153,5 +175,19 @@ class _LoginViewsState extends State<PageLogin> {
         ),
       ),
     );
+  }
+}
+
+Future<User?> signInWithEmailAndPassword(String email, String password) async {
+  try {
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return userCredential.user;
+  } catch (e) {
+    print(e.toString());
+    return null;
   }
 }
