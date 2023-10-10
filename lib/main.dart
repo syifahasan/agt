@@ -13,14 +13,14 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized(); 
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final bool isFirstTime = prefs.getBool('is_first_time') ?? true;
 
-  runApp(ChangeNotifierProvider(
+  runApp(ChangeNotifierProvider(    
     create: (context) => CartProvider(),
     
-    child: MyApp(isFirstTime),
+    child: MyApp(isFirstTime),   
   ));
 }
 
