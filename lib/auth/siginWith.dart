@@ -1,3 +1,4 @@
+import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -14,8 +15,38 @@ class siginWith extends StatefulWidget {
 class _siginWithState extends State<siginWith> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  User? _user;
+  User? user;
   String _status = 'Not logged in';
+
+  Future<User?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      final UserCredential authResult =
+          await _auth.signInWithCredential(credential);
+      final User? user = authResult.user;
+
+      return user;
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
+  }
+
+  void _navigateToHomePage(User? user) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => MainPage(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,40 +56,26 @@ class _siginWithState extends State<siginWith> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (_user != null)
-            Column(
-              children: [
-                Text('Signed in successfully: ${_user!.displayName}'),
-                ElevatedButton(
-                  child: Text('Sign out'),
-                  onPressed: () async {
-                    await signOut();
-                    setState(() {
-                      _user = null;
-                    });
-                  },
-                ),
-              ],
-            )
-          else
-            Container(
-              width: w * 0.15,
-              height: w * 0.15,
-              child: IconButton(
-                  onPressed: () async {
-                    final user = await signInWithGoogle();
-                    if (user != null && !user.isAnonymous) {
-                      setState(() {
-                        _user = user;
-                      });
-                      print(
-                          'Successfully signed in with Google: ${user.displayName}');
-                    } else {
-                      print('Failed to sign in with Google');
-                    }
-                  },
-                  icon: Image.asset('assets/other/logoGoogle.png')),
-            ),
+          Container(
+            width: w * 0.15,
+            height: w * 0.15,
+            child: IconButton(
+                onPressed: () async {
+                  final User? user = await signInWithGoogle();
+                  if (user != null) {
+                    // Pengguna berhasil login menggunakan Google.
+                    _navigateToHomePage(user);
+                  } else {
+                    // Login gagal atau dibatalkan.
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Login dengan Google gagal.'),
+                      ),
+                    );
+                  }
+                },
+                icon: Image.asset('assets/other/logoGoogle.png')),
+          ),
           Container(
             width: w * 0.15,
             height: w * 0.15,
@@ -69,34 +86,6 @@ class _siginWithState extends State<siginWith> {
         ],
       ),
     );
-  }
-
-  Future<User?> signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await googleSignIn.signIn();
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleSignInAuthentication.accessToken,
-          idToken: googleSignInAuthentication.idToken,
-        );
-        final UserCredential authResult =
-            await _auth.signInWithCredential(credential);
-        final User? user = authResult.user;
-
-        if (user != null &&
-            !user.isAnonymous &&
-            await user.getIdToken() != null) {
-          return user;
-        }
-      }
-      return null;
-    } catch (error) {
-      print(error);
-      return null;
-    }
   }
 
   Future<void> signOut() async {
