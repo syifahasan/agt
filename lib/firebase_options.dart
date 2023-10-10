@@ -68,6 +68,7 @@ class DefaultFirebaseOptions {
     projectId: 'authenticguards-8dee8',
     storageBucket: 'authenticguards-8dee8.appspot.com',
     androidClientId: '1073945365730-3f4md010fcou8u3rcg9n0ooq8qkh0uh4.apps.googleusercontent.com',
+    iosClientId: '1073945365730-48fff1nv3jfh3gj0agr3qmdl3cl4ktsc.apps.googleusercontent.com',
     iosBundleId: 'com.example.authenticGuards',
   );
 
@@ -78,6 +79,7 @@ class DefaultFirebaseOptions {
     projectId: 'authenticguards-8dee8',
     storageBucket: 'authenticguards-8dee8.appspot.com',
     androidClientId: '1073945365730-3f4md010fcou8u3rcg9n0ooq8qkh0uh4.apps.googleusercontent.com',
+    iosClientId: '1073945365730-o3asbum00ukkr08vebsg6ntvpdo8m728.apps.googleusercontent.com',
     iosBundleId: 'com.example.authenticGuards.RunnerTests',
   );
 }
