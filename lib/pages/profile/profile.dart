@@ -8,6 +8,7 @@ import 'package:authentic_guards/pages/profile/privacy.dart';
 import 'package:authentic_guards/pages/profile/editProfile.dart';
 import 'package:authentic_guards/pages/profile/appBar.dart';
 import 'package:authentic_guards/pages/profile/owned.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -16,15 +17,9 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
-    void logout() {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return PageLogin();
-          },
-        ),
-      );
+
+    Future<void> signOut() async {
+      await FirebaseAuth.instance.signOut();
     }
 
     void owned() {
@@ -291,7 +286,12 @@ class ProfilePage extends StatelessWidget {
                   child: _textButton(
                     title: 'Log Out',
                     color: Color(0xffff3b30),
-                    nav: logout,
+                    nav: () async {
+                      await signOut();
+                      // Setelah logout, arahkan pengguna ke halaman login atau beranda, tergantung pada kebutuhan Anda.
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => PageLogin()));
+                    },
                   ),
                 ),
               ],
