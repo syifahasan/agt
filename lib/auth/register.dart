@@ -4,6 +4,7 @@ import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/auth/FormInput.dart';
 import 'package:authentic_guards/auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final _nameController = TextEditingController();
 final _emailController = TextEditingController();
@@ -25,6 +26,54 @@ class _LoginViewsState extends State<PageRegis> {
     final appBarSize = AppBar().preferredSize.height;
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
+    final CollectionReference users =
+    FirebaseFirestore.instance.collection('users');
+
+    Future<void> _register() async {
+      if (_passwordController.text != _reenterPasswordController.text) {
+        print("Kata sandi dan konfirmasi kata sandi tidak cocok.");
+        return;
+      }
+
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+
+        User? newUser = userCredential.user;
+
+        if (newUser != null) {
+          users.doc(newUser.uid).set({
+            'email': newUser.email,
+            'displayName': _nameController.text,
+          }).then((_) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Registered successfully!"),
+            ));
+          }).catchError((error) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Failed to add user to Firestore: $error"),
+            ));
+          });
+        }
+        // Mengatur nama dan nomor telepon di profil pengguna
+        userCredential.user!.updateDisplayName(_nameController.text);
+
+        print("User registered: ${userCredential.user!.email}");
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => MainPage()));
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
 
     return Scaffold(
         body: Stack(
@@ -202,36 +251,6 @@ class _LoginViewsState extends State<PageRegis> {
         ],
       ],
     ));
-  }
-
-  void _register() async {
-    if (_passwordController.text != _reenterPasswordController.text) {
-      print("Kata sandi dan konfirmasi kata sandi tidak cocok.");
-      return;
-    }
-
-    try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-
-      // Mengatur nama dan nomor telepon di profil pengguna
-      userCredential.user!.updateDisplayName(_nameController.text);
-
-      print("User registered: ${userCredential.user!.email}");
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => MainPage()));
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
-    } catch (e) {
-      print(e);
-    }
   }
 }
 
