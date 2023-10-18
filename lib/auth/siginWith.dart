@@ -15,27 +15,28 @@ class siginWith extends StatefulWidget {
 class _siginWithState extends State<siginWith> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
-  User? user;
   String _status = 'Not logged in';
 
   Future<User?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount!.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleSignInAuthentication.accessToken,
+          idToken: googleSignInAuthentication.idToken,
+        );
 
-      final UserCredential authResult =
-          await _auth.signInWithCredential(credential);
-      final User? user = authResult.user;
+        final UserCredential authResult =
+            await _auth.signInWithCredential(credential);
+        final User? user = authResult.user;
 
-      return user;
+        return user;
+      }
     } catch (error) {
-      print(error.toString());
+      print(error);
       return null;
     }
   }
@@ -80,7 +81,14 @@ class _siginWithState extends State<siginWith> {
             width: w * 0.15,
             height: w * 0.15,
             child: IconButton(
-                onPressed: _loginWithFacebook,
+                onPressed: () async {
+                  User? user = await signInWithFacebook();
+                  if (user != null) {
+                    print("Logged in with Facebook as ${user.displayName}");
+                  } else {
+                    print("Failed to log in with Facebook");
+                  }
+                },
                 icon: Image.asset('assets/other/logofb.png')),
           ),
         ],
@@ -88,36 +96,21 @@ class _siginWithState extends State<siginWith> {
     );
   }
 
-  Future<void> signOut() async {
-    await googleSignIn.signOut();
-    await _auth.signOut();
-  }
-
-  Future<void> _loginWithFacebook() async {
+  Future<User?> signInWithFacebook() async {
     try {
-      final LoginResult result = await FacebookAuth.instance.login();
-
-      if (result.status == LoginStatus.success) {
-        // Firebase integration starts here
-        final AccessToken? accessToken = result.accessToken;
-        AuthCredential credential =
-            FacebookAuthProvider.credential(accessToken!.token);
-        await FirebaseAuth.instance.signInWithCredential(credential);
-        // Firebase integration ends here
-
-        setState(() {
-          _status = 'Logged in with Facebook';
-        });
-      } else {
-        setState(() {
-          _status = 'Failed to login with Facebook';
-        });
+      final LoginResult facebookLoginResult =
+          await FacebookAuth.instance.login();
+      if (facebookLoginResult.status == LoginStatus.success) {
+        final OAuthCredential facebookAuthCredential =
+            FacebookAuthProvider.credential(
+                facebookLoginResult.accessToken!.token);
+        final UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithCredential(facebookAuthCredential);
+        return userCredential.user;
       }
-    } catch (error) {
-      print(error);
-      setState(() {
-        _status = 'Failed to login with Facebook';
-      });
+    } catch (e) {
+      print(e);
+      return null;
     }
   }
 }

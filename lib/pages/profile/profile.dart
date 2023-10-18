@@ -8,6 +8,8 @@ import 'package:authentic_guards/pages/profile/privacy.dart';
 import 'package:authentic_guards/pages/profile/editProfile.dart';
 import 'package:authentic_guards/pages/profile/appBar.dart';
 import 'package:authentic_guards/pages/profile/owned.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -17,9 +19,25 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
+    final GoogleSignIn googleSignIn = GoogleSignIn();
 
     Future<void> signOut() async {
       await FirebaseAuth.instance.signOut();
+    }
+
+    Future<void> signOutGoogle() async {
+      await googleSignIn.signOut();
+      print("User Signed Out");
+    }
+
+    Future<void> signOutFromFacebook() async {
+      try {
+        await FirebaseAuth.instance.signOut();
+        await FacebookAuth.instance.logOut();
+        print("Logged out from Facebook successfully!");
+      } catch (e) {
+        print("Error logging out: $e");
+      }
     }
 
     void owned() {
@@ -288,6 +306,8 @@ class ProfilePage extends StatelessWidget {
                     color: Color(0xffff3b30),
                     nav: () async {
                       await signOut();
+                      await signOutGoogle();
+                      await signOutFromFacebook();
                       // Setelah logout, arahkan pengguna ke halaman login atau beranda, tergantung pada kebutuhan Anda.
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => PageLogin()));
