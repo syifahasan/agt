@@ -119,7 +119,7 @@ class Congratulations extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       width: w * 0.9,
-                      height: w * 0.7,
+                      height: w * 0.75,
                       decoration: BoxDecoration(
                         color: Colors.grey[900],
                         borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -151,173 +151,53 @@ class Congratulations extends StatelessWidget {
                     ),
                     Positioned(
                       left: 20.0,
-                      top: 40.0,
-                      child: Container(
-                        width: w * 0.8,
-                        // color: Colors.amber,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Name',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Container(
-                                  width: w * 0.4,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        ': Roman Picisan',
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Nicotine',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Container(
-                                  width: w * 0.4,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        text: TextSpan(
-                                          text: ': 6mg',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Size',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Container(
-                                  width: w * 0.4,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        text: TextSpan(
-                                          text: ': 60ml',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Flavour',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Container(
-                                  width: w * 0.4,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        text: TextSpan(
-                                          text: ': Starwberry Cream Yogurt',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Production Date',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Container(
-                                  width: w * 0.4,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        text: TextSpan(
-                                          text: ': 21-05-22',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              color: Colors.amber,
-                              width: w * 2,
-                              child: Row(
+                      top: 45.0,
+                      child: Center(
+                        child: Container(
+                          width: w * 0.8,
+                          color: Colors.amber,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Company',
+                                    'Name',
                                     style: TextStyle(
                                       fontSize: 13,
                                     ),
                                   ),
                                   Container(
-                                    // width: w * 0.4,
+                                    width: w * 0.4,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          ': Roman Picisan',
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Nicotine',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: w * 0.4,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -326,7 +206,7 @@ class Congratulations extends StatelessWidget {
                                           softWrap: true,
                                           maxLines: 2,
                                           text: TextSpan(
-                                            text: ': PT ASIA VAPORINDO BERJAYA',
+                                            text: ': 6mg',
                                             style: TextStyle(
                                               fontSize: 13,
                                               color: Colors.black,
@@ -338,98 +218,239 @@ class Congratulations extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Email',
-                                  style: TextStyle(
-                                    fontSize: 13,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Size',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  width: w * 0.4,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        text: TextSpan(
-                                          text: ': juicenationco@gmail.com',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
+                                  Container(
+                                    width: w * 0.4,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        RichText(
+                                          softWrap: true,
+                                          maxLines: 2,
+                                          text: TextSpan(
+                                            text: ': 60ml',
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Webisite',
-                                  style: TextStyle(
-                                    fontSize: 13,
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Flavour',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  width: w * 0.4,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        text: TextSpan(
-                                          text: ': www.juicenation.co.id',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
+                                  Container(
+                                    width: w * 0.4,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: RichText(
+                                            // softWrap: true,
+                                            text: TextSpan(
+                                              text: ': Starwberry Cream Yogurt',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Company Hotline',
-                                  style: TextStyle(
-                                    fontSize: 13,
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Production Date',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  width: w * 0.4,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      RichText(
-                                        softWrap: true,
-                                        maxLines: 2,
-                                        text: TextSpan(
-                                          text: ': 081222201649',
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: Colors.black,
+                                  Container(
+                                    width: w * 0.4,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        RichText(
+                                          softWrap: true,
+                                          maxLines: 2,
+                                          text: TextSpan(
+                                            text: ': 21-05-22',
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Company',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: w * 0.4,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: RichText(
+                                            softWrap: true,
+                                            maxLines: 2,
+                                            text: TextSpan(
+                                              text:
+                                                  ': PT ASIA VAPORINDO BERJAYA',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Email',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: w * 0.4,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Flexible(
+                                          child: RichText(
+                                            softWrap: true,
+                                            maxLines: 2,
+                                            text: TextSpan(
+                                              text: ': juicenationco@gmail.com',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Webisite',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: w * 0.4,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        RichText(
+                                          softWrap: true,
+                                          maxLines: 2,
+                                          text: TextSpan(
+                                            text: ': www.juicenation.co.id',
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Company Hotline',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: w * 0.4,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        RichText(
+                                          softWrap: true,
+                                          maxLines: 2,
+                                          text: TextSpan(
+                                            text: ': 081222201649',
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
