@@ -10,6 +10,7 @@ import 'package:authentic_guards/utils/splashscreeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'pages/scanner/proner.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
