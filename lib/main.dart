@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/store/bestDeal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:authentic_guards/auth/login.dart';
@@ -8,18 +9,18 @@ import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:authentic_guards/utils/splashscreeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
+import 'pages/scanner/proner.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  
-  WidgetsFlutterBinding.ensureInitialized(); 
+  WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final bool isFirstTime = prefs.getBool('is_first_time') ?? true;
 
-  runApp(ChangeNotifierProvider(    
+  runApp(ChangeNotifierProvider(
     create: (context) => CartProvider(),
     child: MyApp(isFirstTime),
   ));
@@ -46,3 +47,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
