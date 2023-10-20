@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class siginWith extends StatefulWidget {
   const siginWith({super.key});
@@ -15,9 +16,20 @@ class siginWith extends StatefulWidget {
 class _siginWithState extends State<siginWith> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  final databaseReference = FirebaseDatabase.instance.reference();
   String _status = 'Not logged in';
 
-  Future<User?> signInWithGoogle() async {
+  void addUser(String userId, String fullName, String email) {
+    databaseReference.child("users/$userId").set({
+      'fullName': fullName,
+      'email': email,
+      'createdAt': DateTime.now().toIso8601String(),
+    }).catchError((error) {
+      print("Error when adding user: $error");
+    });
+  }
+
+  Future<void> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
@@ -29,24 +41,23 @@ class _siginWithState extends State<siginWith> {
           idToken: googleSignInAuthentication.idToken,
         );
 
-        final UserCredential authResult =
+        final UserCredential userCredential =
             await _auth.signInWithCredential(credential);
-        final User? user = authResult.user;
-
-        return user;
+        // final User? user = authResult.user;
+        final User? user = userCredential.user;
+        // Jika masuk berhasil, tambahkan pengguna ke Firebase Realtime Database
+        if (user != null) {
+          addUser(user.uid, user.displayName!, user.email!);
+        }
+        // Pindah ke HomePage setelah login google
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => MainPage()),
+        );
       }
     } catch (error) {
       print(error);
       return null;
     }
-  }
-
-  void _navigateToHomePage(User? user) {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => MainPage(),
-      ),
-    );
   }
 
   @override
@@ -62,16 +73,14 @@ class _siginWithState extends State<siginWith> {
             height: w * 0.15,
             child: IconButton(
                 onPressed: () async {
-                  final User? user = await signInWithGoogle();
-                  if (user != null) {
-                    // Pengguna berhasil login menggunakan Google.
-                    _navigateToHomePage(user);
-                  } else {
-                    // Login gagal atau dibatalkan.
+                  try {
+                    await signInWithGoogle();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Login dengan Google gagal.'),
-                      ),
+                      SnackBar(content: Text('Login Successful!')),
+                    );
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error: $e')),
                     );
                   }
                 },

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">authentic_guards</string>
-    <string name="facebook_app_id">1665784824228616</string>
-    <string name="fb_login_protocol_scheme">fb1665784824228616</string>
-    <string name="facebook_client_token">dffe20b4e8e956208dc80eea734146a3</string>
+    <string name="facebook_app_id">1828473967403410</string>
+    <string name="fb_login_protocol_scheme">fb1828473967403410</string>
+    <string name="facebook_client_token">25212ff08ac19b7500f1d22ca441b37d</string>
 </resources>

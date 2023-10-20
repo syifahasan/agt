@@ -5,6 +5,7 @@ import 'package:authentic_guards/auth/FormInput.dart';
 import 'package:authentic_guards/auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 final _nameController = TextEditingController();
 final _emailController = TextEditingController();
@@ -27,41 +28,58 @@ class _LoginViewsState extends State<PageRegis> {
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;
     final CollectionReference users =
-    FirebaseFirestore.instance.collection('users');
+        FirebaseFirestore.instance.collection('users');
+    final databaseReference = FirebaseDatabase.instance.reference();
 
-    Future<void> _register() async {
-      if (_passwordController.text != _reenterPasswordController.text) {
-        print("Kata sandi dan konfirmasi kata sandi tidak cocok.");
-        return;
-      }
+    void addUser(
+        String userId, String fullName, String email, String phoneNumber) {
+      databaseReference.child("users/$userId").set({
+        'fullName': fullName,
+        'email': email,
+        'PhoneNumber': phoneNumber,
+        'createdAt': DateTime.now().toIso8601String(),
+      }).catchError((error) {
+        print("Error when adding user: $error");
+      });
+    }
 
+    Future<void> _register(String fullName, String email, String phoneNumber,
+        String password, String reenterPass) async {
       try {
+        if (password != reenterPass) {
+          print("Kata sandi dan konfirmasi kata sandi tidak cocok.");
+          return;
+        }
         UserCredential userCredential =
             await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
+          email: email,
+          password: password,
         );
 
         User? newUser = userCredential.user;
 
-        if (newUser != null) {
-          users.doc(newUser.uid).set({
-            'email': newUser.email,
-            'displayName': _nameController.text,
-          }).then((_) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text("Registered successfully!"),
-            ));
-          }).catchError((error) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text("Failed to add user to Firestore: $error"),
-            ));
-          });
-        }
+        // if (newUser != null) {
+        //   users.doc(newUser.uid).set({
+        //     'email': newUser.email,
+        //     'FullName': _nameController.text,
+        //     'PhoneNumber': _phoneController.text,
+        //   }).then((_) {
+        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //       content: Text("Registered successfully!"),
+        //     ));
+        //   }).catchError((error) {
+        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //       content: Text("Failed to add user to Firestore: $error"),
+        //     ));
+        //   });
+        // }
+        addUser(userCredential.user!.uid, fullName, email, phoneNumber);
         // Mengatur nama dan nomor telepon di profil pengguna
         userCredential.user!.updateDisplayName(_nameController.text);
 
         print("User registered: ${userCredential.user!.email}");
+
+        //Mengatur Navigasi ke MainPage setelah selesai register
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => MainPage()));
       } on FirebaseAuthException catch (e) {
@@ -174,13 +192,25 @@ class _LoginViewsState extends State<PageRegis> {
                       width: w * 0.35,
                       padding: EdgeInsets.only(top: w * 0.05),
                       child: ElevatedButton(
-                        // onPressed: () {
-                        //   Navigator.pushReplacement(context,
-                        //       MaterialPageRoute(builder: (context) {
-                        //     return PageLogin();
-                        //   }));
-                        // },
-                        onPressed: _register,
+                        onPressed: () async {
+                          try {
+                            await _register(
+                              _nameController.text,
+                              _emailController.text,
+                              _phoneController.text,
+                              _passwordController.text,
+                              _reenterPasswordController.text,
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text('Registration Successful!')),
+                            );
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Error: $e')),
+                            );
+                          }
+                        },
                         child: Text('Sign Up',
                             style: TextStyle(
                                 fontSize: w * 0.04, color: Colors.black)),
