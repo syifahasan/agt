@@ -1,14 +1,52 @@
 import 'package:authentic_guards/pages/notification.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class changePass extends StatelessWidget {
+class changePass extends StatefulWidget {
   const changePass({super.key});
 
+  @override
+  State<changePass> createState() => _changePassState();
+}
+
+class _changePassState extends State<changePass> {
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final w = mediaQueryData.size.width;
     final h = mediaQueryData.size.height;
+    final _auth = FirebaseAuth.instance;
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+    String newPassword = '';
+    String message = '';
+    String oldPassword = '';
+    String confirmPassword = '';
+
+    Future<void> changePassword(String email) async {
+      if (_formKey.currentState!.validate()) {
+        User? user = _auth.currentUser;
+
+        try {
+          final AuthCredential credential = EmailAuthProvider.credential(
+            email: email,
+            password: oldPassword,
+          );
+
+          await user!.reauthenticateWithCredential(credential);
+          await user!.updatePassword(newPassword);
+
+          setState(() {
+            message = 'Password berhasil diubah!';
+          });
+        } catch (e) {
+          setState(() {
+            message = 'Gagal memperbarui password: $e';
+          });
+        }
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: CustomScrollView(
@@ -61,18 +99,47 @@ class changePass extends StatelessWidget {
                           child: _formProfile(
                             title: 'Enter Password',
                             hint: 'input your password',
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Harap masukkan password lama.';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              oldPassword = value;
+                            },
                           ),
                         ),
                         Container(
                           child: _formProfile(
                             title: 'New Password',
                             hint: 'input your new password',
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Harap masukkan password baru.';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              newPassword = value;
+                            },
                           ),
                         ),
                         Container(
                           child: _formProfile(
                             title: 'Confrim Password',
                             hint: 'input your new password',
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Harap konfirmasi password baru.';
+                              } else if (value != newPassword) {
+                                return 'Konfirmasi password baru tidak cocok.';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              confirmPassword = value;
+                            },
                           ),
                         ),
                         Container(
@@ -80,7 +147,7 @@ class changePass extends StatelessWidget {
                           height: w * 0.12,
                           margin: EdgeInsets.only(top: w * 0.05),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => changePassword,
                             child: Text('Save',
                                 style: TextStyle(
                                     fontSize: w * 0.04, color: Colors.white)),
@@ -111,9 +178,13 @@ class changePass extends StatelessWidget {
 class _formProfile extends StatelessWidget {
   final String title;
   final String hint;
+  final FormFieldValidator<String>? validator;
+  final Function(String)? onChanged;
   const _formProfile({
     required this.title,
     required this.hint,
+    required this.validator,
+    required this.onChanged,
     super.key,
   });
 
@@ -139,6 +210,8 @@ class _formProfile extends StatelessWidget {
         TextFormField(
           cursorColor: Colors.grey,
           obscureText: true,
+          validator: validator,
+          onChanged: onChanged,
           style: TextStyle(fontSize: w * 0.042),
           decoration: InputDecoration(
             // labelText: labelText,
