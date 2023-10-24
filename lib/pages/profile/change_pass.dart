@@ -18,30 +18,31 @@ class _changePassState extends State<changePass> {
     final _auth = FirebaseAuth.instance;
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+    String email = '';
     String newPassword = '';
     String message = '';
-    String oldPassword = '';
     String confirmPassword = '';
+    String currentPassword = '';
 
-    Future<void> changePassword(String email) async {
+    Future<void> changePassword() async {
       if (_formKey.currentState!.validate()) {
-        User? user = _auth.currentUser;
-
         try {
-          final AuthCredential credential = EmailAuthProvider.credential(
+          UserCredential userCredential =
+              await _auth.signInWithEmailAndPassword(
             email: email,
-            password: oldPassword,
+            password: currentPassword,
           );
 
-          await user!.reauthenticateWithCredential(credential);
-          await user!.updatePassword(newPassword);
+          User? user = userCredential.user;
+
+          await user?.updatePassword(newPassword);
 
           setState(() {
             message = 'Password berhasil diubah!';
           });
         } catch (e) {
           setState(() {
-            message = 'Gagal memperbarui password: $e';
+            message = 'Gagal mengganti password: $e';
           });
         }
       }
@@ -106,7 +107,7 @@ class _changePassState extends State<changePass> {
                               return null;
                             },
                             onChanged: (value) {
-                              oldPassword = value;
+                              currentPassword = value;
                             },
                           ),
                         ),
