@@ -16,37 +16,6 @@ class _changePassState extends State<changePass> {
     final w = mediaQueryData.size.width;
     final h = mediaQueryData.size.height;
     final _auth = FirebaseAuth.instance;
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-    String email = '';
-    String newPassword = '';
-    String message = '';
-    String confirmPassword = '';
-    String currentPassword = '';
-
-    Future<void> changePassword() async {
-      if (_formKey.currentState!.validate()) {
-        try {
-          UserCredential userCredential =
-              await _auth.signInWithEmailAndPassword(
-            email: email,
-            password: currentPassword,
-          );
-
-          User? user = userCredential.user;
-
-          await user?.updatePassword(newPassword);
-
-          setState(() {
-            message = 'Password berhasil diubah!';
-          });
-        } catch (e) {
-          setState(() {
-            message = 'Gagal mengganti password: $e';
-          });
-        }
-      }
-    }
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -100,47 +69,18 @@ class _changePassState extends State<changePass> {
                           child: _formProfile(
                             title: 'Enter Password',
                             hint: 'input your password',
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Harap masukkan password lama.';
-                              }
-                              return null;
-                            },
-                            onChanged: (value) {
-                              currentPassword = value;
-                            },
                           ),
                         ),
                         Container(
                           child: _formProfile(
                             title: 'New Password',
                             hint: 'input your new password',
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Harap masukkan password baru.';
-                              }
-                              return null;
-                            },
-                            onChanged: (value) {
-                              newPassword = value;
-                            },
                           ),
                         ),
                         Container(
                           child: _formProfile(
                             title: 'Confrim Password',
                             hint: 'input your new password',
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Harap konfirmasi password baru.';
-                              } else if (value != newPassword) {
-                                return 'Konfirmasi password baru tidak cocok.';
-                              }
-                              return null;
-                            },
-                            onChanged: (value) {
-                              confirmPassword = value;
-                            },
                           ),
                         ),
                         Container(
@@ -148,7 +88,7 @@ class _changePassState extends State<changePass> {
                           height: w * 0.12,
                           margin: EdgeInsets.only(top: w * 0.05),
                           child: ElevatedButton(
-                            onPressed: () => changePassword,
+                            onPressed: () {},
                             child: Text('Save',
                                 style: TextStyle(
                                     fontSize: w * 0.04, color: Colors.white)),
@@ -179,13 +119,10 @@ class _changePassState extends State<changePass> {
 class _formProfile extends StatelessWidget {
   final String title;
   final String hint;
-  final FormFieldValidator<String>? validator;
-  final Function(String)? onChanged;
+
   const _formProfile({
     required this.title,
     required this.hint,
-    required this.validator,
-    required this.onChanged,
     super.key,
   });
 
@@ -211,8 +148,6 @@ class _formProfile extends StatelessWidget {
         TextFormField(
           cursorColor: Colors.grey,
           obscureText: true,
-          validator: validator,
-          onChanged: onChanged,
           style: TextStyle(fontSize: w * 0.042),
           decoration: InputDecoration(
             // labelText: labelText,
