@@ -1,3 +1,8 @@
+import 'package:authentic_guards/model/user.dart';
+import 'package:authentic_guards/pages/home.dart';
+import 'package:authentic_guards/pages/notification.dart';
+import 'package:authentic_guards/pages/profile/profile.dart';
+import 'package:authentic_guards/pages/scanner/scanner.dart';
 import 'package:authentic_guards/pages/store/bestDeal.dart';
 import 'package:authentic_guards/pages/store/store.dart';
 import 'package:authentic_guards/utils/navigationBar.dart';
@@ -67,4 +72,25 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+<<<<<<< HEAD
+=======
 
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'My Flutter ',
+//       initialRoute: '/',
+//       routes: {
+//         '/': (context) => changePass(),
+//       },
+//     );
+//   }
+// }
+>>>>>>> dce8a91e823e4ec4163c61f470bf75ae49c2439a
