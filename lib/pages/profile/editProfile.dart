@@ -87,8 +87,8 @@ class editProfile extends StatelessWidget {
                                   typeKeyboard: TextInputType.name,
                                 ),
                               ),
-                              Container(          
-                                child: JenisKelamin(),    
+                              Container(
+                                child: JenisKelamin(),
                               ),
                               Container(
                                 child: DateForm(),

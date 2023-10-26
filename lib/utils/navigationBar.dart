@@ -22,27 +22,30 @@ class _MainPageState extends State<MainPage> {
 
   bool _scannerActive = false;
   int _currentPage = 0;
-  
+
   @override
   void dispose() {
     // Call dispose for the scanner controller here
     _scannerController.dispose();
     super.dispose();
   }
-  
 
   @override
   Widget build(BuildContext context) {
-    final screens = [
-    HomePage(),
-    StorePage(),
-    ScannerPage(isScannerActive: _scannerActive),
-    NotifPage(),
-    ProfilePage(),
-  ];
+    final route = {
+      '/HomePage': (BuildContext context) => HomePage(),
+      '/StorePage': (BuildContext context) => StorePage(),
+      '/ScannerPAge': (BuildContext context) =>
+          ScannerPage(isScannerActive: _scannerActive),
+      '/NotifPage': (BuildContext context) => NotifPage(),
+      '/ProfilePage': (BuildContext context) => ProfilePage(),
+    };
 
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
+    final screens =
+        route.values.map((pageBuilder) => pageBuilder(context)).toList();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: screens[_currentPage],
@@ -51,12 +54,12 @@ class _MainPageState extends State<MainPage> {
         currentIndex: _currentPage,
         onTap: (index) {
           if (_currentPage == 2 && index != 2) {
-              // If transitioning away from ScannerPage, stop the scanner
-              _scannerActive = false;
-            } else if (_currentPage != 2 && index == 2) {
-              // If transitioning to ScannerPage, start the scanner
-              _scannerActive = true;
-            }
+            // If transitioning away from ScannerPage, stop the scanner
+            _scannerActive = false;
+          } else if (_currentPage != 2 && index == 2) {
+            // If transitioning to ScannerPage, start the scanner
+            _scannerActive = true;
+          }
           setState(() {
             _currentPage = index;
           });
