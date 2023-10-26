@@ -13,7 +13,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+
+  final _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +69,7 @@ class ProfilePage extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return editProfile();
+            return editProfile(name: _nameController.text);
           },
         ),
       );

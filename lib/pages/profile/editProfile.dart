@@ -4,7 +4,9 @@ import 'package:authentic_guards/pages/profile/apiWilayah/dropdownSearch.dart';
 import 'package:authentic_guards/pages/profile/editProfile2.dart';
 
 class editProfile extends StatelessWidget {
-  const editProfile({super.key});
+  editProfile({Key? key, required this.name}) : super(key: key);
+
+  String name;
 
   @override
   Widget build(BuildContext context) {
@@ -82,13 +84,13 @@ class editProfile extends StatelessWidget {
                               Container(
                                 child: _formProfile(
                                   title: 'Name',
-                                  value: 'Asep Saefuddin Zuhri',
-                                  hint: 'Full Name',
+                                  value: (name),
+                                  // hint: 'Full Name',
                                   typeKeyboard: TextInputType.name,
                                 ),
                               ),
-                              Container(          
-                                child: JenisKelamin(),    
+                              Container(
+                                child: JenisKelamin(),
                               ),
                               Container(
                                 child: DateForm(),
@@ -98,14 +100,14 @@ class editProfile extends StatelessWidget {
                                   typeKeyboard: TextInputType.phone,
                                   title: 'Phone Number',
                                   value: '+62 000 0000 0000',
-                                  hint: 'Phone Number',
+                                  // hint: 'Phone Number',
                                 ),
                               ),
                               Container(
                                 child: _formProfile(
                                   title: 'Email',
                                   value: 'asep@gmail.com',
-                                  hint: 'Email',
+                                  // hint: 'Email',
                                   typeKeyboard: TextInputType.emailAddress,
                                 ),
                               ),
@@ -116,7 +118,7 @@ class editProfile extends StatelessWidget {
                                 child: _formProfile(
                                   title: 'Detail Address',
                                   value: 'Indramayu - Kertasemaya',
-                                  hint: 'Address',
+                                  // hint: 'Address',
                                   typeKeyboard: TextInputType.streetAddress,
                                 ),
                               ),
@@ -124,7 +126,7 @@ class editProfile extends StatelessWidget {
                                 child: _formProfile(
                                   title: 'Postal Code',
                                   value: '45274',
-                                  hint: 'Input your postal code',
+                                  // hint: 'Input your postal code',
                                   typeKeyboard: TextInputType.number,
                                 ),
                               ),
@@ -446,12 +448,12 @@ class _ButtonColorChangerState extends State<JenisKelamin> {
 class _formProfile extends StatelessWidget {
   final String title;
   final String value;
-  final String hint;
+  // final String hint;
   final TextInputType typeKeyboard;
   const _formProfile({
     required this.title,
     required this.value,
-    required this.hint,
+    // required this.hint,
     required this.typeKeyboard,
     super.key,
   });
@@ -479,11 +481,11 @@ class _formProfile extends StatelessWidget {
             keyboardType: typeKeyboard,
             style: TextStyle(fontSize: w * 0.04),
             initialValue: value,
-            decoration: InputDecoration(
-                hintText: hint,
-                hintStyle: TextStyle(
-                  fontSize: w * 0.04,
-                )),
+            // decoration: InputDecoration(
+            //     hintText: hint,
+            //     hintStyle: TextStyle(
+            //       fontSize: w * 0.04,
+            //     )),
           )
         ],
       ),
