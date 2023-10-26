@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:authentic_guards/pages/profile/logout.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,34 +33,6 @@ class _ProfilePageState extends State<ProfilePage> {
     // final userRepository = Provider.of<UserRepository>(context, listen: false);
     final userModelProvider = Provider.of<UserModelProvider>(context);
     String? fullName;
-
-    Future<void> signOut() async {
-      //logout firebase
-      try {
-        await FirebaseAuth.instance.signOut();
-        print("Logged out from Firebase successfully!");
-      } catch (e) {
-        print("Error logging out from Firebase: $e");
-      }
-
-      //logout google
-      try {
-        await googleSignIn.signOut();
-        print("User Signed Out from Google");
-      } catch (e) {
-        print("Error logging out from Google: $e");
-      }
-
-      //logoutfacebook
-
-      try {
-        await FirebaseAuth.instance.signOut();
-        await FacebookAuth.instance.logOut();
-        print("Logged out from Facebook successfully!");
-      } catch (e) {
-        print("Error logging out: $e");
-      }
-    }
 
     void owned() {
       Navigator.push(

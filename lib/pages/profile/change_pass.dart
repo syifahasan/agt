@@ -1,5 +1,6 @@
 import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/pages/notification.dart';
+import 'package:authentic_guards/pages/profile/logout.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -74,7 +75,9 @@ class _changePassState extends State<changePass> {
                 actions: <Widget>[
                   TextButton(
                     child: Text('OK'),
-                    onPressed: () {
+                    onPressed: () async {
+                      await signOut();
+                      // Setelah logout, arahkan pengguna ke halaman login atau beranda, tergantung pada kebutuhan Anda.
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => PageLogin()));
                     },
