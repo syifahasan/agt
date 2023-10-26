@@ -1,14 +1,109 @@
+import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/pages/notification.dart';
+import 'package:authentic_guards/pages/profile/logout.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 
-class changePass extends StatelessWidget {
+class changePass extends StatefulWidget {
   const changePass({super.key});
 
+  @override
+  State<changePass> createState() => _changePassState();
+}
+
+class _changePassState extends State<changePass> {
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final w = mediaQueryData.size.width;
     final h = mediaQueryData.size.height;
+
+    final _auth = FirebaseAuth.instance;
+    final _formKey = GlobalKey<FormState>();
+
+    final _currentPasswordController = TextEditingController();
+    final _newPasswordController = TextEditingController();
+    final _confirmPasswordController = TextEditingController();
+    final _emailController = TextEditingController();
+
+    String _currentPasswordError;
+    String _newPasswordError;
+    String _confirmPasswordError;
+
+    @override
+    void dispose() {
+      _currentPasswordController.dispose();
+      _newPasswordController.dispose();
+      _confirmPasswordController.dispose();
+      super.dispose();
+    }
+
+    Future<void> _changePassword() async {
+      final user = FirebaseAuth.instance.currentUser;
+
+      if (user == null) {
+        print('Pengguna belum diautentikasi.');
+        // Tampilkan pesan atau jalankan langkah otentikasi jika diperlukan.
+        return;
+      }
+
+      try {
+        // First, reauthenticate the user with their current password
+        final email = user.email;
+        if (email != null) {
+          final credential = EmailAuthProvider.credential(
+            email: email,
+            password: _currentPasswordController.text,
+          );
+          await user.reauthenticateWithCredential(credential);
+
+          // Now, change the password
+          await user.updatePassword(_newPasswordController.text);
+          // Password changed successfully
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Password changed successfully.'),
+            ),
+          );
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text('Password Changed'),
+                content: Text('Your password has been successfully changed.'),
+                actions: <Widget>[
+                  TextButton(
+                    child: Text('OK'),
+                    onPressed: () async {
+                      await signOut();
+                      // Setelah logout, arahkan pengguna ke halaman login atau beranda, tergantung pada kebutuhan Anda.
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => PageLogin()));
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('User email is not available.'),
+            ),
+          );
+        }
+      } on FirebaseAuthException catch (e) {
+        // Handle password change errors
+        print('Error: ${e.code}, ${e.message}');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(''),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: CustomScrollView(
@@ -56,23 +151,47 @@ class changePass extends StatelessWidget {
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: <Widget>[
                         Container(
                           child: _formProfile(
                             title: 'Enter Password',
                             hint: 'input your password',
+                            controller: _currentPasswordController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter your current password.';
+                              }
+                              return null;
+                            },
                           ),
                         ),
                         Container(
                           child: _formProfile(
                             title: 'New Password',
                             hint: 'input your new password',
+                            controller: _newPasswordController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please enter a new password.';
+                              }
+                              return null;
+                            },
                           ),
                         ),
                         Container(
                           child: _formProfile(
                             title: 'Confrim Password',
                             hint: 'input your new password',
+                            controller: _confirmPasswordController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'Please confirm your new password.';
+                              }
+                              if (value != _newPasswordController.text) {
+                                return 'Passwords do not match.';
+                              }
+                              return null;
+                            },
                           ),
                         ),
                         Container(
@@ -80,8 +199,10 @@ class changePass extends StatelessWidget {
                           height: w * 0.12,
                           margin: EdgeInsets.only(top: w * 0.05),
                           child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text('Save',
+                            onPressed: () {
+                              _changePassword();
+                            },
+                            child: Text('Change Password',
                                 style: TextStyle(
                                     fontSize: w * 0.04, color: Colors.white)),
                             style: ButtonStyle(
@@ -111,9 +232,14 @@ class changePass extends StatelessWidget {
 class _formProfile extends StatelessWidget {
   final String title;
   final String hint;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
+
   const _formProfile({
     required this.title,
     required this.hint,
+    required this.controller,
+    required this.validator,
     super.key,
   });
 
@@ -139,6 +265,8 @@ class _formProfile extends StatelessWidget {
         TextFormField(
           cursorColor: Colors.grey,
           obscureText: true,
+          controller: controller,
+          validator: validator,
           style: TextStyle(fontSize: w * 0.042),
           decoration: InputDecoration(
             // labelText: labelText,

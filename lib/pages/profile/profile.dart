@@ -1,5 +1,9 @@
+import 'dart:async';
 import 'dart:io';
+import 'package:authentic_guards/pages/profile/logout.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/pages/profile/mybadge.dart';
@@ -11,36 +15,24 @@ import 'package:authentic_guards/pages/profile/owned.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:authentic_guards/model/user.dart';
 
-class ProfilePage extends StatelessWidget {
-  ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
-  final _nameController = TextEditingController();
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
 
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     final GoogleSignIn googleSignIn = GoogleSignIn();
-
-    Future<void> signOut() async {
-      await FirebaseAuth.instance.signOut();
-    }
-
-    Future<void> signOutGoogle() async {
-      await googleSignIn.signOut();
-      print("User Signed Out");
-    }
-
-    Future<void> signOutFromFacebook() async {
-      try {
-        await FirebaseAuth.instance.signOut();
-        await FacebookAuth.instance.logOut();
-        print("Logged out from Facebook successfully!");
-      } catch (e) {
-        print("Error logging out: $e");
-      }
-    }
+    // final userRepository = Provider.of<UserRepository>(context, listen: false);
+    final userModelProvider = Provider.of<UserModelProvider>(context);
+    String? fullName;
 
     void owned() {
       Navigator.push(
@@ -181,7 +173,7 @@ class ProfilePage extends StatelessWidget {
                       Container(
                         width: w * 0.25,
                         child: Text(
-                          'Asep Saefuddin',
+                          userModelProvider.userModel?.fullName ?? "Username",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontSize: w * 0.08,
@@ -308,8 +300,6 @@ class ProfilePage extends StatelessWidget {
                     color: Color(0xffff3b30),
                     nav: () async {
                       await signOut();
-                      await signOutGoogle();
-                      await signOutFromFacebook();
                       // Setelah logout, arahkan pengguna ke halaman login atau beranda, tergantung pada kebutuhan Anda.
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context) => PageLogin()));

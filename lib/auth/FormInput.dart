@@ -6,6 +6,7 @@ class InputForm extends StatelessWidget {
   final bool? obscureText;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
+  final FormFieldValidator<String>? validator;
   InputForm({
     Key? key,
     required this.labelText,
@@ -13,6 +14,7 @@ class InputForm extends StatelessWidget {
     this.keyboardType,
     this.obscureText,
     this.controller,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -29,6 +31,7 @@ class InputForm extends StatelessWidget {
             cursorColor: Colors.grey,
             keyboardType: keyboardType,
             obscureText: obscureText ?? false,
+            validator: validator,
             style: TextStyle(fontSize: w * 0.04),
             decoration: InputDecoration(
               labelText: labelText,
