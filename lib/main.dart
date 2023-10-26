@@ -9,7 +9,6 @@ import 'package:authentic_guards/utils/onboardingPage.dart';
 import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:authentic_guards/utils/splashscreeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'firebase_options.dart';
 import 'pages/scanner/proner.dart';
 
 Future<void> main() async {
@@ -47,22 +46,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'My Flutter ',
-//       initialRoute: '/',
-//       routes: {
-//         '/': (context) => changePass(),
-//       },
-//     );
-//   }
-// }
