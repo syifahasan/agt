@@ -72,25 +72,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-<<<<<<< HEAD
-=======
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'My Flutter ',
-//       initialRoute: '/',
-//       routes: {
-//         '/': (context) => changePass(),
-//       },
-//     );
-//   }
-// }
->>>>>>> dce8a91e823e4ec4163c61f470bf75ae49c2439a
