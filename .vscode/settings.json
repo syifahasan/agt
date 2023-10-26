@@ -2,5 +2,8 @@
     "java.project.sourcePaths": [
         "android/.gradle"
     ],
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "dart.hotReloadOnSave": "all",
+    "dart.flutterHotReloadOnSave": "all",
+    "dart.hotReloadProgress": "statusBar"
 }

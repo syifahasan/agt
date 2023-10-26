@@ -31,8 +31,9 @@ class _LoginViewsState extends State<PageLogin> {
 
       if (user != null) {
         // Login berhasil, lakukan tindakan yang sesuai, misalnya, arahkan ke halaman beranda.
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => MainPage()));
+        Navigator.of(context).pushReplacementNamed('/MainPage');
+        final userAfterSignIn = FirebaseAuth.instance.currentUser;
+        print('${userAfterSignIn?.uid}');
       } else {
         // Login gagal, tampilkan pesan kesalahan kepada pengguna.
         ScaffoldMessenger.of(context).showSnackBar(

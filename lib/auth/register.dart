@@ -1,4 +1,3 @@
-import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/auth/FormInput.dart';
@@ -58,21 +57,6 @@ class _LoginViewsState extends State<PageRegis> {
 
         User? newUser = userCredential.user;
 
-        // if (newUser != null) {
-        //   users.doc(newUser.uid).set({
-        //     'email': newUser.email,
-        //     'FullName': _nameController.text,
-        //     'PhoneNumber': _phoneController.text,
-        //   }).then((_) {
-        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        //       content: Text("Registered successfully!"),
-        //     ));
-        //   }).catchError((error) {
-        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        //       content: Text("Failed to add user to Firestore: $error"),
-        //     ));
-        //   });
-        // }
         addUser(userCredential.user!.uid, fullName, email, phoneNumber);
         // Mengatur nama dan nomor telepon di profil pengguna
         userCredential.user!.updateDisplayName(_nameController.text);
@@ -80,8 +64,7 @@ class _LoginViewsState extends State<PageRegis> {
         print("User registered: ${userCredential.user!.email}");
 
         //Mengatur Navigasi ke MainPage setelah selesai register
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => MainPage()));
+        Navigator.of(context).pushReplacementNamed('/MainPage');
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           print('The password provided is too weak.');

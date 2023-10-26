@@ -1,16 +1,18 @@
+import 'dart:async';
+
+import 'package:authentic_guards/model/user.dart';
 import 'package:authentic_guards/pages/payment/balanceCheck.dart';
-import 'package:authentic_guards/pages/profile/profile.dart';
 import 'package:authentic_guards/pages/store/store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../utils/payment/payNSend.dart';
 import './payment/topUp.dart';
 import '../utils/customscroll.dart';
 import './store/itemDetails.dart';
-import './store/store.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -50,24 +52,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    print('this is homepage');
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    print('home disposed');
-  }
-
-  @override
   Widget build(BuildContext context) {
     bool isSaved = false;
     late String itempic;
     late double price;
     late String itemname;
     late List<Color> colors;
+    String? fullName;
+    final mediaQueryData = MediaQuery.of(context);
+    final screenWidth = mediaQueryData.size.width;
+    final screenHeight = mediaQueryData.size.height;
+    final userModelProvider = Provider.of<UserModelProvider>(context);
 
     void itemDetails(
         String image, double harga, String name, List<Color> warna) {
@@ -88,9 +83,6 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    final mediaQueryData = MediaQuery.of(context);
-    final screenWidth = mediaQueryData.size.width;
-    final screenHeight = mediaQueryData.size.height;
     return Scaffold(
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
@@ -175,12 +167,7 @@ class _HomePageState extends State<HomePage> {
                   margin: EdgeInsets.only(top: 20, right: 10),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProfilePage(),
-                        ),
-                      );
+                      Navigator.pushNamed(context, '/ProfilePage');
                     },
                     child: CircleAvatar(
                       radius: 20.0,
@@ -243,8 +230,7 @@ class _HomePageState extends State<HomePage> {
                                           image: 'assets/icons/agtlogo.png',
                                           desc: 'Authentic Store',
                                           method: _stores,
-                                        
-                                            ),
+                                        ),
                                         Menu(
                                           screenWidth: screenWidth,
                                           image:
@@ -544,7 +530,9 @@ class _HomePageState extends State<HomePage> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "Hi, Username!",
+                                          userModelProvider
+                                                  .userModel?.fullName ??
+                                              "Guest",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14,

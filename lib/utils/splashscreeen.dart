@@ -15,8 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _navigateToNextScreen() async {
     await Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed(
-          '/home'); // Asumsikan '/home' adalah route untuk halaman utama Anda
+      Navigator.of(context).pushReplacementNamed('/LoginPage');
     });
   }
 
