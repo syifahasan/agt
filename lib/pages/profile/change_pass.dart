@@ -1,14 +1,22 @@
 import 'package:authentic_guards/pages/notification.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class changePass extends StatelessWidget {
+class changePass extends StatefulWidget {
   const changePass({super.key});
 
+  @override
+  State<changePass> createState() => _changePassState();
+}
+
+class _changePassState extends State<changePass> {
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final w = mediaQueryData.size.width;
     final h = mediaQueryData.size.height;
+    final _auth = FirebaseAuth.instance;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: CustomScrollView(
@@ -111,6 +119,7 @@ class changePass extends StatelessWidget {
 class _formProfile extends StatelessWidget {
   final String title;
   final String hint;
+
   const _formProfile({
     required this.title,
     required this.hint,

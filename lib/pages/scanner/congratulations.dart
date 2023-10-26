@@ -130,7 +130,7 @@ class Congratulations extends StatelessWidget {
                       bottom: 0,
                       child: Container(
                         width: w * 0.9,
-                        height: w * 0.6,
+                        height: w * 0.65,
                         decoration: BoxDecoration(
                           color: Colors.grey[300],
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -155,7 +155,6 @@ class Congratulations extends StatelessWidget {
                       child: Center(
                         child: Container(
                           width: w * 0.8,
-                          color: Colors.amber,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -189,6 +188,7 @@ class Congratulations extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Nicotine',
@@ -202,14 +202,16 @@ class Congratulations extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        RichText(
-                                          softWrap: true,
-                                          maxLines: 2,
-                                          text: TextSpan(
-                                            text: ': 6mg',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.black,
+                                        Flexible(
+                                          child: RichText(
+                                            softWrap: true,
+                                            maxLines: 2,
+                                            text: TextSpan(
+                                              text: ': 6mg',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -221,6 +223,7 @@ class Congratulations extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Size',
@@ -234,14 +237,16 @@ class Congratulations extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        RichText(
-                                          softWrap: true,
-                                          maxLines: 2,
-                                          text: TextSpan(
-                                            text: ': 60ml',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.black,
+                                        Flexible(
+                                          child: RichText(
+                                            softWrap: true,
+                                            maxLines: 2,
+                                            text: TextSpan(
+                                              text: ': 60ml',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -287,6 +292,7 @@ class Congratulations extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Production Date',
@@ -300,14 +306,16 @@ class Congratulations extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        RichText(
-                                          softWrap: true,
-                                          maxLines: 2,
-                                          text: TextSpan(
-                                            text: ': 21-05-22',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.black,
+                                        Flexible(
+                                          child: RichText(
+                                            softWrap: true,
+                                            maxLines: 2,
+                                            text: TextSpan(
+                                              text: ': 21-05-22',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -319,6 +327,7 @@ class Congratulations extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Company',
@@ -354,6 +363,7 @@ class Congratulations extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Email',
@@ -388,6 +398,7 @@ class Congratulations extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Webisite',
@@ -401,14 +412,16 @@ class Congratulations extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        RichText(
-                                          softWrap: true,
-                                          maxLines: 2,
-                                          text: TextSpan(
-                                            text: ': www.juicenation.co.id',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.black,
+                                        Flexible(
+                                          child: RichText(
+                                            softWrap: true,
+                                            maxLines: 2,
+                                            text: TextSpan(
+                                              text: ': www.juicenation.co.id',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -420,6 +433,7 @@ class Congratulations extends StatelessWidget {
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     'Company Hotline',
@@ -433,14 +447,16 @@ class Congratulations extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        RichText(
-                                          softWrap: true,
-                                          maxLines: 2,
-                                          text: TextSpan(
-                                            text: ': 081222201649',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: Colors.black,
+                                        Flexible(
+                                          child: RichText(
+                                            softWrap: true,
+                                            maxLines: 2,
+                                            text: TextSpan(
+                                              text: ': 081222201649',
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black,
+                                              ),
                                             ),
                                           ),
                                         ),

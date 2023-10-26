@@ -1,8 +1,3 @@
-import 'package:authentic_guards/model/user.dart';
-import 'package:authentic_guards/pages/home.dart';
-import 'package:authentic_guards/pages/notification.dart';
-import 'package:authentic_guards/pages/profile/profile.dart';
-import 'package:authentic_guards/pages/scanner/scanner.dart';
 import 'package:authentic_guards/pages/store/bestDeal.dart';
 import 'package:authentic_guards/pages/store/store.dart';
 import 'package:authentic_guards/utils/navigationBar.dart';
@@ -72,3 +67,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
