@@ -16,7 +16,18 @@ import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:authentic_guards/utils/splashscreeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
-import 'pages/scanner/proner.dart';
+export 'main.dart';
+
+bool _scannerActive = false;
+final routes = {
+  '/MainPage': (BuildContext context) => MainPage(),
+  '/HomePage': (BuildContext context) => HomePage(),
+  '/ProfilePage': (BuildContext context) => ProfilePage(),
+  '/StorePage': (BuildContext context) => StorePage(),
+  '/NotifPage': (BuildContext context) => NotifPage(),
+  '/ScannerPAge': (BuildContext context) =>
+      ScannerPage(isScannerActive: _scannerActive),
+};
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -62,21 +73,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'My Flutter ',
-//       initialRoute: '/',
-//       routes: {
-//         '/': (context) => changePass(),
-//       },
-//     );
-//   }
-// }
