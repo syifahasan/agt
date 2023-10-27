@@ -3,8 +3,34 @@ import 'package:intl/intl.dart';
 import 'package:authentic_guards/pages/profile/apiWilayah/dropdownSearch.dart';
 import 'package:authentic_guards/pages/profile/editProfile.dart';
 
-class editProfile2 extends StatelessWidget {
+class editProfile2 extends StatefulWidget {
   const editProfile2({super.key});
+
+  @override
+  State<editProfile2> createState() => _editProfile2State();
+}
+
+class _editProfile2State extends State<editProfile2> {
+  var _name;
+
+  final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _codeController = TextEditingController();
+
+  @override
+  void iniState() {
+    super.initState();
+
+    _nameController.addListener(_updateText);
+  }
+
+  void _updateText() {
+    setState(() {
+      _name = _nameController.text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +106,9 @@ class editProfile2 extends StatelessWidget {
                             children: [
                               Container(
                                 child: _formProfile(
+                                  tcontroller: _nameController,
                                   title: 'Name',
-                                  value: 'Asep Saefuddin Zuhri',
+                                  value: '',
                                   hint: 'Full Name',
                                   typeKeyboard: TextInputType.name,
                                 ),
@@ -94,6 +121,7 @@ class editProfile2 extends StatelessWidget {
                               ),
                               Container(
                                 child: _formProfile(
+                                  tcontroller: _phoneController,
                                   typeKeyboard: TextInputType.phone,
                                   title: 'Phone Number',
                                   value: '+62 000 0000 0000',
@@ -102,6 +130,7 @@ class editProfile2 extends StatelessWidget {
                               ),
                               Container(
                                 child: _formProfile(
+                                  tcontroller: _emailController,
                                   title: 'Email',
                                   value: 'asep@gmail.com',
                                   hint: 'Email',
@@ -113,6 +142,7 @@ class editProfile2 extends StatelessWidget {
                               ),
                               Container(
                                 child: _formProfile(
+                                  tcontroller: _addressController,
                                   title: 'Detail Address',
                                   value: 'Indramayu - Kertasemaya',
                                   hint: 'Address',
@@ -121,6 +151,7 @@ class editProfile2 extends StatelessWidget {
                               ),
                               Container(
                                 child: _formProfile(
+                                  tcontroller: _codeController,
                                   title: 'Postal Code',
                                   value: '45274',
                                   hint: 'Input your postal code',
@@ -133,10 +164,10 @@ class editProfile2 extends StatelessWidget {
                                 margin: EdgeInsets.only(top: w * 0.05),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    Navigator.push(  
+                                    Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => editProfile(),
+                                        builder: (context) => editProfile(name: _nameController.text),
                                       ),
                                     );
                                   },
@@ -358,6 +389,7 @@ class _DateFormState extends State<DateForm> {
 }
 
 class JenisKelamin extends StatefulWidget {
+  
   @override
   _ButtonColorChangerState createState() => _ButtonColorChangerState();
 }
@@ -439,11 +471,13 @@ class _formProfile extends StatelessWidget {
   final String value;
   final String hint;
   final TextInputType typeKeyboard;
+  final TextEditingController tcontroller;
   const _formProfile({
     required this.title,
     required this.value,
     required this.hint,
     required this.typeKeyboard,
+    required this.tcontroller,
     super.key,
   });
 
@@ -467,6 +501,7 @@ class _formProfile extends StatelessWidget {
             ),
           ),
           TextFormField(
+            controller: tcontroller,
             keyboardType: typeKeyboard,
             style: TextStyle(fontSize: w * 0.04),
             initialValue: value,
