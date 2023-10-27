@@ -70,6 +70,10 @@ class _changePassState extends State<changePass> {
             context: context,
             builder: (context) {
               return AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                      23.0), // Mengubah ukuran dialog dengan sudut bulat
+                ),
                 title: Text('Password Changed'),
                 content: Text('Your password has been successfully changed.'),
                 actions: <Widget>[

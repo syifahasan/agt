@@ -108,7 +108,7 @@ class _editProfile2State extends State<editProfile2> {
                                 child: _formProfile(
                                   tcontroller: _nameController,
                                   title: 'Name',
-                                  value: '',
+                                  value: 'vvvv',
                                   hint: 'Full Name',
                                   typeKeyboard: TextInputType.name,
                                 ),
@@ -167,7 +167,8 @@ class _editProfile2State extends State<editProfile2> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => editProfile(name: _nameController.text),
+                                        builder: (context) => editProfile(
+                                            name: _nameController.text),
                                       ),
                                     );
                                   },
@@ -389,7 +390,6 @@ class _DateFormState extends State<DateForm> {
 }
 
 class JenisKelamin extends StatefulWidget {
-  
   @override
   _ButtonColorChangerState createState() => _ButtonColorChangerState();
 }
