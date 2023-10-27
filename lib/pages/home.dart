@@ -530,12 +530,19 @@ class _HomePageState extends State<HomePage> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          userModelProvider
-                                                  .userModel?.fullName ??
-                                              "Guest",
+                                          (userModelProvider.userModel?.fullName
+                                                          ?.length ??
+                                                      0) >
+                                                  12
+                                              ? userModelProvider
+                                                  .userModel!.fullName!
+                                                  .substring(0, 12)
+                                              : userModelProvider
+                                                      .userModel?.fullName ??
+                                                  "Username",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontSize: screenWidth * 0.04,
                                           ),
                                         ),
                                         Text("AG Points"),

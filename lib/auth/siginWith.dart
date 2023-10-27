@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:authentic_guards/utils/dialogWelcomeUser.dart';
 
 class siginWith extends StatefulWidget {
   const siginWith({super.key});
@@ -50,9 +51,10 @@ class _siginWithState extends State<siginWith> {
           addUser(user.uid, user.displayName!, user.email!);
         }
         // Pindah ke HomePage setelah login google
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => MainPage()),
-        );
+        Navigator.of(context).pushReplacementNamed('/MainPage');
+        final userAfterSignIn = FirebaseAuth.instance.currentUser;
+        final String userName = '${userAfterSignIn?.displayName}';
+        DialogUtils.showWelcomeDialog(context, userName);
       }
     } catch (error) {
       print(error);
