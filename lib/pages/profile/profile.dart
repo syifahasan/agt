@@ -173,7 +173,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       Container(
                         width: w * 0.25,
                         child: Text(
-                          userModelProvider.userModel?.fullName ?? "Username",
+                          (userModelProvider.userModel?.fullName?.length ?? 0) >
+                                  14
+                              ? userModelProvider.userModel!.fullName!
+                                  .substring(0, 14)
+                              : userModelProvider.userModel?.fullName ??
+                                  "Username",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontSize: w * 0.08,

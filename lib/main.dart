@@ -37,17 +37,19 @@ Future<void> main() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final bool isFirstTime = prefs.getBool('is_first_time') ?? true;
 
-  runApp(MultiProvider(
-    providers: [
-      Provider<UserModelProvider>(
-        create: (context) => UserModelProvider(),
-      ),
-      Provider<CartProvider>(
-        create: (context) => CartProvider(),
-      ),
-    ],
-    child: MyApp(isFirstTime),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider<UserModelProvider>(
+          create: (context) => UserModelProvider(),
+        ),
+        Provider<CartProvider>(
+          create: (context) => CartProvider(),
+        ),
+      ],
+      child: MyApp(isFirstTime),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

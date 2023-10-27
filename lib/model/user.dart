@@ -33,9 +33,6 @@ class UserModelProvider with ChangeNotifier {
           .listen((DatabaseEvent event) {
         // Menggunakan event.snapshot untuk mendapatkan DataSnapshot
         String? retrievedName = event.snapshot.value?.toString();
-        if (retrievedName != null && retrievedName.length > 9) {
-          retrievedName = retrievedName.substring(0, 9);
-        }
         _userModel = UserModel(fullName: retrievedName);
         notifyListeners(); // Memberi tahu widget yang mendengarkan untuk memperbarui diri mereka
       });
