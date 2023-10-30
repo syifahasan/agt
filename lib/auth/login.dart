@@ -33,8 +33,8 @@ class _LoginViewsState extends State<PageLogin> {
       if (user != null) {
         // Login berhasil, lakukan tindakan yang sesuai, misalnya, arahkan ke halaman beranda.
         Navigator.of(context).pushReplacementNamed('/MainPage');
-        final userAfterSignIn = FirebaseAuth.instance.currentUser;
-        final String userName = '${userAfterSignIn?.displayName}';
+        final userAfterSigin = FirebaseAuth.instance.currentUser;
+        final userName = '${userAfterSigin?.displayName}';
         DialogUtils.showWelcomeDialog(context, userName);
       } else {
         // Login gagal, tampilkan pesan kesalahan kepada pengguna.

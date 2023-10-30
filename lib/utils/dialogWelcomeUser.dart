@@ -5,7 +5,7 @@ class DialogUtils {
     showDialog(
       context: context,
       barrierDismissible:
-          true, // User harus menekan tombol untuk menutup dialog
+          true, 
       builder: (BuildContext context) {
         return Center(
           child: AlertDialog(

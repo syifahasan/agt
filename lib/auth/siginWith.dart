@@ -52,8 +52,8 @@ class _siginWithState extends State<siginWith> {
         }
         // Pindah ke HomePage setelah login google
         Navigator.of(context).pushReplacementNamed('/MainPage');
-        final userAfterSignIn = FirebaseAuth.instance.currentUser;
-        final String userName = '${userAfterSignIn?.displayName}';
+        final userAfterSigin = FirebaseAuth.instance.currentUser;
+        final userName = '${userAfterSigin?.displayName}';
         DialogUtils.showWelcomeDialog(context, userName);
       }
     } catch (error) {
@@ -77,9 +77,6 @@ class _siginWithState extends State<siginWith> {
                 onPressed: () async {
                   try {
                     await signInWithGoogle();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Login Successful!')),
-                    );
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Error: $e')),

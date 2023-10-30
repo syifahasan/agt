@@ -1,5 +1,8 @@
+import 'package:authentic_guards/main.dart';
+import 'package:authentic_guards/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../pages/notification.dart';
 import 'package:authentic_guards/pages/profile/profile.dart';
@@ -24,27 +27,11 @@ class _MainPageState extends State<MainPage> {
   int _currentPage = 0;
 
   @override
-  void dispose() {
-    // Call dispose for the scanner controller here
-    _scannerController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final route = {
-      '/HomePage': (BuildContext context) => HomePage(),
-      '/StorePage': (BuildContext context) => StorePage(),
-      '/ScannerPAge': (BuildContext context) =>
-          ScannerPage(isScannerActive: _scannerActive),
-      '/NotifPage': (BuildContext context) => NotifPage(),
-      '/ProfilePage': (BuildContext context) => ProfilePage(),
-    };
-
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screens =
-        route.values.map((pageBuilder) => pageBuilder(context)).toList();
+        routes.values.map((pageBuilder) => pageBuilder(context)).toList();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
