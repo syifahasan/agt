@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -7,17 +8,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _navigateToNextScreen();
+  // }
+
   @override
   void initState() {
     super.initState();
-    _navigateToNextScreen();
-  }
-
-  _navigateToNextScreen() async {
-    await Future.delayed(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacementNamed('/LoginPage');
+    FirebaseAuth.instance.userChanges().listen((User? user) {
+      if (user != null) {
+        Navigator.pushReplacementNamed(context, '/MainPage');
+      } else {
+        Navigator.pushReplacementNamed(context, '/LoginPage');
+      }
     });
   }
+
+  // _navigateToNextScreen() async {
+  //   await Future.delayed(Duration(seconds: 3), () {
+  //     Navigator.of(context).pushReplacementNamed('/LoginPage');
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
