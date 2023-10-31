@@ -69,7 +69,7 @@ class ProfilePage extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return editProfile(name: _nameController.text);
+            return editProfile();
           },
         ),
       );
