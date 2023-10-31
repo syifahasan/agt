@@ -58,11 +58,11 @@ class _HomePageState extends State<HomePage> {
     late double price;
     late String itemname;
     late List<Color> colors;
-    String? fullName;
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
     final userModelProvider = Provider.of<UserModelProvider>(context);
+    print("Current full name: ${userModelProvider.userModel?.fullName}");
 
     void itemDetails(
         String image, double harga, String name, List<Color> warna) {
@@ -530,12 +530,19 @@ class _HomePageState extends State<HomePage> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          userModelProvider
-                                                  .userModel?.fullName ??
-                                              "Guest",
+                                          (userModelProvider.userModel?.fullName
+                                                          ?.length ??
+                                                      0) >
+                                                  12
+                                              ? userModelProvider
+                                                  .userModel!.fullName!
+                                                  .substring(0, 12)
+                                              : userModelProvider
+                                                      .userModel?.fullName ??
+                                                  "Username",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                            fontSize: screenWidth * 0.04,
                                           ),
                                         ),
                                         Text("AG Points"),

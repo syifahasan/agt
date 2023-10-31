@@ -1,3 +1,4 @@
+import 'package:authentic_guards/utils/dialogWelcomeUser.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:authentic_guards/auth/register.dart';
@@ -32,8 +33,9 @@ class _LoginViewsState extends State<PageLogin> {
       if (user != null) {
         // Login berhasil, lakukan tindakan yang sesuai, misalnya, arahkan ke halaman beranda.
         Navigator.of(context).pushReplacementNamed('/MainPage');
-        final userAfterSignIn = FirebaseAuth.instance.currentUser;
-        print('${userAfterSignIn?.uid}');
+        final userAfterSigin = FirebaseAuth.instance.currentUser;
+        final userName = '${userAfterSigin?.displayName}';
+        DialogUtils.showWelcomeDialog(context, userName);
       } else {
         // Login gagal, tampilkan pesan kesalahan kepada pengguna.
         ScaffoldMessenger.of(context).showSnackBar(

@@ -20,13 +20,12 @@ export 'main.dart';
 
 bool _scannerActive = false;
 final routes = {
-  '/MainPage': (BuildContext context) => MainPage(),
   '/HomePage': (BuildContext context) => HomePage(),
-  '/ProfilePage': (BuildContext context) => ProfilePage(),
   '/StorePage': (BuildContext context) => StorePage(),
-  '/NotifPage': (BuildContext context) => NotifPage(),
   '/ScannerPAge': (BuildContext context) =>
       ScannerPage(isScannerActive: _scannerActive),
+  '/NotifPage': (BuildContext context) => NotifPage(),
+  '/ProfilePage': (BuildContext context) => ProfilePage(),
 };
 
 Future<void> main() async {
@@ -37,17 +36,19 @@ Future<void> main() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final bool isFirstTime = prefs.getBool('is_first_time') ?? true;
 
-  runApp(MultiProvider(
-    providers: [
-      Provider<UserModelProvider>(
-        create: (context) => UserModelProvider(),
-      ),
-      Provider<CartProvider>(
-        create: (context) => CartProvider(),
-      ),
-    ],
-    child: MyApp(isFirstTime),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UserModelProvider>(
+          create: (context) => UserModelProvider(),
+        ),
+        Provider<CartProvider>(
+          create: (context) => CartProvider(),
+        ),
+      ],
+      child: MyApp(isFirstTime),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         '/LoginPage': (context) => isFirstTime
             ? OnboardingPage1()
             : PageLogin(), // Gantikan dengan halaman utama Anda
+        '/MainPage': (BuildContext context) => MainPage(),
       },
     );
   }

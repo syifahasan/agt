@@ -5,6 +5,7 @@ import 'package:authentic_guards/auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:authentic_guards/utils/dialogWelcomeUser.dart';
 
 final _nameController = TextEditingController();
 final _emailController = TextEditingController();
@@ -61,10 +62,11 @@ class _LoginViewsState extends State<PageRegis> {
         // Mengatur nama dan nomor telepon di profil pengguna
         userCredential.user!.updateDisplayName(_nameController.text);
 
-        print("User registered: ${userCredential.user!.email}");
-
         //Mengatur Navigasi ke MainPage setelah selesai register
         Navigator.of(context).pushReplacementNamed('/MainPage');
+        final userAfterSigin = FirebaseAuth.instance.currentUser;
+        final userName = '${userAfterSigin?.displayName}';
+        DialogUtils.showWelcomeDialog(context, userName);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           print('The password provided is too weak.');
