@@ -21,7 +21,7 @@ class _editProfile2State extends State<editProfile2> {
 
   @override
   void iniState() {
-    super.initState();
+    super.initState(); 
 
     _nameController.addListener(_updateText);
   }
@@ -106,7 +106,7 @@ class _editProfile2State extends State<editProfile2> {
                             children: [
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _nameController,
+                                  // tcontroller: _nameController,
                                   title: 'Name',
                                   value: 'vvvv',
                                   hint: 'Full Name',
@@ -121,7 +121,7 @@ class _editProfile2State extends State<editProfile2> {
                               ),
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _phoneController,
+                                  // tcontroller: _phoneController,
                                   typeKeyboard: TextInputType.phone,
                                   title: 'Phone Number',
                                   value: '+62 000 0000 0000',
@@ -130,7 +130,7 @@ class _editProfile2State extends State<editProfile2> {
                               ),
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _emailController,
+                                  // tcontroller: _emailController,
                                   title: 'Email',
                                   value: 'asep@gmail.com',
                                   hint: 'Email',
@@ -142,7 +142,7 @@ class _editProfile2State extends State<editProfile2> {
                               ),
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _addressController,
+                                  // tcontroller: _addressController,
                                   title: 'Detail Address',
                                   value: 'Indramayu - Kertasemaya',
                                   hint: 'Address',
@@ -151,7 +151,7 @@ class _editProfile2State extends State<editProfile2> {
                               ),
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _codeController,
+                                  // tcontroller: _codeController,
                                   title: 'Postal Code',
                                   value: '45274',
                                   hint: 'Input your postal code',
@@ -471,13 +471,13 @@ class _formProfile extends StatelessWidget {
   final String value;
   final String hint;
   final TextInputType typeKeyboard;
-  final TextEditingController tcontroller;
+  // final TextEditingController tcontroller;
   const _formProfile({
     required this.title,
     required this.value,
     required this.hint,
     required this.typeKeyboard,
-    required this.tcontroller,
+    // required this.tcontroller,
     super.key,
   });
 
@@ -501,7 +501,7 @@ class _formProfile extends StatelessWidget {
             ),
           ),
           TextFormField(
-            controller: tcontroller,
+            // controller: tcontroller,
             keyboardType: typeKeyboard,
             style: TextStyle(fontSize: w * 0.04),
             initialValue: value,

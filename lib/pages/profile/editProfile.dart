@@ -84,7 +84,7 @@ class editProfile extends StatelessWidget {
                               Container(
                                 child: _formProfile(
                                   title: 'Name',
-                                  value: (name),
+                                  value: "Asep",
                                   // hint: 'Full Name',
                                   typeKeyboard: TextInputType.name,
                                 ),
