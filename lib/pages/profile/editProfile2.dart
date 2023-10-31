@@ -11,26 +11,26 @@ class editProfile2 extends StatefulWidget {
 }
 
 class _editProfile2State extends State<editProfile2> {
-  // var _name;
+  var _name;
 
-  // final _nameController = TextEditingController();
-  // final _phoneController = TextEditingController();
-  // final _emailController = TextEditingController();
-  // final _addressController = TextEditingController();
-  // final _codeController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _addressController = TextEditingController();
+  final _codeController = TextEditingController();
 
-  // @override
-  // void iniState() {
-  //   super.initState(); 
+  @override
+  void iniState() {
+    super.initState(); 
 
-  //   _nameController.addListener(_updateText);
-  // }
+    _nameController.addListener(_updateText);
+  }
 
-  // void _updateText() {
-  //   setState(() {
-  //     _name = _nameController.text;
-  //   });
-  // }
+  void _updateText() {
+    setState(() {
+      _name = _nameController.text;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

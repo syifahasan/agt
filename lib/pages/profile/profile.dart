@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'package:authentic_guards/model/user.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/pages/profile/mybadge.dart';
@@ -24,7 +22,6 @@ class ProfilePage extends StatelessWidget {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     final GoogleSignIn googleSignIn = GoogleSignIn();
-    final userModelProvider = Provider.of<UserModelProvider>(context);
 
     Future<void> signOut() async {
       await FirebaseAuth.instance.signOut();
@@ -72,7 +69,7 @@ class ProfilePage extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return editProfile();
+            return editProfile(name: _nameController.text);
           },
         ),
       );
@@ -184,12 +181,7 @@ class ProfilePage extends StatelessWidget {
                       Container(
                         width: w * 0.25,
                         child: Text(
-                          (userModelProvider.userModel?.fullName?.length ?? 0) >
-                                  14
-                              ? userModelProvider.userModel!.fullName!
-                                  .substring(0, 14)
-                              : userModelProvider.userModel?.fullName ??
-                                  "Username",
+                          'Asep Saefuddin',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontSize: w * 0.08,
