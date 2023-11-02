@@ -1,11 +1,9 @@
 import 'package:authentic_guards/utils/dialogWelcomeUser.dart';
 import 'package:flutter/material.dart';
-import 'package:authentic_guards/utils/navigationBar.dart';
 import 'package:authentic_guards/auth/register.dart';
 import 'package:authentic_guards/auth/FormInput.dart';
 import 'package:authentic_guards/auth/siginWith.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 final TextEditingController _emailController = TextEditingController();
 final TextEditingController _passwordController = TextEditingController();
@@ -31,10 +29,12 @@ class _LoginViewsState extends State<PageLogin> {
       User? user = await signInWithEmailAndPassword(email, password);
 
       if (user != null) {
-        // Login berhasil, lakukan tindakan yang sesuai, misalnya, arahkan ke halaman beranda.
-        Navigator.of(context).pushReplacementNamed('/MainPage');
-        final userAfterSignIn = FirebaseAuth.instance.currentUser;
-        final String userName = '${userAfterSignIn?.displayName}';
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          '/MainPage',
+          (Route<dynamic> route) => false,
+        );
+        final userAfterSigin = FirebaseAuth.instance.currentUser;
+        final userName = '${userAfterSigin?.displayName}';
         DialogUtils.showWelcomeDialog(context, userName);
       } else {
         // Login gagal, tampilkan pesan kesalahan kepada pengguna.

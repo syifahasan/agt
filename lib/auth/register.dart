@@ -63,9 +63,13 @@ class _LoginViewsState extends State<PageRegis> {
         userCredential.user!.updateDisplayName(_nameController.text);
 
         //Mengatur Navigasi ke MainPage setelah selesai register
-        Navigator.of(context).pushReplacementNamed('/MainPage');
-        final userAfterSignIn = FirebaseAuth.instance.currentUser;
-        final String userName = '${userAfterSignIn?.displayName}';
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          '/MainPage',
+          (Route<dynamic> route) => false,
+        );
+
+        final userAfterSigin = FirebaseAuth.instance.currentUser;
+        final userName = '${userAfterSigin?.displayName}';
         DialogUtils.showWelcomeDialog(context, userName);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {

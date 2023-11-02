@@ -58,11 +58,11 @@ class _HomePageState extends State<HomePage> {
     late double price;
     late String itemname;
     late List<Color> colors;
-    String? fullName;
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
     final userModelProvider = Provider.of<UserModelProvider>(context);
+    print("Current full name: ${userModelProvider.userModel?.fullName}");
 
     void itemDetails(
         String image, double harga, String name, List<Color> warna) {

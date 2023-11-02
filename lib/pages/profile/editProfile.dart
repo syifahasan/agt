@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:authentic_guards/pages/profile/apiWilayah/dropdownSearch.dart';
 import 'package:authentic_guards/pages/profile/editProfile2.dart';
 
+
 class editProfile extends StatelessWidget {
   editProfile({Key? key, required this.name}) : super(key: key);
 
@@ -84,7 +85,7 @@ class editProfile extends StatelessWidget {
                               Container(
                                 child: _formProfile(
                                   title: 'Name',
-                                  value: (name),
+                                  value: "Asep",
                                   // hint: 'Full Name',
                                   typeKeyboard: TextInputType.name,
                                 ),
@@ -165,7 +166,7 @@ class editProfile extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => editProfile2(),
+                              builder: (context) => UpdateProfilePage(),
                             ),
                           ); // Add the co de to handle the edit profile action here
                         },

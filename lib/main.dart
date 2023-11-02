@@ -23,13 +23,12 @@ export 'main.dart';
 
 bool _scannerActive = false;
 final routes = {
-  '/MainPage': (BuildContext context) => MainPage(),
   '/HomePage': (BuildContext context) => HomePage(),
-  '/ProfilePage': (BuildContext context) => ProfilePage(),
   '/StorePage': (BuildContext context) => StorePage(),
-  '/NotifPage': (BuildContext context) => NotifPage(),
   '/ScannerPAge': (BuildContext context) =>
       ScannerPage(isScannerActive: _scannerActive),
+  '/NotifPage': (BuildContext context) => NotifPage(),
+  '/ProfilePage': (BuildContext context) => ProfilePage(),
 };
 
 Future<void> main() async {
@@ -43,7 +42,7 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
-        Provider<UserModelProvider>(
+        ChangeNotifierProvider<UserModelProvider>(
           create: (context) => UserModelProvider(),
         ),
         Provider<CartProvider>(
@@ -73,6 +72,7 @@ class MyApp extends StatelessWidget {
         '/LoginPage': (context) => isFirstTime
             ? OnboardingPage1()
             : PageLogin(), // Gantikan dengan halaman utama Anda
+        '/MainPage': (BuildContext context) => MainPage(),
       },
     );
   }

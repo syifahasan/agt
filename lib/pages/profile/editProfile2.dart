@@ -2,35 +2,98 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:authentic_guards/pages/profile/apiWilayah/dropdownSearch.dart';
 import 'package:authentic_guards/pages/profile/editProfile.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-class editProfile2 extends StatefulWidget {
-  const editProfile2({super.key});
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: editProfile2Screen(),
+//     );
+//   }
+// }
+
+class UpdateProfilePage extends StatefulWidget {
+  const UpdateProfilePage({super.key});
 
   @override
-  State<editProfile2> createState() => _editProfile2State();
+  _UpdateProfilePageState createState() => _UpdateProfilePageState();
 }
+class _UpdateProfilePageState extends State<UpdateProfilePage> {
+  final DatabaseReference databaseReference = FirebaseDatabase.instance.reference();
+  final TextEditingController _nameController = TextEditingController();
 
-class _editProfile2State extends State<editProfile2> {
-  var _name;
+  // Replace with your own Firebase Authentication logic for obtaining the UID.
+  // For simplicity, we're using a static UID in this example.
+  final String currentUserUID = "your_user_uid";
 
-  final _nameController = TextEditingController();
-  final _phoneController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _addressController = TextEditingController();
-  final _codeController = TextEditingController();
+  Future<void> updateProfile() async {
+    try {
+      // Get the reference to the user's profile location based on UID
+      DatabaseReference userReference = databaseReference.child("users/$currentUserUID");
 
-  @override
-  void iniState() {
-    super.initState();
+      // Prepare the updated data
+      Map<String, dynamic> updatedData = {
+        "name": _nameController.text, // You can include other fields here
+      };
 
-    _nameController.addListener(_updateText);
+      // Use the .update() method to send the profile data update
+      await userReference.update(updatedData);
+
+      print("Profile data updated successfully.");
+    } catch (e) {
+      print("Failed to update profile data: $e");
+    }
   }
 
-  void _updateText() {
-    setState(() {
-      _name = _nameController.text;
-    });
-  }
+// class _editProfile2ScreenState extends State<editProfile2Screen> {
+//   final databaseReference = FirebaseDatabase.instance.reference();
+//   final FirebaseAuth _auth = FirebaseAuth.instance;
+//   User? user;
+//   TextEditingController _nameController = TextEditingController();
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     getUserData();
+//   }
+
+//   Future<void> getUserData() async {
+//   user = _auth.currentUser;
+//   if (user != null && user!.uid != null) {
+//     DataSnapshot dataSnapshot =
+//         await databaseReference.child("users/${user.uid}").once();
+//     Map<String, dynamic> userData =
+//         dataSnapshot.value as Map<String, dynamic>;
+//     setState(() {
+//       _nameController.text = userData['name'];
+//     });
+//   }
+// }
+
+  
+
+//   void updateProfile() {
+//     String newName = _nameController.text;
+
+//     // Perbarui data pengguna di database
+//     databaseReference.child("users/${user!.uid}").update({
+//       "name": newName,
+//     });
+
+//     // Tampilkan pesan sukses atau perbarui UI sesuai kebutuhan
+//     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+//       content: Text('Profil berhasil diperbarui!'),
+//     ));
+//   }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +169,7 @@ class _editProfile2State extends State<editProfile2> {
                             children: [
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _nameController,
+                                  // tcontroller: _nameController,
                                   title: 'Name',
                                   value: 'vvvv',
                                   hint: 'Full Name',
@@ -121,7 +184,7 @@ class _editProfile2State extends State<editProfile2> {
                               ),
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _phoneController,
+                                  // tcontroller: _phoneController,
                                   typeKeyboard: TextInputType.phone,
                                   title: 'Phone Number',
                                   value: '+62 000 0000 0000',
@@ -130,7 +193,7 @@ class _editProfile2State extends State<editProfile2> {
                               ),
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _emailController,
+                                  // tcontroller: _emailController,
                                   title: 'Email',
                                   value: 'asep@gmail.com',
                                   hint: 'Email',
@@ -142,7 +205,7 @@ class _editProfile2State extends State<editProfile2> {
                               ),
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _addressController,
+                                  // tcontroller: _addressController,
                                   title: 'Detail Address',
                                   value: 'Indramayu - Kertasemaya',
                                   hint: 'Address',
@@ -151,7 +214,7 @@ class _editProfile2State extends State<editProfile2> {
                               ),
                               Container(
                                 child: _formProfile(
-                                  tcontroller: _codeController,
+                                  // tcontroller: _codeController,
                                   title: 'Postal Code',
                                   value: '45274',
                                   hint: 'Input your postal code',
@@ -164,13 +227,7 @@ class _editProfile2State extends State<editProfile2> {
                                 margin: EdgeInsets.only(top: w * 0.05),
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => editProfile(
-                                            name: _nameController.text),
-                                      ),
-                                    );
+                                    updateProfile();
                                   },
                                   child: Text('Save',
                                       style: TextStyle(
@@ -466,21 +523,26 @@ class _ButtonColorChangerState extends State<JenisKelamin> {
   }
 }
 
-class _formProfile extends StatelessWidget {
+class _formProfile extends StatefulWidget {
   final String title;
   final String value;
   final String hint;
   final TextInputType typeKeyboard;
-  final TextEditingController tcontroller;
+  final TextEditingController? controller;
   const _formProfile({
     required this.title,
     required this.value,
     required this.hint,
     required this.typeKeyboard,
-    required this.tcontroller,
+    this.controller,
     super.key,
   });
 
+  @override
+  State<_formProfile> createState() => _formProfileState();
+}
+
+class _formProfileState extends State<_formProfile> {
   @override
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
@@ -493,7 +555,7 @@ class _formProfile extends StatelessWidget {
           Container(
             alignment: Alignment.topLeft,
             child: Text(
-              title,
+              widget.title,
               style: TextStyle(
                 fontWeight: FontWeight.w700,
                 fontSize: w * 0.04,
@@ -501,12 +563,12 @@ class _formProfile extends StatelessWidget {
             ),
           ),
           TextFormField(
-            controller: tcontroller,
-            keyboardType: typeKeyboard,
+            controller: widget.controller,
+            keyboardType: widget.typeKeyboard,
             style: TextStyle(fontSize: w * 0.04),
-            initialValue: value,
+            initialValue: widget.value,
             decoration: InputDecoration(
-                hintText: hint,
+                hintText: widget.hint,
                 hintStyle: TextStyle(
                   fontSize: w * 0.04,
                 )),
