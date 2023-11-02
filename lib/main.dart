@@ -1,6 +1,8 @@
 import 'package:authentic_guards/model/user.dart';
 import 'package:authentic_guards/pages/home.dart';
 import 'package:authentic_guards/pages/notification.dart';
+import 'package:authentic_guards/pages/profile/addpin.dart';
+import 'package:authentic_guards/pages/profile/privacy.dart';
 import 'package:authentic_guards/pages/profile/profile.dart';
 import 'package:authentic_guards/pages/scanner/scanner.dart';
 import 'package:authentic_guards/pages/store/bestDeal.dart';
@@ -16,6 +18,7 @@ import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:authentic_guards/utils/splashscreeen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
+import 'package:authentic_guards/pages/profile/addpin.dart';
 export 'main.dart';
 
 bool _scannerActive = false;
@@ -74,3 +77,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

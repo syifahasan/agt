@@ -1,6 +1,11 @@
+import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
+import 'package:authentic_guards/utils/provider/cartProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/pages/store/paymentMethod.dart';
+import 'package:provider/provider.dart';
+import 'dart:math';
+import 'package:intl/intl.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
@@ -10,6 +15,23 @@ class PaymentPage extends StatelessWidget {
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
+    final userId = 123456;
+    String generateOrderNumber(int userId) {
+      // Dapatkan tanggal dan waktu saat ini
+      DateTime now = DateTime.now();
+
+      // Format tanggal dan waktu menjadi string yang unik
+      String parsedDate = DateFormat('ddMMy').format(now);
+
+      // Generate nomor unik secara acak (contoh: 6 digit)
+      Random random = Random();
+      int randomNumber = random.nextInt(900000) + 100000;
+
+      // Gabungkan informasi untuk membuat nomor urutan yang unik
+      String orderNumber = '${userId}${parsedDate}${randomNumber}';
+
+      return orderNumber;
+    }
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -18,7 +40,8 @@ class PaymentPage extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
-            iconTheme:IconThemeData(color: Colors.white, size: screenWidth * 0.065),
+            iconTheme:
+                IconThemeData(color: Colors.white, size: screenWidth * 0.065),
             backgroundColor: Colors.transparent,
             // Properties for the AppBar
             expandedHeight:
@@ -179,9 +202,15 @@ class PaymentPage extends StatelessWidget {
                     child: Text('Total'),
                   ),
                   Container(
-                    child: Text(
-                      'Rp 524.223,68',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                    child: Consumer<CartProvider>(
+                      builder: (context, cartProvider, child) {
+                        final cartItems = cartProvider.items;
+                        final totalPrice = cartProvider.totalPrice;
+                        return Text(
+                          CurrencyFormat.convertToIdr(totalPrice, 2),
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -190,10 +219,11 @@ class PaymentPage extends StatelessWidget {
             FloatingActionButton.extended(
               backgroundColor: Color(0xffFF6161),
               onPressed: () {
+                var ordernum = generateOrderNumber(userId);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => PaymentMethod(),
+                    builder: (context) => PaymentMethod(orderNumber: ordernum),
                   ),
                 );
               },

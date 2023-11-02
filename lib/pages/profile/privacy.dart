@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/profile/addpin.dart';
 import 'package:flutter/material.dart';
 import 'package:authentic_guards/pages/profile/appBar.dart';
 import 'package:authentic_guards/pages/profile/change_pass.dart';
@@ -19,12 +20,12 @@ class PagePrivacy extends StatelessWidget {
       );
     }
 
-    void _pin() {
+    void _addpin() {
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) {
-            return changePin();
+            return AddPin();
           },
         ),
       );
@@ -68,7 +69,7 @@ class PagePrivacy extends StatelessWidget {
                     title: 'Change PIN',
                     image: 'assets/other/pin.png',
                     color: Color(0xffe0e0d1),
-                    pages: _pin,
+                    pages: _addpin,
                   ),
                 ),
                 Container(
