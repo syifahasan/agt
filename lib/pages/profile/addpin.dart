@@ -4,6 +4,10 @@ import 'package:authentic_guards/pages/profile/appBar.dart';
 import 'package:authentic_guards/pages/profile/change_pass.dart';
 import 'package:authentic_guards/pages/profile/change_pin.dart';
 import 'package:authentic_guards/pages/profile/privacy.dart';
+import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class AddPin extends StatefulWidget {
   const AddPin({super.key});
@@ -77,6 +81,14 @@ class _AddPinState extends State<AddPin> {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24),

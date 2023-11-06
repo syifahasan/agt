@@ -20,6 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'package:authentic_guards/pages/profile/addpin.dart';
 export 'main.dart';
+import 'package:authentic_guards/pages/scanner/scan_succ.dart';
 
 bool _scannerActive = false;
 final routes = {
