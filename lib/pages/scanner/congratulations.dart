@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Congratulations extends StatelessWidget {
   @override
@@ -112,7 +113,7 @@ class Congratulations extends StatelessWidget {
                   ),
                 ),
 
-                child: Image.asset('assets/other/liquid.png'),
+                child: ImageCarouselSlider(),
               ),
               Container(
                 child: Stack(
@@ -539,6 +540,43 @@ class Congratulations extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class ImageCarouselSlider extends StatelessWidget {
+  final List<String> imagePaths = [
+    'assets/other/liquid.png',
+    'assets/other/liquid.png',
+    'assets/other/liquid.png',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      options: CarouselOptions(
+        height: 200,
+        autoPlay: true, // Untuk otomatis memutar gambar
+        autoPlayInterval:
+            Duration(seconds: 2), // Interval waktu antara setiap gambar
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enableInfiniteScroll: true,
+      ),
+      items: imagePaths.map((path) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.symmetric(horizontal: 5.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Image.asset(path, fit: BoxFit.cover),
+            );
+          },
+        );
+      }).toList(),
     );
   }
 }
