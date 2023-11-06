@@ -20,6 +20,12 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
+        },
+        {
+            "name": "Flutter (lib\\pages\\profile\\addpin.dart)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib\\pages\\profile\\addpin.dart"
         }
     ]
 }
