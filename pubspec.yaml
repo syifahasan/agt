@@ -80,12 +80,7 @@ dependencies:
   mobile_scanner: ^2.1.0
   hive_flutter: ^1.1.0
   flutter_bloc: ^8.0.1
-
-
-  
-  #icons
   material_design_icons_flutter: ^6.0.7096
-  dio: ^5.3.3
   carousel_slider: ^4.2.1
 
 dev_dependencies:
