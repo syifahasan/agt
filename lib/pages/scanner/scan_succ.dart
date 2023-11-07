@@ -1,7 +1,7 @@
+import 'package:authentic_guards/pages/store/paymentMethod.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
-class Congratulations extends StatelessWidget {
+class scan_succ extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -30,6 +30,22 @@ class Congratulations extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 200),
+              Container(
+                child: Column(
+                  children: [
+                    Container(
+                      height: w * 0.35,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image(
+                        image: AssetImage('assets/other/ceklis.png'),
+                        fit: BoxFit.fill,
+                      ),
+                    )
+                  ],
+                ),
+              ),
               Container(
                 child: Text(
                   "The product you purchase is",
@@ -113,7 +129,7 @@ class Congratulations extends StatelessWidget {
                   ),
                 ),
 
-                child: ImageCarouselSlider(),
+                child: Image.asset('assets/other/liquid.png'),
               ),
               Container(
                 child: Stack(
@@ -402,7 +418,7 @@ class Congratulations extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Webisite',
+                                    'Website',
                                     style: TextStyle(
                                       fontSize: 13,
                                     ),
@@ -477,57 +493,37 @@ class Congratulations extends StatelessWidget {
               SizedBox(height: 30),
               Container(
                 child: Text(
-                  "This product has been claimed!",
+                  "Please input the pin on the scratch",
                   style: TextStyle(fontSize: 13),
                 ),
               ),
               Container(
                 child: Text(
-                  "You can check the product owner by clicking",
+                  "section then click the button below to claim the",
                   style: TextStyle(fontSize: 13),
                 ),
               ),
               Container(
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: " Product Owner ",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold)),
-                      TextSpan(
-                        text: 'down below!',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 13,
-                        ),
-                      ),
-                      // TextSpan(
-                      //   text: ' dan teks yang tidak tebal.',
-                      // ),
-                    ],
-                  ),
+                child: Text(
+                  "product that you purchase!",
+                  style: TextStyle(fontSize: 13),
                 ),
               ),
+              SizedBox(height: 10),
+              PinInputField(),
               SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {
-                  // Aksi yang ingin dilakukan saat tombol ditekan
-                },
+                onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.grey[300], // Warna latar belakang tombol
-                  onPrimary: Colors.white, // Warna teks tombol
+                  primary: Colors.grey[300],
+                  onPrimary: Colors.white,
                   minimumSize: Size(250.0, 40.0),
                   shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(40.0), // Atur sudut bulat di sini
+                    borderRadius: BorderRadius.circular(40.0),
                   ),
                 ),
                 child: Text(
-                  'Product Owner',
+                  'Submit',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
@@ -540,43 +536,6 @@ class Congratulations extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class ImageCarouselSlider extends StatelessWidget {
-  final List<String> imagePaths = [
-    'assets/other/liquid.png',
-    'assets/other/liquid.png',
-    'assets/other/liquid.png',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 200,
-        autoPlay: true, // Untuk otomatis memutar gambar
-        autoPlayInterval:
-            Duration(seconds: 2), // Interval waktu antara setiap gambar
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
-        autoPlayCurve: Curves.fastOutSlowIn,
-        enableInfiniteScroll: true,
-      ),
-      items: imagePaths.map((path) {
-        return Builder(
-          builder: (BuildContext context) {
-            return Container(
-              width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.symmetric(horizontal: 5.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Image.asset(path, fit: BoxFit.cover),
-            );
-          },
-        );
-      }).toList(),
     );
   }
 }

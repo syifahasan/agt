@@ -4,6 +4,8 @@ import 'package:authentic_guards/domain/model/body/user_local_body.dart';
 import 'package:authentic_guards/domain/model/user.dart';
 import 'package:authentic_guards/pages/home.dart';
 import 'package:authentic_guards/pages/notification.dart';
+import 'package:authentic_guards/pages/profile/addpin.dart';
+import 'package:authentic_guards/pages/profile/privacy.dart';
 import 'package:authentic_guards/pages/profile/profile.dart';
 import 'package:authentic_guards/pages/scanner/scanner.dart';
 import 'package:authentic_guards/pages/scanner/scanner_views.dart';
@@ -153,3 +155,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

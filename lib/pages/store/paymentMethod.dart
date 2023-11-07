@@ -1,14 +1,24 @@
 import 'package:authentic_guards/utils/payment/topUpMethod.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbols.dart';
+import 'package:intl/intl.dart';
+import 'dart:math';
+import 'package:authentic_guards/utils/payment/currencyFormat.dart';
+import 'package:authentic_guards/utils/provider/cartProvider.dart';
+import 'package:provider/provider.dart';
 
 class PaymentMethod extends StatelessWidget {
-  const PaymentMethod({super.key});
+  const PaymentMethod({super.key, required this.orderNumber});
+  final String orderNumber;
 
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final screenWidth = mediaQueryData.size.width;
     final screenHeight = mediaQueryData.size.height;
+    final currentDate = DateTime.now();
+    final parsedDate = DateFormat('d MMMM y', 'en_US').format(currentDate);
+    final parsedTime = DateFormat.Hm().format(currentDate);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -107,7 +117,7 @@ class PaymentMethod extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      'Order number: 0000000001',
+                      'Order number: $orderNumber',
                       style: TextStyle(
                         fontSize: 15,
                       ),
@@ -122,42 +132,9 @@ class PaymentMethod extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 10),
-                            Text(
-                              'Order date : 23 September 2023',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Time : 15.00 WIB',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Order : Butterfly T-shirt, Size M',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Amount : 1pcs',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
+                        child: OrderInfo(
+                          time: parsedTime,
+                          date: parsedDate,
                         ),
                       ),
                     ),
@@ -201,9 +178,15 @@ class PaymentMethod extends StatelessWidget {
                     child: Text('Total'),
                   ),
                   Container(
-                    child: Text(
-                      'Rp 524.223,68',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                    child: Consumer<CartProvider>(
+                      builder: (context, cartProvider, child) {
+                        final cartItems = cartProvider.items;
+                        final totalPrice = cartProvider.totalPrice;
+                        return Text(
+                          CurrencyFormat.convertToIdr(totalPrice, 2),
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -226,6 +209,58 @@ class PaymentMethod extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+}
+
+class OrderInfo extends StatelessWidget {
+  const OrderInfo({
+    super.key,
+    required this.time,
+    required this.date,
+  });
+
+  final String time;
+  final String date;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 10),
+        Text(
+          'Order date : $date',
+          style: TextStyle(
+            fontSize: 15.0,
+            color: Colors.grey,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Time : $time',
+          style: TextStyle(
+            fontSize: 15.0,
+            color: Colors.grey,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Order : Butterfly T-shirt, Size M',
+          style: TextStyle(
+            fontSize: 15.0,
+            color: Colors.grey,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Amount : 1pcs',
+          style: TextStyle(
+            fontSize: 15.0,
+            color: Colors.grey,
+          ),
+        ),
+      ],
     );
   }
 }

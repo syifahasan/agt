@@ -85,6 +85,8 @@ dependencies:
   
   #icons
   material_design_icons_flutter: ^6.0.7096
+  dio: ^5.3.3
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
