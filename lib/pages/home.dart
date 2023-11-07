@@ -1,6 +1,4 @@
-import 'dart:async';
-
-import 'package:authentic_guards/model/user.dart';
+import 'package:authentic_guards/domain/model/user.dart';
 import 'package:authentic_guards/pages/payment/balanceCheck.dart';
 import 'package:authentic_guards/pages/store/store.dart';
 import 'package:flutter/material.dart';

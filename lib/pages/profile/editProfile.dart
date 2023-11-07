@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:authentic_guards/pages/profile/apiWilayah/dropdownSearch.dart';
@@ -7,6 +9,35 @@ class editProfile extends StatelessWidget {
   editProfile({Key? key, required this.name}) : super(key: key);
 
   String name;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final DatabaseReference _databaseRef = FirebaseDatabase().reference();
+
+  final TextEditingController fullnameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+
+  Future<void> getDataForLoggedInUser() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      String userId = user.uid;
+      DataSnapshot dataSnapshot =
+          (await _databaseRef.child('users/$userId').once()) as DataSnapshot;
+      if (dataSnapshot.value != null) {
+        Map<dynamic, dynamic>? userValues =
+            dataSnapshot.value as Map<dynamic, dynamic>?;
+        if (userValues != null) {
+          String fullname = userValues['fullname'] ?? '';
+          String email = userValues['email'] ?? '';
+          String phoneNumber = userValues['phonenumber'] ?? '';
+
+          fullnameController.text = fullname;
+          emailController.text = email;
+          phoneNumberController.text = phoneNumber;
+        }
+        // Lakukan sesuatu dengan data pengguna yang Anda dapatkan.
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +115,10 @@ class editProfile extends StatelessWidget {
                               Container(
                                 child: _formProfile(
                                   title: 'Name',
-                                  value: "Asep",
+                                  value: "",
                                   // hint: 'Full Name',
                                   typeKeyboard: TextInputType.name,
+                                  controller: fullnameController,
                                 ),
                               ),
                               Container(
@@ -99,16 +131,18 @@ class editProfile extends StatelessWidget {
                                 child: _formProfile(
                                   typeKeyboard: TextInputType.phone,
                                   title: 'Phone Number',
-                                  value: '+62 000 0000 0000',
+                                  value: '',
+                                  controller: phoneNumberController,
                                   // hint: 'Phone Number',
                                 ),
                               ),
                               Container(
                                 child: _formProfile(
                                   title: 'Email',
-                                  value: 'asep@gmail.com',
+                                  value: '',
                                   // hint: 'Email',
                                   typeKeyboard: TextInputType.emailAddress,
+                                  controller: emailController,
                                 ),
                               ),
                               Container(
@@ -450,11 +484,13 @@ class _formProfile extends StatelessWidget {
   final String value;
   // final String hint;
   final TextInputType typeKeyboard;
+  final TextEditingController? controller;
   const _formProfile({
     required this.title,
     required this.value,
     // required this.hint,
     required this.typeKeyboard,
+    this.controller,
     super.key,
   });
 
@@ -481,6 +517,7 @@ class _formProfile extends StatelessWidget {
             keyboardType: typeKeyboard,
             style: TextStyle(fontSize: w * 0.04),
             initialValue: value,
+            controller: controller,
             // decoration: InputDecoration(
             //     hintText: hint,
             //     hintStyle: TextStyle(

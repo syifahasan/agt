@@ -1,5 +1,5 @@
 import 'package:authentic_guards/main.dart';
-import 'package:authentic_guards/model/user.dart';
+import 'package:authentic_guards/domain/model/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
