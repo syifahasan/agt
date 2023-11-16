@@ -17,7 +17,6 @@ class PageLogin extends StatefulWidget {
 class _LoginViewsState extends State<PageLogin> {
   @override
   Widget build(BuildContext context) {
-    final appBarSize = AppBar().preferredSize.height;
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     final w = MediaQuery.of(context).size.width;
     final h = MediaQuery.of(context).size.height;

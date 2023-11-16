@@ -1,16 +1,14 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/pages/profile/mybadge.dart';
 import 'package:authentic_guards/pages/profile/mypayment.dart';
 import 'package:authentic_guards/pages/profile/privacy.dart';
 import 'package:authentic_guards/pages/profile/editProfile.dart';
 import 'package:authentic_guards/pages/profile/appBar.dart';
 import 'package:authentic_guards/pages/profile/owned.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:authentic_guards/domain/model/user.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -21,25 +19,12 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final h = MediaQuery.of(context).size.height;
     final w = MediaQuery.of(context).size.width;
-    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    final userModelProvider = Provider.of<UserModelProvider>(context);
+    print("Current full name: ${userModelProvider.userModel?.fullName}");
 
     Future<void> signOut() async {
       await FirebaseAuth.instance.signOut();
-    }
-
-    Future<void> signOutGoogle() async {
-      await googleSignIn.signOut();
-      print("User Signed Out");
-    }
-
-    Future<void> signOutFromFacebook() async {
-      try {
-        await FirebaseAuth.instance.signOut();
-        await FacebookAuth.instance.logOut();
-        print("Logged out from Facebook successfully!");
-      } catch (e) {
-        print("Error logging out: $e");
-      }
     }
 
     void owned() {
@@ -181,7 +166,12 @@ class ProfilePage extends StatelessWidget {
                       Container(
                         width: w * 0.25,
                         child: Text(
-                          'Asep Saefuddin',
+                          (userModelProvider.userModel?.fullName?.length ?? 0) >
+                                  11
+                              ? userModelProvider.userModel!.fullName!
+                                  .substring(0, 11)
+                              : userModelProvider.userModel?.fullName ??
+                                  "Username",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             fontSize: w * 0.08,
@@ -308,11 +298,11 @@ class ProfilePage extends StatelessWidget {
                     color: Color(0xffff3b30),
                     nav: () async {
                       await signOut();
-                      await signOutGoogle();
-                      await signOutFromFacebook();
                       // Setelah logout, arahkan pengguna ke halaman login atau beranda, tergantung pada kebutuhan Anda.
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => PageLogin()));
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/LoginPage',
+                        (Route<dynamic> route) => false,
+                      );
                     },
                   ),
                 ),
