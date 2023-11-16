@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 // void main() {
 //   runApp(MyApp());
 // }
 
-// class MyApp extends StatelessWidget {
+// class MyApp extends StatefulWidget {                                                   
+//   @override
+//   State<MyApp> createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
 //   @override
 //   Widget build(BuildContext context) {
 //     return MaterialApp(
-//       home: Congratulations(),
+//       home: Congratulations2(),
 //     );
 //   }
 // }
 
-class Congratulations extends StatelessWidget {
+class Congratulations2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -491,41 +497,24 @@ class Congratulations extends StatelessWidget {
               SizedBox(height: 30),
               Container(
                 child: Text(
-                  "This product has been claimed!",
+                  "Pleae input the pin on the scrath section",
                   style: TextStyle(fontSize: 13),
                 ),
               ),
               Container(
                 child: Text(
-                  "You can check the product owner by clicking",
+                  "then click the button bellow to claim the",
                   style: TextStyle(fontSize: 13),
                 ),
               ),
               Container(
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: " Product Owner ",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold)),
-                      TextSpan(
-                        text: 'down below!',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 13,
-                        ),
-                      ),
-                      // TextSpan(
-                      //   text: ' dan teks yang tidak tebal.',
-                      // ),
-                    ],
-                  ),
+                child: Text(
+                  "product that you purchase!",
+                  style: TextStyle(fontSize: 13),
                 ),
               ),
+              SizedBox(height: 15),
+              PinCodeScreen(),
               SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
@@ -541,7 +530,7 @@ class Congratulations extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Product Owner',
+                  'Submit',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
@@ -591,6 +580,40 @@ class ImageCarouselSlider extends StatelessWidget {
           },
         );
       }).toList(),
+    );
+  }
+}
+
+class PinCodeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          PinCodeTextField(
+            appContext: context,
+            length: 6, // Ganti panjang PIN menjadi 6
+            onChanged: (value) {
+              // Handle perubahan PIN
+              print(value);
+            },
+            onCompleted: (value) {
+              // Handle ketika pengguna menyelesaikan memasukkan PIN
+              print("Completed: $value");
+            },
+          ),
+          // SizedBox(height: 20),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     // Handle klik tombol, misalnya validasi PIN
+          //     // Anda dapat mengakses PIN yang dimasukkan menggunakan controller jika diperlukan
+          //   },
+          //   child: Text('Done'),
+          // ),
+        ],
+      ),
     );
   }
 }
