@@ -160,56 +160,6 @@ class _ScannerViewsState extends State<ScannerViews> {
                   ],
                 )),
           ),
-          Obx(() {
-            final isLogin = controller.isLogin as bool? ?? false;
-
-            return Positioned(
-              bottom: 30,
-              right: 15,
-              child: InkWell(
-                onTap: () {
-                  if (isLogin) {
-                    Get.to(ProfilePage())?.then((value) => {});
-                  } else {
-                    Get.to(PageLogin())?.then((value) => {});
-                  }
-                },
-                child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: Colors.white),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 16,
-                        ),
-                        Text(
-                          isLogin ? "Profile" : "Sign In",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          width: 8,
-                        ),
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(isLogin
-                              ? 'assets/other/profile.png'
-                              : 'assets/other/avatar.png'),
-                        )
-                      ],
-                    )),
-              ),
-            );
-          })
         ],
       ),
     );

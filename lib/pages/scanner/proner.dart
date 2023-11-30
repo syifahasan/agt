@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:authentic_guards/pages/scanner/scan_result.dart';
@@ -224,7 +225,12 @@ class _pronerState extends State<proner> {
               height: w * 0.12,
               margin: EdgeInsets.only(top: w * 0.05),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
                 child: Text('Back to homepage',
                     style: TextStyle(
                         fontSize: w * 0.04, color: Color(0xff474952))),
