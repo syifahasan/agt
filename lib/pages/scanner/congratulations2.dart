@@ -2,24 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatefulWidget {                                                   
-//   @override
-//   State<MyApp> createState() => _MyAppState();
-// }
-
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Congratulations2(),
-//     );
-//   }
-// }
-
 class Congratulations2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
