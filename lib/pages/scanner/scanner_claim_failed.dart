@@ -1,4 +1,8 @@
+import 'package:authentic_guards/main.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:lottie/lottie.dart';
 
 class ScannerClaimFailed extends StatelessWidget {
   const ScannerClaimFailed({super.key});
@@ -26,16 +30,8 @@ class ScannerClaimFailed extends StatelessWidget {
             Container(
               child: Column(
                 children: [
-                  Container(
-                    height: w * 0.35,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: Image(
-                      image: AssetImage('assets/other/silang.png'),
-                      fit: BoxFit.fill,
-                    ),
-                  ),
+                  Lottie.asset('assets/lottie/failed.json', width: 150),
+                  Spacer(),
                   Container(
                     margin: EdgeInsets.only(top: 24),
                     width: w * 0.8,
@@ -58,7 +54,9 @@ class ScannerClaimFailed extends StatelessWidget {
                   ),
                   SizedBox(height: 18),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back();
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.grey[300],
                       onPrimary: Colors.white,

@@ -14,7 +14,7 @@ class ScannerRepositoryImpl extends ScannerRepository {
   final Dio dio;
   ScannerRepositoryImpl(this.dio);
 
-  final String prefix = "/v1";
+  final String prefix = "/v2";
 
   @override
   checkCode(CheckCodeParams params) async {

@@ -1,3 +1,4 @@
+import 'package:authentic_guards/pages/scanner/proner.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -518,7 +519,10 @@ class Congratulations extends StatelessWidget {
               SizedBox(height: 30),
               ElevatedButton(
                 onPressed: () {
-                  // Aksi yang ingin dilakukan saat tombol ditekan
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => proner()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.grey[300], // Warna latar belakang tombol

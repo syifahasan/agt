@@ -38,6 +38,69 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _pulsa() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SnackbarPage(),
+      ),
+    );
+  }
+
+  void _pln() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SnackbarPage(),
+      ),
+    );
+  }
+
+  void _pdam() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SnackbarPage(),
+      ),
+    );
+  }
+
+  void _flightticket() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SnackbarPage(),
+      ),
+    );
+  }
+
+  void _trainticket() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SnackbarPage(),
+      ),
+    );
+  }
+
+  void _authnews() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SnackbarPage(),
+      ),
+    );
+  }
+
+  void _viewall() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SnackbarPage(),
+      ),
+    );
+  }
+
   void PayNSend() {
     _panelController.isAttached
         ? _panelController.open()
@@ -222,6 +285,7 @@ class _HomePageState extends State<HomePage> {
                                           image:
                                               'assets/icons/news-svgrepo-com.png',
                                           desc: 'Authentic News',
+                                          method: _authnews,
                                         ),
                                         Menu(
                                           screenWidth: screenWidth,
@@ -234,35 +298,42 @@ class _HomePageState extends State<HomePage> {
                                           image:
                                               'assets/icons/smartphone-svgrepo-com.png',
                                           desc: 'Pulsa',
+                                          method: _pulsa,
                                         ),
                                         Menu(
                                           screenWidth: screenWidth,
                                           image:
                                               'assets/icons/plugin-svgrepo-com.png',
                                           desc: 'PLN',
+                                          method: _pln,
                                         ),
                                         Menu(
-                                            screenWidth: screenWidth,
-                                            image:
-                                                'assets/icons/water-svgrepo-com.png',
-                                            desc: 'PDAM'),
+                                          screenWidth: screenWidth,
+                                          image:
+                                              'assets/icons/water-svgrepo-com.png',
+                                          desc: 'PDAM',
+                                          method: _pdam,
+                                        ),
                                         Menu(
                                           screenWidth: screenWidth,
                                           image:
                                               'assets/icons/plane-svgrepo-com.png',
                                           desc: 'Flight ticket',
+                                          method: _flightticket,
                                         ),
                                         Menu(
                                           screenWidth: screenWidth,
                                           image:
                                               'assets/icons/train-svgrepo-com.png',
                                           desc: 'Train ticket',
+                                          method: _trainticket,
                                         ),
                                         Menu(
                                           screenWidth: screenWidth,
                                           image:
                                               'assets/icons/stack-svgrepo-com.png',
                                           desc: 'View All',
+                                          method: _viewall,
                                         ),
                                       ],
                                     ),
@@ -841,5 +912,31 @@ class ActionButtons extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class SnackbarPage extends StatefulWidget {
+  @override
+  _SnackbarPageState createState() => _SnackbarPageState();
+}
+
+class _SnackbarPageState extends State<SnackbarPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Under Developing'),
+        ),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Halaman ini tidak memiliki konten
+    return Scaffold();
   }
 }

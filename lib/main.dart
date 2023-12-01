@@ -36,7 +36,7 @@ import 'firebase_options.dart';
 final routes = {
   '/HomePage': (BuildContext context) => HomePage(),
   '/StorePage': (BuildContext context) => StorePage(),
-  '/ScannerPAge': (BuildContext context) => ScannerViews(),
+  '/ScannerPage': (BuildContext context) => ScannerViews(),
   '/NotifPage': (BuildContext context) => NotifPage(),
   '/ProfilePage': (BuildContext context) => ProfilePage(),
 };
@@ -115,7 +115,6 @@ Future<Position> _determinePosition() async {
   return await Geolocator.getCurrentPosition();
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -131,15 +130,18 @@ class MyApp extends StatelessWidget {
           ],
           child: BlocBuilder<AuthCubit, LoggedEnum>(
             builder: (context, state) {
-              return MaterialApp(
+              return GetMaterialApp(
                 // Remove any properties that were specific to GetMaterialApp
                 debugShowCheckedModeBanner: false,
+                initialRoute: '/',
                 theme: ThemeData(
                   scaffoldBackgroundColor: Colors.white,
                   visualDensity: VisualDensity.adaptivePlatformDensity,
                   fontFamily: 'SF Pro Display',
                 ),
-                home: state == LoggedEnum.loading ? SplashScreen() : ScannerViews(),
+                home: state == LoggedEnum.loading
+                    ? SplashScreen()
+                    : ScannerViews(),
                 // Add your routes here if needed
                 routes: {
                   '/SplashScreen': (context) => SplashScreen(),
@@ -147,6 +149,10 @@ class MyApp extends StatelessWidget {
                   '/LoginPage': (context) => PageLogin(),
                   '/MainPage': (BuildContext context) => MainPage(),
                 },
+                getPages: [
+                  GetPage(
+                      name: '/ScannerPage', page: () => const ScannerViews())
+                ],
               );
             },
           ),
@@ -155,5 +161,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
