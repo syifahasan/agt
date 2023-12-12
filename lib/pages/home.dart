@@ -364,6 +364,10 @@ class _HomePageState extends State<HomePage> {
                                               horizontal: 10),
                                           width: screenWidth * 85 / 100,
                                           height: 200,
+                                          child: Image.asset(
+                                            'assets/other/payo.png',
+                                            fit: BoxFit.cover,
+                                          ),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(20),
@@ -375,6 +379,10 @@ class _HomePageState extends State<HomePage> {
                                               horizontal: 10),
                                           width: screenWidth * 85 / 100,
                                           height: 200,
+                                          child: Image.asset(
+                                            'assets/other/50.png',
+                                            fit: BoxFit.cover,
+                                          ),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(20),
@@ -386,6 +394,10 @@ class _HomePageState extends State<HomePage> {
                                               horizontal: 10),
                                           width: screenWidth * 85 / 100,
                                           height: 200,
+                                          child: Image.asset(
+                                            'assets/other/flassale.png',
+                                            fit: BoxFit.cover,
+                                          ),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(20),
