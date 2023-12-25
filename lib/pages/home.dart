@@ -11,6 +11,7 @@ import '../utils/payment/payNSend.dart';
 import './payment/topUp.dart';
 import '../utils/customscroll.dart';
 import './store/itemDetails.dart';
+import 'package:authentic_guards/utils/payment/currencyFormat.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -793,7 +794,7 @@ class _ItemsState extends State<Items> {
             ),
           ),
           Text(
-            '\$${widget.price.toStringAsFixed(2)}',
+            CurrencyFormat.convertToIdr(widget.price, 2),
             style: TextStyle(fontSize: widget.screenWidth * 3.5 / 100),
           ),
         ],

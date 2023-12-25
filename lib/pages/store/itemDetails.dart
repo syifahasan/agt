@@ -270,8 +270,11 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                 },
                 label: Container(
                   width: screenWidth * 20 / 100,
-                  child: Icon(Icons.bookmark_add_outlined,
-                      size: screenWidth * 10 / 100),
+                  child: Icon(
+                    Icons.bookmark_add_outlined,
+                    size: screenWidth * 10 / 100,
+                    color: Colors.white,
+                  ),
                 ),
                 heroTag: "fab1",
               ),
@@ -331,6 +334,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                         'Add to Cart',
                         style: TextStyle(
                           fontSize: screenWidth * 4 / 100,
+                          color: Colors.white,
                         ),
                       ),
                     ],

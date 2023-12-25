@@ -184,7 +184,10 @@ class _MyCartState extends State<MyCart> {
                 child: Center(
                   child: Text(
                     'Continue Payment',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

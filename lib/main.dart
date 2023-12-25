@@ -137,7 +137,7 @@ class MyApp extends StatelessWidget {
                 theme: ThemeData(
                   scaffoldBackgroundColor: Colors.white,
                   visualDensity: VisualDensity.adaptivePlatformDensity,
-                  fontFamily: 'SF Pro Display',
+                  fontFamily: 'SFProDisplay',
                 ),
                 home: state == LoggedEnum.loading
                     ? SplashScreen()

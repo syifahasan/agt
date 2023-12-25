@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:ui';
 import 'package:authentic_guards/auth/login.dart';
 import 'package:authentic_guards/helper/ui_helpers.dart';
 import 'package:authentic_guards/pages/profile/profile.dart';
@@ -61,6 +62,9 @@ class _ScannerViewsState extends State<ScannerViews> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
+    final screenWidth = mediaQueryData.size.width;
+    final screenHeight = mediaQueryData.size.height;
     return Scaffold(
       body: Stack(
         children: [
@@ -115,50 +119,118 @@ class _ScannerViewsState extends State<ScannerViews> {
             top: 50,
             right: 20,
             left: 20,
-            child: Container(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Container(
+                width: screenWidth * 40 / 100,
+                height: screenWidth * 25 / 100,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Colors.white),
-                padding: EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                    color: Colors.transparent),
+                child: Stack(
                   children: [
-                    Text("Scan Verification",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, color: Colors.black)),
-                    Text(
-                      "Please scan the barcode on your product to proceed the verification process!",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
+                    BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+                      child: Container(),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.13),
+                          ),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Colors.white.withOpacity(0.5),
+                              Colors.white.withOpacity(0.4),
+                            ],
+                          )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Scan Verification",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
+                          RichText(
+                            overflow: TextOverflow.clip,
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text:
+                                  "Please scan the barcode on your product to proceed the verification process!",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'SFProDisplay',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      textAlign: TextAlign.center,
-                    )
+                    ),
                   ],
-                )),
+                ),
+              ),
+            ),
           ),
           Positioned(
-            bottom: 100,
-            right: 40,
-            left: 40,
+            bottom: 30,
+            right: 20,
+            left: 20,
             child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Colors.white),
-                padding: EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Point the camera to the barcode!",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
+              margin: EdgeInsets.symmetric(horizontal: 55),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Container(
+                  height: screenWidth * 10 / 100,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.transparent),
+                  // padding: EdgeInsets.all(16),
+                  child: Stack(
+                    children: [
+                      BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+                        child: Container(),
                       ),
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                )),
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(
+                              color: Colors.white.withOpacity(0.13),
+                            ),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.white.withOpacity(0.5),
+                                Colors.white.withOpacity(0.4),
+                              ],
+                            )),
+                      ),
+                      Center(
+                        child: RichText(
+                          overflow: TextOverflow.clip,
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "Point the camera to barcode!",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'SFProDisplay',
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ),
         ],
       ),
