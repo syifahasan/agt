@@ -365,9 +365,13 @@ class _HomePageState extends State<HomePage> {
                                               horizontal: 10),
                                           width: screenWidth * 85 / 100,
                                           height: 200,
-                                          child: Image.asset(
-                                            'assets/other/payo.png',
-                                            fit: BoxFit.cover,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            child: Image.asset(
+                                              'assets/other/payo.png',
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -395,9 +399,13 @@ class _HomePageState extends State<HomePage> {
                                               horizontal: 10),
                                           width: screenWidth * 85 / 100,
                                           height: 200,
-                                          child: Image.asset(
-                                            'assets/other/flassale.png',
-                                            fit: BoxFit.cover,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            child: Image.asset(
+                                              'assets/other/flassale.png',
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -719,7 +727,7 @@ class _ItemsState extends State<Items> {
     IconData iconData =
         isSaved ? Icons.bookmark : Icons.bookmark_border_outlined;
     return Container(
-      width: widget.screenWidth * 40 / 100,
+      width: widget.screenWidth * 43 / 100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -742,8 +750,8 @@ class _ItemsState extends State<Items> {
                     boxShadow: [
                       BoxShadow(
                           color: Colors.grey,
-                          // blurStyle: BlurStyle.outer,
-                          blurRadius: 1,
+                          blurStyle: BlurStyle.normal,
+                          blurRadius: 2,
                           offset: Offset(0, 0)),
                     ],
                   ),
