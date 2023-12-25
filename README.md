@@ -1,6 +1,6 @@
 # authentic_guards
 
-A new Flutter project.
+Aplikasi Anti-Counterfeit yang bertujuan untuk menjaga kepercayaan customer kepada penjual atau pemilik produk
 
 ## Getting Started
 
