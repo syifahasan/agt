@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1073945365730",
+    "firebase_url": "https://authenticguards-8dee8-default-rtdb.firebaseio.com",
     "project_id": "authenticguards-8dee8",
     "storage_bucket": "authenticguards-8dee8.appspot.com"
   },
@@ -58,6 +59,14 @@
           "android_info": {
             "package_name": "com.example.authentic_guards",
             "certificate_hash": "fec729ad027f4541864adaf6a1262ec3e06f2360"
+          }
+        },
+        {
+          "client_id": "1073945365730-duq75b0mg1ohrquev6g418aqd2pv2q8h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.authentic_guards",
+            "certificate_hash": "dc35df640c9e50efba9b62b7b87693174ab7b26f"
           }
         },
         {

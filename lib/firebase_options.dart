@@ -27,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.macOS:
         return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -49,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1073945365730',
     projectId: 'authenticguards-8dee8',
     authDomain: 'authenticguards-8dee8.firebaseapp.com',
+    databaseURL: 'https://authenticguards-8dee8-default-rtdb.firebaseio.com',
     storageBucket: 'authenticguards-8dee8.appspot.com',
     measurementId: 'G-50BSLMCYS4',
   );
@@ -58,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:1073945365730:android:387b4f13378698691362bb',
     messagingSenderId: '1073945365730',
     projectId: 'authenticguards-8dee8',
+    databaseURL: 'https://authenticguards-8dee8-default-rtdb.firebaseio.com',
     storageBucket: 'authenticguards-8dee8.appspot.com',
   );
 
@@ -66,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:1073945365730:ios:ba4332cb1b6f3ba71362bb',
     messagingSenderId: '1073945365730',
     projectId: 'authenticguards-8dee8',
+    databaseURL: 'https://authenticguards-8dee8-default-rtdb.firebaseio.com',
     storageBucket: 'authenticguards-8dee8.appspot.com',
     androidClientId: '1073945365730-3f4md010fcou8u3rcg9n0ooq8qkh0uh4.apps.googleusercontent.com',
     iosClientId: '1073945365730-48fff1nv3jfh3gj0agr3qmdl3cl4ktsc.apps.googleusercontent.com',
@@ -74,12 +74,25 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyAPuzO5wFA7dtDBGoJk4ib9FjWDx5E73X8',
-    appId: '1:1073945365730:ios:d4dce7b9db55228d1362bb',
+    appId: '1:1073945365730:ios:ba4332cb1b6f3ba71362bb',
     messagingSenderId: '1073945365730',
     projectId: 'authenticguards-8dee8',
+    databaseURL: 'https://authenticguards-8dee8-default-rtdb.firebaseio.com',
     storageBucket: 'authenticguards-8dee8.appspot.com',
     androidClientId: '1073945365730-3f4md010fcou8u3rcg9n0ooq8qkh0uh4.apps.googleusercontent.com',
-    iosClientId: '1073945365730-o3asbum00ukkr08vebsg6ntvpdo8m728.apps.googleusercontent.com',
-    iosBundleId: 'com.example.authenticGuards.RunnerTests',
+    iosClientId: '1073945365730-48fff1nv3jfh3gj0agr3qmdl3cl4ktsc.apps.googleusercontent.com',
+    iosBundleId: 'com.example.authenticGuards',
   );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyA-o3amaGVK6yGxLXJ17uPq9CwICr4N8HQ',
+    appId: '1:1073945365730:web:c3a39d966a910ec91362bb',
+    messagingSenderId: '1073945365730',
+    projectId: 'authenticguards-8dee8',
+    authDomain: 'authenticguards-8dee8.firebaseapp.com',
+    databaseURL: 'https://authenticguards-8dee8-default-rtdb.firebaseio.com',
+    storageBucket: 'authenticguards-8dee8.appspot.com',
+    measurementId: 'G-MTD20JC8CH',
+  );
+
 }
